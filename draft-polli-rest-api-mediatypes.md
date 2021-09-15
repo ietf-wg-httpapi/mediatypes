@@ -1,5 +1,5 @@
 ---
-title: REST API mediatypes
+title: REST API Media Types
 abbrev:
 docname: draft-polli-rest-api-mediatypes-latest
 category: info
@@ -44,13 +44,13 @@ informative:
 
 --- abstract
 
-This document register
-the following media-types used in APIs
-on the IANA MEdia Types registry:
+This document registers
+the following media types used in APIs
+on the IANA Media Types registry:
 text/yaml,
 application/yaml,
 application/openapi+json,
-and application/openapi+yaml
+and application/openapi+yaml.
 
 --- note_Note_to_Readers
 
