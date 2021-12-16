@@ -1,6 +1,6 @@
-# Retry-After scope
+# Rest API Media-types
 
-This is the working area for the individual Internet-Draft, "Retry-After scope".
+This is the working area for the individual Internet-Draft, "REST API Media-types".
 
 * [Editor's Copy](https://ioggstream.github.io/draft-polli-rest-api-mediatypes/#go.draft-polli-rest-api-mediatypes.html)
 * [Individual Draft](https://tools.ietf.org/html/draft-polli-rest-api-mediatypes)
