@@ -1,10 +1,10 @@
-# Retry-After scope
+# Rest API MediaTypes
 
-This is the working area for the individual Internet-Draft, "Retry-After scope".
+This is the working area for the individual Internet-Draft, "Rest API MediaTypes".
 
-* [Editor's Copy](https://ioggstream.github.io/draft-polli-rest-api-mediatypes/#go.draft-polli-rest-api-mediatypes.html)
-* [Individual Draft](https://tools.ietf.org/html/draft-polli-rest-api-mediatypes)
-* [Compare Editor's Copy to Individual Draft](https://ioggstream.github.io/draft-polli-rest-api-mediatypes/#go.draft-polli-rest-api-mediatypes.diff)
+* [Editor's Copy](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-polli-rest-api-mediatypes.html)
+* [Individual Draft](https://tools.ietf.org/html/mediatypes)
+* [Compare Editor's Copy to Individual Draft](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-polli-rest-api-mediatypes.diff)
 
 ## Building the Draft
 
@@ -21,4 +21,4 @@ This requires that you have the necessary software installed.  See
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/ioggstream/draft-polli-rest-api-mediatypes/blob/master/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/ietf-wg-httpapi/mediatypes/blob/master/CONTRIBUTING.md).

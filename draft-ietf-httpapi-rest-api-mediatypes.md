@@ -1,12 +1,12 @@
 ---
 title: REST API mediatypes
 abbrev:
-docname: draft-polli-rest-api-mediatypes-latest
+docname: draft-ietf-httpapi-rest-api-mediatypes-latest
 category: info
 
 ipr: trust200902
-area: General
-workgroup:
+area: Applications and Real-Time
+workgroup: HTTPAPI
 keyword: Internet-Draft
 
 stand_alone: yes
@@ -80,7 +80,6 @@ this specification register the following media-types:
 `application/openapi+json`
 and `application/openapi+yaml`.
 
-The 
 
 ## Notational Conventions
 
