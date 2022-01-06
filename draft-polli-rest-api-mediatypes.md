@@ -56,9 +56,9 @@ and application/openapi+yaml.
 
 *RFC EDITOR: please remove this section before publication*
 
-Discussion of this draft takes place on the HTTP working group
+Discussion of this draft takes place on the HTTP APIs working group
 mailing list (httpapi@ietf.org), which is archived at
-[https://lists.w3.org/Archives/Public/ietf-httpapi-wg/](https://lists.w3.org/Archives/Public/ietf-httpapi-wg/).
+[https://mailarchive.ietf.org/arch/browse/httpapi/](https://mailarchive.ietf.org/arch/browse/httpapi/).
 
 The source code and issues list for this draft can be found at
 [https://github.com/ioggstream/draft-polli-rest-api-mediatypes](https://github.com/ioggstream/draft-polli-rest-api-mediatypes).
@@ -67,20 +67,18 @@ The source code and issues list for this draft can be found at
 
 # Introduction
 
-OpenAPI [oas] version 3 and above 
+OpenAPI Specification [oas] version 3 and above
 is a consolidated standard for describing
 HTTP APIs using the JSON {{!JSON=RFC8259}} and yaml [yaml] data format.
 
 To increase interoperability when processing API specifications
 and leverage content negotiation mechanisms when exchanging
-OpenAPI resources
+OpenAPI Specification resources
 this specification register the following media-types:
 `text/yaml`,
 `application/yaml`,
 `application/openapi+json`
 and `application/openapi+yaml`.
-
-The 
 
 ## Notational Conventions
 
@@ -91,15 +89,15 @@ by {{!RFC7405}}.
 
 ## The OpenAPI Media Types
 
-The OpenAPI Media Types convey OpenAPI specification files
+The OpenAPI Specification Media Types convey OpenAPI Specification (OAS) files
 as defined in [oas] for version 3.0.0 and above.
 
-Those files can be serialized in JSON or [yaml].
-Since there are multiple OpenAPI Specifications versions,
+Those files can be serialized in [JSON] or [yaml].
+Since there are multiple OpenAPI Specification Specifications versions,
 those media-types support the `version` parameter.
 
 The following examples conveys the desire of a client
-to receive an OpenAPI resource preferably in the following
+to receive an OpenAPI Specification resource preferably in the following
 order:
 
 1. openapi 3.1 in yaml
@@ -166,7 +164,6 @@ Author:  See Authors' Addresses section.
 
 Change controller:  n/a
 
-
 ## text/yaml
 
 Type name:  text
@@ -210,7 +207,6 @@ Restrictions on usage:  None.
 Author:  See Authors' Addresses section.
 
 Change controller:  n/a
-
 
 ## application/openapi+json
 
@@ -256,7 +252,6 @@ Author:  See Authors' Addresses section.
 
 Change controller:  n/a
 
-
 ## application/openapi+yaml
 
 Type name:  application
@@ -301,15 +296,15 @@ Author:  See Authors' Addresses section
 
 Change controller:  n/a
 
-
 --- back
 
 # Acknowledgements
 
 This specification was born from a thread created by James Manger
-and the subsequent discussion here https://github.com/httpwg/http-extensions/issues/885.
+and the subsequent discussion here [https://github.com/httpwg/http-extensions/issues/885](https://github.com/httpwg/http-extensions/issues/885).
 
 # FAQ
+
 {: numbered="false"}
 
 Q: Why this document?
@@ -321,8 +316,7 @@ Q: Why application/yaml and text/yaml
 :  Browsers and libraries implementations treats them differently.
    For example Google Chrome will display pages with
    `Content-Type: text/yaml` and to download pages with
-   `Content-Type: application/yaml`. 
-
+   `Content-Type: application/yaml`.
 
 # Change Log
 {: numbered="false"}
