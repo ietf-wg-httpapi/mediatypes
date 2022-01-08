@@ -1,10 +1,10 @@
-# Rest API MediaTypes
+# Rest API Media-types
 
-This is the working area for the individual Internet-Draft, "Rest API MediaTypes".
+This is the working area for the individual Internet-Draft, "REST API Media-types".
 
-* [Editor's Copy](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-polli-rest-api-mediatypes.html)
+* [Editor's Copy](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-ietf-httpapi-rest-api-mediatypes.html)
 * [Individual Draft](https://tools.ietf.org/html/mediatypes)
-* [Compare Editor's Copy to Individual Draft](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-polli-rest-api-mediatypes.diff)
+* [Compare Editor's Copy to Individual Draft](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-ietf-httpapi-rest-api-mediatypes.diff)
 
 ## Building the Draft
 
