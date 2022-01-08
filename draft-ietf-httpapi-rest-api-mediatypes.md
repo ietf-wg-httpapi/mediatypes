@@ -300,8 +300,8 @@ Change controller:  n/a
 
 # Acknowledgements
 
-This specification was born from a thread created by James Manger
-and the subsequent discussion here [https://github.com/httpwg/http-extensions/issues/885](https://github.com/httpwg/http-extensions/issues/885).
+Thanks to Erik Wilde and David Biesack for being the initial contributors of this specification,
+and to Darrel Miller and Rich Salz for their support during the adoption phase.
 
 # FAQ
 {: numbered="false"}
