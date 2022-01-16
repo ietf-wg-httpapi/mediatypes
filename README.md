@@ -3,7 +3,7 @@
 This is the working area for the individual Internet-Draft, "REST API Media-types".
 
 * [Editor's Copy](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-ietf-httpapi-rest-api-mediatypes.html)
-* [Individual Draft](https://tools.ietf.org/html/mediatypes)
+* [Individual Draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-rest-api-mediatypes/)
 * [Compare Editor's Copy to Individual Draft](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-ietf-httpapi-rest-api-mediatypes.diff)
 
 ## Building the Draft
