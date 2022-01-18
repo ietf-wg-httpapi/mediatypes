@@ -39,6 +39,18 @@ normative:
     - ins: Mike Ralphson
     - ins: Ron Ratovsky
     - ins: Uri Sarid
+  JSONLD:
+    target: https://www.w3.org/TR/json-ld11/
+    title: A JSON-based Serialization for Linked Data
+    date: 2020-07-16
+    author:
+    - ins: Gregg Kellogg)
+    - ins: Pierre-Antoine Champin
+    - ins: Dave Longley
+  jsonld-mediatype:
+    title: JSON LD media type registration
+    date: 2020-03-17
+    target: https://www.iana.org/assignments/media-types/application/ld+json
 
 informative:
 
@@ -77,7 +89,8 @@ OpenAPI Specification resources
 this specification register the following media-types:
 `text/yaml`,
 `application/yaml`,
-`application/openapi+json`
+`application/ld+yaml`,
+`application/openapi+json`,
 and `application/openapi+yaml`.
 
 ## Notational Conventions
@@ -111,9 +124,28 @@ Accept: application/openapi+yaml;version=3.1,
         application/openapi+json;q=0.3
 ~~~
 
+
+## The JSON-LD Media Type
+
+JSON-LD is a JSON-based Serialization for Linked Data
+defined in [JSONLD].
+
+Serializations other than {{JSON}} are allowed,
+but not standardized. This document registers
+the `application/ld+yaml` media type.
+
+The following example conveys a JSON-LD content
+serialized in yaml.
+
+~~~ example
+
+Content-Type: application/ld+yaml
+
+~~~
+
 # Security Considerations
 
-Security requirements for both media type and media type suffix
+Security requirements for all media type and media type suffix
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
 
 # IANA Considerations
@@ -295,6 +327,51 @@ Restrictions on usage:  None.
 Author:  See Authors' Addresses section
 
 Change controller:  n/a
+
+
+## application/ld+yaml
+
+Type name:  application
+
+Subtype name:  ld+yaml
+
+Required parameters:  None
+
+Optional parameters:  Same as for application/ld+json [jsonld-mediatype]
+
+Encoding considerations:  Same as for [jsonld-mediatype] and {{application/yaml}}
+
+Security considerations:  see {{security-considerations}} of this document and
+  and of [jsonld-mediatype]
+
+Interoperability considerations:  Same as for [jsonld-mediatype]
+
+Published specification: (this document)
+
+Applications that use this media type:  Same as for [jsonld-mediatype]
+
+Fragment identifier considerations:  Same as for [jsonld-mediatype]
+
+Additional information:
+
+  Deprecated alias names for this type:  n/a
+
+  Magic number(s):  n/a
+
+  File extension(s):  yamlld
+
+  Macintosh file type code(s):  Same as for [jsonld-mediatype]
+
+Person and email address to contact for further information:
+  See Authors' Addresses section
+
+Intended usage:  COMMON
+
+Restrictions on usage:  None.
+
+Author:  See Authors' Addresses section
+
+Change controller:  Same as for [jsonld-mediatype]
 
 --- back
 
