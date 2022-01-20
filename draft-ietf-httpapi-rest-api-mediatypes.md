@@ -47,7 +47,6 @@ informative:
 This document registers
 the following media types used in APIs
 on the IANA Media Types registry:
-text/yaml,
 application/yaml,
 application/openapi+json,
 and application/openapi+yaml.
@@ -75,7 +74,6 @@ To increase interoperability when processing API specifications
 and leverage content negotiation mechanisms when exchanging
 OpenAPI Specification resources
 this specification register the following media-types:
-`text/yaml`,
 `application/yaml`,
 `application/openapi+json`
 and `application/openapi+yaml`.
@@ -145,51 +143,7 @@ Fragment identifier considerations:  Same as for application/json
 
 Additional information:
 
-  Deprecated alias names for this type:  application/x-yaml
-
-  Magic number(s):  n/a
-
-  File extension(s):  yaml, yml
-
-  Macintosh file type code(s):  n/a
-
-Person and email address to contact for further information:
-  See Authors' Addresses section.
-
-Intended usage:  COMMON
-
-Restrictions on usage:  None.
-
-Author:  See Authors' Addresses section.
-
-Change controller:  n/a
-
-## text/yaml
-
-Type name:  text
-
-Subtype name:  yaml
-
-Required parameters:  None
-
-Optional parameters:  None; unrecognized parameters should be ignored
-
-Encoding considerations:  Same as {{JSON}}
-
-Security considerations:  see {{security-considerations}} of this document
-
-Interoperability considerations:  None
-
-Published specification: (this document)
-
-Applications that use this media type:  HTTP
-
-Fragment identifier considerations:  Same as for application/json
-  {{JSON}}
-
-Additional information:
-
-  Deprecated alias names for this type:  text/x-yaml
+  Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml
 
   Magic number(s):  n/a
 
@@ -311,12 +265,6 @@ Q: Why this document?
 :  After all these years, we still lack a proper media-type for yaml.
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
-
-Q: Why application/yaml and text/yaml
-:  Browsers and libraries implementations treats them differently.
-   For example Google Chrome will display pages with
-   `Content-Type: text/yaml` and to download pages with
-   `Content-Type: application/yaml`.
 
 # Change Log
 {: numbered="false"}
