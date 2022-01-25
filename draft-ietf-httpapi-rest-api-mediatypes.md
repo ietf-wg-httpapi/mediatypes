@@ -85,40 +85,14 @@ and `application/openapi+yaml`.
 This document uses the Augmented BNF defined in {{!RFC5234}} and updated
 by {{!RFC7405}}.
 
-## The OpenAPI Media Types
+# Media Type registrations
 
-The OpenAPI Specification Media Types convey OpenAPI Specification (OAS) files
-as defined in [oas] for version 3.0.0 and above.
+This section describes the information required to register
+the above media types.
 
-Those files can be serialized in {{JSON}} or [yaml].
-Since there are multiple OpenAPI Specification Specifications versions,
-those media-types support the `version` parameter.
+## Media Type application/yaml {#application-yaml}
 
-The following examples conveys the desire of a client
-to receive an OpenAPI Specification resource preferably in the following
-order:
-
-1. openapi 3.1 in yaml
-2. openapi 3.0 in yaml
-3. any openapi version in json
-
-~~~ example
-
-Accept: application/openapi+yaml;version=3.1,
-        application/openapi+yaml;version=3.0;q=0.5,
-        application/openapi+json;q=0.3
-~~~
-
-# Security Considerations
-
-Security requirements for both media type and media type suffix
-registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
-
-# IANA Considerations
-
-This specification defines the following new Internet media types {{MEDIATYPE}}.
-
-## application/yaml
+The following information serves as the registration form for the `application/yaml` media type.
 
 Type name:  application
 
@@ -162,7 +136,33 @@ Author:  See Authors' Addresses section.
 
 Change controller:  n/a
 
-## application/openapi+json
+## The OpenAPI Media Types
+
+The OpenAPI Specification Media Types convey OpenAPI document (OAS) files
+as defined in [oas] for version 3.0.0 and above.
+
+Those files can be serialized in {{JSON}} or [yaml].
+Since there are multiple OpenAPI Specification versions,
+those media-types support the `version` parameter.
+
+The following examples conveys the desire of a client
+to receive an OpenAPI Specification resource preferably in the following
+order:
+
+1. openapi 3.1 in yaml
+2. openapi 3.0 in yaml
+3. any openapi version in json
+
+~~~ example
+
+Accept: application/openapi+yaml;version=3.1,
+        application/openapi+yaml;version=3.0;q=0.5,
+        application/openapi+json;q=0.3
+~~~
+
+### Media Type application/openapi+json {#openapi-json}
+
+The following information serves as the registration form for the `application/openapi+json` media type.
 
 Type name:  application
 
@@ -206,7 +206,9 @@ Author:  See Authors' Addresses section.
 
 Change controller:  n/a
 
-## application/openapi+yaml
+### Media Type application/openapi+yaml {#openapi-yaml}
+
+The following information serves as the registration form for the `application/openapi+yaml` media type.
 
 Type name:  application
 
@@ -250,12 +252,37 @@ Author:  See Authors' Addresses section
 
 Change controller:  n/a
 
+
+# Security Considerations
+
+Security requirements for both media type and media type suffix
+registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
+
+# IANA Considerations
+
+This specification defines the following new Internet media types {{MEDIATYPE}}.
+
+IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
+with the registration information provided below.
+
+|--------------------------|---------------------------------------|
+| Media Type               |                         Section       |
+|--------------------------|---------------------------------------|
+| application/yaml         | {{application-yaml}} of ThisRFC       |
+| application/openapi+yaml | {{openapi-yaml}} of ThisRFC           |
+| application/openapi+json | {{openapi-json}} of ThisRFC           |
+|--------------------------|---------------------------------------|
+
 --- back
 
 # Acknowledgements
 
 Thanks to Erik Wilde and David Biesack for being the initial contributors of this specification,
 and to Darrel Miller and Rich Salz for their support during the adoption phase.
+
+In addition to the people above, this document owes a lot to the extensive discussion inside
+and outside the HTTPAPI workgroup,
+including Eemeli Aro and Ingy doet Net.
 
 
 # FAQ
