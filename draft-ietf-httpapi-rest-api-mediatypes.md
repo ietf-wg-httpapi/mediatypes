@@ -39,6 +39,15 @@ normative:
     - ins: Mike Ralphson
     - ins: Ron Ratovsky
     - ins: Uri Sarid
+  jsonschema:
+    title: JSON Schema Core
+    date: 2020-01-28
+    target: "https://json-schema.org/specification.html"
+    author:
+    - ins: A. Wright
+    - ins: H. Andrews
+    - ins: B. Hutton
+    - ins: G. Dennis
 
 informative:
 
@@ -75,6 +84,8 @@ and leverage content negotiation mechanisms when exchanging
 OpenAPI Specification resources
 this specification register the following media-types:
 `application/yaml`,
+`application/schema+json`,
+`application/schema-instance+json`,
 `application/openapi+json`
 and `application/openapi+yaml`.
 
@@ -252,6 +263,116 @@ Author:  See Authors' Addresses section
 
 Change controller:  n/a
 
+## JSON Schema Media Types
+
+JSON Schema is a vocabulary that allows to annotate and validate JSON documents
+(see {{jsonschema}}).
+
+This document registers the media types associated to the
+json and yaml serialization, so that it can be used to simplify
+the writing of OpenAPI documents.
+
+### Media Type application/schema+json {#schema-json}
+
+The following information serves as the registration form for the `application/schema+json` media type.
+
+Type name:  application
+
+Subtype name:  schema+json
+
+Required parameters:  None
+
+Optional parameters:
+
+  {: vspace="0"}
+  schema:
+
+  : A non-empty list of space-separated URIs, each identifying a JSON Schema resource.
+    The instance SHOULD successfully validate against at least one of these meta-schemas.
+    Non-validating meta-schemas MAY be included for purposes
+    such as allowing clients to make use of older versions of a meta-schema
+    as long as the runtime instance validates against that older version;
+
+  unrecognized parameters should be ignored
+
+Encoding considerations:  Same as {{JSON}}
+
+Security considerations:  see the "Security consideration" section of {{jsonschema}}
+
+Interoperability considerations:  see the "General consideration" section of {{jsonschema}}
+  in addition to {{JSON}}
+
+Published specification: (this document)
+
+Applications that use this media type:  HTTP
+
+Fragment identifier considerations:  See the "Fragment identifiers" section of {{jsonschema}}
+
+Additional information:
+
+  Deprecated alias names for this type:  n/a
+
+  Magic number(s):  n/a
+
+  File extension(s):  json, schema.json
+
+  Macintosh file type code(s):  n/a
+
+Person and email address to contact for further information:
+  See Authors' Addresses section.
+
+Intended usage:  COMMON
+
+Restrictions on usage:  None.
+
+Author:  See Authors' Addresses section.
+
+Change controller:  n/a
+
+### Media Type application/schema-instance+json {#schema-instance-json}
+
+The following information serves as the registration form for the `application/schema-instance+json` media type.
+
+Type name:  application
+
+Subtype name:  schema-instance+json
+
+Required parameters:  None
+
+Optional parameters: same as {{schema-json}}
+
+Encoding considerations:  Same as {{JSON}}
+
+Security considerations:  same as {{schema-json}}
+
+Interoperability considerations:  same as {{schema-json}}
+
+Published specification: (this document)
+
+Applications that use this media type:  same as {{schema-json}}
+
+Fragment identifier considerations:  same as {{schema-json}}
+
+Additional information:
+
+  Deprecated alias names for this type:  n/a
+
+  Magic number(s):  n/a
+
+  File extension(s):  json, schema.json
+
+  Macintosh file type code(s):  n/a
+
+Person and email address to contact for further information:
+  See Authors' Addresses section.
+
+Intended usage:  COMMON
+
+Restrictions on usage:  None.
+
+Author:  See Authors' Addresses section.
+
+Change controller:  n/a
 
 # Security Considerations
 
@@ -271,6 +392,8 @@ with the registration information provided below.
 | application/yaml         | {{application-yaml}} of ThisRFC       |
 | application/openapi+yaml | {{openapi-yaml}} of ThisRFC           |
 | application/openapi+json | {{openapi-json}} of ThisRFC           |
+| application/schema+json  | {schema-json}}   of ThisRFC           |
+| application/schema-instance+json  | {schema-instance-json}}   of ThisRFC           |
 |--------------------------|---------------------------------------|
 
 --- back
