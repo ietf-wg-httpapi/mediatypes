@@ -1,0 +1,221 @@
+# Supported
+supported-failsafe-schema:
+  data: |-
+    map:
+      Block style: !!map
+        Clark : Evans
+        Ingy  : döt Net
+        Oren  : Ben-Kiki
+      Flow style: !!map { Clark: Evans, Ingy: döt Net, Oren: Ben-Kiki }
+    seq:
+      Block style: !!seq
+      - Clark Evans
+      - Ingy döt Net
+      - Oren Ben-Kiki
+      Flow style: !!seq [ Clark Evans, Ingy döt Net, Oren Ben-Kiki ]
+    str:
+      Block style: !!str |-
+      String: just a theory.
+      Flow style: !!str "String: just a theory."
+  expected: '{"map": {"Block style": {"Clark": "Evans", "Ingy": "d\u00f6t Net", "Oren": "Ben-Kiki"}, "Flow style": {"Clark": "Evans", "Ingy": "d\u00f6t Net", "Oren": "Ben-Kiki"}}, "seq": {"Block style": ["Clark Evans", "Ingy d\u00f6t Net", "Oren Ben-Kiki"], "Flow style": ["Clark Evans", "Ingy d\u00f6t Net", "Oren Ben-Kiki"]}, "str": {"Block style": "", "String": "just a theory.", "Flow style": "String: just a theory."}}'
+supported-json-schema-restricted:  # weird name though ;)
+  data: |-
+    "null":
+      !!null null: value for null key
+      key with null value: !!null null
+    int:
+      negative: !!int -12
+      zero: !!int 0
+      positive: !!int 34
+    float:
+      negative: !!float -1
+      zero: !!float 0
+      positive: !!float 2.3e4
+    "bool":
+      YAML is a superset of JSON: !!bool true
+      Pluto is a planet: !!bool false
+  expected: '{"null": {"null": "value for null key", "key with null value": null}, "int": {"negative": -12, "zero": 0, "positive": 34}, "float": {"negative": -1.0, "zero": 0.0, "positive": 23000.0}, "bool": {"YAML is a superset of JSON": true, "Pluto is a planet": false}}'
+supported-core-tag-no-infnan:
+  data: |-
+    A null: null
+    Also a null: # Empty
+    Not a null: ""
+    Booleans: [ true, True, false, FALSE ]
+    Integers: [ 0, 0o7, 0x3A, -19 ]  # Buggy pyyaml
+    Floats: [
+      0., -0.0, .5, +12e03, -2E+05 ]
+  expected: '{"A null": null, "Also a null": null, "Not a null": "", "Booleans": [true, true, false, false], "Integers": [0, "0o7", 58, -19], "Floats": [0.0, -0.0, 0.5, "+12e03", "-2E+05"]}'
+supported-base:
+  data: |-
+    a: [1, 2, 3]
+    b: { c: d }
+  expected: |-
+    {"a": [1, 2, 3], "b": {"c": "d"}}
+supported-simple-mapping:
+  expected: |-
+    {"foo": "value"}
+  data: |-
+    ? foo
+    : value
+supported-quoted-scalars:
+  data: |-
+    unicode: "Sosa did fine.\u263A"
+    control: "\b1998\t1999\t2000\n"
+    hex esc: "\x0d\x0a is \r\n"
+  expected: '{"unicode": "Sosa did fine.\u263a", "control": "\b1998\t1999\t2000\n", "hex esc": "\r\n is \r\n"}'
+floating_point_ok:
+  data: |-
+    canonical: 1.23015e+3
+    exponential: 12.3015e+02
+    fixed: 1230.15
+  expected: >-
+    {"canonical": 1230.15, "exponential": 1230.15, "fixed": 1230.15}
+supported-merge-keys:
+  data: |-
+    - &CENTER { x: 1, y: 2 }
+    - &LEFT { x: 0, y: 2 }
+    - &BIG { r: 10 }
+    - &SMALL { r: 1 }
+    - # Explicit keys
+      x: 1
+      y: 2
+      r: 10
+      label: center/big
+
+    - # Merge one map
+      << : *CENTER
+      r: 10
+      label: center/big
+
+    - # Merge multiple maps
+      << : [ *CENTER, *BIG ]
+      label: center/big
+
+    - # Override
+      << : [ *BIG, *LEFT, *SMALL ]
+      x: 1
+      label: center/big
+  expected: '[{"x": 1, "y": 2}, {"x": 0, "y": 2}, {"r": 10}, {"r": 1}, {"x": 1, "y": 2, "r": 10, "label": "center/big"}, {"x": 1, "y": 2, "r": 10, "label": "center/big"}, {"r": 10, "x": 1, "y": 2, "label": "center/big"}, {"r": 10, "x": 1, "y": 2, "label": "center/big"}]'
+
+# Weird
+octal_and_co:
+  data: |-
+    canonical: 12345
+    decimal: +12345
+    octal: 0o14  # there's a bug in pyyaml here
+    hexadecimal: 0xC
+  expected: >-
+    {"canonical": 12345, "decimal": 12345, "octal": "0o14", "hexadecimal": 12}
+# Unsupported schemas.
+unsupported-json-schema:  # weird name though ;)
+  data: |-
+    "null":
+      !!null null: value for null key
+      key with null value: !!null null
+    int:
+      negative: !!int -12
+      zero: !!int 0
+      positive: !!int 34
+    float:
+      negative: !!float -1
+      zero: !!float 0
+      positive: !!float 2.3e4
+      infinity: !!float .inf
+      not a number: !!float .nan
+    "bool":
+      YAML is a superset of JSON: !!bool true
+      Pluto is a planet: !!bool false
+  expected: false
+  error: 'Out of range float values are not JSON compliant'
+# Unsupported scalar
+unsupported-types-timestamp:
+  data: |-
+    a: !!timestamp 2020-01-01
+  expected: false
+  error: Object of type date is not JSON serializable
+unsupported-types-timestamp-canonical:
+  data: |-
+    canonical: 2001-12-15T02:59:43.1Z
+  expected: false
+  error: Object of type datetime is not JSON serializable
+unsupported-types-timestamp-iso8601:
+  data: |-
+    iso8601: 2001-12-14t21:59:43.10-05:00
+  expected: false
+  error: Object of type datetime is not JSON serializable
+unsupported-types-timestamp-spaced:
+  data: |-
+    spaced: 2001-12-14 21:59:43.10 -5
+  expected: false
+  error: Object of type datetime is not JSON serializable
+unsupported-types-binary:
+  data: |-
+    a: !!binary MTIz
+  expected: false
+  error: Object of type bytes is not JSON serializable
+unsupported-inf_not_json_rfc:
+  data: |-
+    negative infinity: -.inf
+  expected: false
+unsupported-nan_not_json_rfc:
+  data: |-
+    not a number: .nan
+  expected: false
+unsupported-local-tags:
+  description: |-
+    YAML local tags represent application-wide type information.
+    This is not interoperable wrt JSON.
+  data: |-
+    1: !!python/object:builtins.object {}
+  expected: false
+  error: >-
+    Object of type object is not JSON serializable|could not determine a constructor for the tag
+unsupported-circular-references:
+  description: |-
+    This is a legitimate yaml document, but the JSON
+    serializer should not accept serializing such a
+    data structure (eg. a nested dictionary).
+  data: |-
+    person: &person
+      name: Joe
+      child: *person
+  expected: false
+  error: Circular reference detected  # in json.dumps()
+# Unsupported structured types
+unsupported-types-set:
+  data: |-
+    a: !!set
+      ? Mark McGwire
+      ? Sammy Sosa
+      ? Ken Griffey
+  expected: false
+  error: Object of type set is not JSON serializable
+supported-types-pairs:
+  data: |-
+    a: !!pairs
+      - Mark McGwire: 65
+      - Sammy Sosa: 63
+      - Ken Griffey: 58
+  expected: false
+  error: >-
+    Non-JSON type not preserved in round-trip: !!pairs
+unsupported-types-omap:
+  data: |-
+    a: !!omap
+      - Mark McGwire: 65
+      - Sammy Sosa: 63
+      - Ken Griffey: 58
+  expected: false
+  error: >-
+    Non-JSON type not preserved in round-trip: !!omap
+unsupported-complex-mapping-key-seq:
+  expected: false
+  data: |-
+    ? - foo
+    : value
+unsupported-complex-mapping-key-map:
+  expected: false
+  data: |-
+    ? {a: b}
+    : value
+
