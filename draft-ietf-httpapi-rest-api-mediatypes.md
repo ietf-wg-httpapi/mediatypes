@@ -78,6 +78,9 @@ this specification register the following media-types:
 `application/openapi+json`
 and `application/openapi+yaml`.
 
+Moreover it defines and registers
+the `+yaml` structured syntax suffix.
+
 ## Notational Conventions
 
 {::boilerplate bcp14+}
@@ -88,7 +91,7 @@ by {{!RFC7405}}.
 # Media Type registrations
 
 This section describes the information required to register
-the above media types.
+the above media types according to {{!MEDIATYPE=RFC6838}}
 
 ## Media Type application/yaml {#application-yaml}
 
@@ -135,6 +138,52 @@ Restrictions on usage:  None.
 Author:  See Authors' Addresses section.
 
 Change controller:  n/a
+
+
+## The +yaml Structured Syntax Suffix {#suffix-yaml}
+
+The suffix
+`+yaml` MAY be used with any media type whose representation follows
+that established for `application/yaml`.
+The media type structured syntax suffix registration form follows.
+See {{MEDIATYPE}} for definitions of each of the registration form headings.
+
+   Name:  YAML Ain't Markup LanguageML (YAML)
+
+   +suffix:  +yaml
+
+   References:  [yaml]
+
+   Encoding considerations: see {{application-yaml}}
+
+   Fragment identifier considerations:
+
+      The syntax and semantics of fragment identifiers specified for
+      +yaml SHOULD be as specified for {{application-yaml}}
+
+      The syntax and semantics for fragment identifiers for a specific
+      `xxx/yyy+json` SHOULD be processed as follows:
+
+      For cases defined in +yaml, where the fragment identifier resolves
+      per the +yaml rules, then process as specified in +yaml.
+
+         For cases defined in +yaml, where the fragment identifier does
+         not resolve per the +yaml rules, then process as specified in
+         `xxx/yyy+yaml`.
+
+         For cases not defined in +yaml, then process as specified in
+         `xxx/yyy+yaml`.
+
+   Interoperability considerations:  n/a
+
+   Security considerations:  See {{application-yaml}}
+
+   Contact:  See Authors' Addresses section.
+
+   Author:  See Authors' Addresses section
+
+   Change controller:  n/a
+
 
 ## The OpenAPI Media Types
 
@@ -272,6 +321,16 @@ with the registration information provided below.
 | application/openapi+yaml | {{openapi-yaml}} of ThisRFC           |
 | application/openapi+json | {{openapi-json}} of ThisRFC           |
 |--------------------------|---------------------------------------|
+
+IANA has updated the "Structured Syntax Suffixes" registry at <https://www.iana.org/assignments/media-type-structured-suffix>
+with the registration information provided below.
+
+|--------------------------|---------------------------------------|
+| Suffix                   |                         Section       |
+|--------------------------|---------------------------------------|
+| +yaml                    | {{suffix-yaml}} of ThisRFC            |
+|--------------------------|---------------------------------------|
+
 
 --- back
 
