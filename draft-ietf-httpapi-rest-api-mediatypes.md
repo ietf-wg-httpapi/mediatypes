@@ -22,12 +22,12 @@ author:
 
 normative:
   yaml:
-    title: YAML Ain’t Markup Language Version 1.2
+    title: YAML Ain't Markup Language Version 1.2
     date: 2002-10-01
     author:
     - ins: Oren Ben-Kiki
     - ins: Clark Evans
-    - ins: Ingy doet Net
+    - ins: Ingy dot Net
     target: https://yaml.org/spec/1.2/spec.html
   oas:
     title: OpenAPI Specification 3.0.0
@@ -282,7 +282,7 @@ and to Darrel Miller and Rich Salz for their support during the adoption phase.
 
 In addition to the people above, this document owes a lot to the extensive discussion inside
 and outside the HTTPAPI workgroup,
-including Eemeli Aro and Ingy doet Net.
+including Eemeli Aro and Ingy dot Net.
 
 
 # FAQ
