@@ -60,7 +60,7 @@ mailing list (httpapi@ietf.org), which is archived at
 [https://mailarchive.ietf.org/arch/browse/httpapi/](https://mailarchive.ietf.org/arch/browse/httpapi/).
 
 The source code and issues list for this draft can be found at
-[https://github.com/ioggstream/draft-polli-rest-api-mediatypes](https://github.com/ioggstream/draft-polli-rest-api-mediatypes).
+[https://github.com/ietf-wg-httpapi/mediatypes](https://github.com/ietf-wg-httpapi/mediatypes).
 
 --- middle
 
