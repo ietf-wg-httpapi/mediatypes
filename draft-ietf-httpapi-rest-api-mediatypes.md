@@ -304,9 +304,9 @@ schema to change within the same Schema Resource.
 
 ### Identifying a Schema via a Media Type Parameter {#schema-parameter}
 
-Media types MAY allow for a `schema` media type parameter, which gives HTTP
-servers the ability to perform Content-Type Negotiation based on schema
-identifier. The media type parameter MUST be a URI-reference {{!RFC3986}}.
+Media types MAY allow for a `schema` media type parameter, to support content
+negotiation based on schema identifier (see Section 12 of {{!SEMANTICS=RFC7231}}).
+The `schema` media type parameter MUST be a URI-reference {{!RFC3986}}.
 
 The `schema` parameter identifies a schema that provides semantic information
 about the resource the media type represents. When using the
@@ -317,26 +317,53 @@ The `schema` URI is opaque and SHOULD NOT automatically be dereferenced. Since
 `schema` doesn't necessarily point to a network location, the "describedby"
 relation is used for linking to a downloadable schema.
 
-In HTTP, the media-type parameter would be sent inside the Content-Type header:
+The following is an example of content negotiation where a user agent can accept
+two different versions of a "pet" resource. Each resource version is identified
+by a unique JSON Schema.
 
-~~~
-Content-Type: application/schema-instance+json; schema="/schemas/dog"
-~~~
+Request:
 
-~~~
-Content-Type: application/schema+json; schema="https://json-schema.org/draft/2020-12/schema"
-~~~
-
-Media type parameters are also used in HTTP's Accept request header:
-
-~~~
-Accept: application/schema-instance+json; schema="/schemas/dog",
-        application/schema-instance+json; schema="/schemas/cat"
+~~~ http-message
+GET /pet/1234 HTTP/1.1
+Accept: application/schema-instance+json; schema="/schemas/v2/pet"; q=0.2,
+        application/schema-instance+json; schema="/schemas/v1/pet"; q=0.1
 ~~~
 
+Response:
+
+~~~ http-message
+HTTP/1.1 200 Ok
+Content-Type: application/schema-instance+json; schema="/schemas/v2/pet"
+
+{
+  "petId": "1234",
+  "name": "Pluto",
+  ...
+}
 ~~~
+
+In the following example, the user agent is able to accept two possible dialects
+of JSON Schema and the server replies with the latest one.
+
+Request:
+
+~~~ http-message
+GET /schemas/v2/pet HTTP/1.1
 Accept: application/schema+json; schema="https://json-schema.org/draft/2020-12/schema",
         application/schema+json; schema="http://json-schema.org/draft-07/schema#"
+~~~
+
+Response:
+
+~~~ http-message
+HTTP/1.1 200 OK
+Content-Type: application/schema+json; schema="https://json-schema.org/draft/2020-12/schema"
+
+{
+  "$id": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  ...
+}
 ~~~
 
 ### Linking to a Schema {#schema-linking}
@@ -345,8 +372,8 @@ It is RECOMMENDED that instances described by a schema provide a link to a
 downloadable JSON Schema using the link relation `describedby`, as defined by
 Linked Data Protocol 1.0, section 8.1 {{!W3C.REC-ldp-20150226}}.
 
-In HTTP, such links can be attached to any response using the Link header
-{{!RFC8288}}. An example of such a header would be:
+In HTTP, such links can be attached to any response using the `Link` header
+{{!LINK=RFC8288}}.
 
 ~~~
 Link: <https://example.com/my-hyper-schema#>; rel="describedby"
@@ -382,8 +409,6 @@ serves as the registration form for the `application/schema+json` media type.
 * **schema**: A URI identifying the JSON Schema dialect the schema was written
   for. If this value conflicts with the value of the `$schema` keyword in the
   schema, the `$schema` keyword takes precedence.
-
-  Unrecognized parameters SHOULD be ignored.
 
 **Encoding considerations**: Same as {{JSON}}
 
@@ -440,8 +465,6 @@ form for the `application/schema-instance+json` media type.
 
 * **schema**: A URI identifying a JSON Schema that provides semantic information
   about this JSON representation.
-
-  Unrecognized parameters SHOULD be ignored
 
 **Encoding considerations**: Same as {{JSON}}
 
