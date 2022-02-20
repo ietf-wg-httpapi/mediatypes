@@ -21,7 +21,7 @@ author:
     country: Italy
 
 normative:
-  yaml:
+  YAML:
     title: YAML Ain't Markup Language Version 1.2
     date: 2002-10-01
     author:
@@ -68,7 +68,7 @@ The source code and issues list for this draft can be found at
 
 OpenAPI Specification [oas] version 3 and above
 is a consolidated standard for describing
-HTTP APIs using the JSON {{!JSON=RFC8259}} and yaml [yaml] data format.
+HTTP APIs using the JSON {{!JSON=RFC8259}} and YAML [YAML] data format.
 
 To increase interoperability when processing API specifications
 and leverage content negotiation mechanisms when exchanging
@@ -152,7 +152,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
 
    +suffix:  +yaml
 
-   References:  [yaml]
+   References:  [YAML]
 
    Encoding considerations: see {{application-yaml}}
 
@@ -190,7 +190,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
 The OpenAPI Specification Media Types convey OpenAPI document (OAS) files
 as defined in [oas] for version 3.0.0 and above.
 
-Those files can be serialized in {{JSON}} or [yaml].
+Those files can be serialized in {{JSON}} or [YAML].
 Since there are multiple OpenAPI Specification versions,
 those media-types support the `version` parameter.
 
@@ -198,8 +198,8 @@ The following examples conveys the desire of a client
 to receive an OpenAPI Specification resource preferably in the following
 order:
 
-1. openapi 3.1 in yaml
-2. openapi 3.0 in yaml
+1. openapi 3.1 in YAML
+2. openapi 3.0 in YAML
 3. any openapi version in json
 
 ~~~ example
@@ -340,15 +340,14 @@ Thanks to Erik Wilde and David Biesack for being the initial contributors of thi
 and to Darrel Miller and Rich Salz for their support during the adoption phase.
 
 In addition to the people above, this document owes a lot to the extensive discussion inside
-and outside the HTTPAPI workgroup,
-including Eemeli Aro and Ingy dot Net.
+and outside the HTTPAPI workgroup.
 
 
 # FAQ
 {: numbered="false"}
 
 Q: Why this document?
-:  After all these years, we still lack a proper media-type for yaml.
+:  After all these years, we still lack a proper media-type for YAML.
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
 
