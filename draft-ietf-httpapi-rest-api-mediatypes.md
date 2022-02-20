@@ -23,7 +23,7 @@ author:
 normative:
   YAML:
     title: YAML Ain't Markup Language Version 1.2
-    date: 2002-10-01
+    date: 2021-10-01
     author:
     - ins: Oren Ben-Kiki
     - ins: Clark Evans
