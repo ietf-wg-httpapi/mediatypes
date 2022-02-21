@@ -624,6 +624,8 @@ issues with JSON:
 
 - non UTF-8 encoding, since YAML supports UTF-16 and UTF-32 in addition to UTF-8;
 - mapping keys that are not strings;
+- circular references represented using anchor (see {{sec-exhaustion}}
+  and {{example-yaml-cyclic}}).
 - `.inf` and `.nan` float values, since JSON does not support them;
 - non-JSON types,
   including the ones associated to tags like `!!timestamp`
@@ -643,8 +645,6 @@ non-json-value: 2020-01-01
 ~~~
 {: title="Example of mapping keys not supported in JSON" #example-unsupported-keys}
 
-- circular references represented using anchor (see {{sec-exhaustion}}
-  and {{example-yaml-cyclic}}).
 
 # Security Considerations
 
