@@ -122,7 +122,7 @@ Encoding considerations:  Same as {{JSON}}
 
 Security considerations:  see {{security-considerations}} of this document
 
-Interoperability considerations:  see {{interoperability}} of this document
+Interoperability considerations:  see {{int-yaml}} of this document
 
 Published specification: (this document)
 
@@ -550,7 +550,9 @@ Addresses section.
 
 # Interoperability Considerations {#interoperability}
 
-## YAML is an Evolving Language {#int-yaml-evolving}
+## YAML Media Types {#int-yaml}
+
+### YAML is an Evolving Language {#int-yaml-evolving}
 
 YAML is an evolving language and, in time,
 some features have been added, and other removed.
