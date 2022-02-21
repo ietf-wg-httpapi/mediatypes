@@ -412,7 +412,7 @@ NOTE: '\' line wrapping per RFC 8792
 
 GET /schemas/v2/pet HTTP/1.1
 Host: foo.example
-Accept: application/schema+json; \ 
+Accept: application/schema+json; \
             schema="https://json-schema.org/draft/2020-12/schema", \
         application/schema+json; \
             schema="http://json-schema.org/draft-07/schema#"
