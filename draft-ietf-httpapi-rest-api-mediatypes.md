@@ -373,16 +373,26 @@ by a unique JSON Schema.
 Request:
 
 ~~~ http-message
+NOTE: '\' line wrapping per RFC 8792
+
 GET /pet/1234 HTTP/1.1
-Accept: application/schema-instance+json; schema="/schemas/v2/pet"; q=0.2,
-        application/schema-instance+json; schema="/schemas/v1/pet"; q=0.1
+Host: foo.example
+Accept: \
+  application/schema-instance+json; \
+  schema="/schemas/v2/pet"; q=0.2,  \
+  application/schema-instance+json; \
+  schema="/schemas/v1/pet"; q=0.1
 ~~~
 
 Response:
 
 ~~~ http-message
+NOTE: '\' line wrapping per RFC 8792
+
 HTTP/1.1 200 Ok
-Content-Type: application/schema-instance+json; schema="/schemas/v2/pet"
+Content-Type: \
+  application/schema-instance+json; \
+  schema="/schemas/v2/pet"
 
 {
   "petId": "1234",
@@ -397,16 +407,26 @@ of JSON Schema and the server replies with the latest one.
 Request:
 
 ~~~ http-message
+NOTE: '\' line wrapping per RFC 8792
+
 GET /schemas/v2/pet HTTP/1.1
-Accept: application/schema+json; schema="https://json-schema.org/draft/2020-12/schema",
-        application/schema+json; schema="http://json-schema.org/draft-07/schema#"
+Host: foo.example
+Accept: \
+  application/schema+json; \
+  schema="https://json-schema.org/draft/2020-12/schema",\
+  application/schema+json; \
+  schema="http://json-schema.org/draft-07/schema#"
 ~~~
 
 Response:
 
 ~~~ http-message
-HTTP/1.1 200 OK
-Content-Type: application/schema+json; schema="https://json-schema.org/draft/2020-12/schema"
+NOTE: '\' line wrapping per RFC 8792
+
+HTTP/1.1 200 Ok
+Content-Type: \
+  application/schema+json; \
+  schema="https://json-schema.org/draft/2020-12/schema"
 
 {
   "$id": "https://json-schema.org/draft/2020-12/schema",
