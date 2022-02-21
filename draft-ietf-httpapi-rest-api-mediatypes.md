@@ -589,6 +589,14 @@ and to Darrel Miller and Rich Salz for their support during the adoption phase.
 
 In addition to the people above, this document owes a lot to the extensive discussion inside
 and outside the HTTPAPI workgroup.
+The following contributors have helped improve this specification by
+opening pull requests, reporting bugs, asking smart questions,
+drafting or reviewing text, and evaluating open issues:
+
+Eemeli Aro, Tina (tinita) Müller,
+Ben Hutton
+and Jason Desrosiers.
+
 
 
 # FAQ
