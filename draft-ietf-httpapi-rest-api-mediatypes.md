@@ -582,7 +582,7 @@ media types registration does not imply a specific version.
 This allows content negotiation of version-independent YAML resources.
 
 Implementers concerned about features related to a specific YAML version
-can specify it the documents using the `%YAML` directive
+can specify it in the documents using the `%YAML` directive
 (see Section 6.8.1 of [YAML]).
 
 ### YAML and JSON {#int-yaml-and-json}
@@ -624,7 +624,7 @@ issues with JSON:
 
 - non UTF-8 encoding, since YAML supports UTF-16 and UTF-32 in addition to UTF-8;
 - mapping keys that are not strings;
-- circular references represented using anchor (see {{sec-exhaustion}}
+- circular references represented using anchor (see {{sec-yaml-exhaustion}}
   and {{example-yaml-cyclic}}).
 - `.inf` and `.nan` float values, since JSON does not support them;
 - non-JSON types,
@@ -694,7 +694,7 @@ and validating the input before processing it;
 even in these cases it is important
 to carefully test the implementation you are going to use.
 The same considerations apply when serializing a YAML representation graph
-in a format that do not support reference cycles (see {{sec-yaml-and-json}}).
+in a format that do not support reference cycles (see {{int-yaml-and-json}}).
 
 # IANA Considerations
 
