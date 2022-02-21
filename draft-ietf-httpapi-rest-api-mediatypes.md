@@ -122,7 +122,7 @@ Encoding considerations:  Same as {{JSON}}
 
 Security considerations:  see {{security-considerations}} of this document
 
-Interoperability considerations:  None
+Interoperability considerations:  see {{interoperability}} of this document
 
 Published specification: (this document)
 
@@ -187,7 +187,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
          For cases not defined in +yaml, then process as specified in
          `xxx/yyy+yaml`.
 
-   Interoperability considerations:  n/a
+   Interoperability considerations:  See {{application-yaml}}
 
    Security considerations:  See {{application-yaml}}
 
@@ -284,7 +284,7 @@ Encoding considerations:  Same as {{JSON}}
 
 Security considerations:  see {{security-considerations}} of this document
 
-Interoperability considerations:  None
+Interoperability considerations:  see {{application-yaml}}
 
 Published specification: (this document)
 
@@ -547,6 +547,21 @@ Addresses section.
 **Author**: See Authors' Addresses section.
 
 **Change controller**: N/A
+
+# Interoperability Considerations {#interoperability}
+
+## YAML is an Evolving Language {#int-yaml-evolving}
+
+YAML is an evolving language and, in time,
+some features have been added, and other removed.
+
+While this document is based on a given YAML version [YAML],
+media types registration does not imply a specific version.
+This allows content negotiation of version-independent YAML resources.
+
+Implementers concerned about features related to a specific YAML version
+can specify it the documents using the `%YAML` directive
+(see Section 6.8.1 of [YAML]).
 
 # Security Considerations
 
