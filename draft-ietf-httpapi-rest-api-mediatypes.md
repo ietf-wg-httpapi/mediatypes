@@ -378,10 +378,10 @@ NOTE: '\' line wrapping per RFC 8792
 GET /pet/1234 HTTP/1.1
 Host: foo.example
 Accept: \
-  application/schema-instance+json; \
-  schema="/schemas/v2/pet"; q=0.2,  \
-  application/schema-instance+json; \
-  schema="/schemas/v1/pet"; q=0.1
+  application/schema-instance+json; schema="/schemas/v2/pet"; \
+  q=0.2,  \
+  application/schema-instance+json; schema="/schemas/v1/pet"; \
+  q=0.1
 ~~~
 
 Response:
@@ -391,8 +391,7 @@ NOTE: '\' line wrapping per RFC 8792
 
 HTTP/1.1 200 Ok
 Content-Type: \
-  application/schema-instance+json; \
-  schema="/schemas/v2/pet"
+  application/schema-instance+json; schema="/schemas/v2/pet"
 
 {
   "petId": "1234",
