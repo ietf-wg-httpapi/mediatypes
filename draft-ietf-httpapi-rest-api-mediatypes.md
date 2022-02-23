@@ -354,7 +354,7 @@ A dialect defining the `$schema` keyword:
 * SHOULD define where the `$schema` keyword is allowed and/or
   recognized in a schema;
 * SHOULD not allow the
-schema to change within the same Schema Resource.
+  schema to change within the same Schema Resource.
 
 ### Identifying a Schema via a Media Type Parameter {#schema-parameter}
 
