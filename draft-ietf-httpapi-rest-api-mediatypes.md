@@ -327,11 +327,11 @@ draft 2020-12. There are also several third-party JSON Schema dialects in wide
 use including the ones defined for use in OpenAPI and MongoDB.
 
 This specification defines little more than how to identify the dialect while
-leaving most of the semantics of the schema up to the dialect to define. Clients
-MUST use the following order of precedence for determining the dialect of a
+leaving most of the semantics of the schema up to the dialect to define.
+Clients MUST use the following order of precedence for determining the dialect of a
 schema.
 
-* The `$schema` keyword defined in Section 8.1.1 of {{jsonschema}}
+* The `$schema` keyword contained in the document ({{schema-keyword}})
 * The `schema` media type parameter (see {{schema-parameter}})
 * The context of the enclosing document. This applies only when a schema is
   embedded within a document. The enclosing document could be another schema in
@@ -339,6 +339,22 @@ schema.
   includes schemas such as an OpenAPI document.
 * If none of the above result in identifying the dialect, client behavior is
   undefined.
+
+### The "$schema" Keyword {#schema-keyword}
+
+The `$schema` keyword is used as a JSON Schema dialect identifier,
+and its value MUST be a URI {{!URI=RFC3986}}.
+This URI SHOULD identify a meta-schema
+that can be used to validate that the schema is syntactically correct according
+to the dialect the URI identifies.
+
+A dialect defining the `$schema` keyword:
+
+* MUST do it according to the content of this section;
+* SHOULD define where the `$schema` keyword is allowed and/or
+  recognized in a schema;
+* SHOULD not allow the
+schema to change within the same Schema Resource.
 
 ### Identifying a Schema via a Media Type Parameter {#schema-parameter}
 
