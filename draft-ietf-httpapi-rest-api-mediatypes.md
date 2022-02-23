@@ -101,6 +101,10 @@ the `+yaml` structured syntax suffix.
 This document uses the Augmented BNF defined in {{!RFC5234}} and updated
 by {{!RFC7405}}.
 
+The terms  "content", "content negotiation", "resource",
+and "user agent"
+in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-semantics}}.
+
 # Media Type registrations
 
 This section describes the information required to register
@@ -354,7 +358,7 @@ schema to change within the same Schema Resource.
 ### Identifying a Schema via a Media Type Parameter {#schema-parameter}
 
 Media types MAY allow for a `schema` media type parameter, to support content
-negotiation based on schema identifier (see Section 12 of {{!SEMANTICS=RFC7231}}).
+negotiation based on schema identifier (see  {{Section 12 of SEMANTICS}}).
 The `schema` media type parameter MUST be a URI-reference {{!RFC3986}}.
 
 The `schema` parameter identifies a schema that provides semantic information
@@ -432,7 +436,7 @@ Link: <https://example.com/my-hyper-schema#>; rel="describedby"
 
 Two fragment identifier structures are supported: JSON Pointers and plain-names.
 
-The use of JSON Pointers as URI fragment identifiers is described in RFC 6901
+The use of JSON Pointers as URI fragment identifiers is described in
 {{!RFC6901}}. Fragment identifiers that are empty or start with a `/`, MUST be
 interpreted as JSON Pointer fragment identifiers.
 
