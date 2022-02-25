@@ -667,7 +667,7 @@ Many implementations provide safe deserializers addressing these issues.
 
 ### Resource exhaustion {#sec-yaml-exhaustion}
 
-YAML documents are rooted, connected, directed graph
+YAML documents are rooted, connected, directed graphs
 and can contain reference cycles,
 so they can't be treated as simple trees (see Section 3.2.1 of [YAML]).
 An implementation that attempts to do that
