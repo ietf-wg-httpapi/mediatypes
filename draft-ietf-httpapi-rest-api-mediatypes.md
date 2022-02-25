@@ -555,7 +555,7 @@ Addresses section.
 ### YAML is an Evolving Language {#int-yaml-evolving}
 
 YAML is an evolving language and, in time,
-some features have been added, and other removed.
+some features have been added, and others removed.
 
 While this document is based on a given YAML version [YAML],
 media types registration does not imply a specific version.
