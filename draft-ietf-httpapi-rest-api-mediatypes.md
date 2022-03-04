@@ -412,7 +412,7 @@ NOTE: '\' line wrapping per RFC 8792
 
 GET /schemas/v2/pet HTTP/1.1
 Host: foo.example
-Accept: application/schema+json; \ 
+Accept: application/schema+json; \
             schema="https://json-schema.org/draft/2020-12/schema", \
         application/schema+json; \
             schema="http://json-schema.org/draft-07/schema#"
@@ -568,7 +568,7 @@ Addresses section.
 
 **Change controller**: N/A
 
-# Interoperability Considerations {#interoperability}
+# Interoperability Considerations
 
 ## YAML Media Types {#int-yaml}
 
@@ -582,13 +582,119 @@ media types registration does not imply a specific version.
 This allows content negotiation of version-independent YAML resources.
 
 Implementers concerned about features related to a specific YAML version
-can specify it the documents using the `%YAML` directive
+can specify it in the documents using the `%YAML` directive
 (see Section 6.8.1 of [YAML]).
+
+### YAML and JSON {#int-yaml-and-json}
+
+When using flow collection styles (see Section 7.4 of [YAML])
+a YAML document could look like JSON [JSON],
+thus similar interoperability considerations apply.
+
+When using YAML as a more efficient format
+to serialize information intented to be consumed as JSON,
+information can be discarded:
+this includes comments (see Section 3.2.3.3 of [YAML])
+and alias nodes (see Section 7.1 of [YAML]),
+that do not have a JSON counterpart.
+
+~~~ example
+# This comment will be lost
+# when serializing in JSON.
+Title:
+  type: string
+  maxLength: &text_limit 64
+
+Name:
+  type: string
+  maxLength: *text_limit  # Replaced by the value 64.
+~~~
+{: title="JSON replaces alias nodes with static values." #example-json-discards-information}
+
+Implementers need to ensure that relevant
+information will not be lost during the processing.
+For example, they might consider acceptable
+that alias nodes are replaced by static values.
+
+In some cases an implementer may want to
+define a list of allowed YAML features,
+taking into account that the following ones
+might have interoperability
+issues with JSON:
+
+- non UTF-8 encoding, since YAML supports UTF-16 and UTF-32 in addition to UTF-8;
+- mapping keys that are not strings;
+- circular references represented using anchor (see {{sec-yaml-exhaustion}}
+  and {{example-yaml-cyclic}}).
+- `.inf` and `.nan` float values, since JSON does not support them;
+- non-JSON types,
+  including the ones associated to tags like `!!timestamp`
+  that were deployed in older YAML versions;
+- tags in general, and specifically ones that do not map
+  to JSON types like
+  custom and local tags such as `!!python/object` and
+  `!mytag` (see Section 2.4 of [YAML]);
+
+~~~ example
+non-json-keys:
+  2020-01-01: a timestamp
+  [0, 1]: a sequence
+  ? {k: v}
+  : a map
+non-json-value: 2020-01-01
+~~~
+{: title="Example of mapping keys not supported in JSON" #example-unsupported-keys}
+
 
 # Security Considerations
 
 Security requirements for both media type and media type suffix
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
+
+## YAML Media Types {#sec-yaml}
+
+### Arbitrary Code Execution {#sec-yaml-code-execution}
+
+Care should be used when using YAML tags,
+because their implementation might trigger unexpected code execution.
+
+Code execution in deserializers should be disabled by default,
+and only be enabled explicitly.
+In those cases, the implementation should ensure - for example, via specific functions -
+that the code execution results in strictly bounded time/memory limits.
+
+Many implementations provide safe deserializers addressing these issues.
+
+### Resource exhaustion {#sec-yaml-exhaustion}
+
+YAML documents are rooted, connected, directed graphs
+and can contain reference cycles,
+so they can't be treated as simple trees (see Section 3.2.1 of [YAML]).
+An implementation that attempts to do that
+can infinite-loop at some point (e.g. when trying to serialize a YAML document in JSON).
+
+~~~ yaml
+x: &x
+  y: *x
+~~~
+{: title="A cyclic document" #example-yaml-cyclic}
+
+Even if a document is not cyclic, treating it as a tree could lead to improper behaviors
+(such as the "billion laughs" problem).
+
+~~~ yaml
+x1: &a1 ["a", "a"]
+x2: &a2 [*a1, *a1]
+x3: &a3 [*a2, *a2]
+~~~
+{: title="A billion laughs document" #example-yaml-1e9lol}
+
+This can be addressed using processors limiting the anchor recursion depth
+and validating the input before processing it;
+even in these cases it is important
+to carefully test the implementation you are going to use.
+The same considerations apply when serializing a YAML representation graph
+in a format that do not support reference cycles (see {{int-yaml-and-json}}).
 
 # IANA Considerations
 
