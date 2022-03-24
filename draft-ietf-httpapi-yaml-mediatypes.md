@@ -20,6 +20,12 @@ author:
     org: Digital Transformation Department, Italian Government
     email: robipolli@gmail.com
     country: Italy
+ -
+    ins: E. Wilde
+    name: Erik Wilde
+    org: Axway
+    email: erik.wilde@dret.net
+    country: Switzerland
 
 normative:
   YAML:
