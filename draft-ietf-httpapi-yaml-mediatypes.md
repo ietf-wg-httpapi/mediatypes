@@ -26,6 +26,11 @@ author:
     org: Axway
     email: erik.wilde@dret.net
     country: Switzerland
+ -
+    ins: E. Aro
+    name: Eemeli Aro
+    email: eemeli@gmail.com
+    country: Finland
 
 normative:
   YAML:
@@ -169,7 +174,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
       +yaml SHOULD be as specified for {{application-yaml}}
 
       The syntax and semantics for fragment identifiers for a specific
-      `xxx/yyy+json` SHOULD be processed as follows:
+      `xxx/yyy+yaml` SHOULD be processed as follows:
 
       For cases defined in +yaml, where the fragment identifier resolves
       per the +yaml rules, then process as specified in +yaml.
@@ -250,7 +255,7 @@ issues with JSON:
 - `.inf` and `.nan` float values, since JSON does not support them;
 - non-JSON types,
   including the ones associated with tags like `!!timestamp`
-  that were deployed in older YAML versions;
+  that were included in the default schema of older YAML versions;
 - tags in general, and specifically ones that do not map
   to JSON types like
   custom and local tags such as `!!python/object` and
@@ -274,7 +279,7 @@ registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
 ## Arbitrary Code Execution {#sec-yaml-code-execution}
 
 Care should be used when using YAML tags,
-because their implementation might trigger unexpected code execution.
+because their resolution might trigger unexpected code execution.
 
 Code execution in deserializers should be disabled by default,
 and only be enabled explicitly.
@@ -283,7 +288,7 @@ that the code execution results in strictly bounded time/memory limits.
 
 Many implementations provide safe deserializers addressing these issues.
 
-## Resource exhaustion {#sec-yaml-exhaustion}
+## Resource Exhaustion {#sec-yaml-exhaustion}
 
 YAML documents are rooted, connected, directed graphs
 and can contain reference cycles,
@@ -312,7 +317,7 @@ and validating the input before processing it;
 even in these cases it is important
 to carefully test the implementation you are going to use.
 The same considerations apply when serializing a YAML representation graph
-in a format that do not support reference cycles (see {{int-yaml-and-json}}).
+in a format that does not support reference cycles (see {{int-yaml-and-json}}).
 
 # IANA Considerations
 
@@ -350,7 +355,7 @@ The following contributors have helped improve this specification by
 opening pull requests, reporting bugs, asking smart questions,
 drafting or reviewing text, and evaluating open issues:
 
-Eemeli Aro, Tina (tinita) Müller,
+Tina (tinita) Müller,
 Ben Hutton,
 Manu Sporny
 and Jason Desrosiers.
