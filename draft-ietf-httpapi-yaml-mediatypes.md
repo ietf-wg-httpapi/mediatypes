@@ -169,7 +169,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
       +yaml SHOULD be as specified for {{application-yaml}}
 
       The syntax and semantics for fragment identifiers for a specific
-      `xxx/yyy+json` SHOULD be processed as follows:
+      `xxx/yyy+yaml` SHOULD be processed as follows:
 
       For cases defined in +yaml, where the fragment identifier resolves
       per the +yaml rules, then process as specified in +yaml.
