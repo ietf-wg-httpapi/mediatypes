@@ -136,93 +136,119 @@ Accept: application/openapi+yaml;version=3.1,
 
 The following information serves as the registration form for the `application/openapi+json` media type.
 
-Type name:  application
+Type name:
+: application
 
-Subtype name:  openapi+json
+Subtype name:
+: openapi+json
 
-Required parameters:  None
+Required parameters:
+: None
 
-Optional parameters:  version; unrecognized parameters should be ignored
+Optional parameters:
+: version; unrecognized parameters should be ignored
 
-Encoding considerations:  Same as {{JSON}}
+Encoding considerations:
+: Same as {{JSON}}
 
-Security considerations:  see {{security-considerations}} of this document
+Security considerations:
+: see {{security-considerations}} of this document
 
-Interoperability considerations:  None
+Interoperability considerations:
+: None
 
-Published specification: (this document)
+Published specification:
+: this document
 
-Applications that use this media type:  HTTP
+Applications that use this media type:
+: HTTP
 
-Fragment identifier considerations:  Same as for application/json
-  {{JSON}}
+Fragment identifier considerations:
+: Same as for application/json {{JSON}}
 
 Additional information:
 
-  Deprecated alias names for this type:  n/a
+- Deprecated alias names for this type:  n/a
 
-  Magic number(s):  n/a
+- Magic number(s):  n/a
 
-  File extension(s):  json
+- File extension(s):  json
 
-  Macintosh file type code(s):  n/a
+- Macintosh file type code(s):  n/a
 
 Person and email address to contact for further information:
-  See Authors' Addresses section.
+: See Authors' Addresses section.
 
-Intended usage:  COMMON
+Intended usage:
+: COMMON
 
-Restrictions on usage:  None.
+Restrictions on usage:
+: None.
 
-Author:  See Authors' Addresses section.
+Author:
+: See Authors' Addresses section.
 
-Change controller:  n/a
+Change controller:
+: n/a
 
 ### Media Type application/openapi+yaml {#openapi-yaml}
 
 The following information serves as the registration form for the `application/openapi+yaml` media type.
 
-Type name:  application
+Type name:
+: application
 
-Subtype name:  openapi+yaml
+Subtype name:
+: openapi+yaml
 
-Required parameters:  None
+Required parameters:
+: None
 
-Optional parameters:  version; unrecognized parameters should be ignored
+Optional parameters:
+: version; unrecognized parameters should be ignored
 
-Encoding considerations:  Same as {{JSON}}
+Encoding considerations:
+: See {{YAML-MEDIATYPES}}
 
-Security considerations:  see {{YAML-MEDIATYPES}} of this document
+Security considerations:
+: see {{Section 4 of YAML-MEDIATYPES}}
 
-Interoperability considerations:  see {{YAML-MEDIATYPES}}
+Interoperability considerations:
+: see {{Section 3 of YAML-MEDIATYPES}}
 
-Published specification: (this document)
+Published specification:
+: this document
 
-Applications that use this media type:  HTTP
+Applications that use this media type:
+: HTTP
 
-Fragment identifier considerations:  Same as for application/json
-  {{JSON}}
+Fragment identifier considerations:
+: Same as for application/json {{JSON}}
 
 Additional information:
 
-  Deprecated alias names for this type:  n/a
+- Deprecated alias names for this type:  n/a
 
-  Magic number(s):  n/a
+- Magic number(s):  n/a
 
-  File extension(s):  yaml, yml
+- File extension(s):  yaml, yml
 
-  Macintosh file type code(s):  n/a
+- Macintosh file type code(s):  n/a
 
 Person and email address to contact for further information:
-  See Authors' Addresses section
+: See Authors' Addresses section
 
-Intended usage:  COMMON
+Intended usage:
+:  COMMON
 
-Restrictions on usage:  None.
+Restrictions on usage:
+:  None.
 
-Author:  See Authors' Addresses section
+Author:
+:  See Authors' Addresses section
 
-Change controller:  n/a
+Change controller:
+:  n/a
 
 ## JSON Schema Media Types
 
@@ -241,13 +267,13 @@ leaving most of the semantics of the schema up to the dialect to define. Clients
 MUST use the following order of precedence for determining the dialect of a
 schema.
 
-* The `$schema` keyword ({{schema-keyword}})
-* The "schema" media type parameter ({{schema-parameter}})
-* The context of the enclosing document. This applies only when a schema is
+- The `$schema` keyword ({{schema-keyword}})
+- The "schema" media type parameter ({{schema-parameter}})
+- The context of the enclosing document. This applies only when a schema is
   embedded within a document. The enclosing document could be another schema in
   the case of a bundled schema or it could be another type of document that
   includes schemas such as an OpenAPI document.
-* If none of the above result in identifying the dialect, client behavior is
+- If none of the above result in identifying the dialect, client behavior is
   undefined.
 
 ### The "$schema" Keyword {#schema-keyword}
@@ -350,7 +376,7 @@ Linked Data Protocol 1.0, section 8.1 {{!W3C.REC-ldp-20150226}}.
 In HTTP, such links can be attached to any response using the `Link` header
 {{!LINK=RFC8288}}.
 
-~~~
+~~~ http-message
 Link: <https://example.com/my-hyper-schema#>; rel="describedby"
 ~~~
 
@@ -359,7 +385,7 @@ Link: <https://example.com/my-hyper-schema#>; rel="describedby"
 Two fragment identifier structures are supported: JSON Pointers and plain-names.
 
 The use of JSON Pointers as URI fragment identifiers is described in
-{{!RFC6901}}. Fragment identifiers that are empty or start with a `/`, MUST be
+{{!JSON-POINTER=RFC6901}}. Fragment identifiers that are empty or start with a `/`, MUST be
 interpreted as JSON Pointer fragment identifiers.
 
 Plain-name fragment identifiers reference locally named locations in the
@@ -373,55 +399,66 @@ The `application/schema+json` media type represents JSON Schema. This schema can
 be an official dialect or a third-party dialect. The following information
 serves as the registration form for the `application/schema+json` media type.
 
-**Type name**: application
+Type name:
+: application
 
-**Subtype name**: schema+json
+Subtype name:
+: schema+json
 
-**Required parameters**: N/A
+Required parameters:
+: N/A
 
-**Optional parameters**:
+Optional parameters:
 
-* **schema**: A URI identifying the JSON Schema dialect the schema was written
+- schema: A URI identifying the JSON Schema dialect the schema was written
   for. If this value conflicts with the value of the `$schema` keyword in the
   schema, the `$schema` keyword takes precedence.
 
-**Encoding considerations**: Same as {{JSON}}
+Encoding considerations:
+: Same as {{JSON}}
 
-**Security considerations**: See the "Security Considerations" section of
-{{jsonschema}}
+Security considerations:
+: See the "Security Considerations" section of {{jsonschema}}
 
-**Interoperability considerations**: See the "General Considerations" section of
-{{jsonschema}}
+Interoperability considerations:
+: See the "General Considerations" section of {{jsonschema}}
 
-**Published specification**: (this document)
+Published specification:
+: this document
 
-**Applications that use this media type**: JSON Schema is used in a variety of
-applications including API servers and clients that validate JSON requests and
-responses, IDEs that valid configuration files, databases that store JSON, and
-more.
+Applications that use this media type:
+: JSON Schema is used in a variety of
+  applications including API servers and clients that validate JSON requests and
+  responses, IDEs that valid configuration files, databases that store JSON, and
+  more.
 
-**Fragment identifier considerations**: See {{schema-fragment}}
+Fragment identifier considerations:
+: See {{schema-fragment}}
 
-**Additional information**:
+Additional information:
 
-  * **Deprecated alias names for this type**: N/A
+- Deprecated alias names for this type: N/A
 
-  * **Magic number(s)**: N/A
+- Magic number(s): N/A
 
-  * **File extension(s)**: json, schema.json
+- File extension(s): json, schema.json
 
-  * **Macintosh file type code(s)**: N/A
+- Macintosh file type code(s): N/A
 
-**Person and email address to contact for further information**: See Authors'
-Addresses section.
+Person and email address to contact for further information:
+: See Authors' Addresses section.
 
-**Intended usage**: COMMON
+Intended usage:
+: COMMON
 
-**Restrictions on usage**: N/A.
+Restrictions on usage:
+: N/A.
 
-**Author**: See Authors' Addresses section.
+Author:
+: See Authors' Addresses section.
 
-**Change controller**: N/A
+Change controller:
+: N/A
 
 ### Media Type application/schema-instance+json {#schema-instance-json}
 
@@ -430,61 +467,75 @@ The `application/schema-instance+json` media type is an extension of the
 fragment identification. The following information serves as the registration
 form for the `application/schema-instance+json` media type.
 
-**Type name**: application
+Type name:
+: application
 
-**Subtype name**: schema-instance+json
+Subtype name:
+: schema-instance+json
 
-**Required parameters**: N/A
+Required parameters:
+: N/A
 
-**Optional parameters**:
+Optional parameters:
 
-* **schema**: A URI identifying a JSON Schema that provides semantic information
-  about this JSON representation.
+- schema:
+  : A URI identifying a JSON Schema that provides semantic information
+    about this JSON representation.
 
-**Encoding considerations**: Same as {{JSON}}
+Encoding considerations:
+: Same as {{JSON}}
 
-**Security considerations**: Same as {{JSON}}
+Security considerations:
+: Same as {{JSON}}
 
-**Interoperability considerations**: Same as {{JSON}}
+Interoperability considerations:
+: Same as {{JSON}}
 
-**Published specification**: (this document)
+Published specification:
+: this document
 
-**Applications that use this media type**: JSON Schema is used in a variety of
-applications including API servers and clients that validate JSON requests and
-responses, IDEs that valid configuration files, databases that store JSON, and
-more.
+Applications that use this media type:
+: JSON Schema is used in a variety of
+  applications including API servers and clients that validate JSON requests and
+  responses, IDEs that valid configuration files, databases that store JSON, and
+  more.
 
-**Fragment identifier considerations**: See {{schema-fragment}}
+Fragment identifier considerations:
+: See {{schema-fragment}}
 
-**Additional information**:
+Additional information:
 
-  * **Deprecated alias names for this type**: N/A
-  * **Magic number(s)**: N/A
-  * **File extension(s)**: json
-  * **Macintosh file type code(s)**: N/A
+- Deprecated alias names for this type: N/A
+- Magic number(s): N/A
+- File extension(s): json
+- Macintosh file type code(s): N/A
 
-**Person and email address to contact for further information**: See Authors'
-Addresses section.
+Person and email address to contact for further information:
+: See Authors' Addresses section.
 
-**Intended usage**: COMMON
+Intended usage:
+: COMMON
 
-**Restrictions on usage**: N/A
+Restrictions on usage:
+: N/A
 
-**Author**: See Authors' Addresses section.
+Author:
+: See Authors' Addresses section.
 
-**Change controller**: N/A
+Change controller:
+: N/A
 
 # Interoperability Considerations
 
 Interoperability requirements for media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
-and {{YAML-MEDIATYPES}}.
+and {{Section 3 of YAML-MEDIATYPES}}.
 
 # Security Considerations
 
 Security requirements for  media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
-and {{YAML-MEDIATYPES}}.
+and {{Section 4 of YAML-MEDIATYPES}}.
 
 # IANA Considerations
 
@@ -493,14 +544,14 @@ This specification defines the following new Internet media types {{MEDIATYPE}}.
 IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
 with the registration information provided below.
 
-|--------------------------------------|---------------------------------------|
-| Media Type                           | Section                               |
-|--------------------------------------|---------------------------------------|
-| application/openapi+yaml             | {{openapi-yaml}} of ThisRFC           |
-| application/openapi+json             | {{openapi-json}} of ThisRFC           |
-| application/schema+json              | {{schema-json}} of ThisRFC            |
-| application/schema-instance+json     | {{schema-instance-json}} of ThisRFC   |
-|--------------------------------------|---------------------------------------|
+|--------------------------------------|---------------------------------------------|
+| Media Type                           | Section                                     |
+|--------------------------------------|---------------------------------------------|
+| application/openapi+yaml             | {{openapi-yaml}} of this document           |
+| application/openapi+json             | {{openapi-json}} of this document           |
+| application/schema+json              | {{schema-json}} of this document            |
+| application/schema-instance+json     | {{schema-instance-json}} of this document   |
+|--------------------------------------|---------------------------------------------|
 
 --- back
 
@@ -519,13 +570,11 @@ Eemeli Aro, Tina (tinita) Müller,
 Ben Hutton
 and Jason Desrosiers.
 
-
-
 # FAQ
 {: numbered="false"}
 
 Q: Why this document?
-:  After all these years, we still lack a proper media-type for YAML.
+:  After all these years, we still lack a proper media-type for REST related document types.
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
 
@@ -533,3 +582,8 @@ Q: Why this document?
 {: numbered="false"}
 
 RFC EDITOR PLEASE DELETE THIS SECTION.
+
+## Since -00
+{:numbered="false"}
+
+- Split YAML registrations in a separate I-D.
