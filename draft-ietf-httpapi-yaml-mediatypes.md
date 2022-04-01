@@ -12,7 +12,6 @@ keyword: Internet-Draft
 stand_alone: yes
 pi: [toc, tocindent, sortrefs, symrefs, strict, compact, comments, inline, docmapping]
 
-
 author:
  -
     ins: R. Polli
@@ -111,46 +110,60 @@ the above media types according to {{!MEDIATYPE=RFC6838}}
 
 The following information serves as the registration form for the `application/yaml` media type.
 
-Type name:  application
+Type name:
+: application
 
-Subtype name:  yaml
+Subtype name:
+: yaml
 
-Required parameters:  None
+Required parameters:
+: None
 
-Optional parameters:  None; unrecognized parameters should be ignored
+Optional parameters:
+: None; unrecognized parameters should be ignored
 
-Encoding considerations:  binary
+Encoding considerations:
+: binary
 
-Security considerations:  see {{security-considerations}} of this document
+Security considerations:
+: see {{security-considerations}} of this document
 
-Interoperability considerations:  see {{interoperability-considerations}} of this document
+Interoperability considerations:
+: see {{interoperability-considerations}} of this document
 
-Published specification: (this document)
+Published specification:
+: this document
 
-Applications that use this media type:  HTTP
+Applications that use this media type:
+: HTTP
 
-Fragment identifier considerations:  None
+Fragment identifier considerations:
+: None
 
 Additional information:
 
-  Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml
+- Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml
 
-  Magic number(s):  n/a
+- Magic number(s)  n/a
 
-  File extension(s):  yaml, yml
+- File extension(s):  yaml, yml
 
-  Macintosh file type code(s):  n/a
+- Macintosh file type code(s):  n/a
 
 Person and email address to contact for further information:
-  See Authors' Addresses section.
+: See Authors' Addresses section.
 
-Intended usage:  COMMON
+Intended usage:
+: COMMON
 
-Restrictions on usage:  None.
+Restrictions on usage:
+: None.
 
-Author:  See Authors' Addresses section.
+Author:
+: See Authors' Addresses section.
 
-Change controller:  n/a
+Change controller:
+: n/a
 
 ## The +yaml Structured Syntax Suffix {#suffix-yaml}
 
@@ -160,41 +173,48 @@ that established for `application/yaml`.
 The media type structured syntax suffix registration form follows.
 See {{MEDIATYPE}} for definitions of each of the registration form headings.
 
-   Name:  YAML Ain't Markup LanguageML (YAML)
+  Name:
+  : YAML Ain't Markup LanguageML (YAML)
 
-   +suffix:  +yaml
+  +suffix:
+  :  +yaml
 
-   References:  [YAML]
+  References:
+  :  [YAML]
 
-   Encoding considerations: see {{application-yaml}}
+  Encoding considerations:
+  : see {{application-yaml}}
 
-   Fragment identifier considerations:
+  Fragment identifier considerations:
+  : The syntax and semantics of fragment identifiers specified for
+    +yaml SHOULD be as specified for {{application-yaml}}
+    The syntax and semantics for fragment identifiers for a specific
+    `xxx/yyy+yaml` SHOULD be processed as follows:
 
-      The syntax and semantics of fragment identifiers specified for
-      +yaml SHOULD be as specified for {{application-yaml}}
+    1. For cases defined in +yaml, where the fragment identifier resolves
+       per the +yaml rules, then process as specified in +yaml.
 
-      The syntax and semantics for fragment identifiers for a specific
-      `xxx/yyy+yaml` SHOULD be processed as follows:
+    1. For cases defined in +yaml, where the fragment identifier does
+       not resolve per the +yaml rules, then process as specified in
+      `xxx/yyy+yaml`.
 
-      For cases defined in +yaml, where the fragment identifier resolves
-      per the +yaml rules, then process as specified in +yaml.
+    1. For cases not defined in +yaml, then process as specified in
+      `xxx/yyy+yaml`.
 
-         For cases defined in +yaml, where the fragment identifier does
-         not resolve per the +yaml rules, then process as specified in
-         `xxx/yyy+yaml`.
+  Interoperability considerations:
+  : See {{application-yaml}}
 
-         For cases not defined in +yaml, then process as specified in
-         `xxx/yyy+yaml`.
+  Security considerations:
+  : See {{application-yaml}}
 
-   Interoperability considerations:  See {{application-yaml}}
+  Contact:
+  : See Authors' Addresses section.
 
-   Security considerations:  See {{application-yaml}}
+  Author:
+  : See Authors' Addresses section
 
-   Contact:  See Authors' Addresses section.
-
-   Author:  See Authors' Addresses section
-
-   Change controller:  n/a
+  Change controller:
+  :  n/a
 
 # Interoperability Considerations
 
@@ -256,7 +276,7 @@ issues with JSON:
 - non-JSON types,
   including the ones associated with tags like `!!timestamp`
   that were included in the default schema of older YAML versions;
-- tags in general, and specifically ones that do not map
+- tags in general, and specifically the ones that do not map
   to JSON types like
   custom and local tags such as `!!python/object` and
   `!mytag` (see Section 2.4 of [YAML]);
@@ -302,7 +322,7 @@ x: &x
 ~~~
 {: title="A cyclic document" #example-yaml-cyclic}
 
-Even if a document is not cyclic, treating it as a tree could lead to improper behaviors
+Even if a document is not cyclic, treating it as a simple tree could lead to improper behaviors
 (such as the "billion laughs" problem).
 
 ~~~ yaml
@@ -326,20 +346,20 @@ This specification defines the following new Internet media types {{MEDIATYPE}}.
 IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
 with the registration information provided below.
 
-|--------------------------------------|---------------------------------------|
-| Media Type                           | Section                               |
-|--------------------------------------|---------------------------------------|
-| application/yaml                     | {{application-yaml}} of ThisRFC       |
-|--------------------------------------|---------------------------------------|
+|--------------------------------------|---------------------------------------------|
+| Media Type                           | Section                                     |
+|--------------------------------------|---------------------------------------------|
+| application/yaml                     | {{application-yaml}} of this document       |
+|--------------------------------------|---------------------------------------------|
 
 IANA has updated the "Structured Syntax Suffixes" registry at <https://www.iana.org/assignments/media-type-structured-suffix>
 with the registration information provided below.
 
-|--------------------------|---------------------------------------|
-| Suffix                   |                         Section       |
-|--------------------------|---------------------------------------|
-| +yaml                    | {{suffix-yaml}} of ThisRFC            |
-|--------------------------|---------------------------------------|
+|--------------------------|------------------------------------------|
+| Suffix                   | Section                                  |
+|--------------------------|------------------------------------------|
+| +yaml                    | {{suffix-yaml}} of this document         |
+|--------------------------|------------------------------------------|
 
 
 --- back
