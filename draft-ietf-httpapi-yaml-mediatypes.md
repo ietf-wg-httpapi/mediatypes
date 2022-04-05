@@ -143,6 +143,8 @@ Fragment identifier considerations:
   but without a leading `*` indicator.
   For YAML 1.2,
   this means that it designates a node which has a correspondingly named anchor.
+  If multiple nodes would match a fragment identifier,
+  the first such match is selected.
 
 Additional information:
 
