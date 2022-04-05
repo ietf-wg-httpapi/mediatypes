@@ -138,7 +138,11 @@ Applications that use this media type:
 : HTTP
 
 Fragment identifier considerations:
-: None
+: For documents labeled as `application/yaml`,
+  the fragment identifier is parsed as if it were a YAML alias node,
+  but without a leading `*` indicator.
+  For YAML 1.2,
+  this means that it designates a node which has a correspondingly named anchor.
 
 Additional information:
 
