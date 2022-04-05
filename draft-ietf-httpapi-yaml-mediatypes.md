@@ -108,7 +108,7 @@ the above media types according to {{!MEDIATYPE=RFC6838}}
 
 ## Media Type application/yaml {#application-yaml}
 
-The following information serves as the registration form for the `application/yaml` media type.
+The media type for YAML text is `application/yaml`.
 
 Type name:
 : application
