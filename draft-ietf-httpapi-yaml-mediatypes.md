@@ -187,20 +187,14 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
   : see {{application-yaml}}
 
   Fragment identifier considerations:
-  : The syntax and semantics of fragment identifiers specified for
-    +yaml SHOULD be as specified for {{application-yaml}}
-    The syntax and semantics for fragment identifiers for a specific
-    `xxx/yyy+yaml` SHOULD be processed as follows:
+  : Differently from `application/yaml`,
+    there is no fragment identification syntax defined
+    for +yaml.
 
-    1. For cases defined in +yaml, where the fragment identifier resolves
-       per the +yaml rules, then process as specified in +yaml.
-
-    1. For cases defined in +yaml, where the fragment identifier does
-       not resolve per the +yaml rules, then process as specified in
-      `xxx/yyy+yaml`.
-
-    1. For cases not defined in +yaml, then process as specified in
-      `xxx/yyy+yaml`.
+    A specific `xxx/yyy+yaml` media type
+    needs to define the syntax and semantics for fragment identifiers
+    because the ones in {{application-yaml}}
+    do not apply unless explicitly expressed.
 
   Interoperability considerations:
   : See {{application-yaml}}
