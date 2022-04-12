@@ -102,7 +102,7 @@ and "user agent"
 in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-semantics}}.
 
 The terms "fragment" and "fragment identifier"
-in this document are to be interpreted as in {{!URI==RFC3986}}.
+in this document are to be interpreted as in {{!URI=RFC3986}}.
 
 The terms "node", "anchor" and "named anchor"
 in this document are to be intepreded as in [YAML].
@@ -114,7 +114,7 @@ named anchors (see Section 3.2.2.2 of [YAML])
 as fragment identifier to designate a node.
 
 A YAML named anchor can be represented in a URI fragment identifier
-by encoding it into octects using UTF-8 {{!UTF-8==RFC3629}},
+by encoding it into octects using UTF-8 {{!UTF-8=RFC3629}},
 while percent-encoding those characters not allowed by the fragment rule
 in {{Section 3.5 of URI}}. 
 
@@ -137,13 +137,13 @@ the URL `file.yaml#bar` references the anchor `bar` pointing to the node
 with value `[ some, sequence, items ]`.
 
 ~~~ example
-%YAML 1.2
----
-one: &foo scalar
-two: &bar
-  - some
-  - sequence
-  - items
+ %YAML 1.2
+ ---
+ one: &foo scalar
+ two: &bar
+   - some
+   - sequence
+   - items
 ~~~
 
 
