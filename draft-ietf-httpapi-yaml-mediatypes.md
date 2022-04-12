@@ -101,6 +101,52 @@ The terms  "content", "content negotiation", "resource",
 and "user agent"
 in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-semantics}}.
 
+The terms "fragment" and "fragment identifier"
+in this document are to be interpreted as in {{!URI==RFC3986}}.
+
+The terms "node", "anchor" and "named anchor"
+in this document are to be intepreded as in [YAML].
+
+## Fragment identification {#application-yaml-fragment}
+
+This section describes how to use
+named anchors (see Section 3.2.2.2 of [YAML])
+as fragment identifier to designate a node.
+
+A YAML named anchor can be represented in a URI fragment identifier
+by encoding it into octects using UTF-8 {{!UTF-8==RFC3629}},
+while percent-encoding those characters not allowed by the fragment rule
+in {{Section 3.5 of URI}}. 
+
+If multiple nodes would match a fragment identifier,
+the first such match is selected.
+
+Users concerned with interoperability of fragment identifiers:
+
+- SHOULD limit named anchors to a set of characters
+  that do not require encoding 
+  to be expressed as URI fragment identifiers:
+  this is always possible since named anchors are a serialization
+  detail;
+- SHOULD NOT use a named anchor that matches multiple nodes.
+
+In the example resource below, the URL `file.yaml#foo`
+references the anchor `foo` pointing to the node with value `scalar`;
+whereas
+the URL `file.yaml#bar` references the anchor `bar` pointing to the node
+with value `[ some, sequence, items ]`.
+
+~~~ example
+%YAML 1.2
+---
+one: &foo scalar
+two: &bar
+  - some
+  - sequence
+  - items
+~~~
+
+
 # Media Type registrations
 
 This section describes the information required to register
@@ -138,12 +184,7 @@ Applications that use this media type:
 : HTTP
 
 Fragment identifier considerations:
-: The fragment identifier is parsed as if it were a YAML alias node,
-  but without a leading `*` indicator.
-  For example, in YAML 1.2,
-  this means that it designates a node which has a correspondingly named anchor.
-  If multiple nodes would match a fragment identifier,
-  the first such match is selected.
+: see {{application-yaml-fragment}}
 
 Additional information:
 
