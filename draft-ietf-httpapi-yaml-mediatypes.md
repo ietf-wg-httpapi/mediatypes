@@ -111,7 +111,7 @@ in this document are to be intepreded as in [YAML].
 
 This section describes how to use
 named anchors (see Section 3.2.2.2 of [YAML])
-as fragment identifier to designate a node.
+as fragment identifiers to designate nodes.
 
 A YAML named anchor can be represented in a URI fragment identifier
 by encoding it into octects using UTF-8 {{!UTF-8=RFC3629}},
