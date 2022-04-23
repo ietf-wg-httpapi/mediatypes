@@ -39,7 +39,11 @@ normative:
     - ins: Oren Ben-Kiki
     - ins: Clark Evans
     - ins: Ingy dot Net
-    target: https://yaml.org/spec/1.2/spec.html
+    - ins: Tina Müller
+    - ins: Pantelis Antoniou
+    - ins: Eemeli Aro
+    - ins: Thomas Smith
+    target: https://yaml.org/spec/1.2.2/
   oas:
     title: OpenAPI Specification 3.0.0
     date: 2017-07-26
