@@ -28,6 +28,7 @@ author:
  -
     ins: E. Aro
     name: Eemeli Aro
+    org: Mozilla
     email: eemeli@gmail.com
     country: Finland
 
