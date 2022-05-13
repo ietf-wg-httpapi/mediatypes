@@ -184,7 +184,7 @@ Interoperability considerations:
 : see {{interoperability-considerations}} of this document
 
 Published specification:
-: this document
+: [YAML]
 
 Applications that use this media type:
 : HTTP
