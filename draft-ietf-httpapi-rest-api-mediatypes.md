@@ -158,7 +158,7 @@ Interoperability considerations:
 : None
 
 Published specification:
-: this document
+: [oas]
 
 Applications that use this media type:
 : HTTP
@@ -217,7 +217,7 @@ Interoperability considerations:
 : see {{Section 3 of YAML-MEDIATYPES}}
 
 Published specification:
-: this document
+: [oas]
 
 Applications that use this media type:
 : HTTP
@@ -424,7 +424,7 @@ Interoperability considerations:
 : See the "General Considerations" section of {{jsonschema}}
 
 Published specification:
-: this document
+: {{jsonschema}}, this document
 
 Applications that use this media type:
 : JSON Schema is used in a variety of
@@ -492,7 +492,7 @@ Interoperability considerations:
 : Same as {{JSON}}
 
 Published specification:
-: this document
+: {{jsonschema}}, this document
 
 Applications that use this media type:
 : JSON Schema is used in a variety of
