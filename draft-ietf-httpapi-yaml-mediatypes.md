@@ -1,5 +1,5 @@
 ---
-title: YAML Media Types
+title: YAML Media Type
 abbrev:
 docname: draft-ietf-httpapi-yaml-mediatypes-latest
 category: info
@@ -82,7 +82,7 @@ The source code and issues list for this draft can be found at
 
 YAML [YAML] is a data serialization format that is widely used on the Internet,
 including in the API sector (e.g. see [oas])
-but the relevant media type and structured syntax suffix are not registered by IANA.
+but the relevant media type and structured syntax suffix previously had not been registered by IANA.
 
 To increase interoperability when exchanging YAML data
 and leverage content negotiation mechanisms when exchanging
@@ -152,10 +152,10 @@ with value `[ some, sequence, items ]`.
 ~~~
 
 
-# Media Type registrations
+# Media Type and Structured Syntax Suffix registrations
 
 This section describes the information required to register
-the above media types according to {{!MEDIATYPE=RFC6838}}
+the above media type according to {{!MEDIATYPE=RFC6838}}
 
 ## Media Type application/yaml {#application-yaml}
 
@@ -226,7 +226,7 @@ The media type structured syntax suffix registration form follows.
 See {{MEDIATYPE}} for definitions of each of the registration form headings.
 
   Name:
-  : YAML Ain't Markup LanguageML (YAML)
+  : YAML Ain't Markup Language (YAML)
 
   +suffix:
   :  +yaml
@@ -266,15 +266,15 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
 
 ## YAML is an Evolving Language {#int-yaml-evolving}
 
-YAML is an evolving language and, in time,
-some features have been added, and others removed.
+YAML is an evolving language and, over time,
+some features have been added and others removed.
 
 While this document is based on a given YAML version [YAML],
-media types registration does not imply a specific version.
+the media type registration does not imply a specific version.
 This allows content negotiation of version-independent YAML resources.
 
 Implementers concerned about features related to a specific YAML version
-can specify it in the documents using the `%YAML` directive
+can specify it in documents using the `%YAML` directive
 (see Section 6.8.1 of [YAML]).
 
 ## YAML and JSON {#int-yaml-and-json}
@@ -387,7 +387,7 @@ in a format that does not support reference cycles (see {{int-yaml-and-json}}).
 
 # IANA Considerations
 
-This specification defines the following new Internet media types {{MEDIATYPE}}.
+This specification defines the following new Internet media type {{MEDIATYPE}}.
 
 IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
 with the registration information provided below.
