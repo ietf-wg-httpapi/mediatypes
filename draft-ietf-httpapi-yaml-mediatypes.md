@@ -81,7 +81,7 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 YAML [YAML] is a data serialization format that is widely used on the Internet,
-including in the API sector (e.g. see [oas])
+including in the API sector (e.g. see [oas]),
 but the relevant media type and structured syntax suffix previously had not been registered by IANA.
 
 To increase interoperability when exchanging YAML data
