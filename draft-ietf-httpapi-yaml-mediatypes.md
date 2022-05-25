@@ -55,6 +55,7 @@ normative:
     - ins: Mike Ralphson
     - ins: Ron Ratovsky
     - ins: Uri Sarid
+  JSON-POINTER: RFC6901
 
 informative:
 
@@ -109,36 +110,41 @@ in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-seman
 The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in {{!URI=RFC3986}}.
 
-The terms "node", "anchor" and "named anchor"
+The terms "node", "alias node", "anchor" and "named anchor"
 in this document are to be intepreded as in [YAML].
 
 ## Fragment identification {#application-yaml-fragment}
 
 This section describes how to use
-named anchors (see Section 3.2.2.2 of [YAML])
+alias nodes (see Section 3.2.2.2 and 7.1 of [YAML])
 as fragment identifiers to designate nodes.
 
-A YAML named anchor can be represented in a URI fragment identifier
+A YAML alias node can be represented in a URI fragment identifier
 by encoding it into octects using UTF-8 {{!UTF-8=RFC3629}},
 while percent-encoding those characters not allowed by the fragment rule
-in {{Section 3.5 of URI}}. 
+in {{Section 3.5 of URI}}.
 
 If multiple nodes would match a fragment identifier,
 the first such match is selected.
 
+A fragment identifier is not guaranteed to reference an existing node.
+Therefore, applications SHOULD define how an unresolved alias node 
+ought to be handled.
+
 Users concerned with interoperability of fragment identifiers:
 
-- SHOULD limit named anchors to a set of characters
+- SHOULD limit alias nodes to a set of characters
   that do not require encoding 
   to be expressed as URI fragment identifiers:
-  this is always possible since named anchors are a serialization
+  this is always possible since alias nodes
+  and their associated named anchors are a serialization
   detail;
-- SHOULD NOT use a named anchor that matches multiple nodes.
+- SHOULD NOT use alias nodes that matches multiple nodes.
 
-In the example resource below, the URL `file.yaml#foo`
-references the anchor `foo` pointing to the node with value `scalar`;
+In the example resource below, the URL `file.yaml#*foo`
+references the alias node `*foo` pointing to the node with value `scalar`;
 whereas
-the URL `file.yaml#bar` references the anchor `bar` pointing to the node
+the URL `file.yaml#*bar` references the alias node `*bar` pointing to the node
 with value `[ some, sequence, items ]`.
 
 ~~~ example
@@ -190,7 +196,11 @@ Applications that use this media type:
 : HTTP
 
 Fragment identifier considerations:
-: see {{application-yaml-fragment}}
+: A fragment identifier starting with "*"
+  is expressed as a YAML alias node {{application-yaml-fragment}}.
+
+  A fragment identifier starting with "/"
+  is expressed as a JSON Pointer {{!JSON-POINTER}}.
 
 Additional information:
 
@@ -433,6 +443,14 @@ Q: Why this document?
 :  After all these years, we still lack a proper media-type for YAML.
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
+
+Q: Why using alias nodes as fragment identifiers?
+:  Alias nodes starts with `*`. This allow to distinguish
+   a fragment identifier expressed as an alias node from
+   one expressed in JSON Pointer {{JSON-POINTER}}
+   which is expected to start with `/`.
+   Moreover, since json-path {{I-D.ietf-jsonpath-base}} expressions
+   start with `$`, this mechanism is even extensible that specification.
 
 # Change Log
 {: numbered="false"}
