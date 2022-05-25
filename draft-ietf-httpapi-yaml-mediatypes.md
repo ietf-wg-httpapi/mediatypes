@@ -121,7 +121,7 @@ as fragment identifiers to designate nodes.
 A YAML named anchor can be represented in a URI fragment identifier
 by encoding it into octects using UTF-8 {{!UTF-8=RFC3629}},
 while percent-encoding those characters not allowed by the fragment rule
-in {{Section 3.5 of URI}}. 
+in {{Section 3.5 of URI}}.
 
 If multiple nodes would match a fragment identifier,
 the first such match is selected.
@@ -129,7 +129,7 @@ the first such match is selected.
 Users concerned with interoperability of fragment identifiers:
 
 - SHOULD limit named anchors to a set of characters
-  that do not require encoding 
+  that do not require encoding
   to be expressed as URI fragment identifiers:
   this is always possible since named anchors are a serialization
   detail;
