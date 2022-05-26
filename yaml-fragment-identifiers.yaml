@@ -1,0 +1,45 @@
+yaml-fragment-identifiers:
+  data: [
+        {
+            "*foo": {
+                "iri": "https://host.example:443/path.yaml#*foo",
+                "url": "https://host.example:443/path.yaml#*foo",
+            }
+        },
+        {
+            "*foo-bar-baz": {
+                "iri": "https://host.example:443/path.yaml#*foo-bar-baz",
+                "url": "https://host.example:443/path.yaml#*foo-bar-baz",
+            }
+        },
+        {
+            "*però": {
+                "iri": "https://host.example:443/path.yaml#*però",
+                "url": "https://host.example:443/path.yaml#*per%C3%B2",
+            }
+        },
+        {
+            "*però/fara": {
+                "iri": "https://host.example:443/path.yaml#*però/fara",
+                "url": "https://host.example:443/path.yaml#*per%C3%B2/fara",
+            }
+        },
+        {
+            "*però/fara/perì": {
+                "iri": "https://host.example:443/path.yaml#*però/fara/perì",
+                "url": "https://host.example:443/path.yaml#*per%C3%B2/fara/per%C3%AC",
+            }
+        },
+        {
+            "/components/schemas/Person": {
+                "iri": "https://host.example:443/path.yaml#/components/schemas/Person",
+                "url": "https://host.example:443/path.yaml#/components/schemas/Person",
+            }
+        },
+        {
+            "$.o.*": {
+                "iri": "https://host.example:443/path.yaml#$.o.*",
+                "url": "https://host.example:443/path.yaml#$.o.*",
+            }
+        }
+]

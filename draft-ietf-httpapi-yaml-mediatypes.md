@@ -128,13 +128,13 @@ If multiple nodes would match a fragment identifier,
 the first such match is selected.
 
 A fragment identifier is not guaranteed to reference an existing node.
-Therefore, applications SHOULD define how an unresolved alias node 
+Therefore, applications SHOULD define how an unresolved alias node
 ought to be handled.
 
 Users concerned with interoperability of fragment identifiers:
 
 - SHOULD limit alias nodes to a set of characters
-  that do not require encoding 
+  that do not require encoding
   to be expressed as URI fragment identifiers:
   this is always possible since alias nodes
   and their associated named anchors are a serialization
