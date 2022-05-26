@@ -56,6 +56,7 @@ normative:
     - ins: Ron Ratovsky
     - ins: Uri Sarid
   JSON-POINTER: RFC6901
+  I-D.ietf-jsonpath-base:
 
 informative:
 
