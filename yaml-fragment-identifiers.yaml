@@ -41,5 +41,11 @@ yaml-fragment-identifiers:
                 "iri": "https://host.example:443/path.yaml#$.o.*",
                 "url": "https://host.example:443/path.yaml#$.o.*",
             }
-        }
-]
+        },
+        { 
+            "$['store']['book'][0]['title']": { 
+                "iri": "https://host.example:443/path.yaml#$['store']['book'][0]['title']",
+                "url": "https://host.example:443/path.yaml#$['store']['book'][0]['title']"
+            } 
+        },
+    ]

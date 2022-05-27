@@ -83,6 +83,7 @@ def iri_to_uri(iri, encoding="utf-8"):
         "*però/fara/perì",
         "/components/schemas/Person",
         "$.o.*",
+        "$['store']['book'][0]['title']",
     ],
 )
 def test_uri_alias_nodes(alias_node):
