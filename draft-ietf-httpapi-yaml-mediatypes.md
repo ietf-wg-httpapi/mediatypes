@@ -45,7 +45,7 @@ normative:
     - ins: Eemeli Aro
     - ins: Thomas Smith
     target: https://yaml.org/spec/1.2.2/
-  oas:
+  OAS:
     title: OpenAPI Specification 3.0.0
     date: 2017-07-26
     author:
@@ -83,7 +83,7 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 YAML [YAML] is a data serialization format that is widely used on the Internet,
-including in the API sector (e.g. see [oas]),
+including in the API sector (e.g. see [OAS]),
 but the relevant media type and structured syntax suffix previously had not been registered by IANA.
 
 To increase interoperability when exchanging YAML data
@@ -208,8 +208,8 @@ Fragment identifier considerations:
   and is evaluated on the YAML representation graph,
   following alias nodes;
   this syntax can only reference YAML nodes that are
-  on a path that is made up of interoperable nodes
-  (see {{int-yaml-and-json}}).
+  on a path that is made up of nodes interoperable with
+  the JSON data model (see {{int-yaml-and-json}}).
 
 Additional information:
 
@@ -350,6 +350,7 @@ issues with JSON:
  %YAML 1.2
  ---
  non-json-keys:
+   0: a number
    2020-01-01: a timestamp
    [0, 1]: a sequence
    ? {k: v}
@@ -358,18 +359,20 @@ issues with JSON:
 ~~~
 {: title="Example of mapping keys not supported in JSON" #example-unsupported-keys}
 
-## JSON related fragment identifiers {#int-fragment-json}
+## Fragment identifiers {#int-fragment}
+
+To allow fragment identifiers to traverse alias nodes,
+the YAML representation graph needs to be generated before the fragment identifier evaluation.
+It is important that this evaluation will not incurr in the issues mentioned in {{int-yaml-and-json}}
+and in [Security considerations](#security-considerations) such as infinite loops and unexpected code execution.
+
+Implementers needs to consider that the YAML version and supported features (e.g. merge keys)
+can impact on the generation of the representation graph (see {{example-merge-keys}}).
 
 In {{application-yaml}}, this document extends the use of specifications based on
-the JSON data model (e.g. JSON Pointers) as YAML fragment identifiers.
+the JSON data model as YAML fragment identifiers.
 This is to improve the interoperability of already consolidated practices,
-such as the one of writing OpenAPI documents {{oas}} - which are based on the
-JSON data model - in YAML.
-
-To allow the fragment identifier to traverse alias nodes,
-the YAML representation graph needs to be generated before the fragment identifier evaluation.
-Since this graph might have cyclic references (see {{int-yaml-and-json}}) it is important
-to ensure that this evaluation will not cause an infinite loop.
+such as the one of writing [OpenAPI documents](#OAS) in YAML.
 
 {{ex-fragid}} provides a non exhaustive list of examples that could help
 understanding interoperability issues related to fragment identifiers.
@@ -471,10 +474,10 @@ since their mapping keys are not strings.
 
 ## Referencing a missing node
 
-In this example the fragment identifier `#/0` does not reference an existing node
+In this example the fragment `#/0` does not reference an existing node
 
 ~~~ example
-0:   &me   "JSON Pointer `#/0` references a string mapping keys."
+0: "JSON Pointer `#/0` references a string mapping key."
 ~~~
 {: title="Example of a JSON Pointer that does not reference an existing node." #example-missing-node}
 
@@ -484,7 +487,7 @@ In this YAML document, the `#/foo/bar/baz` fragment identifier
 traverses the representation graph and references the string `you`.
 Moreover, the presence of a cyclic reference implies that
 there are infinite fragment identifiers `#/foo/bat/../bat/bar`
-referencing `&anchor`.
+referencing the `&anchor` node.
 
 ~~~ example
  anchor: &anchor
@@ -496,7 +499,7 @@ referencing `&anchor`.
 {: title="Example of a cyclic references and alias nodes." #example-cyclic-graph}
 
 Many YAML implementations will resolve
-[the merge key <<: defined in YAML 1.1](https://yaml.org/type/merge.html)
+[the merge key "<<:"](https://yaml.org/type/merge.html) defined in YAML 1.1
 in the representation graph.
 This means that the fragment `#/book/author/given_name` references the string `Federico`
 and that the fragment `#/book/<<` will not reference any existing node.
