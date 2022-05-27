@@ -58,6 +58,7 @@ normative:
   JSON-POINTER: RFC6901
 
 informative:
+  I-D.ietf-jsonpath-base:
 
 --- abstract
 
