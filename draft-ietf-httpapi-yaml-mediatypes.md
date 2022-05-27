@@ -201,7 +201,15 @@ Fragment identifier considerations:
   is expressed as a YAML alias node {{application-yaml-fragment}}.
 
   A fragment identifier starting with "/"
-  is expressed as a JSON Pointer {{!JSON-POINTER}}.
+  is expressed as a JSON Pointer {{!JSON-POINTER}}
+  and is evaluated on the YAML representation graph,
+  following alias nodes;
+  this syntax can only reference YAML nodes that are
+  on a path that is made up of interoperable nodes
+  (see {#int-yaml-and-json}).
+
+  An empty fragment identifier references
+  the root node.
 
 Additional information:
 
@@ -347,6 +355,71 @@ non-json-keys:
 non-json-value: 2020-01-01
 ~~~
 {: title="Example of mapping keys not supported in JSON" #example-unsupported-keys}
+
+## JSON related fragment identifiers {#int-fragment-json}
+
+Since this is a consolidated practice,
+this specification extends the use specifications based on JSON
+such as JSON Pointers as YAML fragment identifiers,
+adding some caveats.
+
+Since YAML supports cyclic references and non-string mapping keys
+(see {{int-yaml-and-json}}),
+when using fragment identifier specifications
+that are limited to JSON data model it might happen that:
+
+- a YAML node cannot be referenced;
+
+~~~ example
+%YAML 1.2
+---
+a-map-cannot:
+  ? {be: expressed}
+  : with a JSON Pointer
+
+0: no numeric mapping keys in JSON 
+~~~
+
+- the fragment identifier does not reference any existing node;
+
+~~~ example
+# file.yaml#/0
+%YAML 1.2
+---
+0: &me   "The JSON Pointer references *it, not *me"
+
+"0": &it "That's it!" 
+~~~
+
+
+- the fragment identifier needs to traverse alias nodes.
+
+In the following example, the fragment identifier:
+
+- `#/foo/bar/baz` references the string `me`;
+- `#/book/author/given_name` references the string `Federico`;
+
+
+~~~ example
+%YAML 1.2
+---
+anchor: &anchor 
+  baz: "me"
+foo:
+  bar: *anchor
+
+# Many implementations use merge keys.
+author: &author
+  author:
+    given_name: Federico
+    family_name: De Roberto
+title: &title
+  title: The Viceroys
+book:
+  <<: *title
+  <<: *author
+~~~
+
 
 # Security Considerations
 
