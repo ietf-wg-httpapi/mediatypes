@@ -206,7 +206,7 @@ Fragment identifier considerations:
   A fragment identifier starting with "/"
   is expressed as a JSON Pointer {{JSON-POINTER}}
   and is evaluated on the YAML representation graph,
-  following alias nodes;
+  walking through alias nodes;
   this syntax can only reference YAML nodes that are
   on a path that is made up of nodes interoperable with
   the JSON data model (see {{int-yaml-and-json}}).
