@@ -424,7 +424,7 @@ Interoperability considerations:
 : See the "General Considerations" section of {{jsonschema}}
 
 Published specification:
-: {{jsonschema}}, this document
+: This document specifies dialect identification, but each dialect will have it's own specification. The set of possible dialects is open ended and includes, but is not limited to, those released by the JSON Schema organization ({{jsonschema}}).
 
 Applications that use this media type:
 : JSON Schema is used in a variety of
@@ -492,7 +492,7 @@ Interoperability considerations:
 : Same as {{JSON}}
 
 Published specification:
-: {{jsonschema}}, this document
+: this document
 
 Applications that use this media type:
 : JSON Schema is used in a variety of
