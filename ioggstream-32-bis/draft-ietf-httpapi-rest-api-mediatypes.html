@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>REST API Media Types</title>
+<meta content="Roberto Polli" name="author">
+<meta content="
+       This document registers
+the following media types used in APIs
+on the IANA Media Types registry:
+application/schema+json,
+application/schema-instance+json,
+application/openapi+json,
+and application/openapi+yaml. 
+    " name="description">
+<meta content="xml2rfc 3.12.6" name="generator">
+<meta content="Internet-Draft" name="keyword">
+<meta content="draft-ietf-httpapi-rest-api-mediatypes" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.12.6
+    Python 3.9.7
+    appdirs 1.4.4
+    ConfigArgParse 1.3
+    google-i18n-address 2.5.1
+    html5lib 1.1
+    intervaltree 3.1.0
+    Jinja2 2.11.3
+    kitchen 1.2.6
+    lxml 4.6.5
+    MarkupSafe 2.0.1
+    pycountry 20.7.3
+    pyflakes 2.3.1
+    PyYAML 5.4.1
+    requests 2.26.0
+    setuptools 52.0.0
+    six 1.16.0
+-->
+<link href="draft-ietf-httpapi-rest-api-mediatypes.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+}
+ol ol, ul ul, ol ul, ul ol {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+ul.compact, .ulCompact,
+ol.compact, .olCompact {
+  line-height: 100%;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl > dd {
+  margin-bottom: .8em;
+  min-height: 1.3em;
+}
+dl.compact > dd, .dlCompact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+dd.break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href].selfRef {
+  color: var(--text-color);
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines */
+  line-height: 0;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+}
+@media screen {
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  pre + .pilcrow, svg + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+tr:nth-child(2n) > td {
+  background-color: var(--background-color);
+}
+tr:nth-child(2n+1) > td {
+  background-color: var(--highlight-color);
+}
+thead+tbody > tr:nth-child(2n) > td {
+  background-color: var(--highlight-color);
+}
+thead+tbody > tr:nth-child(2n+1) > td {
+  background-color: var(--background-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+}
+a.pilcrow[href] { color: var(--pilcrow-weak); }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+}
+
+.role {
+  font-variant: all-small-caps;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 8em;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  margin: 0;
+  clear: left;
+  float: left;
+  text-align: right;
+}
+#identifiers dd {
+  margin: 0 0 0 calc(1em + var(--identifier-width));
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 0.75em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 7em;
+}
+.references dd {
+  margin-left: 8em;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #toc nav > ul  {
+    margin-bottom: 2em;
+  }
+  #toc ul {
+    margin: 0 0 0 4px;
+    font-size: var(--small-font-size);
+  }
+  #toc ul p, #toc ul li {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre {
+    page-break-inside: avoid;
+  }
+  figure {
+    overflow: scroll;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  h2+*, h3+*, h4+*, h5+*, h6+* {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Fix the dl styling to match the RFC 7992 attributes */
+dl > dt,
+dl.dlParallel > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left, table .text-left {
+  text-align: left;
+}
+table .text-center, table .text-center {
+  text-align: center;
+}
+table .text-right, table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Give the table caption label the same styling as the figcaption */
+
+@media print {
+  .toplink {
+    display: none;
+  }
+
+  /* avoid overwriting the top border line with the ToC header */
+  #toc {
+    padding-top: 1px;
+  }
+
+  /* Avoid page breaks inside dl and author address entries */
+  dd {
+    page-break-before: avoid;
+  }
+  .vcard {
+    page-break-inside: avoid;
+  }
+
+}
+/* Tweak the bcp14 keyword presentation */
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+/* Trick: a prefix match works because only black and white are allowed */
+svg [stroke="black"], svg [stroke^="#000"] {
+  stroke: var(--text-color);
+}
+svg [stroke="white"], svg [stroke^="#fff"] {
+  stroke: var(--background-color);
+}
+svg [fill="black"], svg [fill^="#000"], svg :not([fill]) {
+  fill: var(--text-color);
+}
+svg [stroke="fill"], svg [fill^="#fff"] {
+  fill: var(--background-color);
+}
+}
+</style>
+
+</head>
+<body>
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">REST API Media Types</td>
+<td class="right">May 2022</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Polli</td>
+<td class="center">Expires 14 November 2022</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">HTTPAPI</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-httpapi-rest-api-mediatypes</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2022-05-13" class="published">13 May 2022</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2022-11-14">14 November 2022</time></dd>
+<dt class="label-authors">Author:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">R. Polli</div>
+<div class="org">Digital Transformation Department, Italian Government</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">REST API Media Types</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document registers
+the following media types used in APIs
+on the IANA Media Types registry:
+application/schema+json,
+application/schema-instance+json,
+application/openapi+json,
+and application/openapi+yaml.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note" id="section-note.1">
+      <h2 id="name-note-to-readers">
+<a href="#name-note-to-readers" class="section-name selfRef">Note to Readers</a>
+      </h2>
+<p id="section-note.1-1"><em>RFC EDITOR: please remove this section before publication</em><a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">Discussion of this draft takes place on the HTTP APIs working group
+mailing list (httpapi@ietf.org), which is archived at
+<a href="https://mailarchive.ietf.org/arch/browse/httpapi/">https://mailarchive.ietf.org/arch/browse/httpapi/</a>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">The source code and issues list for this draft can be found at
+<a href="https://github.com/ietf-wg-httpapi/mediatypes">https://github.com/ietf-wg-httpapi/mediatypes</a>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 14 November 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2022 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-media-type-registrations" class="xref">Media Type registrations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-the-openapi-media-types" class="xref">The OpenAPI Media Types</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.1">
+                    <p id="section-toc.1-1.2.2.1.2.1.1" class="keepWithNext"><a href="#section-2.1.1" class="xref">2.1.1</a>.  <a href="#name-media-type-application-open" class="xref">Media Type application/openapi+json</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.2">
+                    <p id="section-toc.1-1.2.2.1.2.2.1"><a href="#section-2.1.2" class="xref">2.1.2</a>.  <a href="#name-media-type-application-opena" class="xref">Media Type application/openapi+yaml</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-json-schema-media-types" class="xref">JSON Schema Media Types</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.1">
+                    <p id="section-toc.1-1.2.2.2.2.1.1"><a href="#section-2.2.1" class="xref">2.2.1</a>.  <a href="#name-the-schema-keyword" class="xref">The "$schema" Keyword</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.2">
+                    <p id="section-toc.1-1.2.2.2.2.2.1"><a href="#section-2.2.2" class="xref">2.2.2</a>.  <a href="#name-identifying-a-schema-via-a-" class="xref">Identifying a Schema via a Media Type Parameter</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.3">
+                    <p id="section-toc.1-1.2.2.2.2.3.1"><a href="#section-2.2.3" class="xref">2.2.3</a>.  <a href="#name-linking-to-a-schema" class="xref">Linking to a Schema</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.4">
+                    <p id="section-toc.1-1.2.2.2.2.4.1"><a href="#section-2.2.4" class="xref">2.2.4</a>.  <a href="#name-fragment-identifiers" class="xref">Fragment Identifiers</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.5">
+                    <p id="section-toc.1-1.2.2.2.2.5.1"><a href="#section-2.2.5" class="xref">2.2.5</a>.  <a href="#name-media-type-application-sche" class="xref">Media Type application/schema+json</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.6">
+                    <p id="section-toc.1-1.2.2.2.2.6.1"><a href="#section-2.2.6" class="xref">2.2.6</a>.  <a href="#name-media-type-application-schem" class="xref">Media Type application/schema-instance+json</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-interoperability-considerat" class="xref">Interoperability Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="xref">Appendix A</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="xref"></a><a href="#name-faq" class="xref">FAQ</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-C" class="xref"></a><a href="#name-change-log" class="xref">Change Log</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-C.1" class="xref"></a><a href="#name-since-00" class="xref">Since -00</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-D" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">OpenAPI Specification <span>[<a href="#oas" class="xref">oas</a>]</span> version 3 and above
+is a consolidated standard for describing
+HTTP APIs using the JSON <span>[<a href="#JSON" class="xref">JSON</a>]</span> and YAML <span>[<a href="#YAML" class="xref">YAML</a>]</span> data format.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">YAML media type registration is addressed in <span>[<a href="#YAML-MEDIATYPES" class="xref">YAML-MEDIATYPES</a>]</span>,
+which provides interoperability and security considerations.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">To increase interoperability when processing API specifications
+and leverage content negotiation mechanisms when exchanging
+OpenAPI Specification resources
+this specification register the following media-types:
+<code>application/schema+json</code>,
+<code>application/schema-instance+json</code>,
+<code>application/openapi+json</code>
+and <code>application/openapi+yaml</code>.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<div id="notational-conventions">
+<section id="section-1.1">
+        <h3 id="name-notational-conventions">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-notational-conventions" class="section-name selfRef">Notational Conventions</a>
+        </h3>
+<p id="section-1.1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+"MAY", and "OPTIONAL" in this document are to be interpreted as
+described in BCP 14 <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="xref">RFC8174</a>]</span> when, and only when, they
+appear in all capitals, as shown here.
+These words may also appear in this document in
+lower case as plain English words, absent their normative meanings.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">This document uses the Augmented BNF defined in <span>[<a href="#RFC5234" class="xref">RFC5234</a>]</span> and updated
+by <span>[<a href="#RFC7405" class="xref">RFC7405</a>]</span>.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">The terms  "content", "content negotiation", "resource",
+and "user agent"
+in this document are to be interpreted as in <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="media-type-registrations">
+<section id="section-2">
+      <h2 id="name-media-type-registrations">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-media-type-registrations" class="section-name selfRef">Media Type registrations</a>
+      </h2>
+<p id="section-2-1">This section describes the information required to register
+the above media types according to <span>[<a href="#MEDIATYPE" class="xref">MEDIATYPE</a>]</span><a href="#section-2-1" class="pilcrow">¶</a></p>
+<div id="the-openapi-media-types">
+<section id="section-2.1">
+        <h3 id="name-the-openapi-media-types">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-the-openapi-media-types" class="section-name selfRef">The OpenAPI Media Types</a>
+        </h3>
+<p id="section-2.1-1">The OpenAPI Specification Media Types convey OpenAPI document (OAS) files
+as defined in <span>[<a href="#oas" class="xref">oas</a>]</span> for version 3.0.0 and above.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Those files can be serialized in <span>[<a href="#JSON" class="xref">JSON</a>]</span> or <span>[<a href="#YAML" class="xref">YAML</a>]</span>.
+Since there are multiple OpenAPI Specification versions,
+those media-types support the <code>version</code> parameter.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">The following examples conveys the desire of a client
+to receive an OpenAPI Specification resource preferably in the following
+order:<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-2.1-4">
+<li id="section-2.1-4.1">openapi 3.1 in YAML<a href="#section-2.1-4.1" class="pilcrow">¶</a>
+</li>
+          <li id="section-2.1-4.2">openapi 3.0 in YAML<a href="#section-2.1-4.2" class="pilcrow">¶</a>
+</li>
+          <li id="section-2.1-4.3">any openapi version in json<a href="#section-2.1-4.3" class="pilcrow">¶</a>
+</li>
+        </ol>
+<div id="section-2.1-5">
+<pre class="lang-example sourcecode">
+Accept: application/openapi+yaml;version=3.1,
+        application/openapi+yaml;version=3.0;q=0.5,
+        application/openapi+json;q=0.3
+</pre><a href="#section-2.1-5" class="pilcrow">¶</a>
+</div>
+<div id="openapi-json">
+<section id="section-2.1.1">
+          <h4 id="name-media-type-application-open">
+<a href="#section-2.1.1" class="section-number selfRef">2.1.1. </a><a href="#name-media-type-application-open" class="section-name selfRef">Media Type application/openapi+json</a>
+          </h4>
+<p id="section-2.1.1-1">The following information serves as the registration form for the <code>application/openapi+json</code> media type.<a href="#section-2.1.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.1.1-2">
+            <dt id="section-2.1.1-2.1">Type name:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.2">
+              <p id="section-2.1.1-2.2.1">application<a href="#section-2.1.1-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.3">Subtype name:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.4">
+              <p id="section-2.1.1-2.4.1">openapi+json<a href="#section-2.1.1-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.5">Required parameters:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.6">
+              <p id="section-2.1.1-2.6.1">None<a href="#section-2.1.1-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.7">Optional parameters:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.8">
+              <p id="section-2.1.1-2.8.1">version; unrecognized parameters should be ignored<a href="#section-2.1.1-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.9">Encoding considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.10">
+              <p id="section-2.1.1-2.10.1">Same as <span>[<a href="#JSON" class="xref">JSON</a>]</span><a href="#section-2.1.1-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.11">Security considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.12">
+              <p id="section-2.1.1-2.12.1">see <a href="#security-considerations" class="xref">Section 4</a> of this document<a href="#section-2.1.1-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.13">Interoperability considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.14">
+              <p id="section-2.1.1-2.14.1">None<a href="#section-2.1.1-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.15">Published specification:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.16">
+              <p id="section-2.1.1-2.16.1"><span>[<a href="#oas" class="xref">oas</a>]</span><a href="#section-2.1.1-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.17">Applications that use this media type:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.18">
+              <p id="section-2.1.1-2.18.1">HTTP<a href="#section-2.1.1-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-2.19">Fragment identifier considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-2.20">
+              <p id="section-2.1.1-2.20.1">Same as for application/json <span>[<a href="#JSON" class="xref">JSON</a>]</span><a href="#section-2.1.1-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-2.1.1-3">Additional information:<a href="#section-2.1.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.1.1-4.1">Deprecated alias names for this type:  n/a<a href="#section-2.1.1-4.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.1.1-4.2">Magic number(s):  n/a<a href="#section-2.1.1-4.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.1.1-4.3">File extension(s):  json<a href="#section-2.1.1-4.3" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.1.1-4.4">Macintosh file type code(s):  n/a<a href="#section-2.1.1-4.4" class="pilcrow">¶</a>
+</li>
+          </ul>
+<span class="break"></span><dl class="dlParallel" id="section-2.1.1-5">
+            <dt id="section-2.1.1-5.1">Person and email address to contact for further information:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-5.2">
+              <p id="section-2.1.1-5.2.1">See Authors' Addresses section.<a href="#section-2.1.1-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-5.3">Intended usage:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-5.4">
+              <p id="section-2.1.1-5.4.1">COMMON<a href="#section-2.1.1-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-5.5">Restrictions on usage:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-5.6">
+              <p id="section-2.1.1-5.6.1">None.<a href="#section-2.1.1-5.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-5.7">Author:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-5.8">
+              <p id="section-2.1.1-5.8.1">See Authors' Addresses section.<a href="#section-2.1.1-5.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.1-5.9">Change controller:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.1-5.10">
+              <p id="section-2.1.1-5.10.1">n/a<a href="#section-2.1.1-5.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="openapi-yaml">
+<section id="section-2.1.2">
+          <h4 id="name-media-type-application-opena">
+<a href="#section-2.1.2" class="section-number selfRef">2.1.2. </a><a href="#name-media-type-application-opena" class="section-name selfRef">Media Type application/openapi+yaml</a>
+          </h4>
+<p id="section-2.1.2-1">The following information serves as the registration form for the <code>application/openapi+yaml</code> media type.<a href="#section-2.1.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.1.2-2">
+            <dt id="section-2.1.2-2.1">Type name:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.2">
+              <p id="section-2.1.2-2.2.1">application<a href="#section-2.1.2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.3">Subtype name:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.4">
+              <p id="section-2.1.2-2.4.1">openapi+yaml<a href="#section-2.1.2-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.5">Required parameters:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.6">
+              <p id="section-2.1.2-2.6.1">None<a href="#section-2.1.2-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.7">Optional parameters:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.8">
+              <p id="section-2.1.2-2.8.1">version; unrecognized parameters should be ignored<a href="#section-2.1.2-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.9">Encoding considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.10">
+              <p id="section-2.1.2-2.10.1">See <span>[<a href="#YAML-MEDIATYPES" class="xref">YAML-MEDIATYPES</a>]</span><a href="#section-2.1.2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.11">Security considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.12">
+              <p id="section-2.1.2-2.12.1">see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-yaml-mediatypes-00#section-4" class="relref">Section 4</a> of [<a href="#YAML-MEDIATYPES" class="xref">YAML-MEDIATYPES</a>]</span><a href="#section-2.1.2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.13">Interoperability considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.14">
+              <p id="section-2.1.2-2.14.1">see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-yaml-mediatypes-00#section-3" class="relref">Section 3</a> of [<a href="#YAML-MEDIATYPES" class="xref">YAML-MEDIATYPES</a>]</span><a href="#section-2.1.2-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.15">Published specification:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.16">
+              <p id="section-2.1.2-2.16.1"><span>[<a href="#oas" class="xref">oas</a>]</span><a href="#section-2.1.2-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.17">Applications that use this media type:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.18">
+              <p id="section-2.1.2-2.18.1">HTTP<a href="#section-2.1.2-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-2.19">Fragment identifier considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-2.20">
+              <p id="section-2.1.2-2.20.1">Same as for application/json <span>[<a href="#JSON" class="xref">JSON</a>]</span><a href="#section-2.1.2-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-2.1.2-3">Additional information:<a href="#section-2.1.2-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.1.2-4.1">Deprecated alias names for this type:  n/a<a href="#section-2.1.2-4.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.1.2-4.2">Magic number(s):  n/a<a href="#section-2.1.2-4.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.1.2-4.3">File extension(s):  yaml, yml<a href="#section-2.1.2-4.3" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.1.2-4.4">Macintosh file type code(s):  n/a<a href="#section-2.1.2-4.4" class="pilcrow">¶</a>
+</li>
+          </ul>
+<span class="break"></span><dl class="dlParallel" id="section-2.1.2-5">
+            <dt id="section-2.1.2-5.1">Person and email address to contact for further information:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-5.2">
+              <p id="section-2.1.2-5.2.1">See Authors' Addresses section<a href="#section-2.1.2-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-5.3">Intended usage:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-5.4">
+              <p id="section-2.1.2-5.4.1">COMMON<a href="#section-2.1.2-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-5.5">Restrictions on usage:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-5.6">
+              <p id="section-2.1.2-5.6.1">None.<a href="#section-2.1.2-5.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-5.7">Author:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-5.8">
+              <p id="section-2.1.2-5.8.1">See Authors' Addresses section<a href="#section-2.1.2-5.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.1.2-5.9">Change controller:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.1.2-5.10">
+              <p id="section-2.1.2-5.10.1">n/a<a href="#section-2.1.2-5.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="json-schema-media-types">
+<section id="section-2.2">
+        <h3 id="name-json-schema-media-types">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-json-schema-media-types" class="section-name selfRef">JSON Schema Media Types</a>
+        </h3>
+<p id="section-2.2-1">JSON Schema is a declarative domain-specific language for validating and
+annotating JSON documents (see <span>[<a href="#jsonschema" class="xref">jsonschema</a>]</span>).<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2-2">This document registers the media types associated with JSON Schema.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2-3">There are many dialects of JSON Schema in wide use today. The JSON Schema
+maintainers have released several dialects including draft-04, draft-07, and
+draft 2020-12. There are also several third-party JSON Schema dialects in wide
+use including the ones defined for use in OpenAPI and MongoDB.<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+<p id="section-2.2-4">This specification defines little more than how to identify the dialect while
+leaving most of the semantics of the schema up to the dialect to define. Clients
+MUST use the following order of precedence for determining the dialect of a
+schema.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.2-5.1">The <code>$schema</code> keyword (<a href="#schema-keyword" class="xref">Section 2.2.1</a>)<a href="#section-2.2-5.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.2-5.2">The "schema" media type parameter (<a href="#schema-parameter" class="xref">Section 2.2.2</a>)<a href="#section-2.2-5.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.2-5.3">The context of the enclosing document. This applies only when a schema is
+embedded within a document. The enclosing document could be another schema in
+the case of a bundled schema or it could be another type of document that
+includes schemas such as an OpenAPI document.<a href="#section-2.2-5.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.2-5.4">If none of the above result in identifying the dialect, client behavior is
+undefined.<a href="#section-2.2-5.4" class="pilcrow">¶</a>
+</li>
+        </ul>
+<div id="schema-keyword">
+<section id="section-2.2.1">
+          <h4 id="name-the-schema-keyword">
+<a href="#section-2.2.1" class="section-number selfRef">2.2.1. </a><a href="#name-the-schema-keyword" class="section-name selfRef">The "$schema" Keyword</a>
+          </h4>
+<p id="section-2.2.1-1">The <code>$schema</code> keyword is used as a JSON Schema dialect identifier. The value of
+this keyword MUST be a URI <span>[<a href="#RFC3986" class="xref">RFC3986</a>]</span>. This URI SHOULD identify a meta-schema
+that can be used to validate that the schema is syntactically correct according
+to the dialect the URI identifies.<a href="#section-2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.1-2">The dialect SHOULD define where the <code>$schema</code> keyword is allowed and/or
+recognized in a schema, but it is RECOMMENDED that dialects do not allow the
+schema to change within the same Schema Resource.<a href="#section-2.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="schema-parameter">
+<section id="section-2.2.2">
+          <h4 id="name-identifying-a-schema-via-a-">
+<a href="#section-2.2.2" class="section-number selfRef">2.2.2. </a><a href="#name-identifying-a-schema-via-a-" class="section-name selfRef">Identifying a Schema via a Media Type Parameter</a>
+          </h4>
+<p id="section-2.2.2-1">Media types MAY allow for a <code>schema</code> media type parameter, to support content
+negotiation based on schema identifier (see  <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19#section-12" class="relref">Section 12</a> of [<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).
+The <code>schema</code> media type parameter MUST be a URI-reference <span>[<a href="#RFC3986" class="xref">RFC3986</a>]</span>.<a href="#section-2.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.2-2">The <code>schema</code> parameter identifies a schema that provides semantic information
+about the resource the media type represents. When using the
+<code>application/schema+json</code> media type, the <code>schema</code> parameter identifies the
+dialect of the schema the media type represents.<a href="#section-2.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2.2-3">The <code>schema</code> URI is opaque and SHOULD NOT automatically be dereferenced. Since
+<code>schema</code> doesn't necessarily point to a network location, the "describedby"
+relation is used for linking to a downloadable schema.<a href="#section-2.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-2.2.2-4">The following is an example of content negotiation where a user agent can accept
+two different versions of a "pet" resource. Each resource version is identified
+by a unique JSON Schema.<a href="#section-2.2.2-4" class="pilcrow">¶</a></p>
+<p id="section-2.2.2-5">Request:<a href="#section-2.2.2-5" class="pilcrow">¶</a></p>
+<div id="section-2.2.2-6">
+<pre class="lang-http-message sourcecode">
+NOTE: '\' line wrapping per RFC 8792
+
+GET /pet/1234 HTTP/1.1
+Host: foo.example
+Accept: \
+  application/schema-instance+json; schema="/schemas/v2/pet"; q=0.2, \
+  application/schema-instance+json; schema="/schemas/v1/pet"; q=0.1
+</pre><a href="#section-2.2.2-6" class="pilcrow">¶</a>
+</div>
+<p id="section-2.2.2-7">Response:<a href="#section-2.2.2-7" class="pilcrow">¶</a></p>
+<div id="section-2.2.2-8">
+<pre class="lang-http-message sourcecode">
+NOTE: '\' line wrapping per RFC 8792
+
+HTTP/1.1 200 Ok
+Content-Type: \
+  application/schema-instance+json; schema="/schemas/v2/pet"
+
+{
+  "petId": "1234",
+  "name": "Pluto",
+  ...
+}
+</pre><a href="#section-2.2.2-8" class="pilcrow">¶</a>
+</div>
+<p id="section-2.2.2-9">In the following example, the user agent is able to accept two possible dialects
+of JSON Schema and the server replies with the latest one.<a href="#section-2.2.2-9" class="pilcrow">¶</a></p>
+<p id="section-2.2.2-10">Request:<a href="#section-2.2.2-10" class="pilcrow">¶</a></p>
+<div id="section-2.2.2-11">
+<pre class="lang-http-message sourcecode">
+NOTE: '\' line wrapping per RFC 8792
+
+GET /schemas/v2/pet HTTP/1.1
+Host: foo.example
+Accept: application/schema+json; \
+            schema="https://json-schema.org/draft/2020-12/schema", \
+        application/schema+json; \
+            schema="http://json-schema.org/draft-07/schema#"
+</pre><a href="#section-2.2.2-11" class="pilcrow">¶</a>
+</div>
+<p id="section-2.2.2-12">Response:<a href="#section-2.2.2-12" class="pilcrow">¶</a></p>
+<div id="section-2.2.2-13">
+<pre class="lang-http-message sourcecode">
+NOTE: '\' line wrapping per RFC 8792
+
+HTTP/1.1 200 OK
+Content-Type: \
+  application/schema+json; \
+      schema="https://json-schema.org/draft/2020-12/schema"
+
+{
+  "$id": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  ...
+}
+</pre><a href="#section-2.2.2-13" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="schema-linking">
+<section id="section-2.2.3">
+          <h4 id="name-linking-to-a-schema">
+<a href="#section-2.2.3" class="section-number selfRef">2.2.3. </a><a href="#name-linking-to-a-schema" class="section-name selfRef">Linking to a Schema</a>
+          </h4>
+<p id="section-2.2.3-1">It is RECOMMENDED that instances described by a schema provide a link to a
+downloadable JSON Schema using the link relation <code>describedby</code>, as defined by
+Linked Data Protocol 1.0, section 8.1 <span>[<a href="#W3C.REC-ldp-20150226" class="xref">W3C.REC-ldp-20150226</a>]</span>.<a href="#section-2.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.3-2">In HTTP, such links can be attached to any response using the <code>Link</code> header
+<span>[<a href="#LINK" class="xref">LINK</a>]</span>.<a href="#section-2.2.3-2" class="pilcrow">¶</a></p>
+<div id="section-2.2.3-3">
+<pre class="lang-http-message sourcecode">
+Link: &lt;https://example.com/my-hyper-schema#&gt;; rel="describedby"
+</pre><a href="#section-2.2.3-3" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="schema-fragment">
+<section id="section-2.2.4">
+          <h4 id="name-fragment-identifiers">
+<a href="#section-2.2.4" class="section-number selfRef">2.2.4. </a><a href="#name-fragment-identifiers" class="section-name selfRef">Fragment Identifiers</a>
+          </h4>
+<p id="section-2.2.4-1">Two fragment identifier structures are supported: JSON Pointers and plain-names.<a href="#section-2.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.4-2">The use of JSON Pointers as URI fragment identifiers is described in
+<span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>. Fragment identifiers that are empty or start with a <code>/</code>, MUST be
+interpreted as JSON Pointer fragment identifiers.<a href="#section-2.2.4-2" class="pilcrow">¶</a></p>
+<p id="section-2.2.4-3">Plain-name fragment identifiers reference locally named locations in the
+document. The dialect determines how plain-name identifiers map to locations
+within the document. All fragment identifiers that do not match the JSON Pointer
+syntax MUST be interpreted as plain name fragment identifiers.<a href="#section-2.2.4-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="schema-json">
+<section id="section-2.2.5">
+          <h4 id="name-media-type-application-sche">
+<a href="#section-2.2.5" class="section-number selfRef">2.2.5. </a><a href="#name-media-type-application-sche" class="section-name selfRef">Media Type application/schema+json</a>
+          </h4>
+<p id="section-2.2.5-1">The <code>application/schema+json</code> media type represents JSON Schema. This schema can
+be an official dialect or a third-party dialect. The following information
+serves as the registration form for the <code>application/schema+json</code> media type.<a href="#section-2.2.5-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.2.5-2">
+            <dt id="section-2.2.5-2.1">Type name:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-2.2">
+              <p id="section-2.2.5-2.2.1">application<a href="#section-2.2.5-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-2.3">Subtype name:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-2.4">
+              <p id="section-2.2.5-2.4.1">schema+json<a href="#section-2.2.5-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-2.5">Required parameters:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-2.6">
+              <p id="section-2.2.5-2.6.1">N/A<a href="#section-2.2.5-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-2.2.5-3">Optional parameters:<a href="#section-2.2.5-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.2.5-4.1">schema: A URI identifying the JSON Schema dialect the schema was written
+for. If this value conflicts with the value of the <code>$schema</code> keyword in the
+schema, the <code>$schema</code> keyword takes precedence.<a href="#section-2.2.5-4.1" class="pilcrow">¶</a>
+</li>
+          </ul>
+<span class="break"></span><dl class="dlParallel" id="section-2.2.5-5">
+            <dt id="section-2.2.5-5.1">Encoding considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-5.2">
+              <p id="section-2.2.5-5.2.1">Same as <span>[<a href="#JSON" class="xref">JSON</a>]</span><a href="#section-2.2.5-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-5.3">Security considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-5.4">
+              <p id="section-2.2.5-5.4.1">See the "Security Considerations" section of <span>[<a href="#jsonschema" class="xref">jsonschema</a>]</span><a href="#section-2.2.5-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-5.5">Interoperability considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-5.6">
+              <p id="section-2.2.5-5.6.1">See the "General Considerations" section of <span>[<a href="#jsonschema" class="xref">jsonschema</a>]</span><a href="#section-2.2.5-5.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-5.7">Published specification:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-5.8">
+              <p id="section-2.2.5-5.8.1"><span>[<a href="#jsonschema" class="xref">jsonschema</a>]</span>, this document<a href="#section-2.2.5-5.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-5.9">Applications that use this media type:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-5.10">
+              <p id="section-2.2.5-5.10.1">JSON Schema is used in a variety of
+applications including API servers and clients that validate JSON requests and
+responses, IDEs that valid configuration files, databases that store JSON, and
+more.<a href="#section-2.2.5-5.10.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-5.11">Fragment identifier considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-5.12">
+              <p id="section-2.2.5-5.12.1">See <a href="#schema-fragment" class="xref">Section 2.2.4</a><a href="#section-2.2.5-5.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-2.2.5-6">Additional information:<a href="#section-2.2.5-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.2.5-7.1">Deprecated alias names for this type: N/A<a href="#section-2.2.5-7.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.2.5-7.2">Magic number(s): N/A<a href="#section-2.2.5-7.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.2.5-7.3">File extension(s): json, schema.json<a href="#section-2.2.5-7.3" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.2.5-7.4">Macintosh file type code(s): N/A<a href="#section-2.2.5-7.4" class="pilcrow">¶</a>
+</li>
+          </ul>
+<span class="break"></span><dl class="dlParallel" id="section-2.2.5-8">
+            <dt id="section-2.2.5-8.1">Person and email address to contact for further information:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-8.2">
+              <p id="section-2.2.5-8.2.1">See Authors' Addresses section.<a href="#section-2.2.5-8.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-8.3">Intended usage:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-8.4">
+              <p id="section-2.2.5-8.4.1">COMMON<a href="#section-2.2.5-8.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-8.5">Restrictions on usage:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-8.6">
+              <p id="section-2.2.5-8.6.1">N/A.<a href="#section-2.2.5-8.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-8.7">Author:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-8.8">
+              <p id="section-2.2.5-8.8.1">See Authors' Addresses section.<a href="#section-2.2.5-8.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.5-8.9">Change controller:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.5-8.10">
+              <p id="section-2.2.5-8.10.1">N/A<a href="#section-2.2.5-8.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="schema-instance-json">
+<section id="section-2.2.6">
+          <h4 id="name-media-type-application-schem">
+<a href="#section-2.2.6" class="section-number selfRef">2.2.6. </a><a href="#name-media-type-application-schem" class="section-name selfRef">Media Type application/schema-instance+json</a>
+          </h4>
+<p id="section-2.2.6-1">The <code>application/schema-instance+json</code> media type is an extension of the
+<span>[<a href="#JSON" class="xref">JSON</a>]</span> media type that just adds the <code>schema</code> media type parameter and
+fragment identification. The following information serves as the registration
+form for the <code>application/schema-instance+json</code> media type.<a href="#section-2.2.6-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.2.6-2">
+            <dt id="section-2.2.6-2.1">Type name:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-2.2">
+              <p id="section-2.2.6-2.2.1">application<a href="#section-2.2.6-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-2.3">Subtype name:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-2.4">
+              <p id="section-2.2.6-2.4.1">schema-instance+json<a href="#section-2.2.6-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-2.5">Required parameters:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-2.6">
+              <p id="section-2.2.6-2.6.1">N/A<a href="#section-2.2.6-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-2.2.6-3">Optional parameters:<a href="#section-2.2.6-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.2.6-4.1">
+              <span class="break"></span><dl class="dlParallel" id="section-2.2.6-4.1.1">
+                <dt id="section-2.2.6-4.1.1.1">schema:</dt>
+                <dd style="margin-left: 1.5em" id="section-2.2.6-4.1.1.2">
+                  <p id="section-2.2.6-4.1.1.2.1">A URI identifying a JSON Schema that provides semantic information
+about this JSON representation.<a href="#section-2.2.6-4.1.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+</dl>
+</li>
+          </ul>
+<span class="break"></span><dl class="dlParallel" id="section-2.2.6-5">
+            <dt id="section-2.2.6-5.1">Encoding considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-5.2">
+              <p id="section-2.2.6-5.2.1">Same as <span>[<a href="#JSON" class="xref">JSON</a>]</span><a href="#section-2.2.6-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-5.3">Security considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-5.4">
+              <p id="section-2.2.6-5.4.1">Same as <span>[<a href="#JSON" class="xref">JSON</a>]</span><a href="#section-2.2.6-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-5.5">Interoperability considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-5.6">
+              <p id="section-2.2.6-5.6.1">Same as <span>[<a href="#JSON" class="xref">JSON</a>]</span><a href="#section-2.2.6-5.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-5.7">Published specification:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-5.8">
+              <p id="section-2.2.6-5.8.1"><span>[<a href="#jsonschema" class="xref">jsonschema</a>]</span>, this document<a href="#section-2.2.6-5.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-5.9">Applications that use this media type:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-5.10">
+              <p id="section-2.2.6-5.10.1">JSON Schema is used in a variety of
+applications including API servers and clients that validate JSON requests and
+responses, IDEs that valid configuration files, databases that store JSON, and
+more.<a href="#section-2.2.6-5.10.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-5.11">Fragment identifier considerations:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-5.12">
+              <p id="section-2.2.6-5.12.1">See <a href="#schema-fragment" class="xref">Section 2.2.4</a><a href="#section-2.2.6-5.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-2.2.6-6">Additional information:<a href="#section-2.2.6-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.2.6-7.1">Deprecated alias names for this type: N/A<a href="#section-2.2.6-7.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.2.6-7.2">Magic number(s): N/A<a href="#section-2.2.6-7.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.2.6-7.3">File extension(s): json<a href="#section-2.2.6-7.3" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-2.2.6-7.4">Macintosh file type code(s): N/A<a href="#section-2.2.6-7.4" class="pilcrow">¶</a>
+</li>
+          </ul>
+<span class="break"></span><dl class="dlParallel" id="section-2.2.6-8">
+            <dt id="section-2.2.6-8.1">Person and email address to contact for further information:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-8.2">
+              <p id="section-2.2.6-8.2.1">See Authors' Addresses section.<a href="#section-2.2.6-8.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-8.3">Intended usage:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-8.4">
+              <p id="section-2.2.6-8.4.1">COMMON<a href="#section-2.2.6-8.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-8.5">Restrictions on usage:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-8.6">
+              <p id="section-2.2.6-8.6.1">N/A<a href="#section-2.2.6-8.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-8.7">Author:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-8.8">
+              <p id="section-2.2.6-8.8.1">See Authors' Addresses section.<a href="#section-2.2.6-8.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-2.2.6-8.9">Change controller:</dt>
+            <dd style="margin-left: 1.5em" id="section-2.2.6-8.10">
+              <p id="section-2.2.6-8.10.1">N/A<a href="#section-2.2.6-8.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="interoperability-considerations">
+<section id="section-3">
+      <h2 id="name-interoperability-considerat">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-interoperability-considerat" class="section-name selfRef">Interoperability Considerations</a>
+      </h2>
+<p id="section-3-1">Interoperability requirements for media type
+registrations are discussed in Section 4.6 of <span>[<a href="#MEDIATYPE" class="xref">MEDIATYPE</a>]</span>.
+and <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-yaml-mediatypes-00#section-3" class="relref">Section 3</a> of [<a href="#YAML-MEDIATYPES" class="xref">YAML-MEDIATYPES</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-4">
+      <h2 id="name-security-considerations">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-4-1">Security requirements for  media type
+registrations are discussed in Section 4.6 of <span>[<a href="#MEDIATYPE" class="xref">MEDIATYPE</a>]</span>.
+and <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-yaml-mediatypes-00#section-4" class="relref">Section 4</a> of [<a href="#YAML-MEDIATYPES" class="xref">YAML-MEDIATYPES</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-5">
+      <h2 id="name-iana-considerations">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-5-1">This specification defines the following new Internet media types <span>[<a href="#MEDIATYPE" class="xref">MEDIATYPE</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">IANA has updated the "Media Types" registry at <a href="https://www.iana.org/assignments/media-types">https://www.iana.org/assignments/media-types</a>
+with the registration information provided below.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<table class="center" id="table-1">
+        <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Media Type</th>
+            <th class="text-left" rowspan="1" colspan="1">Section</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">application/openapi+yaml</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <a href="#openapi-yaml" class="xref">Section 2.1.2</a> of this document</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">application/openapi+json</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <a href="#openapi-json" class="xref">Section 2.1.1</a> of this document</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">application/schema+json</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <a href="#schema-json" class="xref">Section 2.2.5</a> of this document</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">application/schema-instance+json</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <a href="#schema-instance-json" class="xref">Section 2.2.6</a> of this document</td>
+          </tr>
+        </tbody>
+      </table>
+</section>
+</div>
+<section id="section-6">
+      <h2 id="name-normative-references">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      </h2>
+<dl class="references">
+<dt id="JSON">[JSON]</dt>
+      <dd>
+<span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The JavaScript Object Notation (JSON) Data Interchange Format"</span>, <span class="seriesInfo">STD 90</span>, <span class="seriesInfo">RFC 8259</span>, <span class="seriesInfo">DOI 10.17487/RFC8259</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8259">https://www.rfc-editor.org/rfc/rfc8259</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="JSON-POINTER">[JSON-POINTER]</dt>
+      <dd>
+<span class="refAuthor">Bryan, P., Ed.</span>, <span class="refAuthor">Zyp, K.</span>, and <span class="refAuthor">M. Nottingham, Ed.</span>, <span class="refTitle">"JavaScript Object Notation (JSON) Pointer"</span>, <span class="seriesInfo">RFC 6901</span>, <span class="seriesInfo">DOI 10.17487/RFC6901</span>, <time datetime="2013-04" class="refDate">April 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6901">https://www.rfc-editor.org/rfc/rfc6901</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="jsonschema">[jsonschema]</dt>
+      <dd>
+<span class="refAuthor">Wright, A.</span>, <span class="refAuthor">Andrews, H.</span>, <span class="refAuthor">Hutton, B.</span>, and <span class="refAuthor">G. Dennis</span>, <span class="refTitle">"JSON Schema Core"</span>, <time datetime="2020-01-28" class="refDate">28 January 2020</time>, <span>&lt;<a href="https://json-schema.org/specification.html">https://json-schema.org/specification.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="LINK">[LINK]</dt>
+      <dd>
+<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"Web Linking"</span>, <span class="seriesInfo">RFC 8288</span>, <span class="seriesInfo">DOI 10.17487/RFC8288</span>, <time datetime="2017-10" class="refDate">October 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8288">https://www.rfc-editor.org/rfc/rfc8288</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MEDIATYPE">[MEDIATYPE]</dt>
+      <dd>
+<span class="refAuthor">Freed, N.</span>, <span class="refAuthor">Klensin, J.</span>, and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="oas">[oas]</dt>
+      <dd>
+<span class="refAuthor">Darrel Miller</span>, <span class="refAuthor">Jeremy Whitlock</span>, <span class="refAuthor">Marsh Gardiner</span>, <span class="refAuthor">Mike Ralphson</span>, <span class="refAuthor">Ron Ratovsky</span>, and <span class="refAuthor">Uri Sarid</span>, <span class="refTitle">"OpenAPI Specification 3.0.0"</span>, <time datetime="2017-07-26" class="refDate">26 July 2017</time>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+      <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3986">[RFC3986]</dt>
+      <dd>
+<span class="refAuthor">Berners-Lee, T.</span>, <span class="refAuthor">Fielding, R.</span>, and <span class="refAuthor">L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5234">[RFC5234]</dt>
+      <dd>
+<span class="refAuthor">Crocker, D., Ed.</span> and <span class="refAuthor">P. Overell</span>, <span class="refTitle">"Augmented BNF for Syntax Specifications: ABNF"</span>, <span class="seriesInfo">STD 68</span>, <span class="seriesInfo">RFC 5234</span>, <span class="seriesInfo">DOI 10.17487/RFC5234</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5234">https://www.rfc-editor.org/rfc/rfc5234</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7405">[RFC7405]</dt>
+      <dd>
+<span class="refAuthor">Kyzivat, P.</span>, <span class="refTitle">"Case-Sensitive String Support in ABNF"</span>, <span class="seriesInfo">RFC 7405</span>, <span class="seriesInfo">DOI 10.17487/RFC7405</span>, <time datetime="2014-12" class="refDate">December 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7405">https://www.rfc-editor.org/rfc/rfc7405</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+      <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SEMANTICS">[SEMANTICS]</dt>
+      <dd>
+<span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-19</span>, <time datetime="2021-09-12" class="refDate">12 September 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="W3C.REC-ldp-20150226">[W3C.REC-ldp-20150226]</dt>
+      <dd>
+<span class="refAuthor">Speicher, S.</span>, <span class="refAuthor">Arwe, J.</span>, and <span class="refAuthor">A. Malhotra</span>, <span class="refTitle">"Linked Data Platform 1.0"</span>, <span class="seriesInfo">World Wide Web Consortium Recommendation REC-ldp-20150226</span>, <time datetime="2015-02-26" class="refDate">26 February 2015</time>, <span>&lt;<a href="https://www.w3.org/TR/2015/REC-ldp-20150226">https://www.w3.org/TR/2015/REC-ldp-20150226</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="YAML">[YAML]</dt>
+      <dd>
+<span class="refAuthor">Oren Ben-Kiki</span>, <span class="refAuthor">Clark Evans</span>, and <span class="refAuthor">Ingy dot Net</span>, <span class="refTitle">"YAML Ain't Markup Language Version 1.2"</span>, <time datetime="2021-10-01" class="refDate">1 October 2021</time>, <span>&lt;<a href="https://yaml.org/spec/1.2/spec.html">https://yaml.org/spec/1.2/spec.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="YAML-MEDIATYPES">[YAML-MEDIATYPES]</dt>
+    <dd>
+<span class="refAuthor">Polli, R.</span>, <span class="refAuthor">Wilde, E.</span>, and <span class="refAuthor">E. Aro</span>, <span class="refTitle">"YAML Media Types"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpapi-yaml-mediatypes-00</span>, <time datetime="2022-04-01" class="refDate">1 April 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-yaml-mediatypes-00">https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-yaml-mediatypes-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+<div id="acknowledgements">
+<section id="appendix-A">
+      <h2 id="name-acknowledgements">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
+      </h2>
+<p id="appendix-A-1">Thanks to Erik Wilde and David Biesack for being the initial contributors of this specification,
+and to Darrel Miller and Rich Salz for their support during the adoption phase.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">In addition to the people above, this document owes a lot to the extensive discussion inside
+and outside the HTTPAPI workgroup.
+The following contributors have helped improve this specification by
+opening pull requests, reporting bugs, asking smart questions,
+drafting or reviewing text, and evaluating open issues:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-3">Eemeli Aro, Tina (tinita) Mueller,
+Ben Hutton
+and Jason Desrosiers.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="faq">
+<section id="appendix-B">
+      <h2 id="name-faq">
+<a href="#name-faq" class="section-name selfRef">FAQ</a>
+      </h2>
+<span class="break"></span><dl class="dlParallel" id="appendix-B-1">
+        <dt id="appendix-B-1.1">Q: Why this document?</dt>
+        <dd style="margin-left: 1.5em" id="appendix-B-1.2">
+          <p id="appendix-B-1.2.1">After all these years, we still lack a proper media-type for REST related document types.
+This has some security implications too
+(eg. wrt on identifying parsers or treat downloads)<a href="#appendix-B-1.2.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="change-log">
+<section id="appendix-C">
+      <h2 id="name-change-log">
+<a href="#name-change-log" class="section-name selfRef">Change Log</a>
+      </h2>
+<p id="appendix-C-1">RFC EDITOR PLEASE DELETE THIS SECTION.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<div id="since-00">
+<section id="appendix-C.1">
+        <h3 id="name-since-00">
+<a href="#name-since-00" class="section-name selfRef">Since -00</a>
+        </h3>
+<ul class="normal">
+<li class="normal" id="appendix-C.1-1.1">Split YAML registrations in a separate I-D.<a href="#appendix-C.1-1.1" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-D">
+      <h2 id="name-authors-address">
+<a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Roberto Polli</span></div>
+<div dir="auto" class="left"><span class="org">Digital Transformation Department, Italian Government</span></div>
+<div dir="auto" class="left"><span class="country-name">Italy</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:robipolli@gmail.com" class="email">robipolli@gmail.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
