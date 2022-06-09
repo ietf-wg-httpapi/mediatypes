@@ -140,7 +140,7 @@ Users concerned with interoperability of fragment identifiers:
   this is always possible since alias nodes
   and their associated named anchors are a serialization
   detail;
-- SHOULD NOT use alias nodes that matches multiple nodes.
+- SHOULD NOT use alias nodes that match multiple nodes.
 
 In the example resource below, the URL `file.yaml#*foo`
 references the alias node `*foo` pointing to the node with value `scalar`;
@@ -366,7 +366,7 @@ the YAML representation graph needs to be generated before the fragment identifi
 It is important that this evaluation will not incurr in the issues mentioned in {{int-yaml-and-json}}
 and in [Security considerations](#security-considerations) such as infinite loops and unexpected code execution.
 
-Implementers needs to consider that the YAML version and supported features (e.g. merge keys)
+Implementers need to consider that the YAML version and supported features (e.g. merge keys)
 can impact on the generation of the representation graph (see {{example-merge-keys}}).
 
 In {{application-yaml}}, this document extends the use of specifications based on
