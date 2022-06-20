@@ -417,7 +417,7 @@ Table of Contents
    Interoperability considerations:  See the "General Considerations"
       section of [jsonschema]
 
-   Published specification:  [jsonschema], this document
+   Published specification:  this document
 
    Applications that use this media type:  JSON Schema is used in a
       variety of applications including API servers and clients that
@@ -472,7 +472,7 @@ Table of Contents
 
    Interoperability considerations:  Same as [JSON]
 
-   Published specification:  [jsonschema], this document
+   Published specification:  this document
 
    Applications that use this media type:  JSON Schema is used in a
       variety of applications including API servers and clients that
