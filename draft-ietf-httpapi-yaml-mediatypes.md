@@ -45,7 +45,7 @@ normative:
     - ins: Eemeli Aro
     - ins: Thomas Smith
     target: https://yaml.org/spec/1.2.2/
-  oas:
+  OAS:
     title: OpenAPI Specification 3.0.0
     date: 2017-07-26
     author:
@@ -55,8 +55,10 @@ normative:
     - ins: Mike Ralphson
     - ins: Ron Ratovsky
     - ins: Uri Sarid
+  JSON-POINTER: RFC6901
 
 informative:
+  I-D.ietf-jsonpath-base:
 
 --- abstract
 
@@ -81,7 +83,7 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 YAML [YAML] is a data serialization format that is widely used on the Internet,
-including in the API sector (e.g. see [oas]),
+including in the API sector (e.g. see [OAS]),
 but the relevant media type and structured syntax suffix previously had not been registered by IANA.
 
 To increase interoperability when exchanging YAML data
@@ -109,16 +111,16 @@ in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-seman
 The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in {{!URI=RFC3986}}.
 
-The terms "node", "anchor" and "named anchor"
+The terms "node", "alias node", "anchor" and "named anchor"
 in this document are to be intepreded as in [YAML].
 
 ## Fragment identification {#application-yaml-fragment}
 
 This section describes how to use
-named anchors (see Section 3.2.2.2 of [YAML])
+alias nodes (see Section 3.2.2.2 and 7.1 of [YAML])
 as fragment identifiers to designate nodes.
 
-A YAML named anchor can be represented in a URI fragment identifier
+A YAML alias node can be represented in a URI fragment identifier
 by encoding it into octects using UTF-8 {{!UTF-8=RFC3629}},
 while percent-encoding those characters not allowed by the fragment rule
 in {{Section 3.5 of URI}}.
@@ -126,19 +128,24 @@ in {{Section 3.5 of URI}}.
 If multiple nodes would match a fragment identifier,
 the first such match is selected.
 
+A fragment identifier is not guaranteed to reference an existing node.
+Therefore, applications SHOULD define how an unresolved alias node
+ought to be handled.
+
 Users concerned with interoperability of fragment identifiers:
 
-- SHOULD limit named anchors to a set of characters
+- SHOULD limit alias nodes to a set of characters
   that do not require encoding
   to be expressed as URI fragment identifiers:
-  this is always possible since named anchors are a serialization
+  this is generally possible since
+  named anchors are a serialization
   detail;
-- SHOULD NOT use a named anchor that matches multiple nodes.
+- SHOULD NOT use alias nodes that match multiple nodes.
 
-In the example resource below, the URL `file.yaml#foo`
-references the anchor `foo` pointing to the node with value `scalar`;
+In the example resource below, the URL `file.yaml#*foo`
+references the alias node `*foo` pointing to the node with value `scalar`;
 whereas
-the URL `file.yaml#bar` references the anchor `bar` pointing to the node
+the URL `file.yaml#*bar` references the alias node `*bar` pointing to the node
 with value `[ some, sequence, items ]`.
 
 ~~~ example
@@ -190,7 +197,19 @@ Applications that use this media type:
 : HTTP
 
 Fragment identifier considerations:
-: see {{application-yaml-fragment}}
+: An empty fragment identifier references
+  the root node.
+
+  A fragment identifier starting with "*"
+  is to be interpreted as a YAML alias node {{application-yaml-fragment}}.
+
+  A fragment identifier starting with "/"
+  is to be interpreted as a JSON Pointer {{JSON-POINTER}}
+  and is evaluated on the YAML representation graph,
+  walking through alias nodes;
+  this syntax can only reference YAML nodes that are
+  on a path that is made up of nodes interoperable with
+  the JSON data model (see {{int-yaml-and-json}}).
 
 Additional information:
 
@@ -328,14 +347,35 @@ issues with JSON:
   `!mytag` (see Section 2.4 of [YAML]);
 
 ~~~ example
-non-json-keys:
-  2020-01-01: a timestamp
-  [0, 1]: a sequence
-  ? {k: v}
-  : a map
-non-json-value: 2020-01-01
+ %YAML 1.2
+ ---
+ non-json-keys:
+   0: a number
+   2020-01-01: a timestamp
+   [0, 1]: a sequence
+   ? {k: v}
+   : a map
+ non-json-value: 2020-01-01
 ~~~
 {: title="Example of mapping keys not supported in JSON" #example-unsupported-keys}
+
+## Fragment identifiers {#int-fragment}
+
+To allow fragment identifiers to traverse alias nodes,
+the YAML representation graph needs to be generated before the fragment identifier evaluation.
+It is important that this evaluation will not cause the issues mentioned in {{int-yaml-and-json}}
+and in [Security considerations](#security-considerations) such as infinite loops and unexpected code execution.
+
+Implementers need to consider that the YAML version and supported features (e.g. merge keys)
+can impact on the generation of the representation graph (see {{example-merge-keys}}).
+
+In {{application-yaml}}, this document extends the use of specifications based on
+the JSON data model with support for YAML fragment identifiers.
+This is to improve the interoperability of already consolidated practices,
+such as the one of writing [OpenAPI documents](#OAS) in YAML.
+
+{{ex-fragid}} provides a non exhaustive list of examples that could help
+understanding interoperability issues related to fragment identifiers.
 
 # Security Considerations
 
@@ -360,7 +400,11 @@ YAML documents are rooted, connected, directed graphs
 and can contain reference cycles,
 so they can't be treated as simple trees (see Section 3.2.1 of [YAML]).
 An implementation that attempts to do that
-can infinite-loop at some point (e.g. when trying to serialize a YAML document in JSON).
+can infinite-loop traversing the YAML representation graph at some point,
+for example:
+
+- when trying to serialize it JSON;
+- or when searching/identifying nodes using specifications based on the JSON data model (e.g. {{JSON-POINTER}}).
 
 ~~~ yaml
 x: &x
@@ -407,8 +451,74 @@ with the registration information provided below.
 | +yaml                    | {{suffix-yaml}} of this document         |
 |--------------------------|------------------------------------------|
 
-
 --- back
+
+# Examples related to fragment identifier interoperability {#ex-fragid}
+
+## Unreferenceable nodes
+
+In this example, a couple of YAML nodes that cannot be referenced
+based on the JSON data model
+since their mapping keys are not strings.
+
+~~~ example
+ %YAML 1.2
+ ---
+ a-map-cannot:
+   ? {be: expressed}
+   : with a JSON Pointer
+
+ 0: no numeric mapping keys in JSON
+~~~
+{: title="Example of YAML nodes that are not referenceable based on JSON data model." #example-unsupported-paths}
+
+## Referencing a missing node
+
+In this example the fragment `#/0` does not reference an existing node
+
+~~~ example
+0: "JSON Pointer `#/0` references a string mapping key."
+~~~
+{: title="Example of a JSON Pointer that does not reference an existing node." #example-missing-node}
+
+## Representation graph with anchors and cyclic references
+
+In this YAML document, the `#/foo/bar/baz` fragment identifier
+traverses the representation graph and references the string `you`.
+Moreover, the presence of a cyclic reference implies that
+there are infinite fragment identifiers `#/foo/bat/../bat/bar`
+referencing the `&anchor` node.
+
+~~~ example
+ anchor: &anchor
+   baz: you
+ foo: &foo
+   bar: *anchor
+   bat: *foo
+~~~
+{: title="Example of a cyclic references and alias nodes." #example-cyclic-graph}
+
+Many YAML implementations will resolve
+[the merge key "<<:"](https://yaml.org/type/merge.html) defined in YAML 1.1
+in the representation graph.
+This means that the fragment `#/book/author/given_name` references the string `Federico`
+and that the fragment `#/book/<<` will not reference any existing node.
+
+~~~ example
+ %YAML 1.1
+ ---
+ # Many implementations use merge keys.
+ the-viceroys: &the-viceroys
+   title: The Viceroys
+   author:
+     given_name: Federico
+     family_name: De Roberto
+ book:
+   <<: *the-viceroys
+   title: The Illusion
+~~~
+{: title="Example of YAML merge keys." #example-merge-keys}
+
 
 # Acknowledgements
 
@@ -427,14 +537,22 @@ Manu Sporny
 and Jason Desrosiers.
 
 # FAQ
-{: numbered="false"}
+{: numbered="false" removeinrfc="true"}
 
 Q: Why this document?
 :  After all these years, we still lack a proper media-type for YAML.
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
 
+Q: Why using alias nodes as fragment identifiers?
+:  Alias nodes starts with `*`. This allow to distinguish
+   a fragment identifier expressed as an alias node from
+   one expressed in JSON Pointer {{JSON-POINTER}}
+   which is expected to start with `/`.
+   Moreover, since json-path {{I-D.ietf-jsonpath-base}} expressions
+   start with `$`, this mechanism is even extensible that specification.
+
 # Change Log
-{: numbered="false"}
+{: numbered="false" removeinrfc="true"}
 
 RFC EDITOR PLEASE DELETE THIS SECTION.
