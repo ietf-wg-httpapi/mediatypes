@@ -201,10 +201,10 @@ Fragment identifier considerations:
   the root node.
 
   A fragment identifier starting with "*"
-  is expressed as a YAML alias node {{application-yaml-fragment}}.
+  is to be interpreted as a YAML alias node {{application-yaml-fragment}}.
 
   A fragment identifier starting with "/"
-  is expressed as a JSON Pointer {{JSON-POINTER}}
+  is to be interpreted as a JSON Pointer {{JSON-POINTER}}
   and is evaluated on the YAML representation graph,
   walking through alias nodes;
   this syntax can only reference YAML nodes that are
@@ -363,14 +363,14 @@ issues with JSON:
 
 To allow fragment identifiers to traverse alias nodes,
 the YAML representation graph needs to be generated before the fragment identifier evaluation.
-It is important that this evaluation will not incurr in the issues mentioned in {{int-yaml-and-json}}
+It is important that this evaluation will not cause the issues mentioned in {{int-yaml-and-json}}
 and in [Security considerations](#security-considerations) such as infinite loops and unexpected code execution.
 
 Implementers need to consider that the YAML version and supported features (e.g. merge keys)
 can impact on the generation of the representation graph (see {{example-merge-keys}}).
 
 In {{application-yaml}}, this document extends the use of specifications based on
-the JSON data model as YAML fragment identifiers.
+the JSON data model with support for YAML fragment identifiers.
 This is to improve the interoperability of already consolidated practices,
 such as the one of writing [OpenAPI documents](#OAS) in YAML.
 
