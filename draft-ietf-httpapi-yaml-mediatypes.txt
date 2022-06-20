@@ -5,10 +5,10 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                                  E. Wilde
-Expires: 26 November 2022                                          Axway
+Expires: 22 December 2022                                          Axway
                                                                   E. Aro
                                                                  Mozilla
-                                                             25 May 2022
+                                                            20 June 2022
 
 
                             YAML Media Type
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 November 2022.
+   This Internet-Draft will expire on 22 December 2022.
 
 Copyright Notice
 
@@ -74,12 +74,20 @@ Table of Contents
    3.  Interoperability Considerations
      3.1.  YAML is an Evolving Language
      3.2.  YAML and JSON
+     3.3.  Fragment identifiers
    4.  Security Considerations
      4.1.  Arbitrary Code Execution
      4.2.  Resource Exhaustion
    5.  IANA Considerations
-   6.  Normative References
-   Appendix A.  Acknowledgements
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
+   Appendix A.  Examples related to fragment identifier
+           interoperability
+     A.1.  Unreferenceable nodes
+     A.2.  Referencing a missing node
+     A.3.  Representation graph with anchors and cyclic references
+   Appendix B.  Acknowledgements
    FAQ
    Change Log
    Authors' Addresses
@@ -87,7 +95,7 @@ Table of Contents
 1.  Introduction
 
    YAML [YAML] is a data serialization format that is widely used on the
-   Internet, including in the API sector (e.g. see [oas]), but the
+   Internet, including in the API sector (e.g. see [OAS]), but the
    relevant media type and structured syntax suffix previously had not
    been registered by IANA.
 
@@ -118,34 +126,39 @@ Table of Contents
    The terms "fragment" and "fragment identifier" in this document are
    to be interpreted as in [URI].
 
-   The terms "node", "anchor" and "named anchor" in this document are to
-   be intepreded as in [YAML].
+   The terms "node", "alias node", "anchor" and "named anchor" in this
+   document are to be intepreded as in [YAML].
 
 1.2.  Fragment identification
 
-   This section describes how to use named anchors (see Section 3.2.2.2
-   of [YAML]) as fragment identifiers to designate nodes.
+   This section describes how to use alias nodes (see Section 3.2.2.2
+   and 7.1 of [YAML]) as fragment identifiers to designate nodes.
 
-   A YAML named anchor can be represented in a URI fragment identifier
-   by encoding it into octects using UTF-8 [UTF-8], while percent-
-   encoding those characters not allowed by the fragment rule in
-   Section 3.5 of [URI].
+   A YAML alias node can be represented in a URI fragment identifier by
+   encoding it into octects using UTF-8 [UTF-8], while percent-encoding
+   those characters not allowed by the fragment rule in Section 3.5 of
+   [URI].
 
    If multiple nodes would match a fragment identifier, the first such
    match is selected.
 
+   A fragment identifier is not guaranteed to reference an existing
+   node.  Therefore, applications SHOULD define how an unresolved alias
+   node ought to be handled.
+
    Users concerned with interoperability of fragment identifiers:
 
-   *  SHOULD limit named anchors to a set of characters that do not
+   *  SHOULD limit alias nodes to a set of characters that do not
       require encoding to be expressed as URI fragment identifiers: this
-      is always possible since named anchors are a serialization detail;
+      is generally possible since named anchors are a serialization
+      detail;
 
-   *  SHOULD NOT use a named anchor that matches multiple nodes.
+   *  SHOULD NOT use alias nodes that match multiple nodes.
 
-   In the example resource below, the URL file.yaml#foo references the
-   anchor foo pointing to the node with value scalar; whereas the URL
-   file.yaml#bar references the anchor bar pointing to the node with
-   value [ some, sequence, items ].
+   In the example resource below, the URL file.yaml#*foo references the
+   alias node *foo pointing to the node with value scalar; whereas the
+   URL file.yaml#*bar references the alias node *bar pointing to the
+   node with value [ some, sequence, items ].
 
     %YAML 1.2
     ---
@@ -183,7 +196,17 @@ Table of Contents
 
    Applications that use this media type:  HTTP
 
-   Fragment identifier considerations:  see Section 1.2
+   Fragment identifier considerations:  An empty fragment identifier
+      references the root node.
+
+      A fragment identifier starting with "*" is to be interpreted as a
+      YAML alias node Section 1.2.
+
+      A fragment identifier starting with "/" is to be interpreted as a
+      JSON Pointer [JSON-POINTER] and is evaluated on the YAML
+      representation graph, walking through alias nodes; this syntax can
+      only reference YAML nodes that are on a path that is made up of
+      nodes interoperable with the JSON data model (see Section 3.2).
 
    Additional information:
 
@@ -304,14 +327,40 @@ Table of Contents
       types like custom and local tags such as !!python/object and
       !mytag (see Section 2.4 of [YAML]);
 
-   non-json-keys:
-     2020-01-01: a timestamp
-     [0, 1]: a sequence
-     ? {k: v}
-     : a map
-   non-json-value: 2020-01-01
+    %YAML 1.2
+    ---
+    non-json-keys:
+      0: a number
+      2020-01-01: a timestamp
+      [0, 1]: a sequence
+      ? {k: v}
+      : a map
+    non-json-value: 2020-01-01
 
           Figure 2: Example of mapping keys not supported in JSON
+
+3.3.  Fragment identifiers
+
+   To allow fragment identifiers to traverse alias nodes, the YAML
+   representation graph needs to be generated before the fragment
+   identifier evaluation.  It is important that this evaluation will not
+   cause the issues mentioned in Section 3.2 and in Security
+   considerations (Section 4) such as infinite loops and unexpected code
+   execution.
+
+   Implementers need to consider that the YAML version and supported
+   features (e.g. merge keys) can impact on the generation of the
+   representation graph (see Figure 8).
+
+   In Section 2.1, this document extends the use of specifications based
+   on the JSON data model with support for YAML fragment identifiers.
+   This is to improve the interoperability of already consolidated
+   practices, such as the one of writing OpenAPI documents [OAS] in
+   YAML.
+
+   Appendix A provides a non exhaustive list of examples that could help
+   understanding interoperability issues related to fragment
+   identifiers.
 
 4.  Security Considerations
 
@@ -336,8 +385,13 @@ Table of Contents
    YAML documents are rooted, connected, directed graphs and can contain
    reference cycles, so they can't be treated as simple trees (see
    Section 3.2.1 of [YAML]).  An implementation that attempts to do that
-   can infinite-loop at some point (e.g. when trying to serialize a YAML
-   document in JSON).
+   can infinite-loop traversing the YAML representation graph at some
+   point, for example:
+
+   *  when trying to serialize it JSON;
+
+   *  or when searching/identifying nodes using specifications based on
+      the JSON data model (e.g.  [JSON-POINTER]).
 
    x: &x
      y: *x
@@ -391,12 +445,20 @@ Table of Contents
 
                                   Table 2
 
-6.  Normative References
+6.  References
+
+6.1.  Normative References
 
    [JSON]     Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
               Interchange Format", STD 90, RFC 8259,
               DOI 10.17487/RFC8259, December 2017,
               <https://www.rfc-editor.org/rfc/rfc8259>.
+
+   [JSON-POINTER]
+              Bryan, P., Ed., Zyp, K., and M. Nottingham, Ed.,
+              "JavaScript Object Notation (JSON) Pointer", RFC 6901,
+              DOI 10.17487/RFC6901, April 2013,
+              <https://www.rfc-editor.org/rfc/rfc6901>.
 
    [MEDIATYPE]
               Freed, N., Klensin, J., and T. Hansen, "Media Type
@@ -404,7 +466,7 @@ Table of Contents
               RFC 6838, DOI 10.17487/RFC6838, January 2013,
               <https://www.rfc-editor.org/rfc/rfc6838>.
 
-   [oas]      Darrel Miller, Jeremy Whitlock, Marsh Gardiner, Mike
+   [OAS]      Darrel Miller, Jeremy Whitlock, Marsh Gardiner, Mike
               Ralphson, Ron Ratovsky, and Uri Sarid, "OpenAPI
               Specification 3.0.0", 26 July 2017.
 
@@ -447,7 +509,80 @@ Table of Contents
               Ain't Markup Language Version 1.2", 1 October 2021,
               <https://yaml.org/spec/1.2.2/>.
 
-Appendix A.  Acknowledgements
+6.2.  Informative References
+
+   [I-D.ietf-jsonpath-base]
+              Gössner, S., Normington, G., and C. Bormann, "JSONPath:
+              Query expressions for JSON", Work in Progress, Internet-
+              Draft, draft-ietf-jsonpath-base-05, 25 April 2022,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-
+              jsonpath-base-05>.
+
+Appendix A.  Examples related to fragment identifier interoperability
+
+A.1.  Unreferenceable nodes
+
+   In this example, a couple of YAML nodes that cannot be referenced
+   based on the JSON data model since their mapping keys are not
+   strings.
+
+    %YAML 1.2
+    ---
+    a-map-cannot:
+      ? {be: expressed}
+      : with a JSON Pointer
+
+    0: no numeric mapping keys in JSON
+
+      Figure 5: Example of YAML nodes that are not referenceable based
+                            on JSON data model.
+
+A.2.  Referencing a missing node
+
+   In this example the fragment #/0 does not reference an existing node
+
+   0: "JSON Pointer `#/0` references a string mapping key."
+
+       Figure 6: Example of a JSON Pointer that does not reference an
+                               existing node.
+
+A.3.  Representation graph with anchors and cyclic references
+
+   In this YAML document, the #/foo/bar/baz fragment identifier
+   traverses the representation graph and references the string you.
+   Moreover, the presence of a cyclic reference implies that there are
+   infinite fragment identifiers #/foo/bat/../bat/bar referencing the
+   &anchor node.
+
+    anchor: &anchor
+      baz: you
+    foo: &foo
+      bar: *anchor
+      bat: *foo
+
+         Figure 7: Example of a cyclic references and alias nodes.
+
+   Many YAML implementations will resolve the merge key "<<:"
+   (https://yaml.org/type/merge.html) defined in YAML 1.1 in the
+   representation graph.  This means that the fragment #/book/author/
+   given_name references the string Federico and that the fragment
+   #/book/<< will not reference any existing node.
+
+    %YAML 1.1
+    ---
+    # Many implementations use merge keys.
+    the-viceroys: &the-viceroys
+      title: The Viceroys
+      author:
+        given_name: Federico
+        family_name: De Roberto
+    book:
+      <<: *the-viceroys
+      title: The Illusion
+
+                   Figure 8: Example of YAML merge keys.
+
+Appendix B.  Acknowledgements
 
    Thanks to Erik Wilde and David Biesack for being the initial
    contributors of this specification, and to Darrel Miller and Rich
@@ -463,11 +598,22 @@ Appendix A.  Acknowledgements
 
 FAQ
 
+   This section is to be removed before publishing as an RFC.
+
    Q: Why this document?  After all these years, we still lack a proper
       media-type for YAML.  This has some security implications too (eg.
       wrt on identifying parsers or treat downloads)
 
+   Q: Why using alias nodes as fragment identifiers?  Alias nodes starts
+      with *. This allow to distinguish a fragment identifier expressed
+      as an alias node from one expressed in JSON Pointer [JSON-POINTER]
+      which is expected to start with /. Moreover, since json-path
+      [I-D.ietf-jsonpath-base] expressions start with $, this mechanism
+      is even extensible that specification.
+
 Change Log
+
+   This section is to be removed before publishing as an RFC.
 
    RFC EDITOR PLEASE DELETE THIS SECTION.
 
