@@ -5,10 +5,10 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                                  E. Wilde
-Expires: 11 December 2022                                          Axway
+Expires: 22 December 2022                                          Axway
                                                                   E. Aro
                                                                  Mozilla
-                                                             9 June 2022
+                                                            20 June 2022
 
 
                             YAML Media Type
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 December 2022.
+   This Internet-Draft will expire on 22 December 2022.
 
 Copyright Notice
 
@@ -199,14 +199,14 @@ Table of Contents
    Fragment identifier considerations:  An empty fragment identifier
       references the root node.
 
-      A fragment identifier starting with "*" is expressed as a YAML
-      alias node Section 1.2.
+      A fragment identifier starting with "*" is to be interpreted as a
+      YAML alias node Section 1.2.
 
-      A fragment identifier starting with "/" is expressed as a JSON
-      Pointer [JSON-POINTER] and is evaluated on the YAML representation
-      graph, walking through alias nodes; this syntax can only reference
-      YAML nodes that are on a path that is made up of nodes
-      interoperable with the JSON data model (see Section 3.2).
+      A fragment identifier starting with "/" is to be interpreted as a
+      JSON Pointer [JSON-POINTER] and is evaluated on the YAML
+      representation graph, walking through alias nodes; this syntax can
+      only reference YAML nodes that are on a path that is made up of
+      nodes interoperable with the JSON data model (see Section 3.2).
 
    Additional information:
 
@@ -344,7 +344,7 @@ Table of Contents
    To allow fragment identifiers to traverse alias nodes, the YAML
    representation graph needs to be generated before the fragment
    identifier evaluation.  It is important that this evaluation will not
-   incurr in the issues mentioned in Section 3.2 and in Security
+   cause the issues mentioned in Section 3.2 and in Security
    considerations (Section 4) such as infinite loops and unexpected code
    execution.
 
@@ -353,9 +353,10 @@ Table of Contents
    representation graph (see Figure 8).
 
    In Section 2.1, this document extends the use of specifications based
-   on the JSON data model as YAML fragment identifiers.  This is to
-   improve the interoperability of already consolidated practices, such
-   as the one of writing OpenAPI documents [OAS] in YAML.
+   on the JSON data model with support for YAML fragment identifiers.
+   This is to improve the interoperability of already consolidated
+   practices, such as the one of writing OpenAPI documents [OAS] in
+   YAML.
 
    Appendix A provides a non exhaustive list of examples that could help
    understanding interoperability issues related to fragment
