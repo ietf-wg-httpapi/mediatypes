@@ -137,8 +137,8 @@ Users concerned with interoperability of fragment identifiers:
 - SHOULD limit alias nodes to a set of characters
   that do not require encoding
   to be expressed as URI fragment identifiers:
-  this is always possible since alias nodes
-  and their associated named anchors are a serialization
+  this is generally possible since
+  named anchors are a serialization
   detail;
 - SHOULD NOT use alias nodes that match multiple nodes.
 
