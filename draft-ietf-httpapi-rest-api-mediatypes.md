@@ -29,9 +29,10 @@ normative:
     - ins: Clark Evans
     - ins: Ingy dot Net
     target: https://yaml.org/spec/1.2/spec.html
-  oas:
-    title: OpenAPI Specification 3.0.0
-    date: 2017-07-26
+  OAS:
+    title: OpenAPI Specification 3.1.0
+    date: 2021-02-15
+    target: https://spec.openapis.org/oas/latest
     author:
     - ins: Darrel Miller
     - ins: Jeremy Whitlock
@@ -76,7 +77,7 @@ The source code and issues list for this draft can be found at
 
 # Introduction
 
-OpenAPI Specification [oas] version 3 and above
+OpenAPI Specification [OAS] version 3 and above
 is a consolidated standard for describing
 HTTP APIs using the JSON {{!JSON=RFC8259}} and YAML [YAML] data format.
 
@@ -86,7 +87,7 @@ which provides interoperability and security considerations.
 To increase interoperability when processing API specifications
 and leverage content negotiation mechanisms when exchanging
 OpenAPI Specification resources
-this specification register the following media-types:
+this specification register the following media types:
 `application/schema+json`,
 `application/schema-instance+json`,
 `application/openapi+json`
@@ -111,13 +112,13 @@ the above media types according to {{!MEDIATYPE=RFC6838}}
 ## The OpenAPI Media Types
 
 The OpenAPI Specification Media Types convey OpenAPI document (OAS) files
-as defined in [oas] for version 3.0.0 and above.
+as defined in [OAS] for version 3.0 and above.
 
 Those files can be serialized in {{JSON}} or [YAML].
 Since there are multiple OpenAPI Specification versions,
-those media-types support the `version` parameter.
+those media types support the `version` parameter.
 
-The following examples conveys the desire of a client
+The following example conveys the desire of a client
 to receive an OpenAPI Specification resource preferably in the following
 order:
 
@@ -152,19 +153,20 @@ Encoding considerations:
 : Same as {{JSON}}
 
 Security considerations:
-: see {{security-considerations}} of this document
+: See {{security-considerations}} of this document, {{JSON}} and [OAS]
 
 Interoperability considerations:
-: None
+: Same as {{JSON}} and [OAS]
 
 Published specification:
-: [oas]
+: [OAS]
 
 Applications that use this media type:
 : HTTP
 
 Fragment identifier considerations:
-: Same as for application/json {{JSON}}
+: [OAS] or the specific version
+  of the OpenAPI document.
 
 Additional information:
 
@@ -208,22 +210,23 @@ Optional parameters:
 : version; unrecognized parameters should be ignored
 
 Encoding considerations:
-: See {{YAML-MEDIATYPES}}
+: Same as {{YAML-MEDIATYPES}}
 
 Security considerations:
-: see {{Section 4 of YAML-MEDIATYPES}}
+: See {{security-considerations}} of this document, {{Section 4 of YAML-MEDIATYPES}} and [OAS]
 
 Interoperability considerations:
-: see {{Section 3 of YAML-MEDIATYPES}}
+: See {{Section 3 of YAML-MEDIATYPES}} and [OAS]
 
 Published specification:
-: [oas]
+: [OAS]
 
 Applications that use this media type:
 : HTTP
 
 Fragment identifier considerations:
-: Same as for application/json {{JSON}}
+: [OAS] or the specific version
+  of the OpenAPI document.
 
 Additional information:
 
@@ -424,7 +427,7 @@ Interoperability considerations:
 : See the "General Considerations" section of {{jsonschema}}
 
 Published specification:
-: {{jsonschema}}, this document
+: this document
 
 Applications that use this media type:
 : JSON Schema is used in a variety of
@@ -492,7 +495,7 @@ Interoperability considerations:
 : Same as {{JSON}}
 
 Published specification:
-: {{jsonschema}}, this document
+: this document
 
 Applications that use this media type:
 : JSON Schema is used in a variety of
@@ -537,6 +540,19 @@ Security requirements for  media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
 and {{Section 4 of YAML-MEDIATYPES}}.
 
+## General Considerations
+
+All REST API Media Types might reference nested or external
+resources,
+as well as processable information like HTML.
+
+Implementations that try to dereference or process those
+resource automatically
+might be subject to various security risks,
+from resource exhaustion (e.g. caused by cyclic references)
+to retrieval and processing of malicious code
+(e.g. embedded as markup language).
+
 # IANA Considerations
 
 This specification defines the following new Internet media types {{MEDIATYPE}}.
@@ -571,10 +587,10 @@ Ben Hutton
 and Jason Desrosiers.
 
 # FAQ
-{: numbered="false"}
+{: numbered="false" removeinrfc="true"}
 
 Q: Why this document?
-:  After all these years, we still lack a proper media-type for REST related document types.
+:  After all these years, we still lack a proper media type for REST related document types.
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
 
