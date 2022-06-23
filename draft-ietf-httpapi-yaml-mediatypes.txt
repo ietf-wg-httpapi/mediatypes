@@ -5,10 +5,10 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                                  E. Wilde
-Expires: 22 December 2022                                          Axway
+Expires: 25 December 2022                                          Axway
                                                                   E. Aro
                                                                  Mozilla
-                                                            20 June 2022
+                                                            23 June 2022
 
 
                             YAML Media Type
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 December 2022.
+   This Internet-Draft will expire on 25 December 2022.
 
 Copyright Notice
 
@@ -90,6 +90,7 @@ Table of Contents
    Appendix B.  Acknowledgements
    FAQ
    Change Log
+     Since draft-ietf-httpapi-yaml-mediatypes-01
    Authors' Addresses
 
 1.  Introduction
@@ -615,7 +616,10 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
-   RFC EDITOR PLEASE DELETE THIS SECTION.
+Since draft-ietf-httpapi-yaml-mediatypes-01
+
+   *  application/yaml fragment identifiers compatible with JSON Pointer
+      #41 (#47).
 
 Authors' Addresses
 
