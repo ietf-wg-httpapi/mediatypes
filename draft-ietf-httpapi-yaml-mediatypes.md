@@ -556,5 +556,6 @@ Q: Why using alias nodes as fragment identifiers?
 {: numbered="false" removeinrfc="true"}
 
 ## Since draft-ietf-httpapi-yaml-mediatypes-01
+{: numbered="false"}
 
 * application/yaml fragment identifiers compatible with JSON Pointer #41 (#47).
