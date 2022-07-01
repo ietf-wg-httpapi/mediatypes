@@ -14,26 +14,26 @@ the application/yaml media type
 and the +yaml structured syntax suffix
 on the IANA Media Types registry. 
     " name="description">
-<meta content="xml2rfc 3.12.7" name="generator">
+<meta content="xml2rfc 3.12.10" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-httpapi-yaml-mediatypes-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.12.7
-    Python 3.9.7
+  xml2rfc 3.12.10
+    Python 3.10.4
     appdirs 1.4.4
-    ConfigArgParse 1.3
+    ConfigArgParse 1.5.3
     google-i18n-address 2.5.1
     html5lib 1.1
     intervaltree 3.1.0
     Jinja2 2.11.3
     kitchen 1.2.6
-    lxml 4.6.5
+    lxml 4.8.0
     MarkupSafe 2.0.1
     pycountry 20.7.3
-    pyflakes 2.3.1
-    PyYAML 5.4.1
-    requests 2.26.0
-    setuptools 52.0.0
+    pyflakes 2.4.0
+    PyYAML 6.0
+    requests 2.27.1
+    setuptools 59.4.0
     six 1.16.0
 -->
 <link href="draft-ietf-httpapi-yaml-mediatypes.xml" rel="alternate" type="application/rfc+xml">
@@ -158,6 +158,14 @@ on the IANA Media Types registry.
   font-weight: 700;
   font-display: swap;
   src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -341,7 +349,7 @@ ol, ul {
   padding: 0;
   margin: 0 0 0.5em 2em;
 }
-ol ol, ul ul, ol ul, ul ol {
+:is(ol, ul) :is(ol, ul) {
   margin-left: 1em;
 }
 li {
@@ -356,8 +364,7 @@ ul.empty, .ulEmpty {
 ul.empty li, .ulEmpty li {
   margin-top: 0.5em;
 }
-ul.compact, .ulCompact,
-ol.compact, .olCompact {
+:is(ul, ol).compact, .ulCompact, .olCompact {
   line-height: 100%;
   margin: 0 0 0 2em;
 }
@@ -373,7 +380,7 @@ dl > dd {
   margin-bottom: .8em;
   min-height: 1.3em;
 }
-dl.compact > dd, .dlCompact > dd {
+:is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0em;
 }
 dl > dd > dl {
@@ -415,6 +422,9 @@ tt, code {
      remove leading to avoid altering the final height of lines */
   line-height: 0;
 }
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
 pre {
   border: 1px solid var(--line-color);
   font-size: 13.5px;
@@ -439,6 +449,19 @@ figcaption, caption {
   text-align: left;
 }
 @media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
   pre, svg {
     display: inline-block;
     overflow-x: auto;
@@ -454,7 +477,7 @@ figcaption, caption {
     display: block;
     width: calc(100% - 25px);
   }
-  pre + .pilcrow, svg + .pilcrow {
+  :is(pre, svg) + .pilcrow {
     display: inline-block;
     vertical-align: text-bottom;
     padding-bottom: 8px;
@@ -503,17 +526,11 @@ th, td {
 th {
   background-color: var(--line-color);
 }
-tr:nth-child(2n) > td {
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
   background-color: var(--background-color);
 }
-tr:nth-child(2n+1) > td {
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
   background-color: var(--highlight-color);
-}
-thead+tbody > tr:nth-child(2n) > td {
-  background-color: var(--highlight-color);
-}
-thead+tbody > tr:nth-child(2n+1) > td {
-  background-color: var(--background-color);
 }
 table caption {
   margin: 0;
@@ -553,8 +570,9 @@ hr {
 }
 .bcp14 {
   font-variant: small-caps;
+  font-weight: 600;
+  font-size: 14.5px;
 }
-
 .role {
   font-variant: all-small-caps;
 }
@@ -793,7 +811,7 @@ hr.addr {
     margin: 0 0 0 4px;
     font-size: var(--small-font-size);
   }
-  #toc ul p, #toc ul li {
+  #toc ul :is(p, li) {
     margin: 2px 0;
     line-height: 22px;
   }
@@ -903,13 +921,13 @@ dl.dlNewline > dt {
 }
 
 /* Provide styling for table cell text alignment */
-table .text-left, table .text-left {
+table .text-left {
   text-align: left;
 }
-table .text-center, table .text-center {
+table .text-center {
   text-align: center;
 }
-table .text-right, table .text-right {
+table .text-right {
   text-align: right;
 }
 
@@ -976,12 +994,6 @@ address div.right {
   }
 
 }
-/* Tweak the bcp14 keyword presentation */
-.bcp14 {
-  font-variant: small-caps;
-  font-weight: bold;
-  font-size: 0.9em;
-}
 
 /* Dark mode. */
 @media (prefers-color-scheme: dark) {
@@ -996,19 +1008,20 @@ address div.right {
   --pilcrow-strong: #666;
   scrollbar-color: #777 #333;
 }
-/* Trick: a prefix match works because only black and white are allowed */
-svg [stroke="black"], svg [stroke^="#000"] {
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
   stroke: var(--text-color);
 }
-svg [stroke="white"], svg [stroke^="#fff"] {
+svg :is([stroke="white"], [stroke^="#fff"]) {
   stroke: var(--background-color);
 }
-svg [fill="black"], svg [fill^="#000"], svg :not([fill]) {
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
   fill: var(--text-color);
 }
-svg [stroke="fill"], svg [fill^="#fff"] {
+svg :is([stroke="fill"], [fill^="#fff"]) {
   fill: var(--background-color);
-}
 }
 </style>
 
@@ -1018,11 +1031,11 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">YAML Media Type</td>
-<td class="right">May 2022</td>
+<td class="right">July 2022</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Polli, et al.</td>
-<td class="center">Expires 28 November 2022</td>
+<td class="center">Expires 2 January 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1035,12 +1048,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="internet-draft">draft-ietf-httpapi-yaml-mediatypes-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-05-27" class="published">27 May 2022</time>
+<time datetime="2022-07-01" class="published">1 July 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-11-28">28 November 2022</time></dd>
+<dd class="expires"><time datetime="2023-01-02">2 January 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1096,7 +1109,7 @@ mailing list (httpapi@ietf.org), which is archived at
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 November 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 January 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1156,6 +1169,9 @@ mailing list (httpapi@ietf.org), which is archived at
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-yaml-and-json" class="xref">YAML and JSON</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-fragment-identifiers" class="xref">Fragment identifiers</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
@@ -1173,19 +1189,49 @@ mailing list (httpapi@ietf.org), which is archived at
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-references" class="xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="xref">Appendix A</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="xref">Appendix A</a>.  <a href="#name-examples-related-to-fragmen" class="xref">Examples related to fragment identifier interoperability</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#appendix-A.1" class="xref">A.1</a>.  <a href="#name-unreferenceable-nodes" class="xref">Unreferenceable nodes</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#appendix-A.2" class="xref">A.2</a>.  <a href="#name-referencing-a-missing-node" class="xref">Referencing a missing node</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#appendix-A.3" class="xref">A.3</a>.  <a href="#name-representation-graph-with-a" class="xref">Representation graph with anchors and cyclic references</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="xref"></a><a href="#name-faq" class="xref">FAQ</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="xref">Appendix B</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#appendix-C" class="xref"></a><a href="#name-change-log" class="xref">Change Log</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-C" class="xref"></a><a href="#name-faq" class="xref">FAQ</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-D" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-D" class="xref"></a><a href="#name-change-log" class="xref">Change Log</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#appendix-D.1" class="xref"></a><a href="#name-since-draft-ietf-httpapi-ya" class="xref">Since draft-ietf-httpapi-yaml-mediatypes-02</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#appendix-D.2" class="xref"></a><a href="#name-since-draft-ietf-httpapi-yam" class="xref">Since draft-ietf-httpapi-yaml-mediatypes-01</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-E" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1197,7 +1243,7 @@ mailing list (httpapi@ietf.org), which is archived at
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">YAML <span>[<a href="#YAML" class="xref">YAML</a>]</span> is a data serialization format that is widely used on the Internet,
-including in the API sector (e.g. see <span>[<a href="#oas" class="xref">oas</a>]</span>),
+including in the API sector (e.g. see <span>[<a href="#OAS" class="xref">OAS</a>]</span>),
 but the relevant media type and structured syntax suffix previously had not been registered by IANA.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">To increase interoperability when exchanging YAML data
 and leverage content negotiation mechanisms when exchanging
@@ -1227,7 +1273,7 @@ and "user agent"
 in this document are to be interpreted as in <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 <p id="section-1.1-4">The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in <span>[<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
-<p id="section-1.1-5">The terms "node", "anchor" and "named anchor"
+<p id="section-1.1-5">The terms "node", "alias node", "anchor" and "named anchor"
 in this document are to be intepreded as in <span>[<a href="#YAML" class="xref">YAML</a>]</span>.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1237,31 +1283,37 @@ in this document are to be intepreded as in <span>[<a href="#YAML" class="xref">
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-fragment-identification" class="section-name selfRef">Fragment identification</a>
         </h3>
 <p id="section-1.2-1">This section describes how to use
-named anchors (see Section 3.2.2.2 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>)
+alias nodes (see Section 3.2.2.2 and 7.1 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>)
 as fragment identifiers to designate nodes.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
-<p id="section-1.2-2">A YAML named anchor can be represented in a URI fragment identifier
+<p id="section-1.2-2">An empty fragment identifier reference the root
+of the YAML representation graph.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
+<p id="section-1.2-3">A YAML alias node can be represented in a URI fragment identifier
 by encoding it into octects using UTF-8 <span>[<a href="#UTF-8" class="xref">UTF-8</a>]</span>,
 while percent-encoding those characters not allowed by the fragment rule
-in <span><a href="https://rfc-editor.org/rfc/rfc3986#section-3.5" class="relref">Section 3.5</a> of [<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
-<p id="section-1.2-3">If multiple nodes would match a fragment identifier,
-the first such match is selected.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
-<p id="section-1.2-4">Users concerned with interoperability of fragment identifiers:<a href="#section-1.2-4" class="pilcrow">¶</a></p>
+in <span><a href="https://rfc-editor.org/rfc/rfc3986#section-3.5" class="relref">Section 3.5</a> of [<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
+<p id="section-1.2-4">If multiple nodes would match a fragment identifier,
+the first such match is selected.<a href="#section-1.2-4" class="pilcrow">¶</a></p>
+<p id="section-1.2-5">A fragment identifier is not guaranteed to reference an existing node.
+Therefore, applications SHOULD define how an unresolved alias node
+ought to be handled.<a href="#section-1.2-5" class="pilcrow">¶</a></p>
+<p id="section-1.2-6">Users concerned with interoperability of fragment identifiers:<a href="#section-1.2-6" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1.2-5.1">SHOULD limit named anchors to a set of characters
+<li class="normal" id="section-1.2-7.1">SHOULD limit alias nodes to a set of characters
 that do not require encoding
 to be expressed as URI fragment identifiers:
-this is always possible since named anchors are a serialization
-detail;<a href="#section-1.2-5.1" class="pilcrow">¶</a>
+this is generally possible since
+named anchors are a serialization
+detail;<a href="#section-1.2-7.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.2-5.2">SHOULD NOT use a named anchor that matches multiple nodes.<a href="#section-1.2-5.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-1.2-7.2">SHOULD NOT use alias nodes that match multiple nodes.<a href="#section-1.2-7.2" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-1.2-6">In the example resource below, the URL <code>file.yaml#foo</code>
-references the anchor <code>foo</code> pointing to the node with value <code>scalar</code>;
+<p id="section-1.2-8">In the example resource below, the URL <code>file.yaml#*foo</code>
+references the alias node <code>*foo</code> pointing to the node with value <code>scalar</code>;
 whereas
-the URL <code>file.yaml#bar</code> references the anchor <code>bar</code> pointing to the node
-with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2-6" class="pilcrow">¶</a></p>
-<div id="section-1.2-7">
+the URL <code>file.yaml#*bar</code> references the alias node <code>*bar</code> pointing to the node
+with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2-8" class="pilcrow">¶</a></p>
+<div id="section-1.2-9">
 <pre class="lang-example sourcecode">
  %YAML 1.2
  ---
@@ -1270,7 +1322,7 @@ with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2-6" class
    - some
    - sequence
    - items
-</pre><a href="#section-1.2-7" class="pilcrow">¶</a>
+</pre><a href="#section-1.2-9" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -1338,7 +1390,20 @@ the following information serves as the registration form for this media type.<a
           <dd class="break"></dd>
 <dt id="section-2.1-2.19">Fragment identifier considerations:</dt>
           <dd style="margin-left: 1.5em" id="section-2.1-2.20">
-            <p id="section-2.1-2.20.1">see <a href="#application-yaml-fragment" class="xref">Section 1.2</a><a href="#section-2.1-2.20.1" class="pilcrow">¶</a></p>
+            <p id="section-2.1-2.20.1">An empty fragment identifier references
+the root node.
+This behavior is consistent with both
+<a href="#application-yaml-fragment" class="xref">Section 1.2</a>
+and <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>.<a href="#section-2.1-2.20.1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2.20.2">A fragment identifier starting with "*"
+is to be interpreted as a YAML alias node <a href="#application-yaml-fragment" class="xref">Section 1.2</a>.<a href="#section-2.1-2.20.2" class="pilcrow">¶</a></p>
+<p id="section-2.1-2.20.3">A fragment identifier starting with "/"
+is to be interpreted as a JSON Pointer <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>
+and is evaluated on the YAML representation graph,
+walking through alias nodes;
+this syntax can only reference YAML nodes that are
+on a path that is made up of nodes interoperable with
+the JSON data model (see <a href="#int-yaml-and-json" class="xref">Section 3.2</a>).<a href="#section-2.1-2.20.3" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1541,18 +1606,40 @@ custom and local tags such as <code>!!python/object</code> and
 <figure id="figure-2">
           <div id="section-3.2-7.1">
 <pre class="lang-example sourcecode">
-non-json-keys:
-  2020-01-01: a timestamp
-  [0, 1]: a sequence
-  ? {k: v}
-  : a map
-non-json-value: 2020-01-01
+ %YAML 1.2
+ ---
+ non-json-keys:
+   0: a number
+   2020-01-01: a timestamp
+   [0, 1]: a sequence
+   ? {k: v}
+   : a map
+ non-json-value: 2020-01-01
 </pre>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-example-of-mapping-keys-not" class="selfRef">Example of mapping keys not supported in JSON</a>
           </figcaption></figure>
 </div>
+</section>
+</div>
+<div id="int-fragment">
+<section id="section-3.3">
+        <h3 id="name-fragment-identifiers">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-fragment-identifiers" class="section-name selfRef">Fragment identifiers</a>
+        </h3>
+<p id="section-3.3-1">To allow fragment identifiers to traverse alias nodes,
+the YAML representation graph needs to be generated before the fragment identifier evaluation.
+It is important that this evaluation will not cause the issues mentioned in <a href="#int-yaml-and-json" class="xref">Section 3.2</a>
+and in <span><a href="#security-considerations" class="xref">Security considerations</a> (<a href="#security-considerations" class="xref">Section 4</a>)</span> such as infinite loops and unexpected code execution.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">Implementers need to consider that the YAML version and supported features (e.g. merge keys)
+can impact on the generation of the representation graph (see <a href="#example-merge-keys" class="xref">Figure 8</a>).<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">In <a href="#application-yaml" class="xref">Section 2.1</a>, this document extends the use of specifications based on
+the JSON data model with support for YAML fragment identifiers.
+This is to improve the interoperability of already consolidated practices,
+such as the one of writing <span><a href="#OAS" class="xref">OpenAPI documents</a> [<a href="#OAS" class="xref">OAS</a>]</span> in YAML.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4"><a href="#ex-fragid" class="xref">Appendix A</a> provides a non exhaustive list of examples that could help
+understanding interoperability issues related to fragment identifiers.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1587,10 +1674,17 @@ that the code execution results in strictly bounded time/memory limits.<a href="
 and can contain reference cycles,
 so they can't be treated as simple trees (see Section 3.2.1 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>).
 An implementation that attempts to do that
-can infinite-loop at some point (e.g. when trying to serialize a YAML document in JSON).<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+can infinite-loop traversing the YAML representation graph at some point,
+for example:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.1">when trying to serialize it JSON;<a href="#section-4.2-2.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.2-2.2">or when searching/identifying nodes using specifications based on the JSON data model (e.g. <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>).<a href="#section-4.2-2.2" class="pilcrow">¶</a>
+</li>
+        </ul>
 <span id="name-a-cyclic-document"></span><div id="example-yaml-cyclic">
 <figure id="figure-3">
-          <div id="section-4.2-2.1">
+          <div id="section-4.2-3.1">
 <pre class="lang-yaml sourcecode">
 x: &amp;x
   y: *x
@@ -1600,11 +1694,11 @@ x: &amp;x
 <a href="#name-a-cyclic-document" class="selfRef">A cyclic document</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-3">Even if a document is not cyclic, treating it as a simple tree could lead to improper behaviors
-(such as the "billion laughs" problem).<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">Even if a document is not cyclic, treating it as a simple tree could lead to improper behaviors
+(such as the "billion laughs" problem).<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <span id="name-a-billion-laughs-document"></span><div id="example-yaml-1e9lol">
 <figure id="figure-4">
-          <div id="section-4.2-4.1">
+          <div id="section-4.2-5.1">
 <pre class="lang-yaml sourcecode">
 x1: &amp;a1 ["a", "a"]
 x2: &amp;a2 [*a1, *a1]
@@ -1615,12 +1709,12 @@ x3: &amp;a3 [*a2, *a2]
 <a href="#name-a-billion-laughs-document" class="selfRef">A billion laughs document</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-5">This can be addressed using processors limiting the anchor recursion depth
+<p id="section-4.2-6">This can be addressed using processors limiting the anchor recursion depth
 and validating the input before processing it;
 even in these cases it is important
 to carefully test the implementation you are going to use.
 The same considerations apply when serializing a YAML representation graph
-in a format that does not support reference cycles (see <a href="#int-yaml-and-json" class="xref">Section 3.2</a>).<a href="#section-4.2-5" class="pilcrow">¶</a></p>
+in a format that does not support reference cycles (see <a href="#int-yaml-and-json" class="xref">Section 3.2</a>).<a href="#section-4.2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1670,100 +1764,294 @@ with the registration information provided below.<a href="#section-5-4" class="p
 </section>
 </div>
 <section id="section-6">
-      <h2 id="name-normative-references">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<section id="section-6.1">
+        <h3 id="name-normative-references">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="JSON">[JSON]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The JavaScript Object Notation (JSON) Data Interchange Format"</span>, <span class="seriesInfo">STD 90</span>, <span class="seriesInfo">RFC 8259</span>, <span class="seriesInfo">DOI 10.17487/RFC8259</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8259">https://www.rfc-editor.org/rfc/rfc8259</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="JSON-POINTER">[JSON-POINTER]</dt>
+        <dd>
+<span class="refAuthor">Bryan, P., Ed.</span>, <span class="refAuthor">Zyp, K.</span>, and <span class="refAuthor">M. Nottingham, Ed.</span>, <span class="refTitle">"JavaScript Object Notation (JSON) Pointer"</span>, <span class="seriesInfo">RFC 6901</span>, <span class="seriesInfo">DOI 10.17487/RFC6901</span>, <time datetime="2013-04" class="refDate">April 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6901">https://www.rfc-editor.org/rfc/rfc6901</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="MEDIATYPE">[MEDIATYPE]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Freed, N.</span>, <span class="refAuthor">Klensin, J.</span>, and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="oas">[oas]</dt>
-      <dd>
+<dt id="OAS">[OAS]</dt>
+        <dd>
 <span class="refAuthor">Darrel Miller</span>, <span class="refAuthor">Jeremy Whitlock</span>, <span class="refAuthor">Marsh Gardiner</span>, <span class="refAuthor">Mike Ralphson</span>, <span class="refAuthor">Ron Ratovsky</span>, and <span class="refAuthor">Uri Sarid</span>, <span class="refTitle">"OpenAPI Specification 3.0.0"</span>, <time datetime="2017-07-26" class="refDate">26 July 2017</time>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5234">[RFC5234]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Crocker, D., Ed.</span> and <span class="refAuthor">P. Overell</span>, <span class="refTitle">"Augmented BNF for Syntax Specifications: ABNF"</span>, <span class="seriesInfo">STD 68</span>, <span class="seriesInfo">RFC 5234</span>, <span class="seriesInfo">DOI 10.17487/RFC5234</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5234">https://www.rfc-editor.org/rfc/rfc5234</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7405">[RFC7405]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Kyzivat, P.</span>, <span class="refTitle">"Case-Sensitive String Support in ABNF"</span>, <span class="seriesInfo">RFC 7405</span>, <span class="seriesInfo">DOI 10.17487/RFC7405</span>, <time datetime="2014-12" class="refDate">December 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7405">https://www.rfc-editor.org/rfc/rfc7405</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SEMANTICS">[SEMANTICS]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-19</span>, <time datetime="2021-09-12" class="refDate">12 September 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-19</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="URI">[URI]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Berners-Lee, T.</span>, <span class="refAuthor">Fielding, R.</span>, and <span class="refAuthor">L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="UTF-8">[UTF-8]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Yergeau, F.</span>, <span class="refTitle">"UTF-8, a transformation format of ISO 10646"</span>, <span class="seriesInfo">STD 63</span>, <span class="seriesInfo">RFC 3629</span>, <span class="seriesInfo">DOI 10.17487/RFC3629</span>, <time datetime="2003-11" class="refDate">November 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3629">https://www.rfc-editor.org/rfc/rfc3629</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="YAML">[YAML]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Oren Ben-Kiki</span>, <span class="refAuthor">Clark Evans</span>, <span class="refAuthor">Ingy dot Net</span>, <span class="refAuthor">Tina Müller</span>, <span class="refAuthor">Pantelis Antoniou</span>, <span class="refAuthor">Eemeli Aro</span>, and <span class="refAuthor">Thomas Smith</span>, <span class="refTitle">"YAML Ain't Markup Language Version 1.2"</span>, <time datetime="2021-10-01" class="refDate">1 October 2021</time>, <span>&lt;<a href="https://yaml.org/spec/1.2.2/">https://yaml.org/spec/1.2.2/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
-<div id="acknowledgements">
+<section id="section-6.2">
+        <h3 id="name-informative-references">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-jsonpath-base">[I-D.ietf-jsonpath-base]</dt>
+      <dd>
+<span class="refAuthor">Gössner, S.</span>, <span class="refAuthor">Normington, G.</span>, and <span class="refAuthor">C. Bormann</span>, <span class="refTitle">"JSONPath: Query expressions for JSON"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jsonpath-base-05</span>, <time datetime="2022-04-25" class="refDate">25 April 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jsonpath-base-05">https://datatracker.ietf.org/doc/html/draft-ietf-jsonpath-base-05</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</section>
+<div id="ex-fragid">
 <section id="appendix-A">
-      <h2 id="name-acknowledgements">
-<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
+      <h2 id="name-examples-related-to-fragmen">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-examples-related-to-fragmen" class="section-name selfRef">Examples related to fragment identifier interoperability</a>
       </h2>
-<p id="appendix-A-1">Thanks to Erik Wilde and David Biesack for being the initial contributors of this specification,
-and to Darrel Miller and Rich Salz for their support during the adoption phase.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<p id="appendix-A-2">In addition to the people above, this document owes a lot to the extensive discussion inside
+<div id="unreferenceable-nodes">
+<section id="appendix-A.1">
+        <h3 id="name-unreferenceable-nodes">
+<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-unreferenceable-nodes" class="section-name selfRef">Unreferenceable nodes</a>
+        </h3>
+<p id="appendix-A.1-1">In this example, a couple of YAML nodes that cannot be referenced
+based on the JSON data model
+since their mapping keys are not strings.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<span id="name-example-of-yaml-nodes-that-"></span><div id="example-unsupported-paths">
+<figure id="figure-5">
+          <div id="appendix-A.1-2.1">
+<pre class="lang-example sourcecode">
+ %YAML 1.2
+ ---
+ a-map-cannot:
+   ? {be: expressed}
+   : with a JSON Pointer
+
+ 0: no numeric mapping keys in JSON
+</pre>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-example-of-yaml-nodes-that-" class="selfRef">Example of YAML nodes that are not referenceable based on JSON data model.</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="referencing-a-missing-node">
+<section id="appendix-A.2">
+        <h3 id="name-referencing-a-missing-node">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-referencing-a-missing-node" class="section-name selfRef">Referencing a missing node</a>
+        </h3>
+<p id="appendix-A.2-1">In this example the fragment <code>#/0</code> does not reference an existing node<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<span id="name-example-of-a-json-pointer-t"></span><div id="example-missing-node">
+<figure id="figure-6">
+          <div id="appendix-A.2-2.1">
+<pre class="lang-example sourcecode">
+0: "JSON Pointer `#/0` references a string mapping key."
+</pre>
+</div>
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<a href="#name-example-of-a-json-pointer-t" class="selfRef">Example of a JSON Pointer that does not reference an existing node.</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="representation-graph-with-anchors-and-cyclic-references">
+<section id="appendix-A.3">
+        <h3 id="name-representation-graph-with-a">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-representation-graph-with-a" class="section-name selfRef">Representation graph with anchors and cyclic references</a>
+        </h3>
+<p id="appendix-A.3-1">In this YAML document, the <code>#/foo/bar/baz</code> fragment identifier
+traverses the representation graph and references the string <code>you</code>.
+Moreover, the presence of a cyclic reference implies that
+there are infinite fragment identifiers <code>#/foo/bat/../bat/bar</code>
+referencing the <code>&amp;anchor</code> node.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+<span id="name-example-of-a-cyclic-referen"></span><div id="example-cyclic-graph">
+<figure id="figure-7">
+          <div id="appendix-A.3-2.1">
+<pre class="lang-example sourcecode">
+ anchor: &amp;anchor
+   baz: you
+ foo: &amp;foo
+   bar: *anchor
+   bat: *foo
+</pre>
+</div>
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<a href="#name-example-of-a-cyclic-referen" class="selfRef">Example of a cyclic references and alias nodes.</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.3-3">Many YAML implementations will resolve
+<a href="https://yaml.org/type/merge.html">the merge key "&lt;&lt;:"</a> defined in YAML 1.1
+in the representation graph.
+This means that the fragment <code>#/book/author/given_name</code> references the string <code>Federico</code>
+and that the fragment <code>#/book/&lt;&lt;</code> will not reference any existing node.<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
+<span id="name-example-of-yaml-merge-keys"></span><div id="example-merge-keys">
+<figure id="figure-8">
+          <div id="appendix-A.3-4.1">
+<pre class="lang-example sourcecode">
+ %YAML 1.1
+ ---
+ # Many implementations use merge keys.
+ the-viceroys: &amp;the-viceroys
+   title: The Viceroys
+   author:
+     given_name: Federico
+     family_name: De Roberto
+ book:
+   &lt;&lt;: *the-viceroys
+   title: The Illusion
+</pre>
+</div>
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<a href="#name-example-of-yaml-merge-keys" class="selfRef">Example of YAML merge keys.</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="acknowledgements">
+<section id="appendix-B">
+      <h2 id="name-acknowledgements">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
+      </h2>
+<p id="appendix-B-1">Thanks to Erik Wilde and David Biesack for being the initial contributors of this specification,
+and to Darrel Miller and Rich Salz for their support during the adoption phase.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">In addition to the people above, this document owes a lot to the extensive discussion inside
 and outside the HTTPAPI workgroup.
 The following contributors have helped improve this specification by
 opening pull requests, reporting bugs, asking smart questions,
-drafting or reviewing text, and evaluating open issues:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
-<p id="appendix-A-3">Tina (tinita) Mueller,
+drafting or reviewing text, and evaluating open issues:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">Tina (tinita) Mueller,
 Ben Hutton,
 Manu Sporny
-and Jason Desrosiers.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
+and Jason Desrosiers.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="faq">
-<section id="appendix-B">
+<section id="appendix-C">
       <h2 id="name-faq">
 <a href="#name-faq" class="section-name selfRef">FAQ</a>
       </h2>
-<span class="break"></span><dl class="dlParallel" id="appendix-B-1">
-        <dt id="appendix-B-1.1">Q: Why this document?</dt>
-        <dd style="margin-left: 1.5em" id="appendix-B-1.2">
-          <p id="appendix-B-1.2.1">After all these years, we still lack a proper media-type for YAML.
+<p id="appendix-C-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="appendix-C-2">
+        <dt id="appendix-C-2.1">Q: Why this document?</dt>
+        <dd style="margin-left: 1.5em" id="appendix-C-2.2">
+          <p id="appendix-C-2.2.1">After all these years, we still lack a proper media-type for YAML.
 This has some security implications too
-(eg. wrt on identifying parsers or treat downloads)<a href="#appendix-B-1.2.1" class="pilcrow">¶</a></p>
+(eg. wrt on identifying parsers or treat downloads)<a href="#appendix-C-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="appendix-C-2.3">Q: Why using alias nodes as fragment identifiers?</dt>
+        <dd style="margin-left: 1.5em" id="appendix-C-2.4">
+          <p id="appendix-C-2.4.1">Fragment identifiers in YAML always reference
+YAML representation graph nodes.
+Since YAML is not limited to string keywords,
+it uses aliases to reference nodes.
+Alias nodes are thus the natural choice for fragment identifiers
+<a href="#application-yaml-fragment" class="xref">Section 1.2</a>.<a href="#appendix-C-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="appendix-C-2.5">Q: Why not using plain names for alias nodes? Why not defining plain names?</dt>
+        <dd style="margin-left: 1.5em" id="appendix-C-2.6">
+          <p id="appendix-C-2.6.1">The first version of this document only defined plain name fragments
+referencing named anchors.
+This behavior could have limited the ability of future xxx+yaml
+media types to define their plain names fragments.
+Moreover, alias nodes starts with <code>*</code> so we found no reason
+to strip it when using them in fragments.<a href="#appendix-C-2.6.1" class="pilcrow">¶</a></p>
+<p id="appendix-C-2.6.2">Preserving <code>*</code> had another positive result:
+it allows to distinguish
+a fragment identifier expressed as an alias node from
+one expressed in other formats.
+In this document we included JSON Pointer <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>
+which is expected to start with <code>/</code>.
+Moreover, since JSON Path <span>[<a href="#I-D.ietf-jsonpath-base" class="xref">I-D.ietf-jsonpath-base</a>]</span> expressions
+start with <code>$</code>, this mechanism can be extended to JSON Path too.<a href="#appendix-C-2.6.2" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="appendix-C-2.7">Q: Why don't just use JSON Pointer as the primary fragment identifier?</dt>
+        <dd style="margin-left: 1.5em" id="appendix-C-2.8">
+          <p id="appendix-C-2.8.1">Fragment identifiers in YAML always reference
+YAML representation graph nodes.
+JSON Pointer can only rely on string keywords so
+it is not able to reference a generic node in the
+representation graph.<a href="#appendix-C-2.8.1" class="pilcrow">¶</a></p>
+<p id="appendix-C-2.8.2">Since JSON Pointer is a document unrelated to YAML,
+we decided to isolate the impacts of changes in JSON Pointer
+on YAML fragments:
+only fragments starting with "/" are "delegated" to an external spec,
+and if RFC6901 changes, it will only affect fragments starting with "/".<a href="#appendix-C-2.8.2" class="pilcrow">¶</a></p>
+<p id="appendix-C-2.8.3">The current behaviour for empty fragments is the same
+for both JSON Pointer and alias nodes.
+Incidentally, it's the only sensible behaviour independently of RFC6901.<a href="#appendix-C-2.8.3" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
 </section>
 </div>
 <div id="change-log">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-change-log">
 <a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<p id="appendix-C-1">RFC EDITOR PLEASE DELETE THIS SECTION.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-D-1">This section is to be removed before publishing as an RFC.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
+<div id="since-draft-ietf-httpapi-yaml-mediatypes-02">
+<section id="appendix-D.1">
+        <h3 id="name-since-draft-ietf-httpapi-ya">
+<a href="#name-since-draft-ietf-httpapi-ya" class="section-name selfRef">Since draft-ietf-httpapi-yaml-mediatypes-02</a>
+        </h3>
+<ul class="normal">
+<li class="normal" id="appendix-D.1-1.1">clarification on fragment identifiers #50.<a href="#appendix-D.1-1.1" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+<div id="since-draft-ietf-httpapi-yaml-mediatypes-01">
+<section id="appendix-D.2">
+        <h3 id="name-since-draft-ietf-httpapi-yam">
+<a href="#name-since-draft-ietf-httpapi-yam" class="section-name selfRef">Since draft-ietf-httpapi-yaml-mediatypes-01</a>
+        </h3>
+<ul class="normal">
+<li class="normal" id="appendix-D.2-1.1">application/yaml fragment identifiers compatible with JSON Pointer #41 (#47).<a href="#appendix-D.2-1.1" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-D">
+<section id="appendix-E">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
