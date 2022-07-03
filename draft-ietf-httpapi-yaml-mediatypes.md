@@ -176,10 +176,17 @@ Subtype name:
 : yaml
 
 Required parameters:
-: None
+: N/A
+
+<!-- RFC 6838:
+   "N/A", written exactly that way, can be used in any field if desired
+   to emphasize the fact that it does not apply or that the question was
+   not omitted by accident.  Do not use 'none' or other words that could
+   be mistaken for a response.
+  -->
 
 Optional parameters:
-: None; unrecognized parameters should be ignored
+: N/A; unrecognized parameters should be ignored
 
 Encoding considerations:
 : binary
@@ -194,7 +201,12 @@ Published specification:
 : [YAML]
 
 Applications that use this media type:
-: HTTP
+: Applications that need a human-friendly, cross language, Unicode
+  based data serialization language designed around the common native
+  data types of dynamic programming languages.
+
+<!-- HTTP is not an application. Cited first para of abstract of YAML -->
+<!-- 1.2 specification. -->
 
 Fragment identifier considerations:
 : An empty fragment identifier references
@@ -215,11 +227,11 @@ Additional information:
 
 - Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml
 
-- Magic number(s)  n/a
+- Magic number(s)  N/A
 
 - File extension(s):  yaml, yml
 
-- Macintosh file type code(s):  n/a
+- Macintosh file type code(s):  N/A
 
 Person and email address to contact for further information:
 : See Authors' Addresses section.
@@ -233,8 +245,13 @@ Restrictions on usage:
 Author:
 : See Authors' Addresses section.
 
+<!-- The media type template needs to stand on its own.
+-->
+
 Change controller:
-: n/a
+: IESG
+
+<!-- There needs to be a change controller.  -->
 
 ## The +yaml Structured Syntax Suffix {#suffix-yaml}
 
@@ -273,13 +290,16 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
   : See {{application-yaml}}
 
   Contact:
-  : See Authors' Addresses section.
+  : httpapi@ietf.org or art@ietf.org
 
   Author:
   : See Authors' Addresses section
 
+<!-- The template needs to stand on its own.
+-->
+
   Change controller:
-  :  n/a
+  :  IESG
 
 # Interoperability Considerations
 
