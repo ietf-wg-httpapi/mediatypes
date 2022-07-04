@@ -5,10 +5,10 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                                  E. Wilde
-Expires: 2 January 2023                                            Axway
+Expires: 5 January 2023                                            Axway
                                                                   E. Aro
                                                                  Mozilla
-                                                             1 July 2022
+                                                             4 July 2022
 
 
                             YAML Media Type
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2023.
+   This Internet-Draft will expire on 5 January 2023.
 
 Copyright Notice
 
@@ -610,18 +610,17 @@ FAQ
       media-type for YAML.  This has some security implications too (eg.
       wrt on identifying parsers or treat downloads)
 
-   Q: Why using alias nodes as fragment identifiers?  Fragment
-      identifiers in YAML always reference YAML representation graph
-      nodes.  Since YAML is not limited to string keywords, it uses
-      aliases to reference nodes.  Alias nodes are thus the natural
+   Q: Why using alias nodes as fragment identifiers?  Alias nodes are a
+      native YAML feature that allows addressing any node in a document.
+      Since YAML is not limited to string keywords, not all nodes are
+      addressable using JSON Pointers.  Alias nodes are thus the natural
       choice for fragment identifiers Section 1.2.
 
    Q: Why not using plain names for alias nodes?  Why not defining
-   plain names?  The first version of this document only defined plain
-      name fragments referencing named anchors.  This behavior could
-      have limited the ability of future xxx+yaml media types to define
-      their plain names fragments.  Moreover, alias nodes starts with *
-      so we found no reason to strip it when using them in fragments.
+   plain names?  Using plain name fragments could have limited the
+      ability of future xxx+yaml media types to define their plain names
+      fragments.  Moreover, alias nodes starts with * so we found no
+      reason to strip it when using them in fragments.
 
       Preserving * had another positive result: it allows to distinguish
       a fragment identifier expressed as an alias node from one
