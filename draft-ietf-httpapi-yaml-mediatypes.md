@@ -112,7 +112,7 @@ The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in {{!URI=RFC3986}}.
 
 The terms "node", "alias node", "anchor" and "named anchor"
-in this document are to be intepreded as in [YAML].
+in this document are to be interpreted as in [YAML].
 
 ## Fragment identification {#application-yaml-fragment}
 
@@ -121,7 +121,7 @@ alias nodes (see Section 3.2.2.2 and 7.1 of [YAML])
 as fragment identifiers to designate nodes.
 
 A YAML alias node can be represented in a URI fragment identifier
-by encoding it into octects using UTF-8 {{!UTF-8=RFC3629}},
+by encoding it into bytes using UTF-8 {{!UTF-8=RFC3629}},
 while percent-encoding those characters not allowed by the fragment rule
 in {{Section 3.5 of URI}}.
 
@@ -176,10 +176,17 @@ Subtype name:
 : yaml
 
 Required parameters:
-: None
+: N/A
+
+<!-- RFC 6838:
+   "N/A", written exactly that way, can be used in any field if desired
+   to emphasize the fact that it does not apply or that the question was
+   not omitted by accident.  Do not use 'none' or other words that could
+   be mistaken for a response.
+  -->
 
 Optional parameters:
-: None; unrecognized parameters should be ignored
+: N/A; unrecognized parameters should be ignored
 
 Encoding considerations:
 : binary
@@ -194,7 +201,12 @@ Published specification:
 : [YAML]
 
 Applications that use this media type:
-: HTTP
+: Applications that need a human-friendly, cross language, Unicode
+  based data serialization language designed around the common native
+  data types of dynamic programming languages.
+
+<!-- HTTP is not an application. Cited first para of abstract of YAML -->
+<!-- 1.2 specification. -->
 
 Fragment identifier considerations:
 : An empty fragment identifier references
@@ -215,11 +227,11 @@ Additional information:
 
 - Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml
 
-- Magic number(s)  n/a
+- Magic number(s)  N/A
 
 - File extension(s):  yaml, yml
 
-- Macintosh file type code(s):  n/a
+- Macintosh file type code(s):  N/A
 
 Person and email address to contact for further information:
 : See Authors' Addresses section.
@@ -233,8 +245,13 @@ Restrictions on usage:
 Author:
 : See Authors' Addresses section.
 
+<!-- The media type template needs to stand on its own.
+-->
+
 Change controller:
-: n/a
+: IESG
+
+<!-- There needs to be a change controller.  -->
 
 ## The +yaml Structured Syntax Suffix {#suffix-yaml}
 
@@ -273,13 +290,16 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
   : See {{application-yaml}}
 
   Contact:
-  : See Authors' Addresses section.
+  : httpapi@ietf.org or art@ietf.org
 
   Author:
   : See Authors' Addresses section
 
+<!-- The template needs to stand on its own.
+-->
+
   Change controller:
-  :  n/a
+  :  IESG
 
 # Interoperability Considerations
 
@@ -303,7 +323,7 @@ a YAML document could look like JSON [JSON],
 thus similar interoperability considerations apply.
 
 When using YAML as a more efficient format
-to serialize information intented to be consumed as JSON,
+to serialize information intended to be consumed as JSON,
 information can be discarded:
 this includes comments (see Section 3.2.3.3 of [YAML])
 and alias nodes (see Section 7.1 of [YAML]),
@@ -374,8 +394,8 @@ the JSON data model with support for YAML fragment identifiers.
 This is to improve the interoperability of already consolidated practices,
 such as the one of writing [OpenAPI documents](#OAS) in YAML.
 
-{{ex-fragid}} provides a non exhaustive list of examples that could help
-understanding interoperability issues related to fragment identifiers.
+{{ex-fragid}} provides a non-exhaustive list of examples that could help
+understand interoperability issues related to fragment identifiers.
 
 # Security Considerations
 
