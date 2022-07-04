@@ -136,7 +136,7 @@ Table of Contents
    This section describes how to use alias nodes (see Section 3.2.2.2
    and 7.1 of [YAML]) as fragment identifiers to designate nodes.
 
-   An empty fragment identifier reference the root of the YAML
+   An empty fragment identifier references the root of the YAML
    representation graph.
 
    A YAML alias node can be represented in a URI fragment identifier by
