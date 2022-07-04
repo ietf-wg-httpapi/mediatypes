@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
-Intended status: Informational                              23 June 2022
-Expires: 25 December 2022
+Intended status: Informational                               4 July 2022
+Expires: 5 January 2023
 
 
                           REST API Media Types
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 December 2022.
+   This Internet-Draft will expire on 5 January 2023.
 
 Copyright Notice
 
@@ -609,9 +609,9 @@ Table of Contents
    [YAML-MEDIATYPES]
               Polli, R., Wilde, E., and E. Aro, "YAML Media Type", Work
               in Progress, Internet-Draft, draft-ietf-httpapi-yaml-
-              mediatypes-01, 27 May 2022,
+              mediatypes-02, 23 June 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-
-              yaml-mediatypes-01>.
+              yaml-mediatypes-02>.
 
 Appendix A.  Acknowledgements
 
