@@ -302,7 +302,7 @@ Table of Contents
 
    When receiving a multi-document stream, an application that only
    expects one-document streams, ought to signal an error instead of
-   ingnoring the extra documents.
+   ignoring the extra documents.
 
 3.3.  YAML and JSON
 
