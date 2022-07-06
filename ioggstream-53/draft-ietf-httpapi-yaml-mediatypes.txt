@@ -362,16 +362,16 @@ Table of Contents
       [0, 1]: a sequence
       ? {k: v}
       : a map
-    non-json-value: 2020-01-01
     ...
     %YAML 1.1
     ---
     non-json-keys:
       2020-01-01: a timestamp
+    non-json-value: 2020-01-01
     ...
 
-        Figure 3: Example of mapping keys not supported in JSON in a
-                         multi-document YAML stream
+       Figure 3: Example of mapping keys and values not supported in
+                   JSON in a multi- document YAML stream
 
 3.4.  Fragment identifiers
 

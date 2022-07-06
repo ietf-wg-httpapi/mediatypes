@@ -1650,7 +1650,7 @@ custom and local tags such as <code>!!python/object</code> and
 <code>!mytag</code> (see Section 2.4 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>);<a href="#section-3.3-6.7" class="pilcrow">¶</a>
 </li>
         </ul>
-<span id="name-example-of-mapping-keys-not"></span><div id="example-unsupported-keys">
+<span id="name-example-of-mapping-keys-and"></span><div id="example-unsupported-keys">
 <figure id="figure-3">
           <div id="section-3.3-7.1">
 <pre class="lang-example sourcecode">
@@ -1661,17 +1661,17 @@ custom and local tags such as <code>!!python/object</code> and
    [0, 1]: a sequence
    ? {k: v}
    : a map
- non-json-value: 2020-01-01
  ...
  %YAML 1.1
  ---
  non-json-keys:
    2020-01-01: a timestamp
+ non-json-value: 2020-01-01
  ...
 </pre>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-example-of-mapping-keys-not" class="selfRef">Example of mapping keys not supported in JSON in a multi-document YAML stream</a>
+<a href="#name-example-of-mapping-keys-and" class="selfRef">Example of mapping keys and values not supported in JSON in a multi-document YAML stream</a>
           </figcaption></figure>
 </div>
 </section>
