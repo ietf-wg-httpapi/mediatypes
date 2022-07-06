@@ -276,14 +276,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
   : see {{application-yaml}}
 
   Fragment identifier considerations:
-  : Differently from `application/yaml`,
-    there is no fragment identification syntax defined
-    for +yaml.
-
-    A specific `xxx/yyy+yaml` media type
-    needs to define the syntax and semantics for fragment identifiers
-    because the ones in {{application-yaml}}
-    do not apply unless explicitly expressed.
+  : See {{application-yaml-fragment}}
 
   Interoperability considerations:
   : See {{application-yaml}}
@@ -613,6 +606,7 @@ Q: Why not just use JSON Pointer as the primary fragment identifier?
 ## Since draft-ietf-httpapi-yaml-mediatypes-02
 {: numbered="false"}
 
+* same fragment identifier for application/yaml and +yaml #54.
 * clarification on fragment identifiers #50.
 
 
