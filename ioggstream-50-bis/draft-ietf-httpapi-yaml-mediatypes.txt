@@ -5,10 +5,10 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                                  E. Wilde
-Expires: 5 January 2023                                            Axway
+Expires: 7 January 2023                                            Axway
                                                                   E. Aro
                                                                  Mozilla
-                                                             4 July 2022
+                                                             6 July 2022
 
 
                             YAML Media Type
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 January 2023.
+   This Internet-Draft will expire on 7 January 2023.
 
 Copyright Notice
 
@@ -608,20 +608,20 @@ FAQ
       addressable using JSON Pointers.  Alias nodes are thus the natural
       choice for fragment identifiers Section 1.2.
 
-   Q: Why not using plain names for alias nodes?  Why not defining
-   plain names?  Using plain name fragments could have limited the
-      ability of future xxx+yaml media types to define their plain names
-      fragments.  Moreover, alias nodes starts with * so we found no
-      reason to strip it when using them in fragments.
+   Q: Why not use plain names for alias nodes?  Why not define plain
+   names?  Using plain name fragments could have limited the ability of
+      future xxx+yaml media types to define their plain name fragments.
+      Moreover, alias nodes starts with * so we found no reason to strip
+      it when using them in fragments.
 
-      Preserving * had another positive result: it allows to distinguish
+      Preserving * had another positive result: it allows distinguishing
       a fragment identifier expressed as an alias node from one
       expressed in other formats.  In this document we included JSON
       Pointer [JSON-POINTER] which is expected to start with /.
       Moreover, since JSON Path [I-D.ietf-jsonpath-base] expressions
       start with $, this mechanism can be extended to JSON Path too.
 
-   Q: Why don't just use JSON Pointer as the primary fragment
+   Q: Why not just use JSON Pointer as the primary fragment
    identifier?  Fragment identifiers in YAML always reference YAML
       representation graph nodes.  JSON Pointer can only rely on string
       keywords so it is not able to reference a generic node in the
@@ -630,12 +630,12 @@ FAQ
       Since JSON Pointer is a document unrelated to YAML, we decided to
       isolate the impacts of changes in JSON Pointer on YAML fragments:
       only fragments starting with "/" are "delegated" to an external
-      spec, and if RFC6901 changes, it will only affect fragments
+      spec, and if [JSON-POINTER] changes, it will only affect fragments
       starting with "/".
 
       The current behaviour for empty fragments is the same for both
       JSON Pointer and alias nodes.  Incidentally, it's the only
-      sensible behaviour independently of RFC6901.
+      sensible behaviour independently of [JSON-POINTER].
 
 Change Log
 
