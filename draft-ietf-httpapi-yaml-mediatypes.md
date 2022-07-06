@@ -116,6 +116,24 @@ in this document are to be interpreted as in [YAML].
 
 ## Fragment identification {#application-yaml-fragment}
 
+A fragment identifier starting with "*"
+is to be interpreted as a YAML alias node {{fragment-alias-node}}.
+
+A fragment identifier that is empty
+or that starts with "/"
+is to be interpreted as a JSON Pointer {{JSON-POINTER}}
+and is evaluated on the YAML representation graph,
+walking through alias nodes;
+this syntax can only reference YAML nodes that are
+on a path that is made up of nodes interoperable with
+the JSON data model (see {{int-yaml-and-json}}).
+
+A fragment identifier is not guaranteed to reference an existing node.
+Therefore, applications SHOULD define how an unresolved alias node
+ought to be handled.
+
+### Fragment identification via alias nodes {#fragment-alias-node}
+
 This section describes how to use
 alias nodes (see Section 3.2.2.2 and 7.1 of [YAML])
 as fragment identifiers to designate nodes.
@@ -127,10 +145,6 @@ in {{Section 3.5 of URI}}.
 
 If multiple nodes would match a fragment identifier,
 the first such match is selected.
-
-A fragment identifier is not guaranteed to reference an existing node.
-Therefore, applications SHOULD define how an unresolved alias node
-ought to be handled.
 
 Users concerned with interoperability of fragment identifiers:
 
@@ -209,19 +223,7 @@ Applications that use this media type:
 <!-- 1.2 specification. -->
 
 Fragment identifier considerations:
-: An empty fragment identifier references
-  the root node.
-
-  A fragment identifier starting with "*"
-  is to be interpreted as a YAML alias node {{application-yaml-fragment}}.
-
-  A fragment identifier starting with "/"
-  is to be interpreted as a JSON Pointer {{JSON-POINTER}}
-  and is evaluated on the YAML representation graph,
-  walking through alias nodes;
-  this syntax can only reference YAML nodes that are
-  on a path that is made up of nodes interoperable with
-  the JSON data model (see {{int-yaml-and-json}}).
+: See {{application-yaml-fragment}}
 
 Additional information:
 
@@ -565,15 +567,54 @@ Q: Why this document?
    (eg. wrt on identifying parsers or treat downloads)
 
 Q: Why using alias nodes as fragment identifiers?
-:  Alias nodes starts with `*`. This allow to distinguish
+:  Alias nodes are a native YAML feature that allows
+   addressing any node in a document.
+   Since YAML is not limited to string keywords,
+   not all nodes are addressable using JSON Pointers.
+   Alias nodes are thus the natural choice for fragment identifiers
+   {{application-yaml-fragment}}.
+
+Q: Why not use plain names for alias nodes? Why not define plain names?
+:  Using plain name fragments could have
+   limited the ability of future xxx+yaml
+   media types to define their plain name fragments.
+   Moreover, alias nodes starts with `*` so we found no reason
+   to strip it when using them in fragments.
+
+   Preserving `*` had another positive result:
+   it allows distinguishing
    a fragment identifier expressed as an alias node from
-   one expressed in JSON Pointer {{JSON-POINTER}}
+   one expressed in other formats.
+   In this document we included JSON Pointer {{JSON-POINTER}}
    which is expected to start with `/`.
-   Moreover, since json-path {{I-D.ietf-jsonpath-base}} expressions
-   start with `$`, this mechanism is even extensible that specification.
+   Moreover, since JSON Path {{I-D.ietf-jsonpath-base}} expressions
+   start with `$`, this mechanism can be extended to JSON Path too.
+
+Q: Why not just use JSON Pointer as the primary fragment identifier?
+:  Fragment identifiers in YAML always reference
+   YAML representation graph nodes.
+   JSON Pointer can only rely on string keywords so
+   it is not able to reference a generic node in the
+   representation graph.
+
+   Since JSON Pointer is a document unrelated to YAML,
+   we decided to isolate the impacts of changes in JSON Pointer
+   on YAML fragments:
+   only fragments starting with "/" are "delegated" to an external spec,
+   and if {{JSON-POINTER}} changes, it will only affect fragments starting with "/".
+
+   The current behaviour for empty fragments is the same
+   for both JSON Pointer and alias nodes.
+   Incidentally, it's the only sensible behaviour independently of {{JSON-POINTER}}.
 
 # Change Log
 {: numbered="false" removeinrfc="true"}
+
+## Since draft-ietf-httpapi-yaml-mediatypes-02
+{: numbered="false"}
+
+* clarification on fragment identifiers #50.
+
 
 ## Since draft-ietf-httpapi-yaml-mediatypes-01
 {: numbered="false"}
