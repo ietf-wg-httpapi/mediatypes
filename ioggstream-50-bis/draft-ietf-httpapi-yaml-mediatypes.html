@@ -1279,7 +1279,7 @@ in this document are to be interpreted as in <span>[<a href="#SEMANTICS" class="
 <p id="section-1.1-4">The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in <span>[<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
 <p id="section-1.1-5">The terms "node", "alias node", "anchor" and "named anchor"
-in this document are to be intepreded as in <span>[<a href="#YAML" class="xref">YAML</a>]</span>.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+in this document are to be interpreted as in <span>[<a href="#YAML" class="xref">YAML</a>]</span>.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="application-yaml-fragment">
@@ -1309,7 +1309,7 @@ ought to be handled.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
 alias nodes (see Section 3.2.2.2 and 7.1 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>)
 as fragment identifiers to designate nodes.<a href="#section-1.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-1.2.1-2">A YAML alias node can be represented in a URI fragment identifier
-by encoding it into octects using UTF-8 <span>[<a href="#UTF-8" class="xref">UTF-8</a>]</span>,
+by encoding it into bytes using UTF-8 <span>[<a href="#UTF-8" class="xref">UTF-8</a>]</span>,
 while percent-encoding those characters not allowed by the fragment rule
 in <span><a href="https://rfc-editor.org/rfc/rfc3986#section-3.5" class="relref">Section 3.5</a> of [<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-1.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-1.2.1-3">If multiple nodes would match a fragment identifier,
@@ -1375,80 +1375,88 @@ the following information serves as the registration form for this media type.<a
           <dd class="break"></dd>
 <dt id="section-2.1-2.5">Required parameters:</dt>
           <dd style="margin-left: 1.5em" id="section-2.1-2.6">
-            <p id="section-2.1-2.6.1">None<a href="#section-2.1-2.6.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-2.1-2.7">Optional parameters:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-2.8">
-            <p id="section-2.1-2.8.1">None; unrecognized parameters should be ignored<a href="#section-2.1-2.8.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-2.1-2.9">Encoding considerations:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-2.10">
-            <p id="section-2.1-2.10.1">binary<a href="#section-2.1-2.10.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-2.1-2.11">Security considerations:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-2.12">
-            <p id="section-2.1-2.12.1">see <a href="#security-considerations" class="xref">Section 4</a> of this document<a href="#section-2.1-2.12.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-2.1-2.13">Interoperability considerations:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-2.14">
-            <p id="section-2.1-2.14.1">see <a href="#interoperability-considerations" class="xref">Section 3</a> of this document<a href="#section-2.1-2.14.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-2.1-2.15">Published specification:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-2.16">
-            <p id="section-2.1-2.16.1"><span>[<a href="#YAML" class="xref">YAML</a>]</span><a href="#section-2.1-2.16.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-2.1-2.17">Applications that use this media type:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-2.18">
-            <p id="section-2.1-2.18.1">HTTP<a href="#section-2.1-2.18.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-2.1-2.19">Fragment identifier considerations:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-2.20">
-            <p id="section-2.1-2.20.1">See <a href="#application-yaml-fragment" class="xref">Section 1.2</a><a href="#section-2.1-2.20.1" class="pilcrow">¶</a></p>
+            <p id="section-2.1-2.6.1">N/A<a href="#section-2.1-2.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-2.1-3">Additional information:<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.1-3">
+          <dt id="section-2.1-3.1">Optional parameters:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-3.2">
+            <p id="section-2.1-3.2.1">N/A; unrecognized parameters should be ignored<a href="#section-2.1-3.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-3.3">Encoding considerations:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-3.4">
+            <p id="section-2.1-3.4.1">binary<a href="#section-2.1-3.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-3.5">Security considerations:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-3.6">
+            <p id="section-2.1-3.6.1">see <a href="#security-considerations" class="xref">Section 4</a> of this document<a href="#section-2.1-3.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-3.7">Interoperability considerations:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-3.8">
+            <p id="section-2.1-3.8.1">see <a href="#interoperability-considerations" class="xref">Section 3</a> of this document<a href="#section-2.1-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-3.9">Published specification:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-3.10">
+            <p id="section-2.1-3.10.1"><span>[<a href="#YAML" class="xref">YAML</a>]</span><a href="#section-2.1-3.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-3.11">Applications that use this media type:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-3.12">
+            <p id="section-2.1-3.12.1">Applications that need a human-friendly, cross language, Unicode
+based data serialization language designed around the common native
+data types of dynamic programming languages.<a href="#section-2.1-3.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-2.1-4">
+          <dt id="section-2.1-4.1">Fragment identifier considerations:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-4.2">
+            <p id="section-2.1-4.2.1">See <a href="#application-yaml-fragment" class="xref">Section 1.2</a><a href="#section-2.1-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-2.1-5">Additional information:<a href="#section-2.1-5" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2.1-4.1">Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml<a href="#section-2.1-4.1" class="pilcrow">¶</a>
+<li class="normal" id="section-2.1-6.1">Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml<a href="#section-2.1-6.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.1-4.2">Magic number(s)  n/a<a href="#section-2.1-4.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.1-6.2">Magic number(s)  N/A<a href="#section-2.1-6.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.1-4.3">File extension(s):  yaml, yml<a href="#section-2.1-4.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.1-6.3">File extension(s):  yaml, yml<a href="#section-2.1-6.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.1-4.4">Macintosh file type code(s):  n/a<a href="#section-2.1-4.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.1-6.4">Macintosh file type code(s):  N/A<a href="#section-2.1-6.4" class="pilcrow">¶</a>
 </li>
         </ul>
-<span class="break"></span><dl class="dlParallel" id="section-2.1-5">
-          <dt id="section-2.1-5.1">Person and email address to contact for further information:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-5.2">
-            <p id="section-2.1-5.2.1">See Authors' Addresses section.<a href="#section-2.1-5.2.1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.1-7">
+          <dt id="section-2.1-7.1">Person and email address to contact for further information:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-7.2">
+            <p id="section-2.1-7.2.1">See Authors' Addresses section.<a href="#section-2.1-7.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-2.1-5.3">Intended usage:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-5.4">
-            <p id="section-2.1-5.4.1">COMMON<a href="#section-2.1-5.4.1" class="pilcrow">¶</a></p>
+<dt id="section-2.1-7.3">Intended usage:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-7.4">
+            <p id="section-2.1-7.4.1">COMMON<a href="#section-2.1-7.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-2.1-5.5">Restrictions on usage:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-5.6">
-            <p id="section-2.1-5.6.1">None.<a href="#section-2.1-5.6.1" class="pilcrow">¶</a></p>
+<dt id="section-2.1-7.5">Restrictions on usage:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-7.6">
+            <p id="section-2.1-7.6.1">None.<a href="#section-2.1-7.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-2.1-5.7">Author:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-5.8">
-            <p id="section-2.1-5.8.1">See Authors' Addresses section.<a href="#section-2.1-5.8.1" class="pilcrow">¶</a></p>
+<dt id="section-2.1-7.7">Author:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-7.8">
+            <p id="section-2.1-7.8.1">See Authors' Addresses section.<a href="#section-2.1-7.8.1" class="pilcrow">¶</a></p>
 </dd>
-          <dd class="break"></dd>
-<dt id="section-2.1-5.9">Change controller:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.1-5.10">
-            <p id="section-2.1-5.10.1">n/a<a href="#section-2.1-5.10.1" class="pilcrow">¶</a></p>
+        <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-2.1-8">
+          <dt id="section-2.1-8.1">Change controller:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-8.2">
+            <p id="section-2.1-8.2.1">IESG<a href="#section-2.1-8.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1502,17 +1510,19 @@ See <span>[<a href="#MEDIATYPE" class="xref">MEDIATYPE</a>]</span> for definitio
           <dd class="break"></dd>
 <dt id="section-2.2-2.15">Contact:</dt>
           <dd style="margin-left: 1.5em" id="section-2.2-2.16">
-            <p id="section-2.2-2.16.1">See Authors' Addresses section.<a href="#section-2.2-2.16.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-2.16.1">httpapi@ietf.org or art@ietf.org<a href="#section-2.2-2.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-2.17">Author:</dt>
           <dd style="margin-left: 1.5em" id="section-2.2-2.18">
             <p id="section-2.2-2.18.1">See Authors' Addresses section<a href="#section-2.2-2.18.1" class="pilcrow">¶</a></p>
 </dd>
-          <dd class="break"></dd>
-<dt id="section-2.2-2.19">Change controller:</dt>
-          <dd style="margin-left: 1.5em" id="section-2.2-2.20">
-            <p id="section-2.2-2.20.1">n/a<a href="#section-2.2-2.20.1" class="pilcrow">¶</a></p>
+        <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-2.2-3">
+          <dt id="section-2.2-3.1">Change controller:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.2-3.2">
+            <p id="section-2.2-3.2.1">IESG<a href="#section-2.2-3.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1549,7 +1559,7 @@ can specify it in documents using the <code>%YAML</code> directive
 a YAML document could look like JSON <span>[<a href="#JSON" class="xref">JSON</a>]</span>,
 thus similar interoperability considerations apply.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">When using YAML as a more efficient format
-to serialize information intented to be consumed as JSON,
+to serialize information intended to be consumed as JSON,
 information can be discarded:
 this includes comments (see Section 3.2.3.3 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>)
 and alias nodes (see Section 7.1 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>),
@@ -1639,8 +1649,8 @@ can impact on the generation of the representation graph (see <a href="#example-
 the JSON data model with support for YAML fragment identifiers.
 This is to improve the interoperability of already consolidated practices,
 such as the one of writing <span><a href="#OAS" class="xref">OpenAPI documents</a> [<a href="#OAS" class="xref">OAS</a>]</span> in YAML.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-<p id="section-3.3-4"><a href="#ex-fragid" class="xref">Appendix A</a> provides a non exhaustive list of examples that could help
-understanding interoperability issues related to fragment identifiers.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.3-4"><a href="#ex-fragid" class="xref">Appendix A</a> provides a non-exhaustive list of examples that could help
+understand interoperability issues related to fragment identifiers.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2032,7 +2042,9 @@ Incidentally, it's the only sensible behaviour independently of <span>[<a href="
 <a href="#name-since-draft-ietf-httpapi-ya" class="section-name selfRef">Since draft-ietf-httpapi-yaml-mediatypes-02</a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-D.1-1.1">clarification on fragment identifiers #50.<a href="#appendix-D.1-1.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-D.1-1.1">same fragment identifier for application/yaml and +yaml #54.<a href="#appendix-D.1-1.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="appendix-D.1-1.2">clarification on fragment identifiers #50.<a href="#appendix-D.1-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
