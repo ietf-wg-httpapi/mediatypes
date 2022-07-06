@@ -336,7 +336,7 @@ YAML documents.
 When receiving a multi-document stream,
 an application that only expects one-document
 streams, ought to signal an error
-instead of ingnoring the extra documents.
+instead of ignoring the extra documents.
 
 ## YAML and JSON {#int-yaml-and-json}
 
