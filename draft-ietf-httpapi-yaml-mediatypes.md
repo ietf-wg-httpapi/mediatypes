@@ -397,15 +397,15 @@ issues with JSON:
    [0, 1]: a sequence
    ? {k: v}
    : a map
- non-json-value: 2020-01-01
  ...
  %YAML 1.1
  ---
  non-json-keys:
    2020-01-01: a timestamp
+ non-json-value: 2020-01-01
  ...
 ~~~
-{: title="Example of mapping keys not supported in JSON in a multi-document YAML stream" #example-unsupported-keys}
+{: title="Example of mapping keys and values not supported in JSON in a multi-document YAML stream" #example-unsupported-keys}
 
 ## Fragment identifiers {#int-fragment}
 
