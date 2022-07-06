@@ -1035,7 +1035,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Polli, et al.</td>
-<td class="center">Expires 5 January 2023</td>
+<td class="center">Expires 7 January 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1048,12 +1048,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-httpapi-yaml-mediatypes-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-07-04" class="published">4 July 2022</time>
+<time datetime="2022-07-06" class="published">6 July 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-01-05">5 January 2023</time></dd>
+<dd class="expires"><time datetime="2023-01-07">7 January 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1109,7 +1109,7 @@ mailing list (httpapi@ietf.org), which is archived at
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 January 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 January 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1139,13 +1139,18 @@ mailing list (httpapi@ietf.org), which is archived at
         </h2>
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
+            <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
                 <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
                 <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-fragment-identification" class="xref">Fragment identification</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2.2.1">
+                    <p id="section-toc.1-1.1.2.2.2.1.1" class="keepWithNext"><a href="#section-1.2.1" class="xref">1.2.1</a>.  <a href="#name-fragment-identification-via" class="xref">Fragment identification via alias nodes</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
@@ -1223,7 +1228,10 @@ mailing list (httpapi@ietf.org), which is archived at
             <p id="section-toc.1-1.10.1"><a href="#appendix-D" class="xref"></a><a href="#name-change-log" class="xref">Change Log</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#appendix-D.1" class="xref"></a><a href="#name-since-draft-ietf-httpapi-ya" class="xref">Since draft-ietf-httpapi-yaml-mediatypes-01</a></p>
+                <p id="section-toc.1-1.10.2.1.1"><a href="#appendix-D.1" class="xref"></a><a href="#name-since-draft-ietf-httpapi-ya" class="xref">Since draft-ietf-httpapi-yaml-mediatypes-02</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#appendix-D.2" class="xref"></a><a href="#name-since-draft-ietf-httpapi-yam" class="xref">Since draft-ietf-httpapi-yaml-mediatypes-01</a></p>
 </li>
             </ul>
 </li>
@@ -1279,36 +1287,51 @@ in this document are to be interpreted as in <span>[<a href="#YAML" class="xref"
         <h3 id="name-fragment-identification">
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-fragment-identification" class="section-name selfRef">Fragment identification</a>
         </h3>
-<p id="section-1.2-1">This section describes how to use
+<p id="section-1.2-1">A fragment identifier starting with "*"
+is to be interpreted as a YAML alias node <a href="#fragment-alias-node" class="xref">Section 1.2.1</a>.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<p id="section-1.2-2">A fragment identifier that is empty
+or that starts with "/"
+is to be interpreted as a JSON Pointer <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>
+and is evaluated on the YAML representation graph,
+walking through alias nodes;
+this syntax can only reference YAML nodes that are
+on a path that is made up of nodes interoperable with
+the JSON data model (see <a href="#int-yaml-and-json" class="xref">Section 3.2</a>).<a href="#section-1.2-2" class="pilcrow">¶</a></p>
+<p id="section-1.2-3">A fragment identifier is not guaranteed to reference an existing node.
+Therefore, applications SHOULD define how an unresolved alias node
+ought to be handled.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
+<div id="fragment-alias-node">
+<section id="section-1.2.1">
+          <h4 id="name-fragment-identification-via">
+<a href="#section-1.2.1" class="section-number selfRef">1.2.1. </a><a href="#name-fragment-identification-via" class="section-name selfRef">Fragment identification via alias nodes</a>
+          </h4>
+<p id="section-1.2.1-1">This section describes how to use
 alias nodes (see Section 3.2.2.2 and 7.1 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>)
-as fragment identifiers to designate nodes.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
-<p id="section-1.2-2">A YAML alias node can be represented in a URI fragment identifier
+as fragment identifiers to designate nodes.<a href="#section-1.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.2.1-2">A YAML alias node can be represented in a URI fragment identifier
 by encoding it into bytes using UTF-8 <span>[<a href="#UTF-8" class="xref">UTF-8</a>]</span>,
 while percent-encoding those characters not allowed by the fragment rule
-in <span><a href="https://rfc-editor.org/rfc/rfc3986#section-3.5" class="relref">Section 3.5</a> of [<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
-<p id="section-1.2-3">If multiple nodes would match a fragment identifier,
-the first such match is selected.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
-<p id="section-1.2-4">A fragment identifier is not guaranteed to reference an existing node.
-Therefore, applications SHOULD define how an unresolved alias node
-ought to be handled.<a href="#section-1.2-4" class="pilcrow">¶</a></p>
-<p id="section-1.2-5">Users concerned with interoperability of fragment identifiers:<a href="#section-1.2-5" class="pilcrow">¶</a></p>
+in <span><a href="https://rfc-editor.org/rfc/rfc3986#section-3.5" class="relref">Section 3.5</a> of [<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-1.2.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.2.1-3">If multiple nodes would match a fragment identifier,
+the first such match is selected.<a href="#section-1.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-1.2.1-4">Users concerned with interoperability of fragment identifiers:<a href="#section-1.2.1-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1.2-6.1">SHOULD limit alias nodes to a set of characters
+<li class="normal" id="section-1.2.1-5.1">SHOULD limit alias nodes to a set of characters
 that do not require encoding
 to be expressed as URI fragment identifiers:
 this is generally possible since
 named anchors are a serialization
-detail;<a href="#section-1.2-6.1" class="pilcrow">¶</a>
+detail;<a href="#section-1.2.1-5.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.2-6.2">SHOULD NOT use alias nodes that match multiple nodes.<a href="#section-1.2-6.2" class="pilcrow">¶</a>
+            <li class="normal" id="section-1.2.1-5.2">SHOULD NOT use alias nodes that match multiple nodes.<a href="#section-1.2.1-5.2" class="pilcrow">¶</a>
 </li>
-        </ul>
-<p id="section-1.2-7">In the example resource below, the URL <code>file.yaml#*foo</code>
+          </ul>
+<p id="section-1.2.1-6">In the example resource below, the URL <code>file.yaml#*foo</code>
 references the alias node <code>*foo</code> pointing to the node with value <code>scalar</code>;
 whereas
 the URL <code>file.yaml#*bar</code> references the alias node <code>*bar</code> pointing to the node
-with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2-7" class="pilcrow">¶</a></p>
-<div id="section-1.2-8">
+with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2.1-6" class="pilcrow">¶</a></p>
+<div id="section-1.2.1-7">
 <pre class="lang-example sourcecode">
  %YAML 1.2
  ---
@@ -1317,7 +1340,9 @@ with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2-7" class
    - some
    - sequence
    - items
-</pre><a href="#section-1.2-8" class="pilcrow">¶</a>
+</pre><a href="#section-1.2.1-7" class="pilcrow">¶</a>
+</div>
+</section>
 </div>
 </section>
 </div>
@@ -1391,17 +1416,7 @@ data types of dynamic programming languages.<a href="#section-2.1-3.12.1" class=
 <span class="break"></span><dl class="dlParallel" id="section-2.1-4">
           <dt id="section-2.1-4.1">Fragment identifier considerations:</dt>
           <dd style="margin-left: 1.5em" id="section-2.1-4.2">
-            <p id="section-2.1-4.2.1">An empty fragment identifier references
-the root node.<a href="#section-2.1-4.2.1" class="pilcrow">¶</a></p>
-<p id="section-2.1-4.2.2">A fragment identifier starting with "*"
-is to be interpreted as a YAML alias node <a href="#application-yaml-fragment" class="xref">Section 1.2</a>.<a href="#section-2.1-4.2.2" class="pilcrow">¶</a></p>
-<p id="section-2.1-4.2.3">A fragment identifier starting with "/"
-is to be interpreted as a JSON Pointer <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>
-and is evaluated on the YAML representation graph,
-walking through alias nodes;
-this syntax can only reference YAML nodes that are
-on a path that is made up of nodes interoperable with
-the JSON data model (see <a href="#int-yaml-and-json" class="xref">Section 3.2</a>).<a href="#section-2.1-4.2.3" class="pilcrow">¶</a></p>
+            <p id="section-2.1-4.2.1">See <a href="#application-yaml-fragment" class="xref">Section 1.2</a><a href="#section-2.1-4.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1976,12 +1991,46 @@ This has some security implications too
         <dd class="break"></dd>
 <dt id="appendix-C-2.3">Q: Why using alias nodes as fragment identifiers?</dt>
         <dd style="margin-left: 1.5em" id="appendix-C-2.4">
-          <p id="appendix-C-2.4.1">Alias nodes starts with <code>*</code>. This allow to distinguish
+          <p id="appendix-C-2.4.1">Alias nodes are a native YAML feature that allows
+addressing any node in a document.
+Since YAML is not limited to string keywords,
+not all nodes are addressable using JSON Pointers.
+Alias nodes are thus the natural choice for fragment identifiers
+<a href="#application-yaml-fragment" class="xref">Section 1.2</a>.<a href="#appendix-C-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="appendix-C-2.5">Q: Why not use plain names for alias nodes? Why not define plain names?</dt>
+        <dd style="margin-left: 1.5em" id="appendix-C-2.6">
+          <p id="appendix-C-2.6.1">Using plain name fragments could have
+limited the ability of future xxx+yaml
+media types to define their plain name fragments.
+Moreover, alias nodes starts with <code>*</code> so we found no reason
+to strip it when using them in fragments.<a href="#appendix-C-2.6.1" class="pilcrow">¶</a></p>
+<p id="appendix-C-2.6.2">Preserving <code>*</code> had another positive result:
+it allows distinguishing
 a fragment identifier expressed as an alias node from
-one expressed in JSON Pointer <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>
+one expressed in other formats.
+In this document we included JSON Pointer <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>
 which is expected to start with <code>/</code>.
-Moreover, since json-path <span>[<a href="#I-D.ietf-jsonpath-base" class="xref">I-D.ietf-jsonpath-base</a>]</span> expressions
-start with <code>$</code>, this mechanism is even extensible that specification.<a href="#appendix-C-2.4.1" class="pilcrow">¶</a></p>
+Moreover, since JSON Path <span>[<a href="#I-D.ietf-jsonpath-base" class="xref">I-D.ietf-jsonpath-base</a>]</span> expressions
+start with <code>$</code>, this mechanism can be extended to JSON Path too.<a href="#appendix-C-2.6.2" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="appendix-C-2.7">Q: Why not just use JSON Pointer as the primary fragment identifier?</dt>
+        <dd style="margin-left: 1.5em" id="appendix-C-2.8">
+          <p id="appendix-C-2.8.1">Fragment identifiers in YAML always reference
+YAML representation graph nodes.
+JSON Pointer can only rely on string keywords so
+it is not able to reference a generic node in the
+representation graph.<a href="#appendix-C-2.8.1" class="pilcrow">¶</a></p>
+<p id="appendix-C-2.8.2">Since JSON Pointer is a document unrelated to YAML,
+we decided to isolate the impacts of changes in JSON Pointer
+on YAML fragments:
+only fragments starting with "/" are "delegated" to an external spec,
+and if <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span> changes, it will only affect fragments starting with "/".<a href="#appendix-C-2.8.2" class="pilcrow">¶</a></p>
+<p id="appendix-C-2.8.3">The current behaviour for empty fragments is the same
+for both JSON Pointer and alias nodes.
+Incidentally, it's the only sensible behaviour independently of <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>.<a href="#appendix-C-2.8.3" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1993,13 +2042,24 @@ start with <code>$</code>, this mechanism is even extensible that specification.
 <a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
 <p id="appendix-D-1">This section is to be removed before publishing as an RFC.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
-<div id="since-draft-ietf-httpapi-yaml-mediatypes-01">
+<div id="since-draft-ietf-httpapi-yaml-mediatypes-02">
 <section id="appendix-D.1">
         <h3 id="name-since-draft-ietf-httpapi-ya">
-<a href="#name-since-draft-ietf-httpapi-ya" class="section-name selfRef">Since draft-ietf-httpapi-yaml-mediatypes-01</a>
+<a href="#name-since-draft-ietf-httpapi-ya" class="section-name selfRef">Since draft-ietf-httpapi-yaml-mediatypes-02</a>
         </h3>
 <ul class="normal">
-<li class="normal" id="appendix-D.1-1.1">application/yaml fragment identifiers compatible with JSON Pointer #41 (#47).<a href="#appendix-D.1-1.1" class="pilcrow">¶</a>
+<li class="normal" id="appendix-D.1-1.1">clarification on fragment identifiers #50.<a href="#appendix-D.1-1.1" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+<div id="since-draft-ietf-httpapi-yaml-mediatypes-01">
+<section id="appendix-D.2">
+        <h3 id="name-since-draft-ietf-httpapi-yam">
+<a href="#name-since-draft-ietf-httpapi-yam" class="section-name selfRef">Since draft-ietf-httpapi-yaml-mediatypes-01</a>
+        </h3>
+<ul class="normal">
+<li class="normal" id="appendix-D.2-1.1">application/yaml fragment identifiers compatible with JSON Pointer #41 (#47).<a href="#appendix-D.2-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
