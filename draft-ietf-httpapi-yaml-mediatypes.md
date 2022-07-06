@@ -84,7 +84,8 @@ The source code and issues list for this draft can be found at
 
 YAML [YAML] is a data serialization format
 that is capable of conveying multiple independent
-documents in a single presentation stream.
+documents in a single presentation stream
+(e.g. a file or a network resource).
 It is widely used on the Internet,
 including in the API sector (e.g. see [OAS]),
 but the relevant media type and structured syntax suffix previously had not been registered by IANA.
