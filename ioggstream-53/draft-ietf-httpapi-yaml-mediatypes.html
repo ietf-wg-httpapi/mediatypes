@@ -1251,7 +1251,7 @@ mailing list (httpapi@ietf.org), which is archived at
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">YAML <span>[<a href="#YAML" class="xref">YAML</a>]</span> is a data serialization format
-that is capable of conveying one or multiple independent
+that is capable of conveying one or multiple
 documents in a single presentation stream
 (e.g. a file or a network resource).
 It is widely used on the Internet,
@@ -1295,11 +1295,11 @@ in this document are to be interpreted as in <span>[<a href="#YAML" class="xref"
         <h3 id="name-fragment-identification">
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-fragment-identification" class="section-name selfRef">Fragment identification</a>
         </h3>
-<p id="section-1.2-1">Fragment identifiers only apply to YAML streams
-containing a single document.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<p id="section-1.2-1">A fragment identifies a node in a stream.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
 <p id="section-1.2-2">A fragment identifier starting with "*"
 is to be interpreted as a YAML alias node <a href="#fragment-alias-node" class="xref">Section 1.2.1</a>.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
-<p id="section-1.2-3">A fragment identifier that is empty
+<p id="section-1.2-3">For single-document YAML streams,
+a fragment identifier that is empty
 or that starts with "/"
 is to be interpreted as a JSON Pointer <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>
 and is evaluated on the YAML representation graph,
@@ -1339,11 +1339,12 @@ detail;<a href="#section-1.2.1-5.1" class="pilcrow">¶</a>
 </li>
           </ul>
 <p id="section-1.2.1-6">In the example resource below, the URL <code>file.yaml#*foo</code>
-references the alias node <code>*foo</code> pointing to the node with value <code>scalar</code>;
+references the first alias node <code>*foo</code> pointing to the node with value <code>scalar</code>
+and not the one in the second document;
 whereas
-the URL <code>file.yaml#*bar</code> references the alias node <code>*bar</code> pointing to the node
-with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2.1-6" class="pilcrow">¶</a></p>
-<span id="name-a-yaml-stream-containing-on"></span><figure id="figure-1">
+the URL <code>file.yaml#*document_2</code> references the root node
+of the second document <code>{ one: [a, sequence]}</code>.<a href="#section-1.2.1-6" class="pilcrow">¶</a></p>
+<span id="name-a-yaml-stream-containing-tw"></span><figure id="figure-1">
             <div id="section-1.2.1-7.1">
 <pre class="lang-example sourcecode">
  %YAML 1.2
@@ -1353,10 +1354,15 @@ with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2.1-6" cla
    - some
    - sequence
    - items
+ ...
+ %YAML 1.2
+ ---
+ &amp;document_2
+ one: &amp;foo [a, sequence]
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
-<a href="#name-a-yaml-stream-containing-on" class="selfRef">A YAML stream containing one YAML document.</a>
+<a href="#name-a-yaml-stream-containing-tw" class="selfRef">A YAML stream containing two YAML documents.</a>
             </figcaption></figure>
 </section>
 </div>
@@ -1583,6 +1589,8 @@ YAML documents.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 an application that only expects one-document
 streams, ought to signal an error
 instead of ignoring the extra documents.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Current implementations consider different
+documents in a stream independent.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="int-yaml-and-json">
