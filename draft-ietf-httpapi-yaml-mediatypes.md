@@ -83,7 +83,7 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 YAML [YAML] is a data serialization format
-that is capable of conveying one or multiple independent
+that is capable of conveying one or multiple
 documents in a single presentation stream
 (e.g. a file or a network resource).
 It is widely used on the Internet,
@@ -121,13 +121,13 @@ in this document are to be interpreted as in [YAML].
 
 ## Fragment identification {#application-yaml-fragment}
 
-Fragment identifiers only apply to YAML streams
-containing a single document.
+A fragment identifies a node in a stream.
 
 A fragment identifier starting with "*"
 is to be interpreted as a YAML alias node {{fragment-alias-node}}.
 
-A fragment identifier that is empty
+For single-document YAML streams,
+a fragment identifier that is empty
 or that starts with "/"
 is to be interpreted as a JSON Pointer {{JSON-POINTER}}
 and is evaluated on the YAML representation graph,
@@ -167,10 +167,11 @@ Users concerned with interoperability of fragment identifiers:
 - SHOULD NOT use alias nodes that match multiple nodes.
 
 In the example resource below, the URL `file.yaml#*foo`
-references the alias node `*foo` pointing to the node with value `scalar`;
+references the first alias node `*foo` pointing to the node with value `scalar`
+and not the one in the second document;
 whereas
-the URL `file.yaml#*bar` references the alias node `*bar` pointing to the node
-with value `[ some, sequence, items ]`.
+the URL `file.yaml#*document_2` references the root node
+of the second document `{ one: [a, sequence]}`.
 
 ~~~ example
  %YAML 1.2
@@ -180,8 +181,13 @@ with value `[ some, sequence, items ]`.
    - some
    - sequence
    - items
+ ...
+ %YAML 1.2
+ ---
+ &document_2
+ one: &foo [a, sequence]
 ~~~
-{: title="A YAML stream containing one YAML document." }
+{: title="A YAML stream containing two YAML documents." }
 
 # Media Type and Structured Syntax Suffix registrations
 
@@ -337,6 +343,9 @@ When receiving a multi-document stream,
 an application that only expects one-document
 streams, ought to signal an error
 instead of ignoring the extra documents.
+
+Current implementations consider different
+documents in a stream independent.
 
 ## YAML and JSON {#int-yaml-and-json}
 
