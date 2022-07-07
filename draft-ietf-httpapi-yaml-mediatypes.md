@@ -83,7 +83,7 @@ The source code and issues list for this draft can be found at
 # Introduction
 
 YAML [YAML] is a data serialization format
-that is capable of conveying multiple independent
+that is capable of conveying one or multiple independent
 documents in a single presentation stream
 (e.g. a file or a network resource).
 It is widely used on the Internet,
@@ -132,7 +132,7 @@ or that starts with "/"
 is to be interpreted as a JSON Pointer {{JSON-POINTER}}
 and is evaluated on the YAML representation graph,
 walking through alias nodes;
-in particular, the emtpy fragment identifier
+in particular, the empty fragment identifier
 references the root node.
 This syntax can only reference the YAML nodes that are
 on a path that is made up of nodes interoperable with
