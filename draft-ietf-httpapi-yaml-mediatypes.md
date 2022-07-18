@@ -485,6 +485,18 @@ to carefully test the implementation you are going to use.
 The same considerations apply when serializing a YAML representation graph
 in a format that does not support reference cycles (see {{int-yaml-and-json}}).
 
+
+## YAML streams
+
+Incremental parsing and processing of a YAML stream can produce partial results
+and later indicate failure to parse the remainder of the stream;
+to prevent partial processing, implementers might prefer validating all the documents in a stream beforehand.
+
+Repeated parsing and re-encoding of a YAML stream can result
+in the addition or removal of document delimiters (e.g. `---` or `...`)
+as well as the modification of anchor names and other serialization details:
+this can break signature validation.
+
 # IANA Considerations
 
 This specification defines the following new Internet media type {{MEDIATYPE}}.
