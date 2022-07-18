@@ -5,10 +5,10 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                                  E. Wilde
-Expires: 15 January 2023                                           Axway
+Expires: 19 January 2023                                           Axway
                                                                   E. Aro
                                                                  Mozilla
-                                                            14 July 2022
+                                                            18 July 2022
 
 
                             YAML Media Type
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 January 2023.
+   This Internet-Draft will expire on 19 January 2023.
 
 Copyright Notice
 
@@ -310,7 +310,9 @@ Table of Contents
    ignoring the extra documents.
 
    Current implementations consider different documents in a stream
-   independent.
+   independent, similarly to JSON Text Sequences (see [RFC7464]);
+   elements such as anchors are not guaranteed to be referenceable
+   across different documents.
 
 3.3.  YAML and JSON
 
@@ -557,6 +559,10 @@ Table of Contents
               Draft, draft-ietf-jsonpath-base-05, 25 April 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-
               jsonpath-base-05>.
+
+   [RFC7464]  Williams, N., "JavaScript Object Notation (JSON) Text
+              Sequences", RFC 7464, DOI 10.17487/RFC7464, February 2015,
+              <https://www.rfc-editor.org/rfc/rfc7464>.
 
 Appendix A.  Examples related to fragment identifier interoperability
 
