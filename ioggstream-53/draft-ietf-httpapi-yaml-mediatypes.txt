@@ -80,6 +80,7 @@ Table of Contents
    4.  Security Considerations
      4.1.  Arbitrary Code Execution
      4.2.  Resource Exhaustion
+     4.3.  YAML streams
    5.  IANA Considerations
    6.  References
      6.1.  Normative References
@@ -455,6 +456,18 @@ Table of Contents
    going to use.  The same considerations apply when serializing a YAML
    representation graph in a format that does not support reference
    cycles (see Section 3.3).
+
+4.3.  YAML streams
+
+   Incremental parsing and processing of a YAML stream can produce
+   partial results and later indicate failure to parse the remainder of
+   the stream; to prevent partial processing, implementers might prefer
+   validating all the documents in a stream beforehand.
+
+   Repeated parsing and re-encoding of a YAML stream can result in the
+   addition or removal of document delimiters (e.g. --- or ...) as well
+   as the modification of anchor names and other serialization details:
+   this can break signature validation.
 
 5.  IANA Considerations
 
