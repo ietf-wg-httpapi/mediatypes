@@ -336,16 +336,17 @@ can specify it in YAML documents using the `%YAML` directive
 
 ## YAML streams {#int-yaml-streams}
 
-A YAML stream can contain zero or more
-YAML documents.
+A YAML stream can contain zero or more YAML documents.
 
 When receiving a multi-document stream,
-an application that only expects one-document
-streams, ought to signal an error
-instead of ignoring the extra documents.
+an application that only expects one-document streams,
+ought to signal an error instead of ignoring the extra documents.
 
-Current implementations consider different
-documents in a stream independent.
+Current implementations consider different documents in a stream independent,
+similarly to JSON Text Sequences (see {{?RFC7464}});
+elements such as anchors are not guaranteed to be referenceable
+across different documents.
+
 
 ## YAML and JSON {#int-yaml-and-json}
 
