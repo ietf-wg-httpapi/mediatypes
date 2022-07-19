@@ -1035,7 +1035,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Polli, et al.</td>
-<td class="center">Expires 7 January 2023</td>
+<td class="center">Expires 20 January 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1048,12 +1048,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-httpapi-yaml-mediatypes-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-07-06" class="published">6 July 2022</time>
+<time datetime="2022-07-19" class="published">19 July 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-01-07">7 January 2023</time></dd>
+<dd class="expires"><time datetime="2023-01-20">20 January 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1109,7 +1109,7 @@ mailing list (httpapi@ietf.org), which is archived at
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 January 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 20 January 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1172,10 +1172,13 @@ mailing list (httpapi@ietf.org), which is archived at
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-yaml-is-an-evolving-languag" class="xref">YAML is an Evolving Language</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-yaml-and-json" class="xref">YAML and JSON</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-yaml-streams" class="xref">YAML streams</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-fragment-identifiers" class="xref">Fragment identifiers</a></p>
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-yaml-and-json" class="xref">YAML and JSON</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-fragment-identifiers" class="xref">Fragment identifiers</a></p>
 </li>
             </ul>
 </li>
@@ -1187,6 +1190,9 @@ mailing list (httpapi@ietf.org), which is archived at
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-resource-exhaustion" class="xref">Resource Exhaustion</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-yaml-streams-2" class="xref">YAML streams</a></p>
 </li>
             </ul>
 </li>
@@ -1247,10 +1253,14 @@ mailing list (httpapi@ietf.org), which is archived at
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">YAML <span>[<a href="#YAML" class="xref">YAML</a>]</span> is a data serialization format that is widely used on the Internet,
+<p id="section-1-1">YAML <span>[<a href="#YAML" class="xref">YAML</a>]</span> is a data serialization format
+that is capable of conveying one or multiple
+documents in a single presentation stream
+(e.g. a file or a network resource).
+It is widely used on the Internet,
 including in the API sector (e.g. see <span>[<a href="#OAS" class="xref">OAS</a>]</span>),
 but the relevant media type and structured syntax suffix previously had not been registered by IANA.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">To increase interoperability when exchanging YAML data
+<p id="section-1-2">To increase interoperability when exchanging YAML streams,
 and leverage content negotiation mechanisms when exchanging
 YAML resources,
 this specification
@@ -1278,7 +1288,8 @@ and "user agent"
 in this document are to be interpreted as in <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 <p id="section-1.1-4">The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in <span>[<a href="#URI" class="xref">URI</a>]</span>.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
-<p id="section-1.1-5">The terms "node", "alias node", "anchor" and "named anchor"
+<p id="section-1.1-5">The terms "presentation", "stream", "YAML document", "representation graph",
+"node", "alias node", "anchor" and "named anchor"
 in this document are to be interpreted as in <span>[<a href="#YAML" class="xref">YAML</a>]</span>.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1287,19 +1298,23 @@ in this document are to be interpreted as in <span>[<a href="#YAML" class="xref"
         <h3 id="name-fragment-identification">
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-fragment-identification" class="section-name selfRef">Fragment identification</a>
         </h3>
-<p id="section-1.2-1">A fragment identifier starting with "*"
-is to be interpreted as a YAML alias node <a href="#fragment-alias-node" class="xref">Section 1.2.1</a>.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
-<p id="section-1.2-2">A fragment identifier that is empty
+<p id="section-1.2-1">A fragment identifies a node in a stream.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<p id="section-1.2-2">A fragment identifier starting with "*"
+is to be interpreted as a YAML alias node <a href="#fragment-alias-node" class="xref">Section 1.2.1</a>.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
+<p id="section-1.2-3">For single-document YAML streams,
+a fragment identifier that is empty
 or that starts with "/"
 is to be interpreted as a JSON Pointer <span>[<a href="#JSON-POINTER" class="xref">JSON-POINTER</a>]</span>
 and is evaluated on the YAML representation graph,
 walking through alias nodes;
-this syntax can only reference YAML nodes that are
+in particular, the empty fragment identifier
+references the root node.
+This syntax can only reference the YAML nodes that are
 on a path that is made up of nodes interoperable with
-the JSON data model (see <a href="#int-yaml-and-json" class="xref">Section 3.2</a>).<a href="#section-1.2-2" class="pilcrow">¶</a></p>
-<p id="section-1.2-3">A fragment identifier is not guaranteed to reference an existing node.
+the JSON data model (see <a href="#int-yaml-and-json" class="xref">Section 3.3</a>).<a href="#section-1.2-3" class="pilcrow">¶</a></p>
+<p id="section-1.2-4">A fragment identifier is not guaranteed to reference an existing node.
 Therefore, applications SHOULD define how an unresolved alias node
-ought to be handled.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
+ought to be handled.<a href="#section-1.2-4" class="pilcrow">¶</a></p>
 <div id="fragment-alias-node">
 <section id="section-1.2.1">
           <h4 id="name-fragment-identification-via">
@@ -1327,11 +1342,13 @@ detail;<a href="#section-1.2.1-5.1" class="pilcrow">¶</a>
 </li>
           </ul>
 <p id="section-1.2.1-6">In the example resource below, the URL <code>file.yaml#*foo</code>
-references the alias node <code>*foo</code> pointing to the node with value <code>scalar</code>;
+references the first alias node <code>*foo</code> pointing to the node with value <code>scalar</code>
+and not the one in the second document;
 whereas
-the URL <code>file.yaml#*bar</code> references the alias node <code>*bar</code> pointing to the node
-with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2.1-6" class="pilcrow">¶</a></p>
-<div id="section-1.2.1-7">
+the URL <code>file.yaml#*document_2</code> references the root node
+of the second document <code>{ one: [a, sequence]}</code>.<a href="#section-1.2.1-6" class="pilcrow">¶</a></p>
+<span id="name-a-yaml-stream-containing-tw"></span><figure id="figure-1">
+            <div id="section-1.2.1-7.1">
 <pre class="lang-example sourcecode">
  %YAML 1.2
  ---
@@ -1340,8 +1357,16 @@ with value <code>[ some, sequence, items ]</code>.<a href="#section-1.2.1-6" cla
    - some
    - sequence
    - items
-</pre><a href="#section-1.2.1-7" class="pilcrow">¶</a>
+ ...
+ %YAML 1.2
+ ---
+ &amp;document_2
+ one: &amp;foo [a, sequence]
+</pre>
 </div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-a-yaml-stream-containing-tw" class="selfRef">A YAML stream containing two YAML documents.</a>
+            </figcaption></figure>
 </section>
 </div>
 </section>
@@ -1552,27 +1577,42 @@ some features have been added and others removed.<a href="#section-3.1-1" class=
 the media type registration does not imply a specific version.
 This allows content negotiation of version-independent YAML resources.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">Implementers concerned about features related to a specific YAML version
-can specify it in documents using the <code>%YAML</code> directive
+can specify it in YAML documents using the <code>%YAML</code> directive
 (see Section 6.8.1 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>).<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="int-yaml-and-json">
+<div id="int-yaml-streams">
 <section id="section-3.2">
-        <h3 id="name-yaml-and-json">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-yaml-and-json" class="section-name selfRef">YAML and JSON</a>
+        <h3 id="name-yaml-streams">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-yaml-streams" class="section-name selfRef">YAML streams</a>
         </h3>
-<p id="section-3.2-1">When using flow collection styles (see Section 7.4 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>)
+<p id="section-3.2-1">A YAML stream can contain zero or more YAML documents.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">When receiving a multi-document stream,
+an application that only expects one-document streams,
+ought to signal an error instead of ignoring the extra documents.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Current implementations consider different documents in a stream independent,
+similarly to JSON Text Sequences (see <span>[<a href="#RFC7464" class="xref">RFC7464</a>]</span>);
+elements such as anchors are not guaranteed to be referenceable
+across different documents.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="int-yaml-and-json">
+<section id="section-3.3">
+        <h3 id="name-yaml-and-json">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-yaml-and-json" class="section-name selfRef">YAML and JSON</a>
+        </h3>
+<p id="section-3.3-1">When using flow collection styles (see Section 7.4 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>)
 a YAML document could look like JSON <span>[<a href="#JSON" class="xref">JSON</a>]</span>,
-thus similar interoperability considerations apply.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">When using YAML as a more efficient format
+thus similar interoperability considerations apply.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">When using YAML as a more efficient format
 to serialize information intended to be consumed as JSON,
 information can be discarded:
 this includes comments (see Section 3.2.3.3 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>)
 and alias nodes (see Section 7.1 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>),
-that do not have a JSON counterpart.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+that do not have a JSON counterpart.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
 <span id="name-json-replaces-alias-nodes-w"></span><div id="example-json-discards-information">
-<figure id="figure-1">
-          <div id="section-3.2-3.1">
+<figure id="figure-2">
+          <div id="section-3.3-3.1">
 <pre class="lang-example sourcecode">
 # This comment will be lost
 # when serializing in JSON.
@@ -1585,78 +1625,83 @@ Name:
   maxLength: *text_limit  # Replaced by the value 64.
 </pre>
 </div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-json-replaces-alias-nodes-w" class="selfRef">JSON replaces alias nodes with static values.</a>
           </figcaption></figure>
 </div>
-<p id="section-3.2-4">Implementers need to ensure that relevant
+<p id="section-3.3-4">Implementers need to ensure that relevant
 information will not be lost during the processing.
 For example, they might consider acceptable
-that alias nodes are replaced by static values.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
-<p id="section-3.2-5">In some cases an implementer may want to
+that alias nodes are replaced by static values.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.3-5">In some cases an implementer may want to
 define a list of allowed YAML features,
 taking into account that the following ones
 might have interoperability
-issues with JSON:<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+issues with JSON:<a href="#section-3.3-5" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-6.1">non UTF-8 encoding, since YAML supports UTF-16 and UTF-32 in addition to UTF-8;<a href="#section-3.2-6.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.3-6.1">multi-document YAML streams;<a href="#section-3.3-6.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-6.2">mapping keys that are not strings;<a href="#section-3.2-6.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.3-6.2">non UTF-8 encoding, since YAML supports UTF-16 and UTF-32 in addition to UTF-8;<a href="#section-3.3-6.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-6.3">circular references represented using anchor (see <a href="#sec-yaml-exhaustion" class="xref">Section 4.2</a>
-and <a href="#example-yaml-cyclic" class="xref">Figure 3</a>);<a href="#section-3.2-6.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.3-6.3">mapping keys that are not strings;<a href="#section-3.3-6.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-6.4">
-            <code>.inf</code> and <code>.nan</code> float values, since JSON does not support them;<a href="#section-3.2-6.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.3-6.4">circular references represented using anchor (see <a href="#sec-yaml-exhaustion" class="xref">Section 4.2</a>
+and <a href="#example-yaml-cyclic" class="xref">Figure 4</a>);<a href="#section-3.3-6.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-6.5">non-JSON types,
+          <li class="normal" id="section-3.3-6.5">
+            <code>.inf</code> and <code>.nan</code> float values, since JSON does not support them;<a href="#section-3.3-6.5" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-3.3-6.6">non-JSON types,
 including the ones associated with tags like <code>!!timestamp</code>
-that were included in the default schema of older YAML versions;<a href="#section-3.2-6.5" class="pilcrow">¶</a>
+that were included in the default schema of older YAML versions;<a href="#section-3.3-6.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-6.6">tags in general, and specifically the ones that do not map
+          <li class="normal" id="section-3.3-6.7">tags in general, and specifically the ones that do not map
 to JSON types like
 custom and local tags such as <code>!!python/object</code> and
-<code>!mytag</code> (see Section 2.4 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>);<a href="#section-3.2-6.6" class="pilcrow">¶</a>
+<code>!mytag</code> (see Section 2.4 of <span>[<a href="#YAML" class="xref">YAML</a>]</span>);<a href="#section-3.3-6.7" class="pilcrow">¶</a>
 </li>
         </ul>
-<span id="name-example-of-mapping-keys-not"></span><div id="example-unsupported-keys">
-<figure id="figure-2">
-          <div id="section-3.2-7.1">
+<span id="name-example-of-mapping-keys-and"></span><div id="example-unsupported-keys">
+<figure id="figure-3">
+          <div id="section-3.3-7.1">
 <pre class="lang-example sourcecode">
  %YAML 1.2
  ---
  non-json-keys:
    0: a number
-   2020-01-01: a timestamp
    [0, 1]: a sequence
    ? {k: v}
    : a map
- non-json-value: 2020-01-01
+ ---
+ non-json-keys:
+   !date 2020-01-01: a timestamp
+ non-json-value: !date 2020-01-01
+ ...
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-example-of-mapping-keys-not" class="selfRef">Example of mapping keys not supported in JSON</a>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-example-of-mapping-keys-and" class="selfRef">Example of mapping keys and values not supported in JSON in a multi-document YAML stream</a>
           </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="int-fragment">
-<section id="section-3.3">
+<section id="section-3.4">
         <h3 id="name-fragment-identifiers">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-fragment-identifiers" class="section-name selfRef">Fragment identifiers</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-fragment-identifiers" class="section-name selfRef">Fragment identifiers</a>
         </h3>
-<p id="section-3.3-1">To allow fragment identifiers to traverse alias nodes,
+<p id="section-3.4-1">To allow fragment identifiers to traverse alias nodes,
 the YAML representation graph needs to be generated before the fragment identifier evaluation.
-It is important that this evaluation will not cause the issues mentioned in <a href="#int-yaml-and-json" class="xref">Section 3.2</a>
-and in <span><a href="#security-considerations" class="xref">Security considerations</a> (<a href="#security-considerations" class="xref">Section 4</a>)</span> such as infinite loops and unexpected code execution.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">Implementers need to consider that the YAML version and supported features (e.g. merge keys)
-can impact on the generation of the representation graph (see <a href="#example-merge-keys" class="xref">Figure 8</a>).<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.3-3">In <a href="#application-yaml" class="xref">Section 2.1</a>, this document extends the use of specifications based on
+It is important that this evaluation will not cause the issues mentioned in <a href="#int-yaml-and-json" class="xref">Section 3.3</a>
+and in <span><a href="#security-considerations" class="xref">Security considerations</a> (<a href="#security-considerations" class="xref">Section 4</a>)</span> such as infinite loops and unexpected code execution.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">Implementers need to consider that the YAML version and supported features (e.g. merge keys)
+can impact on the generation of the representation graph (see <a href="#example-merge-keys" class="xref">Figure 9</a>).<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">In <a href="#application-yaml" class="xref">Section 2.1</a>, this document extends the use of specifications based on
 the JSON data model with support for YAML fragment identifiers.
 This is to improve the interoperability of already consolidated practices,
-such as the one of writing <span><a href="#OAS" class="xref">OpenAPI documents</a> [<a href="#OAS" class="xref">OAS</a>]</span> in YAML.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-<p id="section-3.3-4"><a href="#ex-fragid" class="xref">Appendix A</a> provides a non-exhaustive list of examples that could help
-understand interoperability issues related to fragment identifiers.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+such as the one of writing <span><a href="#OAS" class="xref">OpenAPI documents</a> [<a href="#OAS" class="xref">OAS</a>]</span> in YAML.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
+<p id="section-3.4-4"><a href="#ex-fragid" class="xref">Appendix A</a> provides a non-exhaustive list of examples that could help
+understand interoperability issues related to fragment identifiers.<a href="#section-3.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1700,21 +1745,21 @@ for example:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <span id="name-a-cyclic-document"></span><div id="example-yaml-cyclic">
-<figure id="figure-3">
+<figure id="figure-4">
           <div id="section-4.2-3.1">
 <pre class="lang-yaml sourcecode">
 x: &amp;x
   y: *x
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-a-cyclic-document" class="selfRef">A cyclic document</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-4">Even if a document is not cyclic, treating it as a simple tree could lead to improper behaviors
+<p id="section-4.2-4">Even if a representaion graph is not cyclic, treating it as a simple tree could lead to improper behaviors
 (such as the "billion laughs" problem).<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <span id="name-a-billion-laughs-document"></span><div id="example-yaml-1e9lol">
-<figure id="figure-4">
+<figure id="figure-5">
           <div id="section-4.2-5.1">
 <pre class="lang-yaml sourcecode">
 x1: &amp;a1 ["a", "a"]
@@ -1722,7 +1767,7 @@ x2: &amp;a2 [*a1, *a1]
 x3: &amp;a3 [*a2, *a2]
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-a-billion-laughs-document" class="selfRef">A billion laughs document</a>
           </figcaption></figure>
 </div>
@@ -1731,7 +1776,21 @@ and validating the input before processing it;
 even in these cases it is important
 to carefully test the implementation you are going to use.
 The same considerations apply when serializing a YAML representation graph
-in a format that does not support reference cycles (see <a href="#int-yaml-and-json" class="xref">Section 3.2</a>).<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+in a format that does not support reference cycles (see <a href="#int-yaml-and-json" class="xref">Section 3.3</a>).<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="yaml-streams">
+<section id="section-4.3">
+        <h3 id="name-yaml-streams-2">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-yaml-streams-2" class="section-name selfRef">YAML streams</a>
+        </h3>
+<p id="section-4.3-1">Incremental parsing and processing of a YAML stream can produce partial results
+and later indicate failure to parse the remainder of the stream;
+to prevent partial processing, implementers might prefer validating all the documents in a stream beforehand.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">Repeated parsing and re-encoding of a YAML stream can result
+in the addition or removal of document delimiters (e.g. <code>---</code> or <code>...</code>)
+as well as the modification of anchor names and other serialization details:
+this can break signature validation.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1845,8 +1904,12 @@ with the registration information provided below.<a href="#section-5-4" class="p
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-jsonpath-base">[I-D.ietf-jsonpath-base]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Gössner, S.</span>, <span class="refAuthor">Normington, G.</span>, and <span class="refAuthor">C. Bormann</span>, <span class="refTitle">"JSONPath: Query expressions for JSON"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jsonpath-base-05</span>, <time datetime="2022-04-25" class="refDate">25 April 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jsonpath-base-05">https://datatracker.ietf.org/doc/html/draft-ietf-jsonpath-base-05</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7464">[RFC7464]</dt>
+      <dd>
+<span class="refAuthor">Williams, N.</span>, <span class="refTitle">"JavaScript Object Notation (JSON) Text Sequences"</span>, <span class="seriesInfo">RFC 7464</span>, <span class="seriesInfo">DOI 10.17487/RFC7464</span>, <time datetime="2015-02" class="refDate">February 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7464">https://www.rfc-editor.org/rfc/rfc7464</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1865,7 +1928,7 @@ with the registration information provided below.<a href="#section-5-4" class="p
 based on the JSON data model
 since their mapping keys are not strings.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-yaml-nodes-that-"></span><div id="example-unsupported-paths">
-<figure id="figure-5">
+<figure id="figure-6">
           <div id="appendix-A.1-2.1">
 <pre class="lang-example sourcecode">
  %YAML 1.2
@@ -1877,7 +1940,7 @@ since their mapping keys are not strings.<a href="#appendix-A.1-1" class="pilcro
  0: no numeric mapping keys in JSON
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-example-of-yaml-nodes-that-" class="selfRef">Example of YAML nodes that are not referenceable based on JSON data model.</a>
           </figcaption></figure>
 </div>
@@ -1890,13 +1953,13 @@ since their mapping keys are not strings.<a href="#appendix-A.1-1" class="pilcro
         </h3>
 <p id="appendix-A.2-1">In this example the fragment <code>#/0</code> does not reference an existing node<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-json-pointer-t"></span><div id="example-missing-node">
-<figure id="figure-6">
+<figure id="figure-7">
           <div id="appendix-A.2-2.1">
 <pre class="lang-example sourcecode">
 0: "JSON Pointer `#/0` references a string mapping key."
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-example-of-a-json-pointer-t" class="selfRef">Example of a JSON Pointer that does not reference an existing node.</a>
           </figcaption></figure>
 </div>
@@ -1913,7 +1976,7 @@ Moreover, the presence of a cyclic reference implies that
 there are infinite fragment identifiers <code>#/foo/bat/../bat/bar</code>
 referencing the <code>&amp;anchor</code> node.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-cyclic-referen"></span><div id="example-cyclic-graph">
-<figure id="figure-7">
+<figure id="figure-8">
           <div id="appendix-A.3-2.1">
 <pre class="lang-example sourcecode">
  anchor: &amp;anchor
@@ -1923,7 +1986,7 @@ referencing the <code>&amp;anchor</code> node.<a href="#appendix-A.3-1" class="p
    bat: *foo
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-example-of-a-cyclic-referen" class="selfRef">Example of a cyclic references and alias nodes.</a>
           </figcaption></figure>
 </div>
@@ -1933,7 +1996,7 @@ in the representation graph.
 This means that the fragment <code>#/book/author/given_name</code> references the string <code>Federico</code>
 and that the fragment <code>#/book/&lt;&lt;</code> will not reference any existing node.<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-yaml-merge-keys"></span><div id="example-merge-keys">
-<figure id="figure-8">
+<figure id="figure-9">
           <div id="appendix-A.3-4.1">
 <pre class="lang-example sourcecode">
  %YAML 1.1
@@ -1949,7 +2012,7 @@ and that the fragment <code>#/book/&lt;&lt;</code> will not reference any existi
    title: The Illusion
 </pre>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-example-of-yaml-merge-keys" class="selfRef">Example of YAML merge keys.</a>
           </figcaption></figure>
 </div>
@@ -1992,7 +2055,7 @@ This has some security implications too
 <dt id="appendix-C-2.3">Q: Why using alias nodes as fragment identifiers?</dt>
         <dd style="margin-left: 1.5em" id="appendix-C-2.4">
           <p id="appendix-C-2.4.1">Alias nodes are a native YAML feature that allows
-addressing any node in a document.
+addressing any node in a YAML document.
 Since YAML is not limited to string keywords,
 not all nodes are addressable using JSON Pointers.
 Alias nodes are thus the natural choice for fragment identifiers
@@ -2023,7 +2086,7 @@ YAML representation graph nodes.
 JSON Pointer can only rely on string keywords so
 it is not able to reference a generic node in the
 representation graph.<a href="#appendix-C-2.8.1" class="pilcrow">¶</a></p>
-<p id="appendix-C-2.8.2">Since JSON Pointer is a document unrelated to YAML,
+<p id="appendix-C-2.8.2">Since JSON Pointer is a specification unrelated to YAML,
 we decided to isolate the impacts of changes in JSON Pointer
 on YAML fragments:
 only fragments starting with "/" are "delegated" to an external spec,
