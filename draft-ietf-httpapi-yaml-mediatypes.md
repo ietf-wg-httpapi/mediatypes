@@ -82,11 +82,15 @@ The source code and issues list for this draft can be found at
 
 # Introduction
 
-YAML [YAML] is a data serialization format that is widely used on the Internet,
+YAML [YAML] is a data serialization format
+that is capable of conveying one or multiple
+documents in a single presentation stream
+(e.g. a file or a network resource).
+It is widely used on the Internet,
 including in the API sector (e.g. see [OAS]),
 but the relevant media type and structured syntax suffix previously had not been registered by IANA.
 
-To increase interoperability when exchanging YAML data
+To increase interoperability when exchanging YAML streams,
 and leverage content negotiation mechanisms when exchanging
 YAML resources,
 this specification
@@ -111,20 +115,26 @@ in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-seman
 The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in {{!URI=RFC3986}}.
 
-The terms "node", "alias node", "anchor" and "named anchor"
+The terms "presentation", "stream", "YAML document", "representation graph",
+"node", "alias node", "anchor" and "named anchor"
 in this document are to be interpreted as in [YAML].
 
 ## Fragment identification {#application-yaml-fragment}
 
+A fragment identifies a node in a stream.
+
 A fragment identifier starting with "*"
 is to be interpreted as a YAML alias node {{fragment-alias-node}}.
 
-A fragment identifier that is empty
+For single-document YAML streams,
+a fragment identifier that is empty
 or that starts with "/"
 is to be interpreted as a JSON Pointer {{JSON-POINTER}}
 and is evaluated on the YAML representation graph,
 walking through alias nodes;
-this syntax can only reference YAML nodes that are
+in particular, the empty fragment identifier
+references the root node.
+This syntax can only reference the YAML nodes that are
 on a path that is made up of nodes interoperable with
 the JSON data model (see {{int-yaml-and-json}}).
 
@@ -157,10 +167,11 @@ Users concerned with interoperability of fragment identifiers:
 - SHOULD NOT use alias nodes that match multiple nodes.
 
 In the example resource below, the URL `file.yaml#*foo`
-references the alias node `*foo` pointing to the node with value `scalar`;
+references the first alias node `*foo` pointing to the node with value `scalar`
+and not the one in the second document;
 whereas
-the URL `file.yaml#*bar` references the alias node `*bar` pointing to the node
-with value `[ some, sequence, items ]`.
+the URL `file.yaml#*document_2` references the root node
+of the second document `{ one: [a, sequence]}`.
 
 ~~~ example
  %YAML 1.2
@@ -170,8 +181,13 @@ with value `[ some, sequence, items ]`.
    - some
    - sequence
    - items
+ ...
+ %YAML 1.2
+ ---
+ &document_2
+ one: &foo [a, sequence]
 ~~~
-
+{: title="A YAML stream containing two YAML documents." }
 
 # Media Type and Structured Syntax Suffix registrations
 
@@ -315,8 +331,22 @@ the media type registration does not imply a specific version.
 This allows content negotiation of version-independent YAML resources.
 
 Implementers concerned about features related to a specific YAML version
-can specify it in documents using the `%YAML` directive
+can specify it in YAML documents using the `%YAML` directive
 (see Section 6.8.1 of [YAML]).
+
+## YAML streams {#int-yaml-streams}
+
+A YAML stream can contain zero or more YAML documents.
+
+When receiving a multi-document stream,
+an application that only expects one-document streams,
+ought to signal an error instead of ignoring the extra documents.
+
+Current implementations consider different documents in a stream independent,
+similarly to JSON Text Sequences (see {{?RFC7464}});
+elements such as anchors are not guaranteed to be referenceable
+across different documents.
+
 
 ## YAML and JSON {#int-yaml-and-json}
 
@@ -355,6 +385,7 @@ taking into account that the following ones
 might have interoperability
 issues with JSON:
 
+- multi-document YAML streams;
 - non UTF-8 encoding, since YAML supports UTF-16 and UTF-32 in addition to UTF-8;
 - mapping keys that are not strings;
 - circular references represented using anchor (see {{sec-yaml-exhaustion}}
@@ -373,13 +404,16 @@ issues with JSON:
  ---
  non-json-keys:
    0: a number
-   2020-01-01: a timestamp
    [0, 1]: a sequence
    ? {k: v}
    : a map
- non-json-value: 2020-01-01
+ ---
+ non-json-keys:
+   !date 2020-01-01: a timestamp
+ non-json-value: !date 2020-01-01
+ ...
 ~~~
-{: title="Example of mapping keys not supported in JSON" #example-unsupported-keys}
+{: title="Example of mapping keys and values not supported in JSON in a multi-document YAML stream" #example-unsupported-keys}
 
 ## Fragment identifiers {#int-fragment}
 
@@ -434,7 +468,7 @@ x: &x
 ~~~
 {: title="A cyclic document" #example-yaml-cyclic}
 
-Even if a document is not cyclic, treating it as a simple tree could lead to improper behaviors
+Even if a representaion graph is not cyclic, treating it as a simple tree could lead to improper behaviors
 (such as the "billion laughs" problem).
 
 ~~~ yaml
@@ -450,6 +484,18 @@ even in these cases it is important
 to carefully test the implementation you are going to use.
 The same considerations apply when serializing a YAML representation graph
 in a format that does not support reference cycles (see {{int-yaml-and-json}}).
+
+
+## YAML streams
+
+Incremental parsing and processing of a YAML stream can produce partial results
+and later indicate failure to parse the remainder of the stream;
+to prevent partial processing, implementers might prefer validating all the documents in a stream beforehand.
+
+Repeated parsing and re-encoding of a YAML stream can result
+in the addition or removal of document delimiters (e.g. `---` or `...`)
+as well as the modification of anchor names and other serialization details:
+this can break signature validation.
 
 # IANA Considerations
 
@@ -568,7 +614,7 @@ Q: Why this document?
 
 Q: Why using alias nodes as fragment identifiers?
 :  Alias nodes are a native YAML feature that allows
-   addressing any node in a document.
+   addressing any node in a YAML document.
    Since YAML is not limited to string keywords,
    not all nodes are addressable using JSON Pointers.
    Alias nodes are thus the natural choice for fragment identifiers
@@ -597,7 +643,7 @@ Q: Why not just use JSON Pointer as the primary fragment identifier?
    it is not able to reference a generic node in the
    representation graph.
 
-   Since JSON Pointer is a document unrelated to YAML,
+   Since JSON Pointer is a specification unrelated to YAML,
    we decided to isolate the impacts of changes in JSON Pointer
    on YAML fragments:
    only fragments starting with "/" are "delegated" to an external spec,
