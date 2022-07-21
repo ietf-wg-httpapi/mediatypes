@@ -33,7 +33,7 @@ About This Document
    about/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/ietf-wg-httpapi/mediatypes.
+   https://github.com/ietf-wg-httpapi/mediatypes/labels/rest-api.
 
 Status of This Memo
 
