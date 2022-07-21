@@ -5,10 +5,10 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                                  E. Wilde
-Expires: 22 December 2022                                          Axway
+Expires: 22 January 2023                                           Axway
                                                                   E. Aro
                                                                  Mozilla
-                                                            20 June 2022
+                                                            21 July 2022
 
 
                             YAML Media Type
@@ -19,18 +19,21 @@ Abstract
    This document registers the application/yaml media type and the +yaml
    structured syntax suffix on the IANA Media Types registry.
 
-Note to Readers
+About This Document
 
-   _RFC EDITOR: please remove this section before publication_
+   This note is to be removed before publishing as an RFC.
 
-   Discussion of this draft takes place on the HTTP APIs working group
-   mailing list (httpapi@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/browse/httpapi/
-   (https://mailarchive.ietf.org/arch/browse/httpapi/).
+   Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-ietf-httpapi-yaml-mediatypes/.
 
-   The source code and issues list for this draft can be found at
-   https://github.com/ietf-wg-httpapi/mediatypes (https://github.com/
-   ietf-wg-httpapi/mediatypes).
+   Discussion of this document takes place on the HTTPAPI Working Group
+   mailing list (mailto:httpapi@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/httpapi/.  Working Group
+   information can be found at https://datatracker.ietf.org/wg/httpapi/
+   about/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/ietf-wg-httpapi/mediatypes.
 
 Status of This Memo
 
@@ -47,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 December 2022.
+   This Internet-Draft will expire on 22 January 2023.
 
 Copyright Notice
 
@@ -68,16 +71,19 @@ Table of Contents
    1.  Introduction
      1.1.  Notational Conventions
      1.2.  Fragment identification
+       1.2.1.  Fragment identification via alias nodes
    2.  Media Type and Structured Syntax Suffix registrations
      2.1.  Media Type application/yaml
      2.2.  The +yaml Structured Syntax Suffix
    3.  Interoperability Considerations
      3.1.  YAML is an Evolving Language
-     3.2.  YAML and JSON
-     3.3.  Fragment identifiers
+     3.2.  YAML streams
+     3.3.  YAML and JSON
+     3.4.  Fragment identifiers
    4.  Security Considerations
      4.1.  Arbitrary Code Execution
      4.2.  Resource Exhaustion
+     4.3.  YAML streams
    5.  IANA Considerations
    6.  References
      6.1.  Normative References
@@ -90,19 +96,23 @@ Table of Contents
    Appendix B.  Acknowledgements
    FAQ
    Change Log
+     Since draft-ietf-httpapi-yaml-mediatypes-02
+     Since draft-ietf-httpapi-yaml-mediatypes-01
    Authors' Addresses
 
 1.  Introduction
 
-   YAML [YAML] is a data serialization format that is widely used on the
+   YAML [YAML] is a data serialization format that is capable of
+   conveying one or multiple documents in a single presentation stream
+   (e.g. a file or a network resource).  It is widely used on the
    Internet, including in the API sector (e.g. see [OAS]), but the
    relevant media type and structured syntax suffix previously had not
    been registered by IANA.
 
-   To increase interoperability when exchanging YAML data and leverage
-   content negotiation mechanisms when exchanging YAML resources, this
-   specification registers the application/yaml media type and the +yaml
-   structured syntax suffix.
+   To increase interoperability when exchanging YAML streams, and
+   leverage content negotiation mechanisms when exchanging YAML
+   resources, this specification registers the application/yaml media
+   type and the +yaml structured syntax suffix.
 
    Moreover, it provides security considerations and interoperability
    considerations related to [YAML], including its relation with [JSON].
@@ -126,25 +136,41 @@ Table of Contents
    The terms "fragment" and "fragment identifier" in this document are
    to be interpreted as in [URI].
 
-   The terms "node", "alias node", "anchor" and "named anchor" in this
-   document are to be intepreded as in [YAML].
+   The terms "presentation", "stream", "YAML document", "representation
+   graph", "node", "alias node", "anchor" and "named anchor" in this
+   document are to be interpreted as in [YAML].
 
 1.2.  Fragment identification
+
+   A fragment identifies a node in a stream.
+
+   A fragment identifier starting with "*" is to be interpreted as a
+   YAML alias node Section 1.2.1.
+
+   For single-document YAML streams, a fragment identifier that is empty
+   or that starts with "/" is to be interpreted as a JSON Pointer
+   [JSON-POINTER] and is evaluated on the YAML representation graph,
+   walking through alias nodes; in particular, the empty fragment
+   identifier references the root node.  This syntax can only reference
+   the YAML nodes that are on a path that is made up of nodes
+   interoperable with the JSON data model (see Section 3.3).
+
+   A fragment identifier is not guaranteed to reference an existing
+   node.  Therefore, applications SHOULD define how an unresolved alias
+   node ought to be handled.
+
+1.2.1.  Fragment identification via alias nodes
 
    This section describes how to use alias nodes (see Section 3.2.2.2
    and 7.1 of [YAML]) as fragment identifiers to designate nodes.
 
    A YAML alias node can be represented in a URI fragment identifier by
-   encoding it into octects using UTF-8 [UTF-8], while percent-encoding
+   encoding it into bytes using UTF-8 [UTF-8], while percent-encoding
    those characters not allowed by the fragment rule in Section 3.5 of
    [URI].
 
    If multiple nodes would match a fragment identifier, the first such
    match is selected.
-
-   A fragment identifier is not guaranteed to reference an existing
-   node.  Therefore, applications SHOULD define how an unresolved alias
-   node ought to be handled.
 
    Users concerned with interoperability of fragment identifiers:
 
@@ -156,9 +182,10 @@ Table of Contents
    *  SHOULD NOT use alias nodes that match multiple nodes.
 
    In the example resource below, the URL file.yaml#*foo references the
-   alias node *foo pointing to the node with value scalar; whereas the
-   URL file.yaml#*bar references the alias node *bar pointing to the
-   node with value [ some, sequence, items ].
+   first alias node *foo pointing to the node with value scalar and not
+   the one in the second document; whereas the URL file.yaml#*document_2
+   references the root node of the second document { one: [a,
+   sequence]}.
 
     %YAML 1.2
     ---
@@ -167,6 +194,13 @@ Table of Contents
       - some
       - sequence
       - items
+    ...
+    %YAML 1.2
+    ---
+    &document_2
+    one: &foo [a, sequence]
+
+           Figure 1: A YAML stream containing two YAML documents.
 
 2.  Media Type and Structured Syntax Suffix registrations
 
@@ -182,9 +216,9 @@ Table of Contents
 
    Subtype name:  yaml
 
-   Required parameters:  None
+   Required parameters:  N/A
 
-   Optional parameters:  None; unrecognized parameters should be ignored
+   Optional parameters:  N/A; unrecognized parameters should be ignored
 
    Encoding considerations:  binary
 
@@ -194,30 +228,23 @@ Table of Contents
 
    Published specification:  [YAML]
 
-   Applications that use this media type:  HTTP
+   Applications that use this media type:  Applications that need a
+      human-friendly, cross language, Unicode based data serialization
+      language designed around the common native data types of dynamic
+      programming languages.
 
-   Fragment identifier considerations:  An empty fragment identifier
-      references the root node.
-
-      A fragment identifier starting with "*" is to be interpreted as a
-      YAML alias node Section 1.2.
-
-      A fragment identifier starting with "/" is to be interpreted as a
-      JSON Pointer [JSON-POINTER] and is evaluated on the YAML
-      representation graph, walking through alias nodes; this syntax can
-      only reference YAML nodes that are on a path that is made up of
-      nodes interoperable with the JSON data model (see Section 3.2).
+   Fragment identifier considerations:  See Section 1.2
 
    Additional information:
 
    *  Deprecated alias names for this type: application/x-yaml, text/
       yaml, text/x-yaml
 
-   *  Magic number(s) n/a
+   *  Magic number(s) N/A
 
    *  File extension(s): yaml, yml
 
-   *  Macintosh file type code(s): n/a
+   *  Macintosh file type code(s): N/A
 
    Person and email address to contact for further information:  See Aut
       hors' Addresses section.
@@ -228,7 +255,7 @@ Table of Contents
 
    Author:  See Authors' Addresses section.
 
-   Change controller:  n/a
+   Change controller:  IESG
 
 2.2.  The +yaml Structured Syntax Suffix
 
@@ -257,11 +284,11 @@ Table of Contents
 
    Security considerations:  See Section 2.1
 
-   Contact:  See Authors' Addresses section.
+   Contact:  httpapi@ietf.org or art@ietf.org
 
    Author:  See Authors' Addresses section
 
-   Change controller:  n/a
+   Change controller:  IESG
 
 3.  Interoperability Considerations
 
@@ -275,17 +302,30 @@ Table of Contents
    allows content negotiation of version-independent YAML resources.
 
    Implementers concerned about features related to a specific YAML
-   version can specify it in documents using the %YAML directive (see
-   Section 6.8.1 of [YAML]).
+   version can specify it in YAML documents using the %YAML directive
+   (see Section 6.8.1 of [YAML]).
 
-3.2.  YAML and JSON
+3.2.  YAML streams
+
+   A YAML stream can contain zero or more YAML documents.
+
+   When receiving a multi-document stream, an application that only
+   expects one-document streams, ought to signal an error instead of
+   ignoring the extra documents.
+
+   Current implementations consider different documents in a stream
+   independent, similarly to JSON Text Sequences (see [RFC7464]);
+   elements such as anchors are not guaranteed to be referenceable
+   across different documents.
+
+3.3.  YAML and JSON
 
    When using flow collection styles (see Section 7.4 of [YAML]) a YAML
    document could look like JSON [JSON], thus similar interoperability
    considerations apply.
 
    When using YAML as a more efficient format to serialize information
-   intented to be consumed as JSON, information can be discarded: this
+   intended to be consumed as JSON, information can be discarded: this
    includes comments (see Section 3.2.3.3 of [YAML]) and alias nodes
    (see Section 7.1 of [YAML]), that do not have a JSON counterpart.
 
@@ -299,7 +339,7 @@ Table of Contents
      type: string
      maxLength: *text_limit  # Replaced by the value 64.
 
-          Figure 1: JSON replaces alias nodes with static values.
+          Figure 2: JSON replaces alias nodes with static values.
 
    Implementers need to ensure that relevant information will not be
    lost during the processing.  For example, they might consider
@@ -309,13 +349,15 @@ Table of Contents
    YAML features, taking into account that the following ones might have
    interoperability issues with JSON:
 
+   *  multi-document YAML streams;
+
    *  non UTF-8 encoding, since YAML supports UTF-16 and UTF-32 in
       addition to UTF-8;
 
    *  mapping keys that are not strings;
 
    *  circular references represented using anchor (see Section 4.2 and
-      Figure 3);
+      Figure 4);
 
    *  .inf and .nan float values, since JSON does not support them;
 
@@ -331,26 +373,30 @@ Table of Contents
     ---
     non-json-keys:
       0: a number
-      2020-01-01: a timestamp
       [0, 1]: a sequence
       ? {k: v}
       : a map
-    non-json-value: 2020-01-01
+    ---
+    non-json-keys:
+      !date 2020-01-01: a timestamp
+    non-json-value: !date 2020-01-01
+    ...
 
-          Figure 2: Example of mapping keys not supported in JSON
+       Figure 3: Example of mapping keys and values not supported in
+                   JSON in a multi- document YAML stream
 
-3.3.  Fragment identifiers
+3.4.  Fragment identifiers
 
    To allow fragment identifiers to traverse alias nodes, the YAML
    representation graph needs to be generated before the fragment
    identifier evaluation.  It is important that this evaluation will not
-   cause the issues mentioned in Section 3.2 and in Security
+   cause the issues mentioned in Section 3.3 and in Security
    considerations (Section 4) such as infinite loops and unexpected code
    execution.
 
    Implementers need to consider that the YAML version and supported
    features (e.g. merge keys) can impact on the generation of the
-   representation graph (see Figure 8).
+   representation graph (see Figure 9).
 
    In Section 2.1, this document extends the use of specifications based
    on the JSON data model with support for YAML fragment identifiers.
@@ -358,9 +404,8 @@ Table of Contents
    practices, such as the one of writing OpenAPI documents [OAS] in
    YAML.
 
-   Appendix A provides a non exhaustive list of examples that could help
-   understanding interoperability issues related to fragment
-   identifiers.
+   Appendix A provides a non-exhaustive list of examples that could help
+   understand interoperability issues related to fragment identifiers.
 
 4.  Security Considerations
 
@@ -396,23 +441,36 @@ Table of Contents
    x: &x
      y: *x
 
-                        Figure 3: A cyclic document
+                        Figure 4: A cyclic document
 
-   Even if a document is not cyclic, treating it as a simple tree could
-   lead to improper behaviors (such as the "billion laughs" problem).
+   Even if a representaion graph is not cyclic, treating it as a simple
+   tree could lead to improper behaviors (such as the "billion laughs"
+   problem).
 
    x1: &a1 ["a", "a"]
    x2: &a2 [*a1, *a1]
    x3: &a3 [*a2, *a2]
 
-                    Figure 4: A billion laughs document
+                    Figure 5: A billion laughs document
 
    This can be addressed using processors limiting the anchor recursion
    depth and validating the input before processing it; even in these
    cases it is important to carefully test the implementation you are
    going to use.  The same considerations apply when serializing a YAML
    representation graph in a format that does not support reference
-   cycles (see Section 3.2).
+   cycles (see Section 3.3).
+
+4.3.  YAML streams
+
+   Incremental parsing and processing of a YAML stream can produce
+   partial results and later indicate failure to parse the remainder of
+   the stream; to prevent partial processing, implementers might prefer
+   validating all the documents in a stream beforehand.
+
+   Repeated parsing and re-encoding of a YAML stream can result in the
+   addition or removal of document delimiters (e.g. --- or ...) as well
+   as the modification of anchor names and other serialization details:
+   this can break signature validation.
 
 5.  IANA Considerations
 
@@ -518,6 +576,10 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-
               jsonpath-base-05>.
 
+   [RFC7464]  Williams, N., "JavaScript Object Notation (JSON) Text
+              Sequences", RFC 7464, DOI 10.17487/RFC7464, February 2015,
+              <https://www.rfc-editor.org/rfc/rfc7464>.
+
 Appendix A.  Examples related to fragment identifier interoperability
 
 A.1.  Unreferenceable nodes
@@ -534,7 +596,7 @@ A.1.  Unreferenceable nodes
 
     0: no numeric mapping keys in JSON
 
-      Figure 5: Example of YAML nodes that are not referenceable based
+      Figure 6: Example of YAML nodes that are not referenceable based
                             on JSON data model.
 
 A.2.  Referencing a missing node
@@ -543,7 +605,7 @@ A.2.  Referencing a missing node
 
    0: "JSON Pointer `#/0` references a string mapping key."
 
-       Figure 6: Example of a JSON Pointer that does not reference an
+       Figure 7: Example of a JSON Pointer that does not reference an
                                existing node.
 
 A.3.  Representation graph with anchors and cyclic references
@@ -560,7 +622,7 @@ A.3.  Representation graph with anchors and cyclic references
       bar: *anchor
       bat: *foo
 
-         Figure 7: Example of a cyclic references and alias nodes.
+         Figure 8: Example of a cyclic references and alias nodes.
 
    Many YAML implementations will resolve the merge key "<<:"
    (https://yaml.org/type/merge.html) defined in YAML 1.1 in the
@@ -580,7 +642,7 @@ A.3.  Representation graph with anchors and cyclic references
       <<: *the-viceroys
       title: The Illusion
 
-                   Figure 8: Example of YAML merge keys.
+                   Figure 9: Example of YAML merge keys.
 
 Appendix B.  Acknowledgements
 
@@ -604,18 +666,53 @@ FAQ
       media-type for YAML.  This has some security implications too (eg.
       wrt on identifying parsers or treat downloads)
 
-   Q: Why using alias nodes as fragment identifiers?  Alias nodes starts
-      with *. This allow to distinguish a fragment identifier expressed
-      as an alias node from one expressed in JSON Pointer [JSON-POINTER]
-      which is expected to start with /. Moreover, since json-path
-      [I-D.ietf-jsonpath-base] expressions start with $, this mechanism
-      is even extensible that specification.
+   Q: Why using alias nodes as fragment identifiers?  Alias nodes are a
+      native YAML feature that allows addressing any node in a YAML
+      document.  Since YAML is not limited to string keywords, not all
+      nodes are addressable using JSON Pointers.  Alias nodes are thus
+      the natural choice for fragment identifiers Section 1.2.
+
+   Q: Why not use plain names for alias nodes?  Why not define plain
+   names?  Using plain name fragments could have limited the ability of
+      future xxx+yaml media types to define their plain name fragments.
+      Moreover, alias nodes starts with * so we found no reason to strip
+      it when using them in fragments.
+
+      Preserving * had another positive result: it allows distinguishing
+      a fragment identifier expressed as an alias node from one
+      expressed in other formats.  In this document we included JSON
+      Pointer [JSON-POINTER] which is expected to start with /.
+      Moreover, since JSON Path [I-D.ietf-jsonpath-base] expressions
+      start with $, this mechanism can be extended to JSON Path too.
+
+   Q: Why not just use JSON Pointer as the primary fragment
+   identifier?  Fragment identifiers in YAML always reference YAML
+      representation graph nodes.  JSON Pointer can only rely on string
+      keywords so it is not able to reference a generic node in the
+      representation graph.
+
+      Since JSON Pointer is a specification unrelated to YAML, we
+      decided to isolate the impacts of changes in JSON Pointer on YAML
+      fragments: only fragments starting with "/" are "delegated" to an
+      external spec, and if [JSON-POINTER] changes, it will only affect
+      fragments starting with "/".
+
+      The current behaviour for empty fragments is the same for both
+      JSON Pointer and alias nodes.  Incidentally, it's the only
+      sensible behaviour independently of [JSON-POINTER].
 
 Change Log
 
    This section is to be removed before publishing as an RFC.
 
-   RFC EDITOR PLEASE DELETE THIS SECTION.
+Since draft-ietf-httpapi-yaml-mediatypes-02
+
+   *  clarification on fragment identifiers #50.
+
+Since draft-ietf-httpapi-yaml-mediatypes-01
+
+   *  application/yaml fragment identifiers compatible with JSON Pointer
+      #41 (#47).
 
 Authors' Addresses
 
