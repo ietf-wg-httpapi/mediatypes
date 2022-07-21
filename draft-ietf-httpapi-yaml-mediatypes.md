@@ -17,7 +17,7 @@ venue:
   home: https://datatracker.ietf.org/wg/httpapi/about/
   mail: httpapi@ietf.org
   arch: https://mailarchive.ietf.org/arch/browse/httpapi/
-  repo: https://github.com/ietf-wg-httpapi/mediatypes
+  repo: https://github.com/ietf-wg-httpapi/mediatypes/labels/yaml
 github-issue-label: yaml
 
 author:
