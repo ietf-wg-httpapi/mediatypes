@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
-Intended status: Informational                              19 July 2022
-Expires: 20 January 2023
+Intended status: Informational                              21 July 2022
+Expires: 22 January 2023
 
 
                           REST API Media Types
@@ -18,18 +18,22 @@ Abstract
    schema-instance+json, application/openapi+json, and application/
    openapi+yaml.
 
-Note to Readers
+About This Document
 
-   _RFC EDITOR: please remove this section before publication_
+   This note is to be removed before publishing as an RFC.
 
-   Discussion of this draft takes place on the HTTP APIs working group
-   mailing list (httpapi@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/browse/httpapi/
-   (https://mailarchive.ietf.org/arch/browse/httpapi/).
+   Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-ietf-httpapi-rest-api-
+   mediatypes/.
 
-   The source code and issues list for this draft can be found at
-   https://github.com/ietf-wg-httpapi/mediatypes (https://github.com/
-   ietf-wg-httpapi/mediatypes).
+   Discussion of this document takes place on the HTTPAPI Working Group
+   mailing list (mailto:httpapi@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/httpapi/.  Working Group
+   information can be found at https://datatracker.ietf.org/wg/httpapi/
+   about/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/ietf-wg-httpapi/mediatypes/labels/rest-api.
 
 Status of This Memo
 
@@ -46,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 January 2023.
+   This Internet-Draft will expire on 22 January 2023.
 
 Copyright Notice
 
