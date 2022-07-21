@@ -11,6 +11,14 @@ keyword: Internet-Draft
 
 stand_alone: yes
 pi: [toc, tocindent, sortrefs, symrefs, strict, compact, comments, inline, docmapping]
+venue:
+  group: HTTPAPI
+  type: Working Group
+  home: https://datatracker.ietf.org/wg/httpapi/about/
+  mail: httpapi@ietf.org
+  arch: https://mailarchive.ietf.org/arch/browse/httpapi/
+  repo: https://github.com/ietf-wg-httpapi/mediatypes/labels/yaml
+github-issue-label: yaml
 
 author:
  -
@@ -66,17 +74,6 @@ This document registers
 the application/yaml media type
 and the +yaml structured syntax suffix
 on the IANA Media Types registry.
-
---- note_Note_to_Readers
-
-*RFC EDITOR: please remove this section before publication*
-
-Discussion of this draft takes place on the HTTP APIs working group
-mailing list (httpapi@ietf.org), which is archived at
-[https://mailarchive.ietf.org/arch/browse/httpapi/](https://mailarchive.ietf.org/arch/browse/httpapi/).
-
-The source code and issues list for this draft can be found at
-[https://github.com/ietf-wg-httpapi/mediatypes](https://github.com/ietf-wg-httpapi/mediatypes).
 
 --- middle
 
