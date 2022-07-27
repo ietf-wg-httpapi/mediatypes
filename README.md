@@ -1,4 +1,4 @@
-# Rest API Media-types
+# REST API Media-types
 
 This is the working area for the individual Internet-Draft, "REST API Media types".
 
