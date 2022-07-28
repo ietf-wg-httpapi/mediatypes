@@ -156,7 +156,7 @@ Interoperability considerations:
 : None
 
 Published specification:
-: this document
+: [oas]
 
 Applications that use this media type:
 : HTTP
@@ -215,7 +215,7 @@ Interoperability considerations:
 : see {{Section 3 of YAML-MEDIATYPES}}
 
 Published specification:
-: this document
+: [oas]
 
 Applications that use this media type:
 : HTTP
@@ -422,7 +422,7 @@ Interoperability considerations:
 : See the "General Considerations" section of {{jsonschema}}
 
 Published specification:
-: this document
+: This document specifies dialect identification, but each dialect will have it's own specification. The set of possible dialects is open ended and includes, but is not limited to, those released by the JSON Schema organization ({{jsonschema}}).
 
 Applications that use this media type:
 : JSON Schema is used in a variety of
