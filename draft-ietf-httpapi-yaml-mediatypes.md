@@ -113,7 +113,7 @@ The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in {{!URI=RFC3986}}.
 
 The terms "presentation", "stream", "YAML document", "representation graph",
-"node", "alias node", "anchor" and "named anchor"
+"node", "alias node", "anchor" and "anchor name"
 in this document are to be interpreted as in [YAML].
 
 ## Fragment identification {#application-yaml-fragment}
@@ -159,8 +159,7 @@ Users concerned with interoperability of fragment identifiers:
   that do not require encoding
   to be expressed as URI fragment identifiers:
   this is generally possible since
-  named anchors are a serialization
-  detail;
+  anchor names are a serialization detail;
 - SHOULD NOT use alias nodes that match multiple nodes.
 
 In the example resource below, the URL `file.yaml#*foo`
