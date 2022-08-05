@@ -112,7 +112,7 @@ in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-seman
 The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in {{!URI=RFC3986}}.
 
-The terms "presentation", "stream", "YAML document", "representation graph",
+The terms "presentation", "stream", "YAML document", "representation graph", "tag",
 "node", "alias node", "anchor" and "anchor name"
 in this document are to be interpreted as in [YAML].
 
@@ -352,9 +352,11 @@ thus similar interoperability considerations apply.
 
 When using YAML as a more efficient format
 to serialize information intended to be consumed as JSON,
-information can be discarded:
-this includes comments (see Section 3.2.3.3 of [YAML])
-and alias nodes (see Section 7.1 of [YAML]),
+information not reflected in the representation graph
+and classified as presentation or serialization detail
+(see Section 3.2 of [YAML]) can be discarded.
+This includes comments (see Section 3.2.3.3 of [YAML]),
+directives, and alias nodes (see Section 7.1 of [YAML])
 that do not have a JSON counterpart.
 
 ~~~ example
