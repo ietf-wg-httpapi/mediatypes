@@ -243,7 +243,7 @@ Additional information:
 
 - Magic number(s)  N/A
 
-- File extension(s):  yaml, yml
+- File extension(s): "yaml" (preferred), "yml". See {{int-yaml-filename-extension}}.
 
 - Macintosh file type code(s):  N/A
 
@@ -343,6 +343,14 @@ similarly to JSON Text Sequences (see {{?RFC7464}});
 elements such as anchors are not guaranteed to be referenceable
 across different documents.
 
+## Filename extension {#int-yaml-filename-extension}
+
+The "yaml" filename extension is the preferred one;
+it is the most popular and widely used on the web.
+The "yml" filename extension is still used.
+The simultaneous usage of two filename extensions in the same context
+might cause interoperability issues
+(e.g. when both a "config.yaml" and a "config.yml" are present).
 
 ## YAML and JSON {#int-yaml-and-json}
 
