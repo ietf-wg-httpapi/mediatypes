@@ -247,6 +247,8 @@ Additional information:
 
 - Macintosh file type code(s):  N/A
 
+- Windows Clipboard Name: YAML
+
 Person and email address to contact for further information:
 : See Authors' Addresses section.
 
