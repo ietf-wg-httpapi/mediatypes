@@ -239,7 +239,8 @@ Fragment identifier considerations:
 
 Additional information:
 
-- Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml
+- Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml.
+  These alias are used, but not registered.
 
 - Magic number(s)  N/A
 
