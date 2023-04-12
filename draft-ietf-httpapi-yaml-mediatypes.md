@@ -187,136 +187,29 @@ of the second document `{ one: [a, sequence]}`.
 
 # Media Type and Structured Syntax Suffix registrations
 
-This section describes the information required to register
-the above media type according to {{!MEDIATYPE=RFC6838}}
-
-## Media Type application/yaml {#application-yaml}
+This specification defines the following new Internet media type {{!MEDIATYPE=RFC6838}}
 
 The media type for YAML text is `application/yaml`;
-the following information serves as the registration form for this media type.
+the registration form for this media type is referenced below.
 
-Type name:
-: application
-
-Subtype name:
-: yaml
-
-Required parameters:
-: N/A
-
-<!-- RFC 6838:
-   "N/A", written exactly that way, can be used in any field if desired
-   to emphasize the fact that it does not apply or that the question was
-   not omitted by accident.  Do not use 'none' or other words that could
-   be mistaken for a response.
-  -->
-
-Optional parameters:
-: N/A; unrecognized parameters should be ignored
-
-Encoding considerations:
-: binary
-
-Security considerations:
-: see {{security-considerations}} of this document
-
-Interoperability considerations:
-: see {{interoperability-considerations}} of this document
-
-Published specification:
-: [YAML]
-
-Applications that use this media type:
-: Applications that need a human-friendly, cross language, Unicode
-  based data serialization language designed around the common native
-  data types of dynamic programming languages.
-
-<!-- HTTP is not an application. Cited first para of abstract of YAML -->
-<!-- 1.2 specification. -->
-
-Fragment identifier considerations:
-: See {{application-yaml-fragment}}
-
-Additional information:
-
-- Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml.
-  These names are used, but not registered.
-
-- Magic number(s)  N/A
-
-- File extension(s): "yaml" (preferred), "yml". See {{int-yaml-filename-extension}}.
-
-- Macintosh file type code(s):  N/A
-
-- Windows Clipboard Name: YAML
-
-Person and email address to contact for further information:
-: See Authors' Addresses section.
-
-Intended usage:
-: COMMON
-
-Restrictions on usage:
-: None.
-
-Author:
-: See Authors' Addresses section.
-
-<!-- The media type template needs to stand on its own.
--->
-
-Change controller:
-: IESG
-
-<!-- There needs to be a change controller.  -->
-
-## The +yaml Structured Syntax Suffix {#suffix-yaml}
+|--------------------------------------|---------------------------------------------|
+| Media Type                           | Section                                     |
+|--------------------------------------|---------------------------------------------|
+| application/yaml                     | {{application-yaml}} of this document       |
+|--------------------------------------|---------------------------------------------|
 
 The suffix
 `+yaml` MAY be used with any media type whose representation follows
 that established for `application/yaml`.
-The media type structured syntax suffix registration form follows.
+The media type structured syntax suffix registration form is referenced below.
+
+|--------------------------|------------------------------------------|
+| Suffix                   | Section                                  |
+|--------------------------|------------------------------------------|
+| +yaml                    | {{suffix-yaml}} of this document         |
+|--------------------------|------------------------------------------|
+
 See {{MEDIATYPE}} for definitions of each of the registration form headings.
-
-  Name:
-  : YAML Ain't Markup Language (YAML)
-
-  +suffix:
-  :  +yaml
-
-  References:
-  :  [YAML]
-
-  Encoding considerations:
-  : see {{application-yaml}}
-
-  Fragment identifier considerations:
-  : Differently from `application/yaml`,
-    there is no fragment identification syntax defined
-    for +yaml.
-
-    A specific `xxx/yyy+yaml` media type
-    needs to define the syntax and semantics for fragment identifiers
-    because the ones in {{application-yaml}}
-    do not apply unless explicitly expressed.
-
-  Interoperability considerations:
-  : See {{application-yaml}}
-
-  Security considerations:
-  : See {{application-yaml}}
-
-  Contact:
-  : httpapi@ietf.org or art@ietf.org
-
-  Author:
-  : See Authors' Addresses section
-
-<!-- The template needs to stand on its own.
--->
-
-  Change controller:
-  :  IESG
 
 # Interoperability Considerations
 
@@ -508,25 +401,133 @@ this can break signature validation.
 
 # IANA Considerations
 
-This specification defines the following new Internet media type {{MEDIATYPE}}.
+
+## Media Type application/yaml {#application-yaml}
 
 IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
 with the registration information provided below.
 
-|--------------------------------------|---------------------------------------------|
-| Media Type                           | Section                                     |
-|--------------------------------------|---------------------------------------------|
-| application/yaml                     | {{application-yaml}} of this document       |
-|--------------------------------------|---------------------------------------------|
+
+Type name:
+: application
+
+Subtype name:
+: yaml
+
+Required parameters:
+: N/A
+
+<!-- RFC 6838:
+   "N/A", written exactly that way, can be used in any field if desired
+   to emphasize the fact that it does not apply or that the question was
+   not omitted by accident.  Do not use 'none' or other words that could
+   be mistaken for a response.
+  -->
+
+Optional parameters:
+: N/A; unrecognized parameters should be ignored
+
+Encoding considerations:
+: binary
+
+Security considerations:
+: see {{security-considerations}} of this document
+
+Interoperability considerations:
+: see {{interoperability-considerations}} of this document
+
+Published specification:
+: [YAML]
+
+Applications that use this media type:
+: Applications that need a human-friendly, cross language, Unicode
+  based data serialization language designed around the common native
+  data types of dynamic programming languages.
+
+<!-- HTTP is not an application. Cited first para of abstract of YAML -->
+<!-- 1.2 specification. -->
+
+Fragment identifier considerations:
+: See {{application-yaml-fragment}}
+
+Additional information:
+
+- Deprecated alias names for this type:  application/x-yaml, text/yaml, text/x-yaml.
+  These names are used, but not registered.
+
+- Magic number(s)  N/A
+
+- File extension(s): "yaml" (preferred), "yml". See {{int-yaml-filename-extension}}.
+
+- Macintosh file type code(s):  N/A
+
+- Windows Clipboard Name: YAML
+
+Person and email address to contact for further information:
+: See Authors' Addresses section.
+
+Intended usage:
+: COMMON
+
+Restrictions on usage:
+: None.
+
+Author:
+: See Authors' Addresses section.
+
+<!-- The media type template needs to stand on its own.
+-->
+
+Change controller:
+: IESG
+
+<!-- There needs to be a change controller.  -->
+
+## The +yaml Structured Syntax Suffix {#suffix-yaml}
 
 IANA has updated the "Structured Syntax Suffixes" registry at <https://www.iana.org/assignments/media-type-structured-suffix>
 with the registration information provided below.
 
-|--------------------------|------------------------------------------|
-| Suffix                   | Section                                  |
-|--------------------------|------------------------------------------|
-| +yaml                    | {{suffix-yaml}} of this document         |
-|--------------------------|------------------------------------------|
+
+  Name:
+  : YAML Ain't Markup Language (YAML)
+
+  +suffix:
+  :  +yaml
+
+  References:
+  :  [YAML]
+
+  Encoding considerations:
+  : see {{application-yaml}}
+
+  Fragment identifier considerations:
+  : Differently from `application/yaml`,
+    there is no fragment identification syntax defined
+    for +yaml.
+
+    A specific `xxx/yyy+yaml` media type
+    needs to define the syntax and semantics for fragment identifiers
+    because the ones in {{application-yaml}}
+    do not apply unless explicitly expressed.
+
+  Interoperability considerations:
+  : See {{application-yaml}}
+
+  Security considerations:
+  : See {{application-yaml}}
+
+  Contact:
+  : httpapi@ietf.org or art@ietf.org
+
+  Author:
+  : See Authors' Addresses section
+
+<!-- The template needs to stand on its own.
+-->
+
+  Change controller:
+  :  IESG
 
 --- back
 
