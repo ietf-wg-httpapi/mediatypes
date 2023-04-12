@@ -114,6 +114,9 @@ The terms "presentation", "stream", "YAML document", "representation graph", "ta
 "node", "alias node", "anchor" and "anchor name"
 in this document are to be interpreted as in [YAML].
 
+Figures containing YAML code always start with
+the "%YAML 1.2" directive to improve readability.
+
 ## Fragment identification {#application-yaml-fragment}
 
 A fragment identifies a node in a stream.
@@ -366,15 +369,17 @@ directives, and alias nodes (see Section 7.1 of [YAML])
 that do not have a JSON counterpart.
 
 ~~~ example
-# This comment will be lost
-# when serializing in JSON.
-Title:
-  type: string
-  maxLength: &text_limit 64
+ %YAML 1.2
+ ---
+ # This comment will be lost
+ # when serializing in JSON.
+ Title:
+   type: string
+   maxLength: &text_limit 64
 
-Name:
-  type: string
-  maxLength: *text_limit  # Replaced by the value 64.
+ Name:
+   type: string
+   maxLength: *text_limit  # Replaced by the value 64.
 ~~~
 {: title="JSON replaces alias nodes with static values." #example-json-discards-information}
 
@@ -467,8 +472,10 @@ for example:
 - or when searching/identifying nodes using specifications based on the JSON data model (e.g., {{JSON-POINTER}}).
 
 ~~~ yaml
-x: &x
-  y: *x
+ %YAML 1.2
+ ---
+ x: &x
+   y: *x
 ~~~
 {: title="A cyclic document" #example-yaml-cyclic}
 
@@ -477,9 +484,11 @@ Even if a representation graph is not cyclic, treating it as a simple tree could
 or "Exponential Entity Expansion" problem).
 
 ~~~ yaml
-x1: &a1 ["a", "a"]
-x2: &a2 [*a1, *a1]
-x3: &a3 [*a2, *a2]
+ %YAML 1.2
+ ---
+ x1: &a1 ["a", "a"]
+ x2: &a2 [*a1, *a1]
+ x3: &a3 [*a2, *a2]
 ~~~
 {: title="A billion laughs document" #example-yaml-1e9lol}
 
@@ -550,7 +559,9 @@ since their mapping keys are not strings.
 In this example the fragment `#/0` does not reference an existing node
 
 ~~~ example
-0: "JSON Pointer `#/0` references a string mapping key."
+ %YAML 1.2
+ ---
+ 0: "JSON Pointer `#/0` references a string mapping key."
 ~~~
 {: title="Example of a JSON Pointer that does not reference an existing node." #example-missing-node}
 
@@ -563,6 +574,8 @@ there are infinite fragment identifiers `#/foo/bat/../bat/bar`
 referencing the `&anchor` node.
 
 ~~~ example
+ %YAML 1.2
+ ---
  anchor: &anchor
    baz: you
  foo: &foo
