@@ -102,12 +102,9 @@ including its relation with {{!JSON=RFC8259}}.
 
 {::boilerplate bcp14+}
 
-This document uses the Augmented BNF defined in {{!RFC5234}} and updated
-by {{!RFC7405}}.
-
 The terms  "content", "content negotiation", "resource",
 and "user agent"
-in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-semantics}}.
+in this document are to be interpreted as in {{!HTTP=RFC9110}}.
 
 The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in {{!URI=RFC3986}}.
@@ -231,9 +228,6 @@ Applications that use this media type:
 : Applications that need a human-friendly, cross language, Unicode
   based data serialization language designed around the common native
   data types of dynamic programming languages.
-
-<!-- HTTP is not an application. Cited first para of abstract of YAML -->
-<!-- 1.2 specification. -->
 
 Fragment identifier considerations:
 : See {{application-yaml-fragment}}
@@ -600,6 +594,7 @@ and that the fragment `#/book/<<` will not reference any existing node.
 
 
 # Acknowledgements
+{: numbered="false"}
 
 Thanks to Erik Wilde and David Biesack for being the initial contributors of this specification,
 and to Darrel Miller and Rich Salz for their support during the adoption phase.
