@@ -520,19 +520,19 @@ which can break signature validation.
 This specification defines the following new Internet media type {{MEDIATYPE}}.
 
 IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
-with the registration information provided below.
+with the registration information provided in the section below.
 
 |--------------------------------------|---------------------------------------------|
-| Media Type                           | Section                                     |
+| Media Type                           | Registration information section            |
 |--------------------------------------|---------------------------------------------|
 | application/yaml                     | {{application-yaml}} of this document       |
 |--------------------------------------|---------------------------------------------|
 
 IANA has updated the "Structured Syntax Suffixes" registry at <https://www.iana.org/assignments/media-type-structured-suffix>
-with the registration information provided below.
+with the registration information provided in the section below.
 
 |--------------------------|------------------------------------------|
-| Suffix                   | Section                                  |
+| Suffix                   | Registration information section         |
 |--------------------------|------------------------------------------|
 | +yaml                    | {{suffix-yaml}} of this document         |
 |--------------------------|------------------------------------------|
