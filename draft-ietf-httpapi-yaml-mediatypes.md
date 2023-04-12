@@ -503,8 +503,8 @@ to prevent partial processing, implementers might prefer validating all the docu
 
 Repeated parsing and re-encoding of a YAML stream can result
 in the addition or removal of document delimiters (e.g. `---` or `...`)
-as well as the modification of anchor names and other serialization details:
-this can break signature validation.
+as well as the modification of anchor names and other serialization details,
+which can break signature validation.
 
 # IANA Considerations
 
