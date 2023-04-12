@@ -154,7 +154,7 @@ but percent-encoding of those characters is not allowed by the fragment rule
 in {{Section 3.5 of URI}}.
 
 If multiple nodes would match a fragment identifier,
-the first such match is selected.
+the first occurrence of such match is selected.
 
 Users concerned with interoperability of fragment identifiers:
 
