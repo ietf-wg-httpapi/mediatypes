@@ -82,17 +82,17 @@ on the IANA Media Types registry.
 YAML [YAML] is a data serialization format
 that is capable of conveying one or multiple
 documents in a single presentation stream
-(e.g. a file or a network resource).
+(e.g., a file or a network resource).
 It is widely used on the Internet,
-including in the API sector (e.g. see [OAS]),
-but the relevant media type and structured syntax suffix previously had not been registered by IANA.
+including in the API sector (e.g., see [OAS]),
+but a corrisponding media type and structured syntax suffix had not previously been registered by IANA.
 
 To increase interoperability when exchanging YAML streams,
 and leverage content negotiation mechanisms when exchanging
 YAML resources,
 this specification
 registers the `application/yaml` media type
-and the `+yaml` structured syntax suffix.
+and the `+yaml` structured syntax suffix {{!MEDIATYPE=RFC6838}}.
 
 Moreover, it provides security considerations
 and interoperability considerations related to [YAML],
@@ -113,6 +113,7 @@ The terms "fragment" and "fragment identifier"
 in this document are to be interpreted as in {{!URI=RFC3986}}.
 
 The terms "presentation", "stream", "YAML document", "representation graph", "tag",
+"serialization detail",
 "node", "alias node", "anchor" and "anchor name"
 in this document are to be interpreted as in [YAML].
 
@@ -121,7 +122,7 @@ in this document are to be interpreted as in [YAML].
 A fragment identifies a node in a stream.
 
 A fragment identifier starting with "*"
-is to be interpreted as a YAML alias node {{fragment-alias-node}}.
+is to be interpreted as a YAML alias node (see {{fragment-alias-node}}).
 
 For single-document YAML streams,
 a fragment identifier that is empty
@@ -147,7 +148,7 @@ as fragment identifiers to designate nodes.
 
 A YAML alias node can be represented in a URI fragment identifier
 by encoding it into bytes using UTF-8 {{!UTF-8=RFC3629}},
-while percent-encoding those characters not allowed by the fragment rule
+but percent-encoding of those characters is not allowed by the fragment rule
 in {{Section 3.5 of URI}}.
 
 If multiple nodes would match a fragment identifier,
@@ -353,7 +354,7 @@ it is the most popular and widely used on the web.
 The "yml" filename extension is still used.
 The simultaneous usage of two filename extensions in the same context
 might cause interoperability issues
-(e.g. when both a "config.yaml" and a "config.yml" are present).
+(e.g., when both a "config.yaml" and a "config.yml" are present).
 
 ## YAML and JSON {#int-yaml-and-json}
 
@@ -431,7 +432,7 @@ the YAML representation graph needs to be generated before the fragment identifi
 It is important that this evaluation will not cause the issues mentioned in {{int-yaml-and-json}}
 and in [Security considerations](#security-considerations) such as infinite loops and unexpected code execution.
 
-Implementers need to consider that the YAML version and supported features (e.g. merge keys)
+Implementers need to consider that the YAML version and supported features (e.g., merge keys)
 can impact on the generation of the representation graph (see {{example-merge-keys}}).
 
 In {{application-yaml}}, this document extends the use of specifications based on
@@ -445,7 +446,7 @@ understand interoperability issues related to fragment identifiers.
 # Security Considerations
 
 Security requirements for both media type and media type suffix
-registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
+registrations are discussed in Section 4.6 of {{MEDIATYPE}}.
 
 ## Arbitrary Code Execution {#sec-yaml-code-execution}
 
@@ -468,8 +469,8 @@ An implementation that attempts to do that
 can infinite-loop traversing the YAML representation graph at some point,
 for example:
 
-- when trying to serialize it JSON;
-- or when searching/identifying nodes using specifications based on the JSON data model (e.g. {{JSON-POINTER}}).
+- when trying to serialize it as JSON;
+- or when searching/identifying nodes using specifications based on the JSON data model (e.g., {{JSON-POINTER}}).
 
 ~~~ yaml
 x: &x
@@ -477,8 +478,9 @@ x: &x
 ~~~
 {: title="A cyclic document" #example-yaml-cyclic}
 
-Even if a representaion graph is not cyclic, treating it as a simple tree could lead to improper behaviors
-(such as the "billion laughs" problem).
+Even if a representation graph is not cyclic, treating it as a simple tree could lead to improper behaviors
+(such as the "billion laughs"
+or "Exponential Entity Expansion" problem).
 
 ~~~ yaml
 x1: &a1 ["a", "a"]
@@ -502,7 +504,7 @@ and later indicate failure to parse the remainder of the stream;
 to prevent partial processing, implementers might prefer validating all the documents in a stream beforehand.
 
 Repeated parsing and re-encoding of a YAML stream can result
-in the addition or removal of document delimiters (e.g. `---` or `...`)
+in the addition or removal of document delimiters (e.g., `---` or `...`)
 as well as the modification of anchor names and other serialization details,
 which can break signature validation.
 
