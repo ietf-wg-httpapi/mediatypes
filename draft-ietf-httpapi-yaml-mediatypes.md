@@ -325,8 +325,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
 YAML is an evolving language and, over time,
 some features have been added and others removed.
 
-While this document is based on a given YAML version [YAML],
-the media type registration does not imply a specific version.
+This [YAML] media type registration is independent of YAML version.
 This allows content negotiation of version-independent YAML resources.
 
 Implementers concerned about features related to a specific YAML version
