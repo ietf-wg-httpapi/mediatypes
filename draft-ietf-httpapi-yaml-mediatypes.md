@@ -697,6 +697,12 @@ Q: Do we forbid using non-UTF-8 YAML serialization?
    This is aligned with Section 5.2 of [YAML] that explicitly
    recommends UTF-8.
 
+Q: Why media type registration information is outside the IANA Considerations?
+:  We decided to follow the style adopted in {{HTTP}} where
+   the IANA Considerations in {{Section 18.8 of HTTP}}
+   references the `multipart/byteranges` media type registration form
+   contained in the specification body {{Section 14.6 of HTTP}}.
+
 # Change Log
 {: numbered="false" removeinrfc="true"}
 
