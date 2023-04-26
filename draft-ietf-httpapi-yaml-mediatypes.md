@@ -154,7 +154,7 @@ but percent-encoding of those characters is not allowed by the fragment rule
 in {{Section 3.5 of URI}}.
 
 If multiple nodes would match a fragment identifier,
-the first such match is selected.
+the first occurrence of such match is selected.
 
 Users concerned with interoperability of fragment identifiers:
 
@@ -434,7 +434,7 @@ It is important that this evaluation will not cause the issues mentioned in {{in
 and in [Security considerations](#security-considerations) such as infinite loops and unexpected code execution.
 
 Implementers need to consider that the YAML version and supported features (e.g., merge keys)
-can impact on the generation of the representation graph (see {{example-merge-keys}}).
+can affect the generation of the representation graph (see {{example-merge-keys}}).
 
 In {{application-yaml}}, this document extends the use of specifications based on
 the JSON data model with support for YAML fragment identifiers.
@@ -466,9 +466,9 @@ Many implementations provide safe deserializers addressing these issues.
 YAML documents are rooted, connected, directed graphs
 and can contain reference cycles,
 so they can't be treated as simple trees (see Section 3.2.1 of [YAML]).
-An implementation that attempts to do that
-can infinite-loop traversing the YAML representation graph at some point,
-for example:
+An implementation that treats them as simple trees
+risks going into an infinite loop while traversing the YAML representation graph.
+This can happen:
 
 - when trying to serialize it as JSON;
 - or when searching/identifying nodes using specifications based on the JSON data model (e.g., {{JSON-POINTER}}).
