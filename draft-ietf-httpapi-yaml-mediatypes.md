@@ -73,7 +73,9 @@ informative:
 This document registers
 the application/yaml media type
 and the +yaml structured syntax suffix
-on the IANA Media Types registry.
+on the IANA Media Types registry,
+intended to be used to identify document components
+serialized according to the YAML specification.
 
 --- middle
 
