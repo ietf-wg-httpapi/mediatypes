@@ -519,7 +519,7 @@ which can break signature validation.
 
 This specification defines the following new Internet media type {{MEDIATYPE}}.
 
-IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
+IANA is asked to update the "Media Types" registry at <https://www.iana.org/assignments/media-types>
 with the registration information provided in the section below.
 
 |--------------------------------------|---------------------------------------------|
@@ -528,7 +528,7 @@ with the registration information provided in the section below.
 | application/yaml                     | {{application-yaml}} of this document       |
 |--------------------------------------|---------------------------------------------|
 
-IANA has updated the "Structured Syntax Suffixes" registry at <https://www.iana.org/assignments/media-type-structured-suffix>
+IANA is asked to update the "Structured Syntax Suffixes" registry at <https://www.iana.org/assignments/media-type-structured-suffix>
 with the registration information provided in the section below.
 
 |--------------------------|------------------------------------------|
