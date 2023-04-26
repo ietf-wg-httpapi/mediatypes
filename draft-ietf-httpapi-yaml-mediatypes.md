@@ -87,7 +87,7 @@ documents in a single presentation stream
 (e.g., a file or a network resource).
 It is widely used on the Internet,
 including in the API sector (e.g., see [OAS]),
-but a corrisponding media type and structured syntax suffix had not previously been registered by IANA.
+but a corresponding media type and structured syntax suffix had not previously been registered by IANA.
 
 To increase interoperability when exchanging YAML streams,
 and leverage content negotiation mechanisms when exchanging
