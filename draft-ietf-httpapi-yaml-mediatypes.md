@@ -379,7 +379,7 @@ that do not have a JSON counterpart.
    maxLength: &text_limit 64
 
  Name:
-   type: string
+   type: string{{Section 8.1 of JSON}}
    maxLength: *text_limit  # Replaced by the value 64.
 ~~~
 {: title="JSON replaces alias nodes with static values." #example-json-discards-information}
@@ -393,10 +393,13 @@ In some cases an implementer may want to
 define a list of allowed YAML features,
 taking into account that the following ones
 might have interoperability
-issues with JSON:
+issues with {{JSON}}:
 
 - multi-document YAML streams;
-- non UTF-8 encoding, since YAML supports UTF-16 and UTF-32 in addition to UTF-8;
+- non UTF-8 encoding. Before encoding YAML streams in UTF-16 or UTF-32,
+  it is important to note that {{Section 8.1 of JSON}} mandates the use of UTF-8
+  when exchanging JSON texts between systems that are not part of a closed ecosystem,
+  and that Section 5.2 of [YAML] recommends the use of UTF-8;
 - mapping keys that are not strings;
 - circular references represented using anchor (see {{sec-yaml-exhaustion}}
   and {{example-yaml-cyclic}});
@@ -672,6 +675,27 @@ Q: Why not just use JSON Pointer as the primary fragment identifier?
    The current behaviour for empty fragments is the same
    for both JSON Pointer and alias nodes.
    Incidentally, it's the only sensible behaviour independently of {{JSON-POINTER}}.
+
+Q: Why describe the YAML/JSON so closely?
+:  In the context of Web APIs, YAML is widely used as a more compact way to serialize
+   content inteded to be consumed according to the JSON data model.
+   Typical examples are OpenAPI specifications and Kubernete manifest files,
+   that can be serialized in both formats.
+   The YAML media type registration I-D is a spin-off and a building block
+   for the OpenAPI specification media type registration.
+   The YAML/JSON section aims at clarifying what developers should expect when using YAML
+   instead of JSON, and its content arose from common mistakes and FAQs.
+
+   Please note that we are not imposing any normative restriction on YAML streams;
+   this is because YAML is defined outside this document.
+   Instead, we only provide Interoperability and Security considerations that,
+   by their nature, are not normative.
+
+Q: Do we forbid using non-UTF-8 YAML serialization?
+:  No. Since {{JSON}} recommends UTF-8 in interoperability context
+   we suggest that using UTF-8 is an interoperable behavior.
+   This is aligned with Section 5.2 of [YAML] that explicitly
+   recommends UTF-8.
 
 # Change Log
 {: numbered="false" removeinrfc="true"}
