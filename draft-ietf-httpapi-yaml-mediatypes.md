@@ -679,7 +679,7 @@ Q: Why not just use JSON Pointer as the primary fragment identifier?
 Q: Why describe the YAML/JSON so closely?
 :  In the context of Web APIs, YAML is widely used as a more compact way to serialize
    content inteded to be consumed according to the JSON data model.
-   Typical examples are OpenAPI specifications and Kubernete manifest files,
+   Typical examples are OpenAPI specifications and Kubernetes manifest files,
    that can be serialized in both formats.
    The YAML media type registration I-D is a spin-off and a building block
    for the OpenAPI specification media type registration.
