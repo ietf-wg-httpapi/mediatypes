@@ -288,7 +288,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
   :  [YAML]
 
   Encoding considerations:
-  : see {{application-yaml}}
+  : Same as "application/yaml"
 
   Fragment identifier considerations:
   : Differently from `application/yaml`,
@@ -297,14 +297,14 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
 
     A specific `xxx/yyy+yaml` media type
     needs to define the syntax and semantics for fragment identifiers
-    because the ones in {{application-yaml}}
+    because the ones defined for "application/yaml"
     do not apply unless explicitly expressed.
 
   Interoperability considerations:
-  : See {{application-yaml}}
+  : Same as "application/yaml"
 
   Security considerations:
-  : See {{application-yaml}}
+  : Same as "application/yaml"
 
   Contact:
   : httpapi@ietf.org or art@ietf.org
@@ -508,7 +508,7 @@ in a format that does not support reference cycles (see {{int-yaml-and-json}}).
 
 Incremental parsing and processing of a YAML stream can produce partial results
 and later indicate failure to parse the remainder of the stream;
-to prevent partial processing, implementers might prefer validating all the documents in a stream beforehand.
+to prevent partial processing, implementers might prefer validating and processing all the documents in a stream at the same time.
 
 Repeated parsing and re-encoding of a YAML stream can result
 in the addition or removal of document delimiters (e.g., `---` or `...`)
