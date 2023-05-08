@@ -519,20 +519,20 @@ which can break signature validation.
 
 This specification defines the following new Internet media type {{MEDIATYPE}}.
 
-IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
-with the registration information provided below.
+IANA is asked to update the "Media Types" registry at <https://www.iana.org/assignments/media-types>
+with the registration information provided in the section below.
 
 |--------------------------------------|---------------------------------------------|
-| Media Type                           | Section                                     |
+| Media Type                           | Registration information section            |
 |--------------------------------------|---------------------------------------------|
 | application/yaml                     | {{application-yaml}} of this document       |
 |--------------------------------------|---------------------------------------------|
 
-IANA has updated the "Structured Syntax Suffixes" registry at <https://www.iana.org/assignments/media-type-structured-suffix>
-with the registration information provided below.
+IANA is asked to update the "Structured Syntax Suffixes" registry at <https://www.iana.org/assignments/media-type-structured-suffix>
+with the registration information provided in the section below.
 
 |--------------------------|------------------------------------------|
-| Suffix                   | Section                                  |
+| Suffix                   | Registration information section         |
 |--------------------------|------------------------------------------|
 | +yaml                    | {{suffix-yaml}} of this document         |
 |--------------------------|------------------------------------------|
@@ -696,6 +696,12 @@ Q: Do we forbid using non-UTF-8 YAML serialization?
    we suggest that using UTF-8 is an interoperable behavior.
    This is aligned with Section 5.2 of [YAML] that explicitly
    recommends UTF-8.
+
+Q: Why media type registration information is outside the IANA Considerations?
+:  We decided to follow the style adopted in {{HTTP}} where
+   the IANA Considerations in {{Section 18.8 of HTTP}}
+   references the `multipart/byteranges` media type registration form
+   contained in the specification body {{Section 14.6 of HTTP}}.
 
 # Change Log
 {: numbered="false" removeinrfc="true"}
