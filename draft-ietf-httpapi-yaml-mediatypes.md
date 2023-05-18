@@ -262,13 +262,10 @@ Restrictions on usage:
 Author:
 : See Authors' Addresses section.
 
-<!-- The media type template needs to stand on its own.
--->
 
 Change controller:
-: IESG
+: IETF
 
-<!-- There needs to be a change controller.  -->
 
 ## The +yaml Structured Syntax Suffix {#suffix-yaml}
 
@@ -312,11 +309,9 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
   Author:
   : See Authors' Addresses section
 
-<!-- The template needs to stand on its own.
--->
 
   Change controller:
-  :  IESG
+  :  IETF
 
 # Interoperability Considerations
 
