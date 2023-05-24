@@ -165,11 +165,11 @@ Users concerned with interoperability of fragment identifiers:
   anchor names are a serialization detail;
 - SHOULD NOT use alias nodes that match multiple nodes.
 
-In the example resource below, the URL `file.yaml#*foo`
-references the first alias node `*foo` pointing to the node with value `scalar`
+In the example resource below, the relative reference (see {{Section 4.2 of URI}}) `file.yaml#*foo`
+identifies the first alias node `*foo` pointing to the node with value `scalar`
 and not the one in the second document;
 whereas
-the URL `file.yaml#*document_2` references the root node
+the relative reference `file.yaml#*document_2` identifies the root node
 of the second document `{ one: [a, sequence]}`.
 
 ~~~ example
