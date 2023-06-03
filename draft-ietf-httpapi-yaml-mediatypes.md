@@ -227,7 +227,7 @@ Interoperability considerations:
 : see {{interoperability-considerations}} of this document
 
 Published specification:
-: [YAML]
+: [YAML], this document
 
 Applications that use this media type:
 : Applications that need a human-friendly, cross language, Unicode
@@ -235,7 +235,7 @@ Applications that use this media type:
   data types of dynamic programming languages.
 
 Fragment identifier considerations:
-: See {{application-yaml-fragment}}
+: See {{application-yaml-fragment}} of this document
 
 Additional information:
 
@@ -244,14 +244,14 @@ Additional information:
 
 - Magic number(s)  N/A
 
-- File extension(s): "yaml" (preferred), "yml". See {{int-yaml-filename-extension}}.
+- File extension(s): "yaml" (preferred), "yml". See {{int-yaml-filename-extension}} of this document.
 
 - Macintosh file type code(s):  N/A
 
 - Windows Clipboard Name: YAML
 
 Person and email address to contact for further information:
-: See Authors' Addresses section.
+: See the Authors' Addresses section of this document.
 
 Intended usage:
 : COMMON
@@ -260,7 +260,7 @@ Restrictions on usage:
 : None.
 
 Author:
-: See Authors' Addresses section.
+: See the Authors' Addresses section of this document.
 
 
 Change controller:
@@ -282,7 +282,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
   :  +yaml
 
   References:
-  :  [YAML]
+  :  [YAML], this document
 
   Encoding considerations:
   : Same as "application/yaml"
@@ -307,7 +307,7 @@ See {{MEDIATYPE}} for definitions of each of the registration form headings.
   : httpapi@ietf.org or art@ietf.org
 
   Author:
-  : See Authors' Addresses section
+  : See the Authors' Addresses section of this document
 
 
   Change controller:
