@@ -619,6 +619,7 @@ drafting or reviewing text, and evaluating open issues:
 
 Tina (tinita) Müller,
 Ben Hutton,
+Carsten Bormann,
 Manu Sporny
 and Jason Desrosiers.
 
