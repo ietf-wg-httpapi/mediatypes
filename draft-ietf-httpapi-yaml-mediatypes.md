@@ -581,7 +581,7 @@ referencing the `&anchor` node.
    bar: *anchor
    bat: *foo
 ~~~
-{: title="Example of a cyclic references and alias nodes." #example-cyclic-graph}
+{: title="Example of a cyclic reference and alias nodes." #example-cyclic-graph}
 
 Many YAML implementations will resolve
 [the merge key "<<:"](https://yaml.org/type/merge.html) defined in YAML 1.1
