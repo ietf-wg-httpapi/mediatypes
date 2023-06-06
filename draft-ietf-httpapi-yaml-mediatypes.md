@@ -374,7 +374,7 @@ that do not have a JSON counterpart.
    maxLength: &text_limit 64
 
  Name:
-   type: string{{Section 8.1 of JSON}}
+   type: string
    maxLength: *text_limit  # Replaced by the value 64.
 ~~~
 {: title="JSON replaces alias nodes with static values." #example-json-discards-information}
