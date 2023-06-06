@@ -374,7 +374,7 @@ that do not have a JSON counterpart.
    maxLength: &text_limit 64
 
  Name:
-   type: string{{Section 8.1 of JSON}}
+   type: string
    maxLength: *text_limit  # Replaced by the value 64.
 ~~~
 {: title="JSON replaces alias nodes with static values." #example-json-discards-information}
@@ -581,7 +581,7 @@ referencing the `&anchor` node.
    bar: *anchor
    bat: *foo
 ~~~
-{: title="Example of a cyclic references and alias nodes." #example-cyclic-graph}
+{: title="Example of a cyclic reference and alias nodes." #example-cyclic-graph}
 
 Many YAML implementations will resolve
 [the merge key "<<:"](https://yaml.org/type/merge.html) defined in YAML 1.1
@@ -619,6 +619,7 @@ drafting or reviewing text, and evaluating open issues:
 
 Tina (tinita) Müller,
 Ben Hutton,
+Carsten Bormann,
 Manu Sporny
 and Jason Desrosiers.
 
