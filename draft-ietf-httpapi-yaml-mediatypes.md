@@ -518,7 +518,7 @@ Older YAML versions were more tolerant (e.g., intepreting `no` and `n` as `false
 and `yes` and `y` as `true`).
 When the older syntax is used, a YAML implementation could then interpret
 `insecure: n` as `insecure: "n"` instead of `insecure: false`.
-To avoid these issues, just express booleans using the syntax defined
+To avoid these issues, express booleans only using the syntax defined
 in Section 10.3.2 of [YAML].
 
 # IANA Considerations
