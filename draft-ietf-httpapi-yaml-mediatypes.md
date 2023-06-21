@@ -514,7 +514,7 @@ which can break signature validation.
 
 Section 10.3.2 of [YAML] specifies that only the scalars matching the
 regular expression `true|True|TRUE|false|False|FALSE` are interpreted as booleans.
-Older YAML versions were more tolerant (e.g., intepreting `no` and `n` as `false`,
+Older YAML versions were more tolerant (e.g., interpreting `no` and `n` as `false`,
 and `yes` and `y` as `true`).
 When the older syntax is used, a YAML implementation could then interpret
 `insecure: n` as `insecure: "n"` instead of `insecure: false`.
