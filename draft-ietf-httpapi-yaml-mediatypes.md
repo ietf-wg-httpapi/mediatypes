@@ -510,6 +510,17 @@ in the addition or removal of document delimiters (e.g., `---` or `...`)
 as well as the modification of anchor names and other serialization details,
 which can break signature validation.
 
+## Expressing booleans
+
+Section 10.3.2 of [YAML] specifies that only the scalars matching the
+regular expression `true|True|TRUE|false|False|FALSE` are interpreted as booleans.
+Older YAML versions were more tolerant (e.g., interpreting `no` and `n` as `false`,
+and `yes` and `y` as `true`).
+When the older syntax is used, a YAML implementation could then interpret
+`insecure: n` as `insecure: "n"` instead of `insecure: false`.
+To avoid these issues, express booleans only using the syntax defined
+in Section 10.3.2 of [YAML].
+
 # IANA Considerations
 
 This specification defines the following new Internet media type {{MEDIATYPE}}.
