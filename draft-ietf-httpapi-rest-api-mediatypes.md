@@ -105,7 +105,7 @@ in this document are to be interpreted as in {{!SEMANTICS=I-D.ietf-httpbis-seman
 # Media Type registrations
 
 This section describes the information required to register
-the above media types according to {{!MEDIATYPE=RFC6838}}
+the above media types according to {{!MEDIATYPE=RFC6838}}.
 
 ## The OpenAPI Media Types
 
@@ -122,7 +122,7 @@ order:
 
 1. openapi 3.1 in YAML
 2. openapi 3.0 in YAML
-3. any openapi version in json
+3. any openapi version in JSON
 
 ~~~ example
 
@@ -148,16 +148,16 @@ Optional parameters:
 : version; unrecognized parameters should be ignored
 
 Encoding considerations:
-: Same as {{JSON}}
+: Same as "application/json"
 
 Security considerations:
-: See {{security-considerations}} of this document, {{JSON}} and [OAS]
+: See {{security-considerations}} of this document, "application/json" and [OAS]
 
 Interoperability considerations:
-: Same as {{JSON}} and [OAS]
+: See "application/json" and [OAS]
 
 Published specification:
-: [OAS]
+: this document, [OAS]
 
 Applications that use this media type:
 : HTTP
@@ -208,13 +208,13 @@ Optional parameters:
 : version; unrecognized parameters should be ignored
 
 Encoding considerations:
-: Same as {{YAML-MEDIATYPES}}
+: Same as "+yaml" Structured Syntax Suffix
 
 Security considerations:
-: See {{security-considerations}} of this document, {{Section 4 of YAML-MEDIATYPES}} and [OAS]
+: See {{security-considerations}} of this document, "+yaml" Structured Syntax Suffix and [OAS]
 
 Interoperability considerations:
-: See {{Section 3 of YAML-MEDIATYPES}} and [OAS]
+: See "+yaml" Structured Syntax Suffix and [OAS]
 
 Published specification:
 : [OAS]
@@ -232,7 +232,7 @@ Additional information:
 
 - Magic number(s):  n/a
 
-- File extension(s):  yaml, yml
+- File extension(s): Same as "application/yaml"
 
 - Macintosh file type code(s):  n/a
 
@@ -416,7 +416,7 @@ Optional parameters:
   schema, the `$schema` keyword takes precedence.
 
 Encoding considerations:
-: Same as {{JSON}}
+: Same as "application/json"
 
 Security considerations:
 : See the "Security Considerations" section of {{jsonschema}}
@@ -555,11 +555,11 @@ to retrieval and processing of malicious code
 
 This specification defines the following new Internet media types {{MEDIATYPE}}.
 
-IANA has updated the "Media Types" registry at <https://www.iana.org/assignments/media-types>
-with the registration information provided below.
+IANA is asked to update the "Media Types" registry at <https://www.iana.org/assignments/media-types>
+with the registration information provided in the sections below.
 
 |--------------------------------------|---------------------------------------------|
-| Media Type                           | Section                                     |
+| Media Type                           | Registration Information Section            |
 |--------------------------------------|---------------------------------------------|
 | application/openapi+yaml             | {{openapi-yaml}} of this document           |
 | application/openapi+json             | {{openapi-json}} of this document           |
