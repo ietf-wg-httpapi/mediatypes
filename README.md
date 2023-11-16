@@ -6,6 +6,13 @@ This is the working area for the individual Internet-Draft, "REST API Media type
 * [Individual Draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-rest-api-mediatypes/)
 * [Compare Editor's Copy to Individual Draft](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-ietf-httpapi-rest-api-mediatypes.diff)
 
+This is the working area for the individual Internet-Draft, "JSON Schema Media type".
+
+* [Editor's Copy](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-ietf-httpapi-jsonschema-mediatypes.html)
+* [Individual Draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-jsonschema-mediatypes/)
+* [Compare Editor's Copy to Individual Draft](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-ietf-httpapi-jsonschema-mediatypes.diff)
+
+
 This is the working area for the individual Internet-Draft, "YAML Media type".
 
 * [Editor's Copy](https://ietf-wg-httpapi.github.io/mediatypes/#go.draft-ietf-httpapi-yaml-mediatypes.html)
