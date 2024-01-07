@@ -77,7 +77,7 @@ OpenAPI Specification [OAS] version 3 and above
 is a consolidated standard for describing
 HTTP APIs using the JSON {{!JSON=RFC8259}} and YAML [YAML] data format.
 
-To increase interoperability when processing API specifications
+To increase interoperability when processing API description
 and leverage content negotiation mechanisms when exchanging
 OpenAPI description resources
 this specification register the following media types:
