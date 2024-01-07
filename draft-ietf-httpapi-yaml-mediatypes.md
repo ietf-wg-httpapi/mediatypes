@@ -7,7 +7,7 @@ category: info
 ipr: trust200902
 area: Applications and Real-Time
 workgroup: HTTPAPI
-keyword: Internet-Draft
+keyword: data interchange format
 
 stand_alone: yes
 pi: [toc, tocindent, sortrefs, symrefs, strict, compact, comments, inline, docmapping]
@@ -24,6 +24,7 @@ author:
  -
     ins: R. Polli
     name: Roberto Polli
+    abbrev: DTD, Italian Government
     org: Digital Transformation Department, Italian Government
     email: robipolli@gmail.com
     country: Italy
@@ -73,9 +74,9 @@ informative:
 This document registers
 the application/yaml media type
 and the +yaml structured syntax suffix
-on the IANA Media Types registry,
-intended to be used to identify document components
-serialized according to the YAML specification.
+with IANA.
+Both identify document components
+that are serialized according to the YAML specification.
 
 --- middle
 
@@ -104,8 +105,7 @@ including its relation with {{!JSON=RFC8259}}.
 
 {::boilerplate bcp14+}
 
-The terms  "content", "content negotiation", "resource",
-and "user agent"
+The terms "content negotiation" and "resource"
 in this document are to be interpreted as in {{!HTTP=RFC9110}}.
 
 The terms "fragment" and "fragment identifier"
@@ -117,7 +117,7 @@ The terms "presentation", "stream", "YAML document", "representation graph", "ta
 in this document are to be interpreted as in [YAML].
 
 Figures containing YAML code always start with
-the "%YAML 1.2" directive to improve readability.
+the "%YAML" directive to improve readability.
 
 ## Fragment identification {#application-yaml-fragment}
 
