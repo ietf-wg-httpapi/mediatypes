@@ -79,7 +79,7 @@ HTTP APIs using the JSON {{!JSON=RFC8259}} and YAML [YAML] data format.
 
 To increase interoperability when processing API specifications
 and leverage content negotiation mechanisms when exchanging
-OpenAPI Specification resources
+OpenAPI description resources
 this specification register the following media types:
 `application/openapi+json`
 and `application/openapi+yaml`.
