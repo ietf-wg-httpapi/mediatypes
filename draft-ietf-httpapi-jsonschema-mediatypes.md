@@ -28,6 +28,12 @@ author:
     org: Digital Transformation Department, Italian Government
     email: robipolli@gmail.com
     country: Italy
+ -
+    ins: J. Desrosiers
+    name: Jason Desrosiers
+    org: Postman
+    email: jdesrosi@gmail.com
+    country: USA
 
 normative:
   YAML:
