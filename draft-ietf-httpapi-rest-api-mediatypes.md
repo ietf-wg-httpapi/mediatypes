@@ -50,7 +50,7 @@ normative:
     - ins: Ron Ratovsky
     - ins: Uri Sarid
   jsonschema:
-    title: JSON Schema Core
+    title: JSON Schema
     date: 2020-01-28
     target: "https://json-schema.org/specification.html"
     author:
@@ -77,10 +77,10 @@ OpenAPI Specification [OAS] version 3 and above
 is a consolidated standard for describing
 HTTP APIs using the JSON {{!JSON=RFC8259}} and YAML [YAML] data format.
 
-To increase interoperability when processing API description
+To increase interoperability when processing API descriptions
 and leverage content negotiation mechanisms when exchanging
-OpenAPI description resources
-this specification register the following media types:
+OpenAPI description representations
+this specification registers the following media types:
 `application/openapi+json`
 and `application/openapi+yaml`.
 
@@ -102,16 +102,16 @@ the above media types according to {{!MEDIATYPE=RFC6838}}.
 
 ## The OpenAPI Media Types
 
-The OpenAPI Specification Media Types convey OpenAPI document (OAS) files
+The OpenAPI Specification Media Types convey semantics for OpenAPI Document (OAD) resources
 as defined in [OAS] for version 3.0 and above.
 
-Those files can be serialized in {{JSON}} or [YAML].
+Those resources can be represented in {{JSON}} or [YAML].
 Since there are multiple OpenAPI Specification versions,
 those media types support the `version` parameter.
 
 The following example conveys the desire of a client
-to receive an OpenAPI Specification resource preferably in the following
-order:
+to receive an OpenAPI Document resource based on the stated
+preferences:
 
 1. openapi 3.1 in YAML
 2. openapi 3.0 in YAML
@@ -253,22 +253,21 @@ and in the Interoperability Considerations of the "+yaml" Structured Syntax Suff
 
 # Security Considerations
 
-Security requirements for  media type
+Security requirements for media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
 and in the Security Considerations of the "+yaml" Structured Syntax Suffix.
 
 ## General Considerations
 
-All REST API Media Types might reference nested or external
-resources,
-as well as processable information like HTML.
+OpenAPI documents are processed by a wide variety of tooling for numerous different purposes, such as client code generation, documentation generation, server side routing, and API testing. OpenAPI document authors must consider the risks of the scenarios where the OpenAPI document may be used.
 
-Implementations that try to dereference or process those
-resource automatically
-might be subject to various security risks,
-from resource exhaustion (e.g., caused by cyclic references)
-to retrieval and processing of malicious code
-(e.g., embedded as markup language).
+An OpenAPI document describes the security schemes used to protect the resources it defines. The security schemes available offer varying degrees of protection. Factors such as the sensitivity of the data and the potential impact of a security breach should guide the selection of security schemes for the API resources. Some security schemes, such as basic auth and OAuth Implicit flow, are supported for compatibility with existing APIs. However, their inclusion in OpenAPI does not constitute an endorsement of their use, particularly for highly sensitive data or operations.
+
+OpenAPI documents may contain references to external resources that may be dereferenced automatically by consuming tools. External resources may be hosted on different domains that may be untrusted. References in an OpenAPI document, or across OpenAPI documents may cause a cycle. Tooling must detect and handle cycles to prevent resource exhaustion.
+
+Certain properties allow the use of Markdown which can contain HTML including script. It is the responsibility of tooling to appropriately sanitize the Markdown.
+
+OpenAPI documents use [jsonschema] therefore share the security consideration of JSON Schema.
 
 # IANA Considerations
 
