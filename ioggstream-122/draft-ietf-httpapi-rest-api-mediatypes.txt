@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
-Intended status: Informational                           27 October 2024
-Expires: 30 April 2025
+Intended status: Informational                           1 November 2024
+Expires: 5 May 2025
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 April 2025.
+   This Internet-Draft will expire on 5 May 2025.
 
 Copyright Notice
 
