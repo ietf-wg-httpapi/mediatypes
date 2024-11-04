@@ -5,10 +5,10 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                                  E. Wilde
-Expires: 5 September 2024                                          Axway
+Expires: 8 May 2025                                                Axway
                                                                   E. Aro
                                                                  Mozilla
-                                                            4 March 2024
+                                                         4 November 2024
 
 
                             YAML Media Type
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 September 2024.
+   This Internet-Draft will expire on 8 May 2025.
 
 Copyright Notice
 
