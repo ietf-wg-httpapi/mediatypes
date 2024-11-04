@@ -3,7 +3,7 @@
 
 
 HTTPAPI                                                         R. Polli
-Internet-Draft     Digital Transformation Department, Italian Government
+Internet-Draft                                                   Par-Tec
 Intended status: Informational                           4 November 2024
 Expires: 8 May 2025
 
@@ -107,9 +107,6 @@ Table of Contents
    capitals, as shown here.  These words may also appear in this
    document in lower case as plain English words, absent their normative
    meanings.
-
-   This document uses the Augmented BNF defined in [RFC5234] and updated
-   by [RFC7405].
 
    The terms "content", "content negotiation", "resource", and "user
    agent" in this document are to be interpreted as in [HTTP].
@@ -338,15 +335,6 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
-   [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
-              Specifications: ABNF", STD 68, RFC 5234,
-              DOI 10.17487/RFC5234, January 2008,
-              <https://www.rfc-editor.org/rfc/rfc5234>.
-
-   [RFC7405]  Kyzivat, P., "Case-Sensitive String Support in ABNF",
-              RFC 7405, DOI 10.17487/RFC7405, December 2014,
-              <https://www.rfc-editor.org/rfc/rfc7405>.
-
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
@@ -399,6 +387,6 @@ Since -04
 Author's Address
 
    Roberto Polli
-   Digital Transformation Department, Italian Government
+   Par-Tec
    Italy
    Email: robipolli@gmail.com
