@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout"
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: "Cache Setup"
       id: cache-setup
@@ -31,7 +31,7 @@ jobs:
         date -u "+::set-output name=date::%FT%T"
 
     - name: "Cache References"
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ${{ steps.cache-setup.outputs.path }}
         key: refcache-${{ steps.cache-setup.outputs.date }}
@@ -50,12 +50,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: "Save HTML"
+    - name: "Archive Built Drafts"
       uses: actions/upload-artifact@v4
       with:
-        path: "*.html"
+        path: |
+          draft-*.html
+          draft-*.txt
 
-    - name: "Save Text"
-      uses: actions/upload-artifact@v4
-      with:
-        path: "*.txt"
