@@ -25,11 +25,14 @@ author:
  -
     ins: R. Polli
     name: Roberto Polli
-    org: Digital Transformation Department, Italian Government
+    org: Par-Tec
     email: robipolli@gmail.com
     country: Italy
 
 normative:
+  HTTP: RFC9110
+  JSON: RFC8259
+  MEDIATYPE: RFC6838
   YAML:
     title: YAML Ain't Markup Language Version 1.2
     date: 2021-10-01
@@ -75,7 +78,7 @@ and application/openapi+yaml.
 
 OpenAPI Specification [OAS] version 3 and above
 is a consolidated standard for describing
-HTTP APIs using the JSON {{!JSON=RFC8259}} and YAML [YAML] data format.
+HTTP APIs using the JSON {{JSON}} and YAML [YAML] data format.
 
 To increase interoperability when processing API descriptions
 and leverage content negotiation mechanisms when exchanging
@@ -88,17 +91,14 @@ and `application/openapi+yaml`.
 
 {::boilerplate bcp14+}
 
-This document uses the Augmented BNF defined in {{!RFC5234}} and updated
-by {{!RFC7405}}.
-
 The terms  "content", "content negotiation", "resource",
 and "user agent"
-in this document are to be interpreted as in {{!HTTP=RFC9110}}.
+in this document are to be interpreted as in {{HTTP}}.
 
 # Media Type registrations
 
 This section describes the information required to register
-the above media types according to {{!MEDIATYPE=RFC6838}}.
+the above media types according to {{MEDIATYPE}}.
 
 ## The OpenAPI Media Types
 
