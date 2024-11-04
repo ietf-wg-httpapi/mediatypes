@@ -161,7 +161,7 @@ Fragment identifier considerations:
 
 Additional information:
 
-- Deprecated alias names for this type:  N/A
+- Deprecated alias names for this type:  "application/vnd.oai.openapi+json". This name is used, but not registered.
 
 - Magic number(s):  N/A
 
@@ -221,7 +221,7 @@ Fragment identifier considerations:
 
 Additional information:
 
-- Deprecated alias names for this type:  N/A
+- Deprecated alias names for this type: "application/vnd.oai.openapi". This name is used, but not registered.
 
 - Magic number(s):  N/A
 
@@ -248,7 +248,7 @@ Change controller:
 # Interoperability Considerations
 
 Interoperability requirements for media type
-registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
+registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}
 and in the Interoperability Considerations of the "+yaml" Structured Syntax Suffix.
 
 # Security Considerations
