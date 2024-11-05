@@ -106,6 +106,9 @@ The OpenAPI Specification Media Types convey semantics for OpenAPI Document (OAD
 as defined in [OAS] for version 3.0 and above.
 
 Those resources can be represented in {{JSON}} or [YAML].
+
+### The version parameter
+
 Since there are multiple OpenAPI Specification versions,
 those media types support the `version` parameter.
 
@@ -124,6 +127,54 @@ Accept: application/openapi+yaml;version=3.1,
         application/openapi+json;q=0.3
 ~~~
 
+### The component parameter
+
+The optional `component` parameter indicates that the conveyed content
+is not a complete OpenAPI Document.
+Instead, it is a referenceable sub-part, (e.g., a single Schema Object,
+or a Path Item Object).
+
+Valid values for the `component` parameter
+are:
+
+- the star `*` character, indicating that the client
+  is willing to accept any component type as well as a complete OpenAPI Document;
+- the camelCase names of the associated Object Types,
+and depend on the OpenAPI version.
+For example, the `component` parameter value for the
+Path Item Object defined in OpenAPI 3.1 is `pathItem`,
+while the `component` parameter value for the
+Schema Object is `schema`.
+
+An example of a request that is willing to accept both
+a complete OpenAPI Document and a Schema Object is:
+
+~~~ http-message
+
+GET /person.yaml
+Accept: application/openapi+yaml, application/openapi+yaml;component=schema
+~~~
+{:title "A request that is willing to accept either a complete openapi document or a Schema Object" }
+
+An example response returnning a Schema Object is:
+
+~~~ http-message
+HTTP/1.1 200 OK
+Content-Type: application/openapi+yaml;component=schema
+
+description: >-
+  This schema is enclosed in a separate file,
+  that is not a complete OpenAPI Document.
+type: object
+properties:
+  given_name:
+    type: string
+  family_name:
+    type: string
+
+~~~
+{:title "OpenAPI response}
+
 ### Media Type application/openapi+json {#openapi-json}
 
 The following information serves as the registration form for the `application/openapi+json` media type.
@@ -138,7 +189,7 @@ Required parameters:
 : None
 
 Optional parameters:
-: version; unrecognized parameters should be ignored
+: version, component; unrecognized parameters should be ignored.
 
 Encoding considerations:
 : Same as "application/json"
@@ -147,7 +198,7 @@ Security considerations:
 : See {{security-considerations}} of this document, "application/json" and [OAS]
 
 Interoperability considerations:
-: See "application/json" and [OAS]
+: See "application/json", [OAS] and {{int}}
 
 Published specification:
 : this document, [OAS]
@@ -198,7 +249,7 @@ Required parameters:
 : N/A
 
 Optional parameters:
-: version; unrecognized parameters should be ignored
+: version, component; unrecognized parameters should be ignored
 
 Encoding considerations:
 : Same as "+yaml" Structured Syntax Suffix
@@ -207,7 +258,7 @@ Security considerations:
 : See {{security-considerations}} of this document, "+yaml" Structured Syntax Suffix and [OAS]
 
 Interoperability considerations:
-: See "+yaml" Structured Syntax Suffix and [OAS]
+: See "+yaml" Structured Syntax Suffix, [OAS] and {{int}}
 
 Published specification:
 : [OAS]
@@ -245,11 +296,21 @@ Change controller:
 :  IETF
 
 
-# Interoperability Considerations
+# Interoperability Considerations {#int}
 
 Interoperability requirements for media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
 and in the Interoperability Considerations of the "+yaml" Structured Syntax Suffix.
+
+## Component Parameter {#int-component-parameter}
+
+The `component` parameter allows clients to request specific parts of an OpenAPI Document,
+and enables servers to advertise clients that the content does not convey a complete OpenAPI Document.
+
+Current tools tend to process partial documents in the context of a complete document
+(e.g., a referenced Schema Object in the context of the sourcing OpenAPI Document).
+While the `component` parameter can be a hint for processing tools,
+implementors interested in interoperability should be tolerant of the absence of the `component` parameter.
 
 # Security Considerations
 
@@ -308,6 +369,9 @@ Q: Why this document?
 :  After all these years, we still lack a proper media type for REST related document types.
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
+
+Q: Do we support OpenAPI 2.0 / Swagger?
+:  No, this document is about OpenAPI 3.0 and above.
 
 # Change Log
 {: numbered="false" removeinrfc="true"}
