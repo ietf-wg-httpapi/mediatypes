@@ -198,7 +198,7 @@ Security considerations:
 : See {{security-considerations}} of this document, "application/json" and [OAS]
 
 Interoperability considerations:
-: See "application/json" and [OAS]
+: See "application/json", [OAS] and {{int}}
 
 Published specification:
 : this document, [OAS]
@@ -258,7 +258,7 @@ Security considerations:
 : See {{security-considerations}} of this document, "+yaml" Structured Syntax Suffix and [OAS]
 
 Interoperability considerations:
-: See "+yaml" Structured Syntax Suffix and [OAS]
+: See "+yaml" Structured Syntax Suffix, [OAS] and {{int}}
 
 Published specification:
 : [OAS]
