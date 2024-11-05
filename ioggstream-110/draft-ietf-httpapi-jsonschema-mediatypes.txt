@@ -5,8 +5,8 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                             J. Desrosiers
-Expires: 8 May 2025                                              Postman
-                                                         4 November 2024
+Expires: 9 May 2025                                              Postman
+                                                         5 November 2024
 
 
                         JSON Schema Media Types
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 May 2025.
+   This Internet-Draft will expire on 9 May 2025.
 
 Copyright Notice
 

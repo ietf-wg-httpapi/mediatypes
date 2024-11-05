@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
-Intended status: Informational                           4 November 2024
-Expires: 8 May 2025
+Intended status: Informational                           5 November 2024
+Expires: 9 May 2025
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 May 2025.
+   This Internet-Draft will expire on 9 May 2025.
 
 Copyright Notice
 
@@ -72,8 +72,10 @@ Table of Contents
      1.1.  Notational Conventions
    2.  Media Type registrations
      2.1.  The OpenAPI Media Types
-       2.1.1.  Media Type application/openapi+json
-       2.1.2.  Media Type application/openapi+yaml
+       2.1.1.  The version parameter
+       2.1.2.  The component parameter
+       2.1.3.  Media Type application/openapi+json
+       2.1.4.  Media Type application/openapi+yaml
    3.  Interoperability Considerations
    4.  Security Considerations
      4.1.  General Considerations
@@ -122,9 +124,12 @@ Table of Contents
    Document (OAD) resources as defined in [OAS] for version 3.0 and
    above.
 
-   Those resources can be represented in [JSON] or [YAML].  Since there
-   are multiple OpenAPI Specification versions, those media types
-   support the version parameter.
+   Those resources can be represented in [JSON] or [YAML].
+
+2.1.1.  The version parameter
+
+   Since there are multiple OpenAPI Specification versions, those media
+   types support the version parameter.
 
    The following example conveys the desire of a client to receive an
    OpenAPI Document resource based on the stated preferences:
@@ -139,7 +144,33 @@ Table of Contents
            application/openapi+yaml;version=3.0;q=0.5,
            application/openapi+json;q=0.3
 
-2.1.1.  Media Type application/openapi+json
+2.1.2.  The component parameter
+
+   The component parameter indicates that the conveyed content is not a
+   complete OpenAPI Document.  Instead, it is a referenceable sub-part,
+   (e.g., a single schema definition).
+
+   Request:
+
+   GET /person.yaml
+   Accept: application/openapi+yaml;component=Schema
+
+   Response:
+
+   HTTP/1.1 200 OK
+   Content-Type: application/openapi+yaml;component=Schema
+
+   description: >-
+     This schema is enclosed in a separate file,
+     that is not a complete OpenAPI Document.
+   type: object
+   properties:
+     given_name:
+       type: string
+     family_name:
+       type: string
+
+2.1.3.  Media Type application/openapi+json
 
    The following information serves as the registration form for the
    application/openapi+json media type.
@@ -150,8 +181,8 @@ Table of Contents
 
    Required parameters:  None
 
-   Optional parameters:  version; unrecognized parameters should be
-      ignored
+   Optional parameters:  version, component; unrecognized parameters
+      should be ignored.
 
    Encoding considerations:  Same as "application/json"
 
@@ -188,7 +219,7 @@ Table of Contents
 
    Change controller:  IETF
 
-2.1.2.  Media Type application/openapi+yaml
+2.1.4.  Media Type application/openapi+yaml
 
    The following information serves as the registration form for the
    application/openapi+yaml media type.
@@ -199,8 +230,8 @@ Table of Contents
 
    Required parameters:  N/A
 
-   Optional parameters:  version; unrecognized parameters should be
-      ignored
+   Optional parameters:  version, component; unrecognized parameters
+      should be ignored
 
    Encoding considerations:  Same as "+yaml" Structured Syntax Suffix
 
@@ -295,9 +326,9 @@ Table of Contents
       +==========================+==================================+
       | Media Type               | Registration information section |
       +==========================+==================================+
-      | application/openapi+yaml | Section 2.1.2 of this document   |
+      | application/openapi+yaml | Section 2.1.4 of this document   |
       +--------------------------+----------------------------------+
-      | application/openapi+json | Section 2.1.1 of this document   |
+      | application/openapi+json | Section 2.1.3 of this document   |
       +--------------------------+----------------------------------+
 
                                   Table 1
