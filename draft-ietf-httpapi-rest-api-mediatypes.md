@@ -106,6 +106,9 @@ The OpenAPI Specification Media Types convey semantics for OpenAPI Document (OAD
 as defined in [OAS] for version 3.0 and above.
 
 Those resources can be represented in {{JSON}} or [YAML].
+
+### The version parameter
+
 Since there are multiple OpenAPI Specification versions,
 those media types support the `version` parameter.
 
@@ -124,6 +127,40 @@ Accept: application/openapi+yaml;version=3.1,
         application/openapi+json;q=0.3
 ~~~
 
+### The component parameter
+
+The `component` parameter indicates that the conveyed content
+is not a complete OpenAPI Document.
+Instead, it is a referenceable sub-part, (e.g., a single schema definition).
+
+Request:
+
+~~~ http-message
+
+GET /person.yaml
+Accept: application/openapi+yaml;component=Schema
+~~~
+{:title "OpenAPI request}
+
+Response:
+
+~~~ http-message
+HTTP/1.1 200 OK
+Content-Type: application/openapi+yaml;component=Schema
+
+description: >-
+  This schema is enclosed in a separate file,
+  that is not a complete OpenAPI Document.
+type: object
+properties:
+  given_name:
+    type: string
+  family_name:
+    type: string
+
+~~~
+{:title "OpenAPI response}
+
 ### Media Type application/openapi+json {#openapi-json}
 
 The following information serves as the registration form for the `application/openapi+json` media type.
@@ -138,7 +175,7 @@ Required parameters:
 : None
 
 Optional parameters:
-: version; unrecognized parameters should be ignored
+: version, component; unrecognized parameters should be ignored.
 
 Encoding considerations:
 : Same as "application/json"
@@ -198,7 +235,7 @@ Required parameters:
 : N/A
 
 Optional parameters:
-: version; unrecognized parameters should be ignored
+: version, component; unrecognized parameters should be ignored
 
 Encoding considerations:
 : Same as "+yaml" Structured Syntax Suffix
