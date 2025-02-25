@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
-Intended status: Informational                           4 November 2024
-Expires: 8 May 2025
+Intended status: Informational                          25 February 2025
+Expires: 29 August 2025
 
 
                           REST API Media Types
@@ -50,11 +50,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 May 2025.
+   This Internet-Draft will expire on 29 August 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -169,7 +169,8 @@ Table of Contents
 
    Additional information:
 
-   *  Deprecated alias names for this type: N/A
+   *  Deprecated alias names for this type: "application/
+      vnd.oai.openapi+json".  This name is used, but not registered.
 
    *  Magic number(s): N/A
 
@@ -219,7 +220,8 @@ Table of Contents
 
    Additional information:
 
-   *  Deprecated alias names for this type: N/A
+   *  Deprecated alias names for this type: "application/
+      vnd.oai.openapi".  This name is used, but not registered.
 
    *  Magic number(s): N/A
 
@@ -241,7 +243,7 @@ Table of Contents
 3.  Interoperability Considerations
 
    Interoperability requirements for media type registrations are
-   discussed in Section 4.6 of [MEDIATYPE]. and in the Interoperability
+   discussed in Section 4.6 of [MEDIATYPE] and in the Interoperability
    Considerations of the "+yaml" Structured Syntax Suffix.
 
 4.  Security Considerations
