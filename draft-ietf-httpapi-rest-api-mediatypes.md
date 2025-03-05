@@ -251,6 +251,20 @@ Interoperability requirements for media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}
 and in the Interoperability Considerations of the "+yaml" Structured Syntax Suffix.
 
+## Media type of referenced resources
+
+An OpenAPI Description can reference external resources
+that are not OpenAPI Documents (e.g., JSON Schema documents).
+Clients should be aware that
+even if they request a specific media type for those resources
+(e.g., `Accept: application/openapi+yaml; version=3.1`),
+the server might only be able to provide a more generic media type.
+
+For example, a server that publishes a JSON Schema file,
+which can be referenced by both OpenAPI and JSON Schema documents,
+might choose to use the more generic `application/yaml` media type
+instead of managing multiple specific media types for the same resource.
+
 # Security Considerations {#sec}
 
 Security requirements for media type
