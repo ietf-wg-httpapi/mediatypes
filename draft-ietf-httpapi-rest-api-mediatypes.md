@@ -265,6 +265,13 @@ which can be referenced by both OpenAPI and JSON Schema documents,
 might choose to use the more generic `application/yaml` media type
 instead of managing multiple specific media types for the same resource.
 
+## Resources not containing an OpenAPI Object
+
+A server can publish an OpenAPI resource that
+does not contain an "OpenAPI Object".
+In this case, the `version` parameter is useful to identify
+the specification version.
+
 # Security Considerations {#sec}
 
 Security requirements for media type
