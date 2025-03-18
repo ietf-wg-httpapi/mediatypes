@@ -138,7 +138,9 @@ Required parameters:
 : None
 
 Optional parameters:
-: version; unrecognized parameters should be ignored
+: version: its value is a string representing
+  the OpenAPI Specification version the version;
+  unrecognized parameters should be ignored
 
 Encoding considerations:
 : Same as "application/json"
@@ -198,7 +200,9 @@ Required parameters:
 : N/A
 
 Optional parameters:
-: version; unrecognized parameters should be ignored
+: version: its value is a string representing
+  the OpenAPI Specification version the version;
+  unrecognized parameters should be ignored
 
 Encoding considerations:
 : Same as "+yaml" Structured Syntax Suffix
