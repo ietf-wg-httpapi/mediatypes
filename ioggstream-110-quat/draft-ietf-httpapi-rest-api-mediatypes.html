@@ -1183,6 +1183,9 @@ and application/openapi+yaml.<a href="#section-abstract-1" class="pilcrow">¶</a
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-media-type-of-referenced-re" class="internal xref">Media type of referenced resources</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-resources-not-containing-an" class="internal xref">Resources not containing an OpenAPI Object</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
@@ -1527,6 +1530,17 @@ the server might only be able to provide a more generic media type.<a href="#sec
 which can be referenced by both OpenAPI and JSON Schema documents,
 might choose to use the more generic <code>application/yaml</code> media type
 instead of managing multiple specific media types for the same resource.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="resources-not-containing-an-openapi-object">
+<section id="section-3.2">
+        <h3 id="name-resources-not-containing-an">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-resources-not-containing-an" class="section-name selfRef">Resources not containing an OpenAPI Object</a>
+        </h3>
+<p id="section-3.2-1">A server can publish an OpenAPI resource that
+does not contain an "OpenAPI Object".
+In this case, the <code>version</code> parameter is useful to identify
+the specification version.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

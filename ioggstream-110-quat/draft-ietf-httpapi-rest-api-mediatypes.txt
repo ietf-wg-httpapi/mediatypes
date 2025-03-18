@@ -76,6 +76,7 @@ Table of Contents
        2.1.2.  Media Type application/openapi+yaml
    3.  Interoperability Considerations
      3.1.  Media type of referenced resources
+     3.2.  Resources not containing an OpenAPI Object
    4.  Security Considerations
      4.1.  General Considerations
    5.  IANA Considerations
@@ -260,6 +261,12 @@ Table of Contents
    referenced by both OpenAPI and JSON Schema documents, might choose to
    use the more generic application/yaml media type instead of managing
    multiple specific media types for the same resource.
+
+3.2.  Resources not containing an OpenAPI Object
+
+   A server can publish an OpenAPI resource that does not contain an
+   "OpenAPI Object".  In this case, the version parameter is useful to
+   identify the specification version.
 
 4.  Security Considerations
 
