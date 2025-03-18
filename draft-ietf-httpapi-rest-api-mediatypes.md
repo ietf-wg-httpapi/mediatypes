@@ -320,9 +320,6 @@ Q: Why this document?
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
 
-Q: Do we support OpenAPI 2.0 / Swagger?
-:  No, this document is about OpenAPI 3.0 and above.
-
 # Change Log
 {: numbered="false" removeinrfc="true"}
 
