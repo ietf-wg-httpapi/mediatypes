@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
-Intended status: Informational                              5 March 2025
-Expires: 6 September 2025
+Intended status: Informational                             18 March 2025
+Expires: 19 September 2025
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 September 2025.
+   This Internet-Draft will expire on 19 September 2025.
 
 Copyright Notice
 
@@ -368,9 +368,6 @@ FAQ
       media type for REST related document types.  This has some
       security implications too (eg. wrt on identifying parsers or treat
       downloads)
-
-   Q: Do we support OpenAPI 2.0 / Swagger?  No, this document is about
-      OpenAPI 3.0 and above.
 
 Change Log
 
