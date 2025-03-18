@@ -144,10 +144,10 @@ Encoding considerations:
 : Same as "application/json"
 
 Security considerations:
-: See {{security-considerations}} of this document, "application/json" and [OAS]
+: See {{sec}} of this document, "application/json" and [OAS]
 
 Interoperability considerations:
-: See "application/json" and [OAS]
+: See {{int}} of this document, "application/json" and [OAS]
 
 Published specification:
 : this document, [OAS]
@@ -204,10 +204,10 @@ Encoding considerations:
 : Same as "+yaml" Structured Syntax Suffix
 
 Security considerations:
-: See {{security-considerations}} of this document, "+yaml" Structured Syntax Suffix and [OAS]
+: See {{sec}} of this document, "+yaml" Structured Syntax Suffix and [OAS]
 
 Interoperability considerations:
-: See "+yaml" Structured Syntax Suffix and [OAS]
+: See {{int}} of this document, "+yaml" Structured Syntax Suffix and [OAS]
 
 Published specification:
 : [OAS]
@@ -245,13 +245,13 @@ Change controller:
 :  IETF
 
 
-# Interoperability Considerations
+# Interoperability Considerations {#int}
 
 Interoperability requirements for media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}
 and in the Interoperability Considerations of the "+yaml" Structured Syntax Suffix.
 
-# Security Considerations
+# Security Considerations {#sec}
 
 Security requirements for media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}.
@@ -259,13 +259,24 @@ and in the Security Considerations of the "+yaml" Structured Syntax Suffix.
 
 ## General Considerations
 
-OpenAPI documents are processed by a wide variety of tooling for numerous different purposes, such as client code generation, documentation generation, server side routing, and API testing. OpenAPI document authors must consider the risks of the scenarios where the OpenAPI document may be used.
+OpenAPI documents are processed by a wide variety of tooling for numerous different purposes,
+such as client code generation, documentation generation, server side routing, and API testing.
+OpenAPI document authors must consider the risks of the scenarios where the OpenAPI document may be used.
 
-An OpenAPI document describes the security schemes used to protect the resources it defines. The security schemes available offer varying degrees of protection. Factors such as the sensitivity of the data and the potential impact of a security breach should guide the selection of security schemes for the API resources. Some security schemes, such as basic auth and OAuth Implicit flow, are supported for compatibility with existing APIs. However, their inclusion in OpenAPI does not constitute an endorsement of their use, particularly for highly sensitive data or operations.
+An OpenAPI document describes the security schemes used to protect the resources it defines.
+The security schemes available offer varying degrees of protection.
+Factors such as the sensitivity of the data and the potential impact of a security breach should guide the selection of security schemes for the API resources.
+Some security schemes, such as basic auth and OAuth Implicit flow, are supported for compatibility with existing APIs.
+However, their inclusion in OpenAPI does not constitute an endorsement of their use,
+particularly for highly sensitive data or operations.
 
-OpenAPI documents may contain references to external resources that may be dereferenced automatically by consuming tools. External resources may be hosted on different domains that may be untrusted. References in an OpenAPI document, or across OpenAPI documents may cause a cycle. Tooling must detect and handle cycles to prevent resource exhaustion.
+OpenAPI documents may contain references to external resources that may be dereferenced automatically by consuming tools.
+External resources may be hosted on different domains that may be untrusted.
+References in an OpenAPI document, or across OpenAPI documents may cause a cycle.
+Tooling must detect and handle cycles to prevent resource exhaustion.
 
-Certain properties allow the use of Markdown which can contain HTML including script. It is the responsibility of tooling to appropriately sanitize the Markdown.
+Certain properties allow the use of Markdown which can contain HTML including script.
+It is the responsibility of tooling to appropriately sanitize the Markdown.
 
 OpenAPI documents use [jsonschema] therefore share the security consideration of JSON Schema.
 
@@ -279,8 +290,8 @@ with the registration information provided in the sections below.
 |--------------------------------------|---------------------------------------------|
 | Media Type                           | Registration information section            |
 |--------------------------------------|---------------------------------------------|
-| application/openapi+yaml             | {{openapi-yaml}} of this document           |
 | application/openapi+json             | {{openapi-json}} of this document           |
+| application/openapi+yaml             | {{openapi-yaml}} of this document           |
 |--------------------------------------|---------------------------------------------|
 
 --- back
