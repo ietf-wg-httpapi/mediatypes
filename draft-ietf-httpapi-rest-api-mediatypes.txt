@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
-Intended status: Informational                          25 February 2025
-Expires: 29 August 2025
+Intended status: Informational                             18 March 2025
+Expires: 19 September 2025
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 August 2025.
+   This Internet-Draft will expire on 19 September 2025.
 
 Copyright Notice
 
@@ -158,7 +158,8 @@ Table of Contents
    Security considerations:  See Section 4 of this document,
       "application/json" and [OAS]
 
-   Interoperability considerations:  See "application/json" and [OAS]
+   Interoperability considerations:  See Section 3 of this document,
+      "application/json" and [OAS]
 
    Published specification:  this document, [OAS]
 
@@ -208,8 +209,8 @@ Table of Contents
    Security considerations:  See Section 4 of this document, "+yaml"
       Structured Syntax Suffix and [OAS]
 
-   Interoperability considerations:  See "+yaml" Structured Syntax
-      Suffix and [OAS]
+   Interoperability considerations:  See Section 3 of this document,
+      "+yaml" Structured Syntax Suffix and [OAS]
 
    Published specification:  [OAS]
 
@@ -297,9 +298,9 @@ Table of Contents
       +==========================+==================================+
       | Media Type               | Registration information section |
       +==========================+==================================+
-      | application/openapi+yaml | Section 2.1.2 of this document   |
-      +--------------------------+----------------------------------+
       | application/openapi+json | Section 2.1.1 of this document   |
+      +--------------------------+----------------------------------+
+      | application/openapi+yaml | Section 2.1.2 of this document   |
       +--------------------------+----------------------------------+
 
                                   Table 1
