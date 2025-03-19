@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
-Intended status: Informational                             18 March 2025
-Expires: 19 September 2025
+Intended status: Informational                             19 March 2025
+Expires: 20 September 2025
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 September 2025.
+   This Internet-Draft will expire on 20 September 2025.
 
 Copyright Notice
 
@@ -151,8 +151,8 @@ Table of Contents
    Required parameters:  None
 
    Optional parameters:  version: its value is a string representing the
-      OpenAPI Specification version the version; unrecognized parameters
-      should be ignored
+      OpenAPI Specification version. ; unrecognized parameters should be
+      ignored
 
    Encoding considerations:  Same as "application/json"
 
@@ -203,8 +203,8 @@ Table of Contents
    Required parameters:  N/A
 
    Optional parameters:  version: its value is a string representing the
-      OpenAPI Specification version the version; unrecognized parameters
-      should be ignored
+      OpenAPI Specification version. ; unrecognized parameters should be
+      ignored
 
    Encoding considerations:  Same as "+yaml" Structured Syntax Suffix
 
