@@ -114,13 +114,13 @@ to receive an OpenAPI Document resource based on the stated
 preferences:
 
 1. openapi 3.1 in YAML
-2. openapi 3.0 in YAML
+2. openapi 3.0.4 in YAML
 3. any openapi version in JSON
 
 ~~~ example
 
 Accept: application/openapi+yaml;version=3.1,
-        application/openapi+yaml;version=3.0;q=0.5,
+        application/openapi+yaml;version=3.0.4;q=0.5,
         application/openapi+json;q=0.3
 ~~~
 
@@ -201,7 +201,7 @@ Required parameters:
 
 Optional parameters:
 : version: its value is a string representing
-  the OpenAPI Specification version.
+  the OpenAPI Specification version. 
   ; unrecognized parameters should be ignored
 
 Encoding considerations:
@@ -254,6 +254,17 @@ Change controller:
 Interoperability requirements for media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}
 and in the Interoperability Considerations of the "+yaml" Structured Syntax Suffix.
+
+## Using the version parameter
+
+The `version` parameter ought to be processed
+according with the associated OpenAPI Specification.
+
+For example, an OpenAPI 3.1 resource can either use
+`version=3.1.1` or `version=3.1`
+(see https://spec.openapis.org/oas/v3.1.0.html#versions).
+
+
 
 # Security Considerations {#sec}
 
