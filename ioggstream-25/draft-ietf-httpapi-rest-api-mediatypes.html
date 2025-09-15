@@ -1281,7 +1281,7 @@ preferences:<a href="#section-2.1-3" class="pilcrow">¶</a></p>
             <p id="section-2.1-4.1.1">openapi 3.1 in YAML<a href="#section-2.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-2.1-4.2">
-            <p id="section-2.1-4.2.1">openapi 3.0.4 in YAML<a href="#section-2.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-2.1-4.2.1">openapi 3.0 in YAML<a href="#section-2.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-2.1-4.3">
             <p id="section-2.1-4.3.1">any openapi version in JSON<a href="#section-2.1-4.3.1" class="pilcrow">¶</a></p>
@@ -1290,7 +1290,7 @@ preferences:<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 <div class="lang-example sourcecode" id="section-2.1-5">
 <pre>
 Accept: application/openapi+yaml;version=3.1,
-        application/openapi+yaml;version=3.0.4;q=0.5,
+        application/openapi+yaml;version=3.0;q=0.5,
         application/openapi+json;q=0.3
 </pre><a href="#section-2.1-5" class="pilcrow">¶</a>
 </div>
@@ -1523,8 +1523,10 @@ and in the Interoperability Considerations of the "+yaml" Structured Syntax Suff
         </h3>
 <p id="section-3.1-1">The <code>version</code> parameter ought to be processed
 according with the associated OpenAPI Specification.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">For example, an OpenAPI 3.1 resource can either use
-<code>version=3.1.1</code> or <code>version=3.1</code>
+<p id="section-3.1-2">For example, when an OpenAPI 3.1 resource
+uses the patch version <code>version=3.1.1</code>,
+its value is expected to be ignored
+by tooling
 (see https://spec.openapis.org/oas/v3.1.0.html#versions).<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
