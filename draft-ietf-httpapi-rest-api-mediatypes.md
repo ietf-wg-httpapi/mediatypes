@@ -138,7 +138,9 @@ Required parameters:
 : None
 
 Optional parameters:
-: version; unrecognized parameters should be ignored
+: version: its value is a string representing
+  the OpenAPI Specification version.
+  ;  unrecognized parameters should be ignored
 
 Encoding considerations:
 : Same as "application/json"
@@ -198,7 +200,9 @@ Required parameters:
 : N/A
 
 Optional parameters:
-: version; unrecognized parameters should be ignored
+: version: its value is a string representing
+  the OpenAPI Specification version.
+  ; unrecognized parameters should be ignored
 
 Encoding considerations:
 : Same as "+yaml" Structured Syntax Suffix
@@ -250,6 +254,17 @@ Change controller:
 Interoperability requirements for media type
 registrations are discussed in Section 4.6 of {{!MEDIATYPE=RFC6838}}
 and in the Interoperability Considerations of the "+yaml" Structured Syntax Suffix.
+
+## Using the version parameter
+
+The `version` parameter ought to be processed
+according with the associated OpenAPI Specification.
+
+For example, when an OpenAPI 3.1 resource
+uses the patch version `version=3.1.1`,
+its value is expected to be ignored
+by tooling
+(see https://spec.openapis.org/oas/v3.1.0.html#versions).
 
 # Security Considerations {#sec}
 
