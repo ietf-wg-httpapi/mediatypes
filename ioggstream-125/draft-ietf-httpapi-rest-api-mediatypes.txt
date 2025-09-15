@@ -85,6 +85,7 @@ Table of Contents
    Change Log
      Since -00
      Since -04
+     Since -07
    Author's Address
 
 1.  Introduction
@@ -401,6 +402,12 @@ Since -04
    This section is to be removed before publishing as an RFC.
 
    *  Split JSONSCHEMA registrations in a separate I-D.
+
+Since -07
+
+   This section is to be removed before publishing as an RFC.
+
+   *  Support OAS 2.0
 
 Author's Address
 
