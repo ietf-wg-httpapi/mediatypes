@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
-Intended status: Informational                             26 April 2025
-Expires: 28 October 2025
+Intended status: Informational                         15 September 2025
+Expires: 19 March 2026
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 October 2025.
+   This Internet-Draft will expire on 19 March 2026.
 
 Copyright Notice
 
@@ -75,6 +75,7 @@ Table of Contents
        2.1.1.  Media Type application/openapi+json
        2.1.2.  Media Type application/openapi+yaml
    3.  Interoperability Considerations
+     3.1.  Using the version parameter
    4.  Security Considerations
      4.1.  General Considerations
    5.  IANA Considerations
@@ -131,12 +132,12 @@ Table of Contents
 
    1.  openapi 3.1 in YAML
 
-   2.  openapi 3.0 in YAML
+   2.  openapi 3.0.4 in YAML
 
    3.  any openapi version in JSON
 
    Accept: application/openapi+yaml;version=3.1,
-           application/openapi+yaml;version=3.0;q=0.5,
+           application/openapi+yaml;version=3.0.4;q=0.5,
            application/openapi+json;q=0.3
 
 2.1.1.  Media Type application/openapi+json
@@ -150,7 +151,8 @@ Table of Contents
 
    Required parameters:  None
 
-   Optional parameters:  version; unrecognized parameters should be
+   Optional parameters:  version: its value is a string representing the
+      OpenAPI Specification version. ; unrecognized parameters should be
       ignored
 
    Encoding considerations:  Same as "application/json"
@@ -201,7 +203,8 @@ Table of Contents
 
    Required parameters:  N/A
 
-   Optional parameters:  version; unrecognized parameters should be
+   Optional parameters:  version: its value is a string representing the
+      OpenAPI Specification version. ; unrecognized parameters should be
       ignored
 
    Encoding considerations:  Same as "+yaml" Structured Syntax Suffix
@@ -246,6 +249,14 @@ Table of Contents
    Interoperability requirements for media type registrations are
    discussed in Section 4.6 of [MEDIATYPE] and in the Interoperability
    Considerations of the "+yaml" Structured Syntax Suffix.
+
+3.1.  Using the version parameter
+
+   The version parameter ought to be processed according with the
+   associated OpenAPI Specification.
+
+   For example, an OpenAPI 3.1 resource can either use version=3.1.1 or
+   version=3.1 (see https://spec.openapis.org/oas/v3.1.0.html#versions).
 
 4.  Security Considerations
 
