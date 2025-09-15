@@ -5,8 +5,8 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft     Digital Transformation Department, Italian Government
 Intended status: Informational                             J. Desrosiers
-Expires: 19 September 2025                                       Postman
-                                                           18 March 2025
+Expires: 19 March 2026                                           Postman
+                                                       15 September 2025
 
 
                         JSON Schema Media Types
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 September 2025.
+   This Internet-Draft will expire on 19 March 2026.
 
 Copyright Notice
 
@@ -471,9 +471,9 @@ Table of Contents
 
    [OAS-MEDIATYPES]
               Polli, R., "REST API Media Types", Work in Progress,
-              Internet-Draft, draft-ietf-httpapi-rest-api-mediatypes-06,
-              13 October 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-httpapi-rest-api-mediatypes-06>.
+              Internet-Draft, draft-ietf-httpapi-rest-api-mediatypes-07,
+              26 April 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-httpapi-rest-api-mediatypes-07>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
