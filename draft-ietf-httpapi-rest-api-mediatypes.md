@@ -76,7 +76,7 @@ and application/openapi+yaml.
 
 # Introduction
 
-OpenAPI Specification [OAS] version 3 and above
+OpenAPI Specification [OAS]
 is a consolidated standard for describing
 HTTP APIs using the JSON {{JSON}} and YAML [YAML] data format.
 
@@ -103,7 +103,7 @@ the above media types according to {{MEDIATYPE}}.
 ## The OpenAPI Media Types
 
 The OpenAPI Specification Media Types convey semantics for OpenAPI Document (OAD) resources
-as defined in [OAS] for version 3.0 and above.
+as defined in [OAS].
 
 Those resources can be represented in {{JSON}} or [YAML].
 Since there are multiple OpenAPI Specification versions,
@@ -266,6 +266,11 @@ its value is expected to be ignored
 by tooling
 (see https://spec.openapis.org/oas/v3.1.0.html#versions).
 
+While it is possible to use the version parameter
+to identify OpenAPI Document resources prior to version 3.0,
+the terminology used in this document,
+including the term "OpenAPI Document", was formally introduced in OAS 3.0.
+
 # Security Considerations {#sec}
 
 Security requirements for media type
@@ -349,3 +354,9 @@ RFC EDITOR PLEASE DELETE THIS SECTION.
 {:numbered="false" removeinrfc="true"}
 
 - Split JSONSCHEMA registrations in a separate I-D.
+
+## Since -07
+{:numbered="false" removeinrfc="true"}
+
+- Support OAS 2.0
+
