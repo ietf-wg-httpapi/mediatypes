@@ -114,13 +114,13 @@ to receive an OpenAPI Document resource based on the stated
 preferences:
 
 1. openapi 3.1 in YAML
-2. openapi 3.0.4 in YAML
+2. openapi 3.0 in YAML
 3. any openapi version in JSON
 
 ~~~ example
 
 Accept: application/openapi+yaml;version=3.1,
-        application/openapi+yaml;version=3.0.4;q=0.5,
+        application/openapi+yaml;version=3.0;q=0.5,
         application/openapi+json;q=0.3
 ~~~
 
@@ -260,11 +260,11 @@ and in the Interoperability Considerations of the "+yaml" Structured Syntax Suff
 The `version` parameter ought to be processed
 according with the associated OpenAPI Specification.
 
-For example, an OpenAPI 3.1 resource can either use
-`version=3.1.1` or `version=3.1`
+For example, when an OpenAPI 3.1 resource
+uses the patch version `version=3.1.1`,
+its value is expected to be ignored
+by tooling
 (see https://spec.openapis.org/oas/v3.1.0.html#versions).
-
-
 
 # Security Considerations {#sec}
 
