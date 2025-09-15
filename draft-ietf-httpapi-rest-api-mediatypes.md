@@ -201,7 +201,7 @@ Required parameters:
 
 Optional parameters:
 : version: its value is a string representing
-  the OpenAPI Specification version. 
+  the OpenAPI Specification version.
   ; unrecognized parameters should be ignored
 
 Encoding considerations:
