@@ -28,6 +28,11 @@ author:
     org: Par-Tec
     email: robipolli@gmail.com
     country: Italy
+ -
+    ins: H. Andrews
+    name: Henry Andrews
+    email: andrews_henry@yahoo.com
+    country: U.S.A.
 
 normative:
   HTTP: RFC9110
