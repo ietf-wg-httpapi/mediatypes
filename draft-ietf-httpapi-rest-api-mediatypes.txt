@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
-Intended status: Informational                         15 September 2025
-Expires: 19 March 2026
+Intended status: Informational                                H. Andrews
+Expires: 31 May 2026                                    27 November 2025
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 March 2026.
+   This Internet-Draft will expire on 31 May 2026.
 
 Copyright Notice
 
@@ -85,7 +85,7 @@ Table of Contents
    Change Log
      Since -00
      Since -04
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -399,9 +399,13 @@ Since -04
 
    *  Split JSONSCHEMA registrations in a separate I-D.
 
-Author's Address
+Authors' Addresses
 
    Roberto Polli
    Par-Tec
    Italy
    Email: robipolli@gmail.com
+
+
+   Henry Andrews
+   Email: andrews_henry@yahoo.com
