@@ -94,7 +94,7 @@ Table of Contents
    HTTP APIs using the JSON [JSON] and YAML [YAML] data format.
 
    To increase interoperability and leverage content negotiation
-   mechanisms when exchanging API description this specification
+   mechanisms when exchanging API descriptions this specification
    registers the following media types: application/openapi+json and
    application/openapi+yaml.
 
