@@ -1047,11 +1047,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">REST API Media Types</td>
-<td class="right">November 2025</td>
+<td class="right">December 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Polli</td>
-<td class="center">Expires 8 May 2026</td>
+<td class="center">Expires 12 June 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-httpapi-rest-api-mediatypes-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-11-04" class="published">4 November 2025</time>
+<time datetime="2025-12-09" class="published">9 December 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-05-08">8 May 2026</time></dd>
+<dd class="expires"><time datetime="2026-06-12">12 June 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ and application/openapi+yaml.<a href="#section-abstract-1" class="pilcrow">¶</a
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 June 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1213,6 +1213,9 @@ and application/openapi+yaml.<a href="#section-abstract-1" class="pilcrow">¶</a
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
                 <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-C.2" class="auto internal xref"></a><a href="#name-since-04" class="internal xref">Since -04</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-C.3" class="auto internal xref"></a><a href="#name-since-07" class="internal xref">Since -07</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
@@ -1227,12 +1230,12 @@ and application/openapi+yaml.<a href="#section-abstract-1" class="pilcrow">¶</a
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">OpenAPI Specification <span>[<a href="#OAS" class="cite xref">OAS</a>]</span> version 3 and above
+<p id="section-1-1">OpenAPI Specification <span>[<a href="#OAS" class="cite xref">OAS</a>]</span>
 is a consolidated standard for describing
 HTTP APIs using the JSON <span>[<a href="#JSON" class="cite xref">JSON</a>]</span> and YAML <span>[<a href="#YAML" class="cite xref">YAML</a>]</span> data format.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">To increase interoperability when processing API descriptions
+<p id="section-1-2">To increase interoperability
 and leverage content negotiation mechanisms when exchanging
-OpenAPI description representations
+API description
 this specification registers the following media types:
 <code>application/openapi+json</code>
 and <code>application/openapi+yaml</code>.<a href="#section-1-2" class="pilcrow">¶</a></p>
@@ -1260,20 +1263,20 @@ in this document are to be interpreted as in <span>[<a href="#HTTP" class="cite 
       <h2 id="name-media-type-registrations">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-media-type-registrations" class="section-name selfRef">Media Type registrations</a>
       </h2>
-<p id="section-2-1">This section describes the information required to register
-the above media types according to <span>[<a href="#MEDIATYPE" class="cite xref">MEDIATYPE</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">This section describes the information required for IANA to register
+the above media types per <span>[<a href="#MEDIATYPE" class="cite xref">MEDIATYPE</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <div id="the-openapi-media-types">
 <section id="section-2.1">
         <h3 id="name-the-openapi-media-types">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-the-openapi-media-types" class="section-name selfRef">The OpenAPI Media Types</a>
         </h3>
-<p id="section-2.1-1">The OpenAPI Specification Media Types convey semantics for OpenAPI Document (OAD) resources
-as defined in <span>[<a href="#OAS" class="cite xref">OAS</a>]</span> for version 3.0 and above.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">The OpenAPI Specification Media Types convey semantics for OpenAPI resources
+as defined in <span>[<a href="#OAS" class="cite xref">OAS</a>]</span>.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.1-2">Those resources can be represented in <span>[<a href="#JSON" class="cite xref">JSON</a>]</span> or <span>[<a href="#YAML" class="cite xref">YAML</a>]</span>.
 Since there are multiple OpenAPI Specification versions,
 those media types support the <code>version</code> parameter.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 <p id="section-2.1-3">The following example conveys the desire of a client
-to receive an OpenAPI Document resource based on the stated
+to receive an OpenAPI resource based on the stated
 preferences:<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-2.1-4">
 <li id="section-2.1-4.1">
@@ -1527,6 +1530,10 @@ uses the patch version <code>version=3.1.1</code>,
 its value is expected to be ignored
 by tooling
 (see https://spec.openapis.org/oas/v3.1.0.html#versions).<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">While it is possible to use the version parameter
+to identify OpenAPI resources prior to version 3.0,
+the terminology used in this document
+was formally introduced in OAS 3.0.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1699,6 +1706,19 @@ This has some security implications too
 <ul class="normal">
 <li class="normal" id="appendix-C.2-2.1">
             <p id="appendix-C.2-2.1.1">Split JSONSCHEMA registrations in a separate I-D.<a href="#appendix-C.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="since-07">
+<section id="appendix-C.3">
+        <h3 id="name-since-07">
+<a href="#name-since-07" class="section-name selfRef">Since -07</a>
+        </h3>
+<p id="appendix-C.3-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-C.3-2.1">
+            <p id="appendix-C.3-2.1.1">Support OAS 2.0<a href="#appendix-C.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
