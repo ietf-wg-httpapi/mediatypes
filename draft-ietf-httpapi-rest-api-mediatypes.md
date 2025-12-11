@@ -81,13 +81,13 @@ and application/openapi+yaml.
 
 # Introduction
 
-OpenAPI Specification [OAS] version 3 and above
+OpenAPI Specification [OAS]
 is a consolidated standard for describing
 HTTP APIs using the JSON {{JSON}} and YAML [YAML] data format.
 
-To increase interoperability when processing API descriptions
+To increase interoperability
 and leverage content negotiation mechanisms when exchanging
-OpenAPI description representations
+API descriptions
 this specification registers the following media types:
 `application/openapi+json`
 and `application/openapi+yaml`.
@@ -102,20 +102,20 @@ in this document are to be interpreted as in {{HTTP}}.
 
 # Media Type registrations
 
-This section describes the information required to register
-the above media types according to {{MEDIATYPE}}.
+This section describes the information required for IANA to register
+the above media types per {{MEDIATYPE}}.
 
 ## The OpenAPI Media Types
 
-The OpenAPI Specification Media Types convey semantics for OpenAPI Document (OAD) resources
-as defined in [OAS] for version 3.0 and above.
+The OpenAPI Specification Media Types convey semantics for OpenAPI resources
+as defined in [OAS].
 
 Those resources can be represented in {{JSON}} or [YAML].
 Since there are multiple OpenAPI Specification versions,
 those media types support the `version` parameter.
 
 The following example conveys the desire of a client
-to receive an OpenAPI Document resource based on the stated
+to receive an OpenAPI Specification resource based on the stated
 preferences:
 
 1. openapi 3.1 in YAML
@@ -271,6 +271,11 @@ its value is expected to be ignored
 by tooling
 (see https://spec.openapis.org/oas/v3.1.0.html#versions).
 
+While it is possible to use the version parameter
+to identify OpenAPI resources prior to version 3.0,
+the terminology used in this document
+was formally introduced in OAS 3.0.4 and OAS 3.1.1.
+
 # Security Considerations {#sec}
 
 Security requirements for media type
@@ -354,3 +359,9 @@ RFC EDITOR PLEASE DELETE THIS SECTION.
 {:numbered="false" removeinrfc="true"}
 
 - Split JSONSCHEMA registrations in a separate I-D.
+
+## Since -07
+{:numbered="false" removeinrfc="true"}
+
+- Support OAS 2.0
+
