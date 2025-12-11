@@ -110,7 +110,7 @@ Since there are multiple OpenAPI Specification versions,
 those media types support the `version` parameter.
 
 The following example conveys the desire of a client
-to receive an OpenAPI resource based on the stated
+to receive an OpenAPI Specification resource based on the stated
 preferences:
 
 1. openapi 3.1 in YAML
@@ -269,7 +269,7 @@ by tooling
 While it is possible to use the version parameter
 to identify OpenAPI resources prior to version 3.0,
 the terminology used in this document
-was formally introduced in OAS 3.0.
+was formally introduced in OAS 3.0.4 and OAS 3.1.1.
 
 # Security Considerations {#sec}
 
