@@ -4,8 +4,8 @@
 
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
-Intended status: Informational                           9 December 2025
-Expires: 12 June 2026
+Intended status: Informational                          11 December 2025
+Expires: 14 June 2026
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 June 2026.
+   This Internet-Draft will expire on 14 June 2026.
 
 Copyright Notice
 
@@ -126,7 +126,7 @@ Table of Contents
    support the version parameter.
 
    The following example conveys the desire of a client to receive an
-   OpenAPI resource based on the stated preferences:
+   OpenAPI Specification resource based on the stated preferences:
 
    1.  openapi 3.1 in YAML
 
@@ -259,7 +259,7 @@ Table of Contents
 
    While it is possible to use the version parameter to identify OpenAPI
    resources prior to version 3.0, the terminology used in this document
-   was formally introduced in OAS 3.0.
+   was formally introduced in OAS 3.0.4 and OAS 3.1.1.
 
 4.  Security Considerations
 
