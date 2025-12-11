@@ -5,7 +5,7 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
 Intended status: Informational                                H. Andrews
-Expires: 31 May 2026                                    27 November 2025
+Expires: 14 June 2026                                   11 December 2025
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 May 2026.
+   This Internet-Draft will expire on 14 June 2026.
 
 Copyright Notice
 
@@ -85,19 +85,18 @@ Table of Contents
    Change Log
      Since -00
      Since -04
+     Since -07
    Authors' Addresses
 
 1.  Introduction
 
-   OpenAPI Specification [OAS] version 3 and above is a consolidated
-   standard for describing HTTP APIs using the JSON [JSON] and YAML
-   [YAML] data format.
+   OpenAPI Specification [OAS] is a consolidated standard for describing
+   HTTP APIs using the JSON [JSON] and YAML [YAML] data format.
 
-   To increase interoperability when processing API descriptions and
-   leverage content negotiation mechanisms when exchanging OpenAPI
-   description representations this specification registers the
-   following media types: application/openapi+json and application/
-   openapi+yaml.
+   To increase interoperability and leverage content negotiation
+   mechanisms when exchanging API descriptions this specification
+   registers the following media types: application/openapi+json and
+   application/openapi+yaml.
 
 1.1.  Notational Conventions
 
@@ -114,21 +113,20 @@ Table of Contents
 
 2.  Media Type registrations
 
-   This section describes the information required to register the above
-   media types according to [MEDIATYPE].
+   This section describes the information required for IANA to register
+   the above media types per [MEDIATYPE].
 
 2.1.  The OpenAPI Media Types
 
    The OpenAPI Specification Media Types convey semantics for OpenAPI
-   Document (OAD) resources as defined in [OAS] for version 3.0 and
-   above.
+   resources as defined in [OAS].
 
    Those resources can be represented in [JSON] or [YAML].  Since there
    are multiple OpenAPI Specification versions, those media types
    support the version parameter.
 
    The following example conveys the desire of a client to receive an
-   OpenAPI Document resource based on the stated preferences:
+   OpenAPI Specification resource based on the stated preferences:
 
    1.  openapi 3.1 in YAML
 
@@ -258,6 +256,10 @@ Table of Contents
    For example, when an OpenAPI 3.1 resource uses the patch version
    version=3.1.1, its value is expected to be ignored by tooling (see
    https://spec.openapis.org/oas/v3.1.0.html#versions).
+
+   While it is possible to use the version parameter to identify OpenAPI
+   resources prior to version 3.0, the terminology used in this document
+   was formally introduced in OAS 3.0.4 and OAS 3.1.1.
 
 4.  Security Considerations
 
@@ -398,6 +400,12 @@ Since -04
    This section is to be removed before publishing as an RFC.
 
    *  Split JSONSCHEMA registrations in a separate I-D.
+
+Since -07
+
+   This section is to be removed before publishing as an RFC.
+
+   *  Support OAS 2.0
 
 Authors' Addresses
 
