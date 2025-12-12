@@ -262,8 +262,8 @@ and in the Interoperability Considerations of the "+yaml" Structured Syntax Suff
 
 ## Media type of referenced resources
 
-An OpenAPI resource can reference external resources
-that are not OpenAPI resources (e.g., JSON Schema documents).
+An OpenAPI Specification resource can reference external resources
+that are not OpenAPI Specification resources (e.g., JSON Schema documents).
 
 Clients can convey the preference of receiving a resource
 compatible with a given OpenAPI resource providing
