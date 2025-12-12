@@ -1200,7 +1200,15 @@ and application/openapi+yaml.<a href="#section-abstract-1" class="pilcrow">¶</a
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
@@ -1212,18 +1220,19 @@ and application/openapi+yaml.<a href="#section-abstract-1" class="pilcrow">¶</a
             <p id="section-toc.1-1.9.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-examples-of-content-negotia" class="internal xref">Examples of content negotiation</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-C.1" class="auto internal xref"></a><a href="#name-scenarios" class="internal xref">Scenarios</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.1">
-                    <p id="section-toc.1-1.9.2.1.2.1.1"><a href="#appendix-C.1.1" class="auto internal xref"></a><a href="#name-scenario-1" class="internal xref">Scenario 1</a></p>
+                <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-C.1" class="auto internal xref"></a><a href="#name-user-agent-wants-only-oas31" class="internal xref">User Agent wants only OAS3.1, gets 406</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2">
-                    <p id="section-toc.1-1.9.2.1.2.2.1"><a href="#appendix-C.1.2" class="auto internal xref"></a><a href="#name-scenario-2" class="internal xref">Scenario 2</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-C.2" class="auto internal xref"></a><a href="#name-user-agent-prefers-oas31-ge" class="internal xref">User Agent prefers OAS3.1, gets OAS3.0</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.3">
-                    <p id="section-toc.1-1.9.2.1.2.3.1"><a href="#appendix-C.1.3" class="auto internal xref"></a><a href="#name-scenario-3" class="internal xref">Scenario 3</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-C.3" class="auto internal xref"></a><a href="#name-user-agent-requires-oas30-f" class="internal xref">User Agent requires OAS3.0 for entry document and compatible referenced resources</a></p>
 </li>
-                </ul>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#appendix-C.4" class="auto internal xref"></a><a href="#name-user-agent-prefers-oas32-ge" class="internal xref">User Agent prefers OAS3.2, gets JSON Schema</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5">
+                <p id="section-toc.1-1.9.2.5.1"><a href="#appendix-C.5" class="auto internal xref"></a><a href="#name-user-agent-negotiates-for-a" class="internal xref">User Agent negotiates for a non-OAS media type</a></p>
 </li>
             </ul>
 </li>
@@ -1625,45 +1634,65 @@ with the registration information provided in the sections below.<a href="#secti
       </table>
 </section>
 </div>
-<div id="sec-normative-references">
+<div id="sec-combined-references">
 <section id="section-6">
-      <h2 id="name-normative-references">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<div id="sec-normative-references">
+<section id="section-6.1">
+        <h3 id="name-normative-references">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="HTTP">[HTTP]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="JSON">[JSON]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The JavaScript Object Notation (JSON) Data Interchange Format"</span>, <span class="seriesInfo">STD 90</span>, <span class="seriesInfo">RFC 8259</span>, <span class="seriesInfo">DOI 10.17487/RFC8259</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8259">https://www.rfc-editor.org/rfc/rfc8259</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="jsonschema">[jsonschema]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Wright, A.</span>, <span class="refAuthor">Andrews, H.</span>, <span class="refAuthor">Hutton, B.</span>, and <span class="refAuthor">G. Dennis</span>, <span class="refTitle">"JSON Schema"</span>, <time datetime="2020-01-28" class="refDate">28 January 2020</time>, <span>&lt;<a href="https://json-schema.org/specification.html">https://json-schema.org/specification.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MEDIATYPE">[MEDIATYPE]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Freed, N.</span>, <span class="refAuthor">Klensin, J.</span>, and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="OAS">[OAS]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Darrel Miller</span>, <span class="refAuthor">Jeremy Whitlock</span>, <span class="refAuthor">Marsh Gardiner</span>, <span class="refAuthor">Mike Ralphson</span>, <span class="refAuthor">Ron Ratovsky</span>, and <span class="refAuthor">Uri Sarid</span>, <span class="refTitle">"OpenAPI Specification 3.1.0"</span>, <time datetime="2021-02-15" class="refDate">15 February 2021</time>, <span>&lt;<a href="https://spec.openapis.org/oas/latest">https://spec.openapis.org/oas/latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="YAML">[YAML]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Oren Ben-Kiki</span>, <span class="refAuthor">Clark Evans</span>, and <span class="refAuthor">Ingy dot Net</span>, <span class="refTitle">"YAML Ain't Markup Language Version 1.2"</span>, <time datetime="2021-10-01" class="refDate">1 October 2021</time>, <span>&lt;<a href="https://yaml.org/spec/1.2/spec.html">https://yaml.org/spec/1.2/spec.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-6.2">
+        <h3 id="name-informative-references">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="RFC9205">[RFC9205]</dt>
+      <dd>
+<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"Building Protocols with HTTP"</span>, <span class="seriesInfo">BCP 56</span>, <span class="seriesInfo">RFC 9205</span>, <span class="seriesInfo">DOI 10.17487/RFC9205</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9205">https://www.rfc-editor.org/rfc/rfc9205</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
 </section>
 </div>
 <div id="acknowledgements">
@@ -1709,63 +1738,81 @@ This has some security implications too
 <p id="appendix-C-2">This section explores the possibilities for User Agents
 to retrieve information about API specifications
 using their preferred version of OpenAPI.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
-<div id="scenarios">
-<section id="appendix-C.1">
-        <h3 id="name-scenarios">
-<a href="#name-scenarios" class="section-name selfRef">Scenarios</a>
-        </h3>
-<p id="appendix-C.1-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-C.1-2">An API catalog exposes API specifications using OAS 3.0,
+<p id="appendix-C-3">Note:<a href="#appendix-C-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-C-4.1">
+          <p id="appendix-C-4.1.1">for readability, we use only YAML serialization;<a href="#appendix-C-4.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-C-4.2">
+          <p id="appendix-C-4.2.1">we use the fictiotius media type <code>application/whatever+yaml</code>
+to represent definitions
+that are not associated with any specific registered media type;<a href="#appendix-C-4.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-C-4.3">
+          <p id="appendix-C-4.3.1">this does not specify nor mandate a specific server behavior;
+the various ecosystems are free to implement a more specific
+behavior. See <span>[<a href="#RFC9205" class="cite xref">RFC9205</a>]</span>.<a href="#appendix-C-4.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-C-5">An API catalog exposes API specifications using OAS 3.0,
 and it wants to provide migration/upgrade capabilities
-to future versions of OAS and JSON Schema.
-For simplicity, we use only YAML serialization.<a href="#appendix-C.1-2" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="appendix-C.1-3">
-          <dt id="appendix-C.1-3.1">Resource: https://example.org/openapi.yaml</dt>
-          <dd style="margin-left: 1.5em" id="appendix-C.1-3.2">
-            <p id="appendix-C.1-3.2.1">is an OpenAPI Specification document
-that references the Foo schema located at /foo.yaml.<a href="#appendix-C.1-3.2.1" class="pilcrow">¶</a></p>
+to future versions of OAS and of the referenced resources.<a href="#appendix-C-5" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="appendix-C-6">
+        <dt id="appendix-C-6.1">Resource: https://example.org/openapi.yaml</dt>
+        <dd style="margin-left: 1.5em" id="appendix-C-6.2">
+          <p id="appendix-C-6.2.1">is an OpenAPI Specification document
+that references the Foo schema located at /foo.yaml.<a href="#appendix-C-6.2.1" class="pilcrow">¶</a></p>
 </dd>
-        <dd class="break"></dd>
+      <dd class="break"></dd>
 </dl>
-<div class="lang-http sourcecode" id="appendix-C.1-4">
+<p id="appendix-C-7">The following representation is used
+both when the User Agent requests OAS 3.0
+and as a default representation
+(see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-15.5.7" class="relref">Section 15.5.7</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>).
+For example, this is the response
+returned when the User Agent requests
+OAS 3.1.<a href="#appendix-C-7" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C-8">
 <pre>
 HTTP/1.1 200 OK
 Content-Location: openapi.yaml
 Content-Type: application/openapi+yaml; version=3.0
 
-openapi: 3.0.0
+openapi: 3.0.4
 …
 components:
   schemas:
     Foo:
       "$ref": "/foo.yaml"
-</pre><a href="#appendix-C.1-4" class="pilcrow">¶</a>
+</pre><a href="#appendix-C-8" class="pilcrow">¶</a>
 </div>
-<div class="lang-http sourcecode" id="appendix-C.1-5">
+<p id="appendix-C-9">The following representation is used
+when the User Agent requests OAS 3.2.<a href="#appendix-C-9" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C-10">
 <pre>
 HTTP/1.1 200 OK
 Content-Location: openapi.yaml
 Content-Type: application/openapi+yaml; version=3.2
 
-openapi: 3.2.0
+openapi: 3.2.1
 "$self": https://example.com/openapi.yaml
 …
 components:
   schemas:
     Foo:
       "$ref": /foo.yaml
-</pre><a href="#appendix-C.1-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-C-10" class="pilcrow">¶</a>
 </div>
-<span class="break"></span><dl class="dlParallel" id="appendix-C.1-6">
-          <dt id="appendix-C.1-6.1">Resource: https://example.org/foo.yaml</dt>
-          <dd style="margin-left: 1.5em" id="appendix-C.1-6.2">
-            <p id="appendix-C.1-6.2.1">is the schema definition for Foo,
+<span class="break"></span><dl class="dlParallel" id="appendix-C-11">
+        <dt id="appendix-C-11.1">Resource: https://example.org/foo.yaml</dt>
+        <dd style="margin-left: 1.5em" id="appendix-C-11.2">
+          <p id="appendix-C-11.2.1">is the schema definition for Foo,
 represented in two different ways
-depending on the OpenAPI version requested.<a href="#appendix-C.1-6.2.1" class="pilcrow">¶</a></p>
+depending on the OpenAPI version requested.<a href="#appendix-C-11.2.1" class="pilcrow">¶</a></p>
 </dd>
-        <dd class="break"></dd>
+      <dd class="break"></dd>
 </dl>
-<div class="lang-http sourcecode" id="appendix-C.1-7">
+<div class="lang-http sourcecode" id="appendix-C-12">
 <pre>
 HTTP/1.1 200 OK
 Content-Location: foo.yaml
@@ -1773,16 +1820,16 @@ Content-Type: application/whatever+yaml
 
 type: string
 enum: [ it, en]
-</pre><a href="#appendix-C.1-7" class="pilcrow">¶</a>
+</pre><a href="#appendix-C-12" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1-8">Since OAS 3.2 supports JSON Schema,
+<p id="appendix-C-13">Since OAS 3.2 supports JSON Schema,
 the same syntax can be described
-adding a <code>title</code> to each enum value.<a href="#appendix-C.1-8" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1-9">
+adding a <code>title</code> to each enum value.<a href="#appendix-C-13" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C-14">
 <pre>
 HTTP/1.1 200 OK
 Content-Location: foo.yaml
-Content-Type: application/whatever+yaml
+Content-Type: application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema
 
 "$schema": "https://json-schema.org/draft/2020-12/schema"
 "$id": "https://example.com/foo.yaml"
@@ -1791,121 +1838,177 @@ oneOf:
   title: Italian
 - const: en
   title: English
-</pre><a href="#appendix-C.1-9" class="pilcrow">¶</a>
+</pre><a href="#appendix-C-14" class="pilcrow">¶</a>
 </div>
-<div id="scenario-1">
-<section id="appendix-C.1.1">
-          <h4 id="name-scenario-1">
-<a href="#name-scenario-1" class="section-name selfRef">Scenario 1</a>
-          </h4>
-<p id="appendix-C.1.1-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.1.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-C.1.1-2">The User Agent only supports OAS3.0
-and refuses other formats,
-including the more generic ones
-(see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-12.4.3" class="relref">Section 12.4.3</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>.<a href="#appendix-C.1.1-2" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.1-3">
+<div id="user-agent-wants-only-oas31-gets-406">
+<section id="appendix-C.1">
+        <h3 id="name-user-agent-wants-only-oas31">
+<a href="#name-user-agent-wants-only-oas31" class="section-name selfRef">User Agent wants only OAS3.1, gets 406</a>
+        </h3>
+<p id="appendix-C.1-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-C.1-2">The User Agent wants OAS3.1,
+and is not willing to accept other versions
+(see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-12.4.3" class="relref">Section 12.4.3</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>.<a href="#appendix-C.1-2" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.1-3">
 <pre>
 GET /openapi.yaml HTTP/1.1
 Host: example.com
 Accept: \
-  application/openapi+yaml; version=3.0,
+  application/openapi+yaml; version=3.1,
   */*; q=0
-</pre><a href="#appendix-C.1.1-3" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.1-3" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.1-4">The server responds with the desired resource.<a href="#appendix-C.1.1-4" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.1-5">
+<p id="appendix-C.1-4">The server does not have
+the selected representation
+and responds with a 406 Not Acceptable.<a href="#appendix-C.1-4" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.1-5">
+<pre>
+HTTP/1.1 406 Not Acceptable
+Accept: \
+  application/openapi+yaml; version=3.0, \
+  application/openapi+yaml; version=3.2
+</pre><a href="#appendix-C.1-5" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="user-agent-prefers-oas31-gets-oas30">
+<section id="appendix-C.2">
+        <h3 id="name-user-agent-prefers-oas31-ge">
+<a href="#name-user-agent-prefers-oas31-ge" class="section-name selfRef">User Agent prefers OAS3.1, gets OAS3.0</a>
+        </h3>
+<p id="appendix-C.2-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-C.2-2">The User Agent prefers OAS3.1,
+and does not impose further constraints.<a href="#appendix-C.2-2" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.2-3">
+<pre>
+GET /openapi.yaml HTTP/1.1
+Host: example.com
+Accept: application/openapi+yaml; version=3.1
+</pre><a href="#appendix-C.2-3" class="pilcrow">¶</a>
+</div>
+<p id="appendix-C.2-4">The server responds with the default representation.<a href="#appendix-C.2-4" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.2-5">
 <pre>
 HTTP/1.1 200 OK
 Content-Type: application/openapi+yaml; version=3.0
 
-openapi: 3.0.0
+openapi: 3.0.4
 …
 components:
   schemas:
     Foo:
       "$ref": /foo.yaml
-</pre><a href="#appendix-C.1.1-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.2-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.1-6">The User Agent processes the content
-and to resolve the <code>$ref</code>, requests the /foo.yaml.<a href="#appendix-C.1.1-6" class="pilcrow">¶</a></p>
-<p id="appendix-C.1.1-7">It needs to retrieve a content compatible with
-the entry document.
-While the User Agent expects a JSON or YAML serialized content,
-compatible with OAS3.0,
-it cannot know the actual format that the server will return.<a href="#appendix-C.1.1-7" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.1-8">
+</section>
+</div>
+<div id="user-agent-requires-oas30-for-entry-document-and-compatible-referenced-resources">
+<section id="appendix-C.3">
+        <h3 id="name-user-agent-requires-oas30-f">
+<a href="#name-user-agent-requires-oas30-f" class="section-name selfRef">User Agent requires OAS3.0 for entry document and compatible referenced resources</a>
+        </h3>
+<p id="appendix-C.3-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-C.3-2">The User Agent only supports OAS3.0 entry documents.<a href="#appendix-C.3-2" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.3-3">
+<pre>
+GET /openapi.yaml HTTP/1.1
+Host: example.com
+Accept: \
+  application/openapi+yaml; version=3.0;q=1, \
+  */*; q=0
+</pre><a href="#appendix-C.3-3" class="pilcrow">¶</a>
+</div>
+<p id="appendix-C.3-4">The server responds with the desired resource.<a href="#appendix-C.3-4" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.3-5">
+<pre>
+HTTP/1.1 200 OK
+Content-Type: application/openapi+yaml; version=3.0
+
+openapi: 3.0.4
+…
+components:
+  schemas:
+    Foo:
+      "$ref": /foo.yaml
+</pre><a href="#appendix-C.3-5" class="pilcrow">¶</a>
+</div>
+<p id="appendix-C.3-6">The User Agent processes the content
+and to resolve the <code>$ref</code>, requests /foo.yaml.
+Since it is not an entry document,
+the User Agent is willing to accept
+any content compatible with OAS3.0.<a href="#appendix-C.3-6" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.3-7">
 <pre>
 GET /foo.yaml HTTP/1.1
 Host: example.com
-Accept: application/openapi+yaml; version=3.0; q=1, application/yaml; q=0.5
-</pre><a href="#appendix-C.1.1-8" class="pilcrow">¶</a>
+Accept: \
+  application/openapi+yaml; version=3.0; q=1, \
+  application/yaml; q=0.5
+</pre><a href="#appendix-C.3-7" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.1-9">The server responds with a YAML serialized content
+<p id="appendix-C.3-8">The server responds with a YAML serialized content
 that is compatible with OAS3.0.
 Since the content only contains a Schema Object,
 that is not associated with any media type,
-the server uses the <code>application/yaml</code> media type.<a href="#appendix-C.1.1-9" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.1-10">
+the server uses the <code>application/yaml</code> media type.<a href="#appendix-C.3-8" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.3-9">
 <pre>
 HTTP/1.1 200 OK
 Content-Type: application/yaml
 
 type: string
 enum: [it, en]
-</pre><a href="#appendix-C.1.1-10" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.3-9" class="pilcrow">¶</a>
 </div>
+<p id="appendix-C.3-10">Q: Could the server respond with the same content
+    using the <code>application/whatever+yaml</code> media type?<a href="#appendix-C.3-10" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="scenario-2">
-<section id="appendix-C.1.2">
-          <h4 id="name-scenario-2">
-<a href="#name-scenario-2" class="section-name selfRef">Scenario 2</a>
-          </h4>
-<p id="appendix-C.1.2-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.1.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-C.1.2-2">The User Agent prefers OAS3.2;
-moreover uses the <code>q</code> parameter
-to decline OAS3.0 documents.
-If it weren't so, the server
-could have responded with the older version
-if the OAS3.2 document were not available.<a href="#appendix-C.1.2-2" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.2-3">
+<div id="user-agent-prefers-oas32-gets-json-schema">
+<section id="appendix-C.4">
+        <h3 id="name-user-agent-prefers-oas32-ge">
+<a href="#name-user-agent-prefers-oas32-ge" class="section-name selfRef">User Agent prefers OAS3.2, gets JSON Schema</a>
+        </h3>
+<p id="appendix-C.4-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.4-1" class="pilcrow">¶</a></p>
+<p id="appendix-C.4-2">The User Agent prefers OAS3.2.<a href="#appendix-C.4-2" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.4-3">
 <pre>
 GET /openapi.yaml HTTP/1.1
 Host: example.com
-Accept: application/openapi+yaml; version=3.2, application/openapi+yaml; version=3.0;q=0
-</pre><a href="#appendix-C.1.2-3" class="pilcrow">¶</a>
+Accept: application/openapi+yaml; version=3.2
+</pre><a href="#appendix-C.4-3" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.2-4">The server responds with the OAS3.2 document.<a href="#appendix-C.1.2-4" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.2-5">
+<p id="appendix-C.4-4">The server responds with the OAS3.2 document.<a href="#appendix-C.4-4" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.4-5">
 <pre>
 HTTP/1.1 200 OK
 Content-Type: application/openapi+yaml; version=3.2
 
-openapi: 3.0.0
+openapi: 3.0.4
 …
 components:
   schemas:
     Foo:
       "$ref": /foo.yaml
-</pre><a href="#appendix-C.1.2-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.4-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.2-6">The User Agent then requests the /foo.yaml,
-but it wants to retrieve a content with the most recent OAS version.<a href="#appendix-C.1.2-6" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.2-7">
+<p id="appendix-C.4-6">The User Agent then requests the /foo.yaml,
+but it wants to retrieve a content with the most recent OAS version.<a href="#appendix-C.4-6" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.4-7">
 <pre>
 GET /foo.yaml HTTP/1.1
 Host: example.com
 Accept: application/openapi+yaml; version=3.2
-</pre><a href="#appendix-C.1.2-7" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.4-7" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.2-8">The server processes the Accept header,
+<p id="appendix-C.4-8">The server processes the Accept header,
 and it realizes that the User Agent
 prefers an OAS3.2 compatible content.
 It then choses the JSON Schema representation
-and responds accordingly.<a href="#appendix-C.1.2-8" class="pilcrow">¶</a></p>
-<p id="appendix-C.1.2-9">Since JSON Schema has no associated media type,
-the server uses the <code>application/yaml</code> media type.<a href="#appendix-C.1.2-9" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.2-10">
+and responds accordingly.<a href="#appendix-C.4-8" class="pilcrow">¶</a></p>
+<p id="appendix-C.4-9">Since JSON Schema has no associated media type,
+the server uses the <code>application/yaml</code> media type.<a href="#appendix-C.4-9" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.4-10">
 <pre>
 HTTP/1.1 200 OK
 Content-Type: application/yaml
@@ -1917,46 +2020,46 @@ oneOf:
   title: Italian
 - const: en
   title: English
-</pre><a href="#appendix-C.1.2-10" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.4-10" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
-<div id="scenario-3">
-<section id="appendix-C.1.3">
-          <h4 id="name-scenario-3">
-<a href="#name-scenario-3" class="section-name selfRef">Scenario 3</a>
-          </h4>
-<p id="appendix-C.1.3-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.1.3-1" class="pilcrow">¶</a></p>
-<p id="appendix-C.1.3-2">In this scenario:<a href="#appendix-C.1.3-2" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="appendix-C.1.3-3">
-<li id="appendix-C.1.3-3.1">
-              <p id="appendix-C.1.3-3.1.1">the User Agent express preference
-for referenced resources compatible with OAS3.2.<a href="#appendix-C.1.3-3.1.1" class="pilcrow">¶</a></p>
+<div id="user-agent-negotiates-for-a-non-oas-media-type">
+<section id="appendix-C.5">
+        <h3 id="name-user-agent-negotiates-for-a">
+<a href="#name-user-agent-negotiates-for-a" class="section-name selfRef">User Agent negotiates for a non-OAS media type</a>
+        </h3>
+<p id="appendix-C.5-1">This section is to be removed before publishing as an RFC.<a href="#appendix-C.5-1" class="pilcrow">¶</a></p>
+<p id="appendix-C.5-2">In this scenario:<a href="#appendix-C.5-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="appendix-C.5-3">
+<li id="appendix-C.5-3.1">
+            <p id="appendix-C.5-3.1.1">the User Agent express preference
+for referenced resources compatible with OAS3.2.<a href="#appendix-C.5-3.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="appendix-C.1.3-3.2">
-              <p id="appendix-C.1.3-3.2.1">The server enforces a strict content negotiation,
-and responds with a 406 Not Acceptable;<a href="#appendix-C.1.3-3.2.1" class="pilcrow">¶</a></p>
+          <li id="appendix-C.5-3.2">
+            <p id="appendix-C.5-3.2.1">The server enforces a strict content negotiation,
+and responds with a 406 Not Acceptable;<a href="#appendix-C.5-3.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="appendix-C.1.3-3.3">
-              <p id="appendix-C.1.3-3.3.1">the User Agent will have to retry
-using one of the acceptable media types.<a href="#appendix-C.1.3-3.3.1" class="pilcrow">¶</a></p>
+          <li id="appendix-C.5-3.3">
+            <p id="appendix-C.5-3.3.1">the User Agent will have to retry
+using one of the acceptable media types.<a href="#appendix-C.5-3.3.1" class="pilcrow">¶</a></p>
 </li>
-          </ol>
-<p id="appendix-C.1.3-4">The User Agent prefers OAS3.2;
+        </ol>
+<p id="appendix-C.5-4">The User Agent prefers OAS3.2;
 moreover uses the <code>q</code> parameter
 to decline OAS3.0 documents.
 If it weren't so, the server
 could have responded with the older version
-if the OAS3.2 document were not available.<a href="#appendix-C.1.3-4" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.3-5">
+if the OAS3.2 document were not available.<a href="#appendix-C.5-4" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.5-5">
 <pre>
 GET /openapi.yaml HTTP/1.1
 Host: example.com
 Accept: application/openapi+yaml; version=3.2, application/openapi+yaml; version=3.0;q=0
-</pre><a href="#appendix-C.1.3-5" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.5-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.3-6">The server responds with the OAS3.2 document.<a href="#appendix-C.1.3-6" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.3-7">
+<p id="appendix-C.5-6">The server responds with the OAS3.2 document.<a href="#appendix-C.5-6" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.5-7">
 <pre>
 HTTP/1.1 200 OK
 Content-Type: application/openapi+yaml; version=3.2
@@ -1967,42 +2070,42 @@ components:
   schemas:
     Foo:
       "$ref": /foo.yaml
-</pre><a href="#appendix-C.1.3-7" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.5-7" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.3-8">The User Agent then requests the /foo.yaml,
-but it wants to retrieve a content with the most recent OAS version.<a href="#appendix-C.1.3-8" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.3-9">
+<p id="appendix-C.5-8">The User Agent then requests the /foo.yaml,
+but it wants to retrieve a content with the most recent OAS version.<a href="#appendix-C.5-8" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.5-9">
 <pre>
 GET /foo.yaml HTTP/1.1
 Host: example.com
 Accept: application/openapi+yaml; version=3.2
-</pre><a href="#appendix-C.1.3-9" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.5-9" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.3-10">The server processes the Accept header,
+<p id="appendix-C.5-10">The server processes the Accept header,
 and it realizes that foo.yaml is
-a JSON Schema document and not an OpenAPI document.<a href="#appendix-C.1.3-10" class="pilcrow">¶</a></p>
-<p id="appendix-C.1.3-11">It then replies with the acceptable content.<a href="#appendix-C.1.3-11" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.3-12">
+a JSON Schema document and not an OpenAPI document.<a href="#appendix-C.5-10" class="pilcrow">¶</a></p>
+<p id="appendix-C.5-11">It then replies with the acceptable content.<a href="#appendix-C.5-11" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.5-12">
 <pre>
 HTTP/1.1 406 Not Acceptable
 Accept: \
   application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema, \
   application/whatever+yaml; version=https://spec.openapis.org/oas/v3.0.4#schema-object
-</pre><a href="#appendix-C.1.3-12" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.5-12" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.3-13">The User Agent decides to retry the request
+<p id="appendix-C.5-13">The User Agent decides to retry the request
 using one of the acceptable media types.
-It could have also decided to give up.<a href="#appendix-C.1.3-13" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.3-14">
+It could have also decided to give up.<a href="#appendix-C.5-13" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.5-14">
 <pre>
 GET /foo.yaml HTTP/1.1
 Host: example.com
 Accept: \
   application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema
-</pre><a href="#appendix-C.1.3-14" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.5-14" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.3-15">Now the server can respond with the JSON Schema representation.<a href="#appendix-C.1.3-15" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-C.1.3-16">
+<p id="appendix-C.5-15">Now the server can respond with the JSON Schema representation.<a href="#appendix-C.5-15" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-C.5-16">
 <pre>
 HTTP/1.1 200 OK
 Content-Type: application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema
@@ -2014,33 +2117,28 @@ oneOf:
   title: Italian
 - const: en
   title: English
-</pre><a href="#appendix-C.1.3-16" class="pilcrow">¶</a>
+</pre><a href="#appendix-C.5-16" class="pilcrow">¶</a>
 </div>
-<p id="appendix-C.1.3-17">Pros:<a href="#appendix-C.1.3-17" class="pilcrow">¶</a></p>
+<p id="appendix-C.5-17">Pros:<a href="#appendix-C.5-17" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C.1.3-18.1">
-              <p id="appendix-C.1.3-18.1.1">The returned content is exactly what the User Agent requested.<a href="#appendix-C.1.3-18.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-C.5-18.1">
+            <p id="appendix-C.5-18.1.1">The returned content is exactly what the User Agent requested.<a href="#appendix-C.5-18.1.1" class="pilcrow">¶</a></p>
 </li>
-          </ul>
-<p id="appendix-C.1.3-19">Cons:<a href="#appendix-C.1.3-19" class="pilcrow">¶</a></p>
+        </ul>
+<p id="appendix-C.5-19">Cons:<a href="#appendix-C.5-19" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C.1.3-20.1">
-              <p id="appendix-C.1.3-20.1.1">Two requests were needed to retrieve the resource.<a href="#appendix-C.1.3-20.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-C.5-20.1">
+            <p id="appendix-C.5-20.1.1">Two requests were needed to retrieve the resource.<a href="#appendix-C.5-20.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C.1.3-20.2">
-              <p id="appendix-C.1.3-20.2.1">Some User Agents may not be able to handle
-the 406 Not Acceptable response and give up.<a href="#appendix-C.1.3-20.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-C.5-20.2">
+            <p id="appendix-C.5-20.2.1">Some User Agents may not be able to handle
+the 406 Not Acceptable response and give up.<a href="#appendix-C.5-20.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C.1.3-20.3">
-              <p id="appendix-C.1.3-20.3.1">Requires a specific Accept value for each possible referenced resource,
-which may be difficult to manage.<a href="#appendix-C.1.3-20.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-C.5-20.3">
+            <p id="appendix-C.5-20.3.1">Requires a specific Accept value for each possible referenced resource,
+which may be difficult to manage.<a href="#appendix-C.5-20.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C.1.3-20.4">
-              <p id="appendix-C.1.3-20.4.1">Clients may not be able to<a href="#appendix-C.1.3-20.4.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
+        </ul>
 </section>
 </div>
 </section>
