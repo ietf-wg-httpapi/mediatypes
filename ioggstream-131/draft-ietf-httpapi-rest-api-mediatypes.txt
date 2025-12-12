@@ -1,0 +1,681 @@
+
+
+
+
+HTTPAPI                                                         R. Polli
+Internet-Draft                                                   Par-Tec
+Intended status: Informational                                H. Andrews
+Expires: 15 June 2026                                   12 December 2025
+
+
+                          REST API Media Types
+             draft-ietf-httpapi-rest-api-mediatypes-latest
+
+Abstract
+
+   This document registers the following media types used in APIs on the
+   IANA Media Types registry: application/openapi+json, and application/
+   openapi+yaml.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-ietf-httpapi-rest-api-
+   mediatypes/.
+
+   Discussion of this document takes place on the HTTPAPI Working Group
+   mailing list (mailto:httpapi@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/httpapi/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/httpapi/.  Working Group
+   information can be found at https://datatracker.ietf.org/wg/httpapi/
+   about/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/ietf-wg-httpapi/mediatypes/labels/rest-api.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 15 June 2026.
+
+Copyright Notice
+
+   Copyright (c) 2025 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+     1.1.  Notational Conventions
+   2.  Media Type registrations
+     2.1.  The OpenAPI Media Types
+       2.1.1.  Media Type application/openapi+json
+       2.1.2.  Media Type application/openapi+yaml
+   3.  Interoperability Considerations
+     3.1.  Using the version parameter
+   4.  Security Considerations
+     4.1.  General Considerations
+   5.  IANA Considerations
+   6.  Normative References
+   Acknowledgements
+   FAQ
+   Examples of content negotiation
+     Scenarios
+       Scenario 1
+       Scenario 2
+       Scenario 3
+   Change Log
+     Since -00
+     Since -04
+     Since -07
+   Authors' Addresses
+
+1.  Introduction
+
+   OpenAPI Specification [OAS] is a consolidated standard for describing
+   HTTP APIs using the JSON [JSON] and YAML [YAML] data format.
+
+   To increase interoperability and leverage content negotiation
+   mechanisms when exchanging API descriptions this specification
+   registers the following media types: application/openapi+json and
+   application/openapi+yaml.
+
+1.1.  Notational Conventions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.  These words may also appear in this
+   document in lower case as plain English words, absent their normative
+   meanings.
+
+   The terms "content", "content negotiation", "resource", and "user
+   agent" in this document are to be interpreted as in [HTTP].
+
+2.  Media Type registrations
+
+   This section describes the information required for IANA to register
+   the above media types per [MEDIATYPE].
+
+2.1.  The OpenAPI Media Types
+
+   The OpenAPI Specification Media Types convey semantics for OpenAPI
+   resources as defined in [OAS].
+
+   Those resources can be represented in [JSON] or [YAML].  Since there
+   are multiple OpenAPI Specification versions, those media types
+   support the version parameter.
+
+   The following example conveys the desire of a client to receive an
+   OpenAPI Specification resource based on the stated preferences:
+
+   1.  openapi 3.1 in YAML
+
+   2.  openapi 3.0 in YAML
+
+   3.  any openapi version in JSON
+
+   Accept: application/openapi+yaml;version=3.1,
+           application/openapi+yaml;version=3.0;q=0.5,
+           application/openapi+json;q=0.3
+
+2.1.1.  Media Type application/openapi+json
+
+   The following information serves as the registration form for the
+   application/openapi+json media type.
+
+   Type name:  application
+
+   Subtype name:  openapi+json
+
+   Required parameters:  None
+
+   Optional parameters:  version: its value is a string representing the
+      OpenAPI Specification version. ; unrecognized parameters should be
+      ignored
+
+   Encoding considerations:  Same as "application/json"
+
+   Security considerations:  See Section 4 of this document,
+      "application/json" and [OAS]
+
+   Interoperability considerations:  See Section 3 of this document,
+      "application/json" and [OAS]
+
+   Published specification:  this document, [OAS]
+
+   Applications that use this media type:  HTTP
+
+   Fragment identifier considerations:  [OAS] or the specific version of
+      the OpenAPI document.
+
+   Additional information:
+
+   *  Deprecated alias names for this type: "application/
+      vnd.oai.openapi+json".  This name is used, but not registered.
+
+   *  Magic number(s): N/A
+
+   *  File extension(s): json
+
+   *  Macintosh file type code(s): N/A
+
+   Person and email address to contact for further information:  See Aut
+      hors' Addresses section.
+
+   Intended usage:  COMMON
+
+   Restrictions on usage:  None.
+
+   Author:  See Authors' Addresses section.
+
+   Change controller:  IETF
+
+2.1.2.  Media Type application/openapi+yaml
+
+   The following information serves as the registration form for the
+   application/openapi+yaml media type.
+
+   Type name:  application
+
+   Subtype name:  openapi+yaml
+
+   Required parameters:  N/A
+
+   Optional parameters:  version: its value is a string representing the
+      OpenAPI Specification version. ; unrecognized parameters should be
+      ignored
+
+   Encoding considerations:  Same as "+yaml" Structured Syntax Suffix
+
+   Security considerations:  See Section 4 of this document, "+yaml"
+      Structured Syntax Suffix and [OAS]
+
+   Interoperability considerations:  See Section 3 of this document,
+      "+yaml" Structured Syntax Suffix and [OAS]
+
+   Published specification:  [OAS]
+
+   Applications that use this media type:  HTTP
+
+   Fragment identifier considerations:  [OAS] or the specific version of
+      the OpenAPI document.
+
+   Additional information:
+
+   *  Deprecated alias names for this type: "application/
+      vnd.oai.openapi".  This name is used, but not registered.
+
+   *  Magic number(s): N/A
+
+   *  File extension(s): Same as "application/yaml"
+
+   *  Macintosh file type code(s): N/A
+
+   Person and email address to contact for further information:  See Aut
+      hors' Addresses section
+
+   Intended usage:  COMMON
+
+   Restrictions on usage:  None.
+
+   Author:  See Authors' Addresses section
+
+   Change controller:  IETF
+
+3.  Interoperability Considerations
+
+   Interoperability requirements for media type registrations are
+   discussed in Section 4.6 of [MEDIATYPE] and in the Interoperability
+   Considerations of the "+yaml" Structured Syntax Suffix.
+
+3.1.  Using the version parameter
+
+   The version parameter ought to be processed according with the
+   associated OpenAPI Specification.
+
+   For example, when an OpenAPI 3.1 resource uses the patch version
+   version=3.1.1, its value is expected to be ignored by tooling (see
+   https://spec.openapis.org/oas/v3.1.0.html#versions).
+
+   While it is possible to use the version parameter to identify OpenAPI
+   resources prior to version 3.0, the terminology used in this document
+   was formally introduced in OAS 3.0.4 and OAS 3.1.1.
+
+4.  Security Considerations
+
+   Security requirements for media type registrations are discussed in
+   Section 4.6 of [MEDIATYPE]. and in the Security Considerations of the
+   "+yaml" Structured Syntax Suffix.
+
+4.1.  General Considerations
+
+   OpenAPI documents are processed by a wide variety of tooling for
+   numerous different purposes, such as client code generation,
+   documentation generation, server side routing, and API testing.
+   OpenAPI document authors must consider the risks of the scenarios
+   where the OpenAPI document may be used.
+
+   An OpenAPI document describes the security schemes used to protect
+   the resources it defines.  The security schemes available offer
+   varying degrees of protection.  Factors such as the sensitivity of
+   the data and the potential impact of a security breach should guide
+   the selection of security schemes for the API resources.  Some
+   security schemes, such as basic auth and OAuth Implicit flow, are
+   supported for compatibility with existing APIs.  However, their
+   inclusion in OpenAPI does not constitute an endorsement of their use,
+   particularly for highly sensitive data or operations.
+
+   OpenAPI documents may contain references to external resources that
+   may be dereferenced automatically by consuming tools.  External
+   resources may be hosted on different domains that may be untrusted.
+   References in an OpenAPI document, or across OpenAPI documents may
+   cause a cycle.  Tooling must detect and handle cycles to prevent
+   resource exhaustion.
+
+   Certain properties allow the use of Markdown which can contain HTML
+   including script.  It is the responsibility of tooling to
+   appropriately sanitize the Markdown.
+
+   OpenAPI documents use [jsonschema] therefore share the security
+   consideration of JSON Schema.
+
+5.  IANA Considerations
+
+   This specification defines the following new Internet media types
+   [MEDIATYPE].
+
+   IANA is asked to update the "Media Types" registry at
+   https://www.iana.org/assignments/media-types
+   (https://www.iana.org/assignments/media-types) with the registration
+   information provided in the sections below.
+
+      +==========================+==================================+
+      | Media Type               | Registration information section |
+      +==========================+==================================+
+      | application/openapi+json | Section 2.1.1 of this document   |
+      +--------------------------+----------------------------------+
+      | application/openapi+yaml | Section 2.1.2 of this document   |
+      +--------------------------+----------------------------------+
+
+                                  Table 1
+
+6.  Normative References
+
+   [HTTP]     Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Semantics", STD 97, RFC 9110,
+              DOI 10.17487/RFC9110, June 2022,
+              <https://www.rfc-editor.org/rfc/rfc9110>.
+
+   [JSON]     Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
+              Interchange Format", STD 90, RFC 8259,
+              DOI 10.17487/RFC8259, December 2017,
+              <https://www.rfc-editor.org/rfc/rfc8259>.
+
+   [jsonschema]
+              Wright, A., Andrews, H., Hutton, B., and G. Dennis, "JSON
+              Schema", 28 January 2020,
+              <https://json-schema.org/specification.html>.
+
+   [MEDIATYPE]
+              Freed, N., Klensin, J., and T. Hansen, "Media Type
+              Specifications and Registration Procedures", BCP 13,
+              RFC 6838, DOI 10.17487/RFC6838, January 2013,
+              <https://www.rfc-editor.org/rfc/rfc6838>.
+
+   [OAS]      Darrel Miller, Jeremy Whitlock, Marsh Gardiner, Mike
+              Ralphson, Ron Ratovsky, and Uri Sarid, "OpenAPI
+              Specification 3.1.0", 15 February 2021,
+              <https://spec.openapis.org/oas/latest>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [YAML]     Oren Ben-Kiki, Clark Evans, and Ingy dot Net, "YAML Ain't
+              Markup Language Version 1.2", 1 October 2021,
+              <https://yaml.org/spec/1.2/spec.html>.
+
+Acknowledgements
+
+   Thanks to Erik Wilde and David Biesack for being the initial
+   contributors of this specification, and to Darrel Miller and Rich
+   Salz for their support during the adoption phase.
+
+   In addition to the people above, this document owes a lot to the
+   extensive discussion inside and outside the HTTPAPI workgroup.  The
+   following contributors have helped improve this specification by
+   opening pull requests, reporting bugs, asking smart questions,
+   drafting or reviewing text, and evaluating open issues:
+
+   Austin Wright, Ben Hutton and Jason Desrosiers.
+
+FAQ
+
+   This section is to be removed before publishing as an RFC.
+
+   Q: Why this document?  After all these years, we still lack a proper
+      media type for REST related document types.  This has some
+      security implications too (eg. wrt on identifying parsers or treat
+      downloads)
+
+Examples of content negotiation
+
+   This section is to be removed before publishing as an RFC.
+
+   This section explores the possibilities for User Agents to retrieve
+   information about API specifications using their preferred version of
+   OpenAPI.
+
+Scenarios
+
+   This section is to be removed before publishing as an RFC.
+
+   An API catalog exposes API specifications using OAS 3.0, and it wants
+   to provide migration/upgrade capabilities to future versions of OAS
+   and JSON Schema.  For simplicity, we use only YAML serialization.
+
+   Resource: https://example.org/openapi.yaml  is an OpenAPI
+      Specification document that references the Foo schema located at
+      /foo.yaml.
+
+   HTTP/1.1 200 OK
+   Content-Location: openapi.yaml
+   Content-Type: application/openapi+yaml; version=3.0
+
+   openapi: 3.0.0
+   …
+   components:
+     schemas:
+       Foo:
+         "$ref": "/foo.yaml"
+
+   HTTP/1.1 200 OK
+   Content-Location: openapi.yaml
+   Content-Type: application/openapi+yaml; version=3.2
+
+   openapi: 3.2.0
+   "$self": https://example.com/openapi.yaml
+   …
+   components:
+     schemas:
+       Foo:
+         "$ref": /foo.yaml
+
+   Resource: https://example.org/foo.yaml  is the schema definition for
+      Foo, represented in two different ways depending on the OpenAPI
+      version requested.
+
+   HTTP/1.1 200 OK
+   Content-Location: foo.yaml
+   Content-Type: application/whatever+yaml
+
+   type: string
+   enum: [ it, en]
+
+   Since OAS 3.2 supports JSON Schema, the same syntax can be described
+   adding a title to each enum value.
+
+   HTTP/1.1 200 OK
+   Content-Location: foo.yaml
+   Content-Type: application/whatever+yaml
+
+   "$schema": "https://json-schema.org/draft/2020-12/schema"
+   "$id": "https://example.com/foo.yaml"
+   oneOf:
+   - const: it
+     title: Italian
+   - const: en
+     title: English
+
+Scenario 1
+
+   This section is to be removed before publishing as an RFC.
+
+   The User Agent only supports OAS3.0 and refuses other formats,
+   including the more generic ones (see Section 12.4.3 of [HTTP].
+
+   GET /openapi.yaml HTTP/1.1
+   Host: example.com
+   Accept: \
+     application/openapi+yaml; version=3.0,
+     */*; q=0
+
+   The server responds with the desired resource.
+
+   HTTP/1.1 200 OK
+   Content-Type: application/openapi+yaml; version=3.0
+
+   openapi: 3.0.0
+   …
+   components:
+     schemas:
+       Foo:
+         "$ref": /foo.yaml
+
+   The User Agent processes the content and to resolve the $ref,
+   requests the /foo.yaml.
+
+   It needs to retrieve a content compatible with the entry document.
+   While the User Agent expects a JSON or YAML serialized content,
+   compatible with OAS3.0, it cannot know the actual format that the
+   server will return.
+
+   GET /foo.yaml HTTP/1.1
+   Host: example.com
+   Accept: application/openapi+yaml; version=3.0; q=1, application/yaml; q=0.5
+
+   The server responds with a YAML serialized content that is compatible
+   with OAS3.0.  Since the content only contains a Schema Object, that
+   is not associated with any media type, the server uses the
+   application/yaml media type.
+
+   HTTP/1.1 200 OK
+   Content-Type: application/yaml
+
+   type: string
+   enum: [it, en]
+
+Scenario 2
+
+   This section is to be removed before publishing as an RFC.
+
+   The User Agent prefers OAS3.2; moreover uses the q parameter to
+   decline OAS3.0 documents.  If it weren't so, the server could have
+   responded with the older version if the OAS3.2 document were not
+   available.
+
+   GET /openapi.yaml HTTP/1.1
+   Host: example.com
+   Accept: application/openapi+yaml; version=3.2, application/openapi+yaml; version=3.0;q=0
+
+   The server responds with the OAS3.2 document.
+
+   HTTP/1.1 200 OK
+   Content-Type: application/openapi+yaml; version=3.2
+
+   openapi: 3.0.0
+   …
+   components:
+     schemas:
+       Foo:
+         "$ref": /foo.yaml
+
+   The User Agent then requests the /foo.yaml, but it wants to retrieve
+   a content with the most recent OAS version.
+
+   GET /foo.yaml HTTP/1.1
+   Host: example.com
+   Accept: application/openapi+yaml; version=3.2
+
+   The server processes the Accept header, and it realizes that the User
+   Agent prefers an OAS3.2 compatible content.  It then choses the JSON
+   Schema representation and responds accordingly.
+
+   Since JSON Schema has no associated media type, the server uses the
+   application/yaml media type.
+
+   HTTP/1.1 200 OK
+   Content-Type: application/yaml
+
+   "$schema": "https://json-schema.org/draft/2020-12/schema"
+   "$id": "https://example.com/foo.yaml"
+   oneOf:
+   - const: it
+     title: Italian
+   - const: en
+     title: English
+
+Scenario 3
+
+   This section is to be removed before publishing as an RFC.
+
+   In this scenario:
+
+   1.  the User Agent express preference for referenced resources
+       compatible with OAS3.2.
+
+   2.  The server enforces a strict content negotiation, and responds
+       with a 406 Not Acceptable;
+
+   3.  the User Agent will have to retry using one of the acceptable
+       media types.
+
+   The User Agent prefers OAS3.2; moreover uses the q parameter to
+   decline OAS3.0 documents.  If it weren't so, the server could have
+   responded with the older version if the OAS3.2 document were not
+   available.
+
+   GET /openapi.yaml HTTP/1.1
+   Host: example.com
+   Accept: application/openapi+yaml; version=3.2, application/openapi+yaml; version=3.0;q=0
+
+   The server responds with the OAS3.2 document.
+
+   HTTP/1.1 200 OK
+   Content-Type: application/openapi+yaml; version=3.2
+
+   openapi: 3.0.0
+   …
+   components:
+     schemas:
+       Foo:
+         "$ref": /foo.yaml
+
+   The User Agent then requests the /foo.yaml, but it wants to retrieve
+   a content with the most recent OAS version.
+
+   GET /foo.yaml HTTP/1.1
+   Host: example.com
+   Accept: application/openapi+yaml; version=3.2
+
+   The server processes the Accept header, and it realizes that foo.yaml
+   is a JSON Schema document and not an OpenAPI document.
+
+   It then replies with the acceptable content.
+
+   HTTP/1.1 406 Not Acceptable
+   Accept: \
+     application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema, \
+     application/whatever+yaml; version=https://spec.openapis.org/oas/v3.0.4#schema-object
+
+   The User Agent decides to retry the request using one of the
+   acceptable media types.  It could have also decided to give up.
+
+   GET /foo.yaml HTTP/1.1
+   Host: example.com
+   Accept: \
+     application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema
+
+   Now the server can respond with the JSON Schema representation.
+
+   HTTP/1.1 200 OK
+   Content-Type: application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema
+
+   "$schema": "https://json-schema.org/draft/2020-12/schema"
+   "$id": "https://example.com/foo.yaml"
+   oneOf:
+   - const: it
+     title: Italian
+   - const: en
+     title: English
+
+   Pros:
+
+   *  The returned content is exactly what the User Agent requested.
+
+   Cons:
+
+   *  Two requests were needed to retrieve the resource.
+
+   *  Some User Agents may not be able to handle the 406 Not Acceptable
+      response and give up.
+
+   *  Requires a specific Accept value for each possible referenced
+      resource, which may be difficult to manage.
+
+   *  Clients may not be able to
+
+Change Log
+
+   This section is to be removed before publishing as an RFC.
+
+   RFC EDITOR PLEASE DELETE THIS SECTION.
+
+Since -00
+
+   This section is to be removed before publishing as an RFC.
+
+   *  Split YAML registrations in a separate I-D.
+
+Since -04
+
+   This section is to be removed before publishing as an RFC.
+
+   *  Split JSONSCHEMA registrations in a separate I-D.
+
+Since -07
+
+   This section is to be removed before publishing as an RFC.
+
+   *  Support OAS 2.0
+
+Authors' Addresses
+
+   Roberto Polli
+   Par-Tec
+   Italy
+   Email: robipolli@gmail.com
+
+
+   Henry Andrews
+   Email: andrews_henry@yahoo.com
