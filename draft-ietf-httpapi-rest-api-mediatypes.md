@@ -366,6 +366,8 @@ An API catalog exposes API specifications using OAS 3.0,
 and it wants to provide migration/upgrade capabilities
 to future versions of OAS and of the referenced resources.
 
+Github publishes OpenAPI specification files.
+
 Resource: https://example.org/openapi.yaml
 : is an OpenAPI Specification document
   that references the Foo schema located at /foo.yaml.
@@ -605,6 +607,45 @@ oneOf:
 - const: en
   title: English
 ~~~
+
+## User Agent prefers OAS3.2, Github responds with default representation
+{: numbered="false" removeinrfc="true"}
+
+In this scenario:
+
+1. the User Agent express preference
+   for referenced resources compatible with OAS3.2.
+1. The server does not support strict content negotiation,
+   and responds with the default representation;
+1. the User Agent processes the content
+   and retrieves the referenced resources.
+
+See {{Section 12.1 of HTTP}}
+
+> A user agent cannot rely on proactive negotiation preferences being consistently honored,
+> since the origin server might not implement proactive negotiation for the requested resource
+> or might decide that sending a response that doesn't conform to the user agent's preferences
+> is better than sending a 406 (Not Acceptable) response.
+
+~~~ http:
+
+GET /OpenAPITools/openapi-generator-cli/refs/heads/master/examples/v3.0/petstore.yaml HTTP/1.1
+Host: raw.githubusercontent.com
+Accept: application/openapi+yaml; version=3.2
+~~~
+
+The server responds with the default representation.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+
+openapi: 3.0.0
+info:
+  title: Hotel Booker API
+…
+~~~
+
 
 ## User Agent negotiates for a non-OAS media type
 {: numbered="false" removeinrfc="true"}
