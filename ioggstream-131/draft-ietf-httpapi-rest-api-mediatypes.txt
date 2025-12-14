@@ -5,7 +5,7 @@
 HTTPAPI                                                         R. Polli
 Internet-Draft                                                   Par-Tec
 Intended status: Informational                                H. Andrews
-Expires: 15 June 2026                                   12 December 2025
+Expires: 17 June 2026                                   14 December 2025
 
 
                           REST API Media Types
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 June 2026.
+   This Internet-Draft will expire on 17 June 2026.
 
 Copyright Notice
 
@@ -90,6 +90,8 @@ Table of Contents
      User Agent requires OAS3.0 for entry document and compatible
            referenced resources
      User Agent prefers OAS3.2, gets JSON Schema
+     User Agent prefers OAS3.2, Github responds with default
+           representation
      User Agent negotiates for a non-OAS media type
    Change Log
      Since -00
@@ -424,6 +426,8 @@ Examples of content negotiation
    to provide migration/upgrade capabilities to future versions of OAS
    and of the referenced resources.
 
+   Github publishes OpenAPI specification files.
+
    Resource: https://example.org/openapi.yaml  is an OpenAPI
       Specification document that references the Foo schema located at
       /foo.yaml.
@@ -624,6 +628,44 @@ User Agent prefers OAS3.2, gets JSON Schema
      title: Italian
    - const: en
      title: English
+
+User Agent prefers OAS3.2, Github responds with default representation
+
+   This section is to be removed before publishing as an RFC.
+
+   In this scenario:
+
+   1.  the User Agent express preference for referenced resources
+       compatible with OAS3.2.
+
+   2.  The server does not support strict content negotiation, and
+       responds with the default representation;
+
+   3.  the User Agent processes the content and retrieves the referenced
+       resources.
+
+   See Section 12.1 of [HTTP]
+
+      A user agent cannot rely on proactive negotiation preferences
+      being consistently honored, since the origin server might not
+      implement proactive negotiation for the requested resource or
+      might decide that sending a response that doesn't conform to the
+      user agent's preferences is better than sending a 406 (Not
+      Acceptable) response.
+
+   GET /OpenAPITools/openapi-generator-cli/refs/heads/master/examples/v3.0/petstore.yaml HTTP/1.1
+   Host: raw.githubusercontent.com
+   Accept: application/openapi+yaml; version=3.2
+
+   The server responds with the default representation.
+
+   HTTP/1.1 200 OK
+   Content-Type: text/plain; charset=utf-8
+
+   openapi: 3.0.0
+   info:
+     title: Hotel Booker API
+   …
 
 User Agent negotiates for a non-OAS media type
 
