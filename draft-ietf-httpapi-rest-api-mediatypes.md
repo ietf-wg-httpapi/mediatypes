@@ -340,6 +340,408 @@ Q: Why this document?
    This has some security implications too
    (eg. wrt on identifying parsers or treat downloads)
 
+# Examples of content negotiation
+{: numbered="false" removeinrfc="true"}
+
+This section explores the possibilities for User Agents
+to retrieve information about API specifications
+using their preferred version of OpenAPI.
+
+Note:
+
+- for readability, we use only YAML serialization;
+- we use the fictiotius media type `application/whatever+yaml`
+  to represent definitions
+  that are not associated with any specific registered media type;
+- this does not specify nor mandate a specific server behavior;
+  the various ecosystems are free to implement a more specific
+  behavior. See {{?RFC9205}}.
+
+An API catalog exposes API specifications using OAS 3.0,
+and it wants to provide migration/upgrade capabilities
+to future versions of OAS and of the referenced resources.
+
+Github publishes OpenAPI specification files.
+
+Resource: https://example.org/openapi.yaml
+: is an OpenAPI Specification document
+  that references the Foo schema located at /foo.yaml.
+
+The following representation is used
+both when the User Agent requests OAS 3.0
+and as a default representation
+(see {{Section 15.5.7 of HTTP}}).
+For example, this is the response
+returned when the User Agent requests
+OAS 3.1.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Location: openapi.yaml
+Content-Type: application/openapi+yaml; version=3.0
+
+openapi: 3.0.4
+…
+components:
+  schemas:
+    Foo:
+      "$ref": "/foo.yaml"
+~~~
+
+The following representation is used
+when the User Agent requests OAS 3.2.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Location: openapi.yaml
+Content-Type: application/openapi+yaml; version=3.2
+
+openapi: 3.2.1
+"$self": https://example.com/openapi.yaml
+…
+components:
+  schemas:
+    Foo:
+      "$ref": /foo.yaml
+~~~
+
+Resource: https://example.org/foo.yaml
+: is the schema definition for Foo,
+  represented in two different ways
+  depending on the OpenAPI version requested.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Location: foo.yaml
+Content-Type: application/whatever+yaml
+
+type: string
+enum: [ it, en]
+~~~
+
+Since OAS 3.2 supports JSON Schema,
+the same syntax can be described
+adding a `title` to each enum value.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Location: foo.yaml
+Content-Type: application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema
+
+"$schema": "https://json-schema.org/draft/2020-12/schema"
+"$id": "https://example.com/foo.yaml"
+oneOf:
+- const: it
+  title: Italian
+- const: en
+  title: English
+~~~
+
+## User Agent wants only OAS3.1, gets 406
+{: numbered="false" removeinrfc="true"}
+
+The User Agent wants OAS3.1,
+and is not willing to accept other versions
+(see {{Section 12.4.3 of HTTP}}.
+
+~~~ http
+GET /openapi.yaml HTTP/1.1
+Host: example.com
+Accept: \
+  application/openapi+yaml; version=3.1,
+  */*; q=0
+~~~
+
+The server does not have
+the selected representation
+and responds with a 406 Not Acceptable.
+
+~~~ http
+HTTP/1.1 406 Not Acceptable
+Accept: \
+  application/openapi+yaml; version=3.0, \
+  application/openapi+yaml; version=3.2
+~~~
+
+## User Agent prefers OAS3.1, gets OAS3.0
+{: numbered="false" removeinrfc="true"}
+
+The User Agent prefers OAS3.1,
+and does not impose further constraints.
+
+~~~ http
+GET /openapi.yaml HTTP/1.1
+Host: example.com
+Accept: application/openapi+yaml; version=3.1
+~~~
+
+The server responds with the default representation.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: application/openapi+yaml; version=3.0
+
+openapi: 3.0.4
+…
+components:
+  schemas:
+    Foo:
+      "$ref": /foo.yaml
+~~~
+
+## User Agent requires OAS3.0 for entry document and compatible referenced resources
+{: numbered="false" removeinrfc="true"}
+
+The User Agent only supports OAS3.0 entry documents.
+
+~~~ http
+GET /openapi.yaml HTTP/1.1
+Host: example.com
+Accept: \
+  application/openapi+yaml; version=3.0;q=1, \
+  */*; q=0
+~~~
+
+The server responds with the desired resource.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: application/openapi+yaml; version=3.0
+
+openapi: 3.0.4
+…
+components:
+  schemas:
+    Foo:
+      "$ref": /foo.yaml
+~~~
+
+The User Agent processes the content
+and to resolve the `$ref`, requests /foo.yaml.
+Since it is not an entry document,
+the User Agent is willing to accept
+any content compatible with OAS3.0.
+
+~~~ http
+GET /foo.yaml HTTP/1.1
+Host: example.com
+Accept: \
+  application/openapi+yaml; version=3.0; q=1, \
+  application/yaml; q=0.5
+~~~
+
+The server responds with a YAML serialized content
+that is compatible with OAS3.0.
+Since the content only contains a Schema Object,
+that is not associated with any media type,
+the server uses the `application/yaml` media type.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: application/yaml
+
+type: string
+enum: [it, en]
+~~~
+
+Q: Could the server respond with the same content
+    using the `application/whatever+yaml` media type?
+
+## User Agent prefers OAS3.2, gets JSON Schema
+{: numbered="false" removeinrfc="true"}
+
+The User Agent prefers OAS3.2.
+
+~~~ http
+GET /openapi.yaml HTTP/1.1
+Host: example.com
+Accept: application/openapi+yaml; version=3.2
+~~~
+
+The server responds with the OAS3.2 document.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: application/openapi+yaml; version=3.2
+
+openapi: 3.0.4
+…
+components:
+  schemas:
+    Foo:
+      "$ref": /foo.yaml
+~~~
+
+The User Agent then requests the /foo.yaml,
+but it wants to retrieve a content with the most recent OAS version.
+
+~~~ http
+GET /foo.yaml HTTP/1.1
+Host: example.com
+Accept: application/openapi+yaml; version=3.2
+~~~
+
+The server processes the Accept header,
+and it realizes that the User Agent
+prefers an OAS3.2 compatible content.
+It then choses the JSON Schema representation
+and responds accordingly.
+
+Since JSON Schema has no associated media type,
+the server uses the `application/yaml` media type.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: application/yaml
+
+"$schema": "https://json-schema.org/draft/2020-12/schema"
+"$id": "https://example.com/foo.yaml"
+oneOf:
+- const: it
+  title: Italian
+- const: en
+  title: English
+~~~
+
+## User Agent prefers OAS3.2, Github responds with default representation
+{: numbered="false" removeinrfc="true"}
+
+In this scenario:
+
+1. the User Agent express preference
+   for referenced resources compatible with OAS3.2.
+1. The server does not support strict content negotiation,
+   and responds with the default representation;
+1. the User Agent processes the content
+   and retrieves the referenced resources.
+
+See {{Section 12.1 of HTTP}}
+
+> A user agent cannot rely on proactive negotiation preferences being consistently honored,
+> since the origin server might not implement proactive negotiation for the requested resource
+> or might decide that sending a response that doesn't conform to the user agent's preferences
+> is better than sending a 406 (Not Acceptable) response.
+
+~~~ http:
+
+GET /OpenAPITools/openapi-generator-cli/refs/heads/master/examples/v3.0/petstore.yaml HTTP/1.1
+Host: raw.githubusercontent.com
+Accept: application/openapi+yaml; version=3.2
+~~~
+
+The server responds with the default representation.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+
+openapi: 3.0.0
+info:
+  title: Hotel Booker API
+…
+~~~
+
+
+## User Agent negotiates for a non-OAS media type
+{: numbered="false" removeinrfc="true"}
+
+In this scenario:
+
+1. the User Agent express preference
+   for referenced resources compatible with OAS3.2.
+1. The server enforces a strict content negotiation,
+   and responds with a 406 Not Acceptable;
+1. the User Agent will have to retry
+   using one of the acceptable media types.
+
+The User Agent prefers OAS3.2;
+moreover uses the `q` parameter
+to decline OAS3.0 documents.
+If it weren't so, the server
+could have responded with the older version
+if the OAS3.2 document were not available.
+
+~~~ http
+GET /openapi.yaml HTTP/1.1
+Host: example.com
+Accept: application/openapi+yaml; version=3.2, application/openapi+yaml; version=3.0;q=0
+~~~
+
+The server responds with the OAS3.2 document.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: application/openapi+yaml; version=3.2
+
+openapi: 3.0.0
+…
+components:
+  schemas:
+    Foo:
+      "$ref": /foo.yaml
+~~~
+
+The User Agent then requests the /foo.yaml,
+but it wants to retrieve a content with the most recent OAS version.
+
+~~~ http
+GET /foo.yaml HTTP/1.1
+Host: example.com
+Accept: application/openapi+yaml; version=3.2
+~~~
+
+The server processes the Accept header,
+and it realizes that foo.yaml is
+a JSON Schema document and not an OpenAPI document.
+
+It then replies with the acceptable content.
+
+~~~ http
+HTTP/1.1 406 Not Acceptable
+Accept: \
+  application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema, \
+  application/whatever+yaml; version=https://spec.openapis.org/oas/v3.0.4#schema-object
+~~~
+
+The User Agent decides to retry the request
+using one of the acceptable media types.
+It could have also decided to give up.
+
+~~~ http
+GET /foo.yaml HTTP/1.1
+Host: example.com
+Accept: \
+  application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema
+~~~
+
+Now the server can respond with the JSON Schema representation.
+
+~~~ http
+HTTP/1.1 200 OK
+Content-Type: application/whatever+yaml; version=https://json-schema.org/draft/2020-12/schema
+
+"$schema": "https://json-schema.org/draft/2020-12/schema"
+"$id": "https://example.com/foo.yaml"
+oneOf:
+- const: it
+  title: Italian
+- const: en
+  title: English
+~~~
+
+Pros:
+
+- The returned content is exactly what the User Agent requested.
+
+Cons:
+
+- Two requests were needed to retrieve the resource.
+- Some User Agents may not be able to handle
+  the 406 Not Acceptable response and give up.
+- Requires a specific Accept value for each possible referenced resource,
+  which may be difficult to manage.
+
+
 # Change Log
 {: numbered="false" removeinrfc="true"}
 
@@ -359,4 +761,3 @@ RFC EDITOR PLEASE DELETE THIS SECTION.
 {:numbered="false" removeinrfc="true"}
 
 - Support OAS 2.0
-
